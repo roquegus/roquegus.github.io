@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gus Roque, Ed.D. | Learning Design &amp; Development</title>
+  <meta name="description" content="Gus Roque, Ed.D. | L&D leader building AI-powered leadership programs at Amazon. Creator of the 10X AI Leadership Solutions Sprint.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #f4f4f2;
+      --white:   #ffffff;
+      --dark:    #0c0f1a;
+      --dark2:   #141824;
+      --text:    #111827;
+      --muted:   #6b7280;
+      --border:  #e5e7eb;
+      --orange:  #ea580c;
+      --amber:   #f59e0b;
+      --radius:  14px;
+      --sh-sm:   0 1px 3px rgba(0,0,0,.06);
+      --sh:      0 4px 20px rgba(0,0,0,.08);
+      --sh-lg:   0 8px 40px rgba(0,0,0,.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip { position:absolute; top:-100px; left:0; z-index:999; background:var(--orange); color:white; padding:.5rem 1rem; font-size:13px; text-decoration:none; border-radius:0 0 8px 0; }
+    .skip:focus { top:0; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(12,15,26,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 0 2rem;
+      display: flex; align-items: center; gap: 1.5rem;
+      height: 60px;
+    }
+    .nav-logo {
+      width: 34px; height: 34px;
+      background: var(--orange); color: white;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 12px; letter-spacing: .5px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-links { display:flex; gap:0; list-style:none; flex:1; }
+    .nav-links a {
+      color: rgba(255,255,255,.5); text-decoration:none;
+      font-size: 14px; font-weight: 500; padding: 0 .85rem;
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: white; }
+    .nav-cta {
+      background: transparent;
+      border: 1.5px solid rgba(255,255,255,.25);
+      color: white; text-decoration: none;
+      font-size: 13px; font-weight: 600;
+      padding: .38rem 1rem; border-radius: 8px;
+      transition: all .15s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--orange); border-color: var(--orange); }
+
+    /* ── HERO ── */
+    #hero {
+      background: var(--dark);
+      background-image:
+        radial-gradient(ellipse 55% 60% at 80% 40%, rgba(234,88,12,.14) 0%, transparent 65%),
+        radial-gradient(ellipse 30% 40% at 10% 80%, rgba(245,158,11,.07) 0%, transparent 55%);
+      min-height: 92vh;
+      display: flex; align-items: center;
+      padding: 6rem 2rem 5rem;
+    }
+    .hero-inner {
+      max-width: 1100px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 310px;
+      gap: 4rem; align-items: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .6rem;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 1.4rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 24px; height: 2px; background: var(--amber);
+    }
+    #hero h1 {
+      font-size: clamp(3rem, 6.5vw, 4.75rem);
+      font-weight: 900; line-height: 1.0;
+      letter-spacing: -.04em; color: white;
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1.05rem; color: rgba(255,255,255,.5);
+      max-width: 510px; line-height: 1.8; margin-bottom: 2rem;
+    }
+    .hero-chips { display:flex; flex-wrap:wrap; gap:.45rem; margin-bottom:2.25rem; }
+    .hero-chip {
+      font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: .26rem .8rem; border-radius: 999px;
+    }
+    .hero-chip.hot {
+      background: rgba(234,88,12,.2); border-color: rgba(234,88,12,.4);
+      color: #fb923c;
+    }
+    .hero-btns { display:flex; gap:.75rem; }
+    .btn {
+      padding: .65rem 1.5rem; border-radius: 10px;
+      font-size: 14px; font-weight: 600;
+      text-decoration: none; transition: all .15s; border: none; cursor: pointer;
+    }
+    .btn-orange { background: var(--orange); color: white; }
+    .btn-orange:hover { background: #c2410c; }
+    .btn-ghost {
+      background: rgba(255,255,255,.07); color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.14);
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,.14); }
+    .btn-dark { background: var(--dark); color: white; }
+    .btn-dark:hover { background: #1e293b; }
+    .btn-outline-white {
+      background: transparent; color: white;
+      border: 1.5px solid rgba(255,255,255,.3);
+    }
+    .btn-outline-white:hover { background: rgba(255,255,255,.08); }
+
+    /* Hero profile card */
+    .hero-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: var(--radius); padding: 1.75rem;
+      backdrop-filter: blur(8px);
+    }
+    .hero-card-top {
+      display: flex; align-items: center; gap: .9rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero-mono {
+      width: 44px; height: 44px;
+      background: var(--orange); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 900; font-size: 14px; color: white;
+    }
+    .hc-name { font-weight: 700; font-size: .9rem; color: white; }
+    .hc-role { font-size: 12px; color: rgba(255,255,255,.4); margin-top:.15rem; }
+    .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .hstat strong { display:block; font-size:.95rem; font-weight:700; color:white; }
+    .hstat span { font-size:12px; color:rgba(255,255,255,.38); }
+
+    /* ── IMPACT STRIP ── */
+    #impact-strip { background: var(--orange); }
+    .strip-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 2rem 2rem;
+      display: grid; grid-template-columns: repeat(5,1fr);
+      gap: 1rem; text-align: center;
+    }
+    .sstat { padding: .5rem 0; }
+    .sstat:not(:last-child) {
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+    .sstat strong {
+      display: block; font-size: 2rem; font-weight: 900;
+      color: white; line-height: 1; margin-bottom: .3rem;
+    }
+    .sstat span {
+      font-size: 11px; font-weight: 700;
+      color: rgba(255,255,255,.72); text-transform: uppercase; letter-spacing: .5px;
+    }
+
+    /* ── SECTION LAYOUT ── */
+    .section { max-width: 1100px; margin: 0 auto; padding: 5.5rem 2rem; }
+    .section-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .5rem;
+    }
+    .section h2 {
+      font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800;
+      letter-spacing: -.02em; color: var(--text); margin-bottom: .5rem;
+    }
+    .section .lead {
+      font-size: 15px; color: var(--muted); max-width: 600px; line-height: 1.75;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--sh-sm);
+    }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .75rem; }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
+    .op-list { list-style: none; padding: 0; }
+    .op-list li {
+      display: flex; gap: .65rem; align-items: flex-start;
+      font-size: 14px; color: var(--muted);
+      padding: .5rem 0; border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+    }
+    .op-list li:last-child { border-bottom: none; }
+    .op-list li strong { color: var(--text); }
+    .op-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--orange); flex-shrink: 0; margin-top: .45rem;
+    }
+
+    /* ── PROGRAMS ── */
+    .prog-section-bg { background: var(--bg); }
+
+    /* 10X featured */
+    .prog-featured {
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 2.75rem;
+      margin-top: 2.5rem; margin-bottom: 1.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      position: relative; overflow: hidden;
+    }
+    .prog-featured::after {
+      content: '10X';
+      position: absolute; right: -16px; top: -24px;
+      font-size: 200px; font-weight: 900;
+      color: rgba(255,255,255,.022);
+      line-height: 1; pointer-events: none;
+      letter-spacing: -12px;
+    }
+    .feat-tag {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
+    }
+    .feat-tag::before {
+      content: ''; width: 7px; height: 7px;
+      background: var(--amber); border-radius: 50%; flex-shrink: 0;
+    }
+    .prog-featured h3 {
+      font-size: 1.65rem; font-weight: 800; letter-spacing: -.02em;
+      color: white; margin-bottom: .75rem;
+    }
+    .prog-featured .feat-desc {
+      font-size: 14px; color: rgba(255,255,255,.5);
+      line-height: 1.75; margin-bottom: 1.5rem;
+    }
+    .vs-pair { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .vs-box {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 10px; padding: 1rem;
+    }
+    .vs-box.gold { border-color: rgba(245,158,11,.4); }
+    .vs-box .vl {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: .3rem;
+    }
+    .vs-box h4 { font-size: .9rem; font-weight: 700; color: white; margin-bottom: .3rem; }
+    .vs-box.gold h4 { color: var(--amber); }
+    .vs-box p { font-size: 12px; color: rgba(255,255,255,.38); line-height: 1.55; }
+
+    /* right side clusters */
+    .feat-right-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px;
+      text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.1rem;
+    }
+    .cl-mini {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px; padding: 1.1rem 1.25rem; margin-bottom: .7rem;
+    }
+    .cl-mini-num {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: rgba(255,255,255,.28); margin-bottom: .25rem;
+    }
+    .cl-mini h4 { font-size: .85rem; font-weight: 700; color: rgba(255,255,255,.8); margin-bottom: .4rem; }
+    .key-chips { display:flex; flex-wrap:wrap; gap:.28rem; }
+    .kchip {
+      font-size: 11px; color: rgba(255,255,255,.42);
+      background: rgba(255,255,255,.07);
+      padding: .14rem .5rem; border-radius: 4px;
+    }
+    .feat-mini-stats {
+      display: grid; grid-template-columns: repeat(2,1fr);
+      gap: .7rem; margin-top: .9rem;
+    }
+    .fms {
+      background: rgba(255,255,255,.05);
+      border-radius: 8px; padding: .85rem;
+      text-align: center;
+    }
+    .fms strong { display:block; font-size:1.3rem; font-weight:800; color:white; line-height:1; margin-bottom:.22rem; }
+    .fms span { font-size:11px; color:rgba(255,255,255,.32); line-height:1.4; }
+
+    /* Program card image */
+    .prog-card-img {
+      height: 155px; overflow: hidden;
+      background: #e5e7eb; flex-shrink: 0;
+    }
+    .prog-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .35s ease;
+      display: block;
+    }
+    .prog-card:hover .prog-card-img img { transform: scale(1.05); }
+
+    /* Program card grid */
+    .prog-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem;
+    }
+    .prog-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--sh-sm);
+      display: flex; flex-direction: column;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .prog-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+    .prog-card-top {
+      padding: 1.35rem 1.4rem 0;
+      display: flex; align-items: flex-start; gap: .9rem;
+      margin-bottom: .7rem;
+    }
+    .prog-abbr {
+      width: 44px; height: 44px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800; color: white;
+      flex-shrink: 0; letter-spacing: .5px;
+    }
+    .prog-org {
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: .18rem; margin-top: .1rem;
+    }
+    .prog-card h3 { font-size: .93rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .prog-body { padding: 0 1.4rem; flex: 1; }
+    .prog-body p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .prog-footer { padding: 1rem 1.4rem 1.4rem; display:flex; flex-wrap:wrap; gap:.38rem; }
+    .pill {
+      font-size: 11px; font-weight: 600;
+      padding: .18rem .62rem; border-radius: 999px;
+    }
+    .pill-a { background:#fef3c7; color:#92400e; }
+    .pill-t { background:#e0f9ff; color:#075985; }
+    .pill-p { background:#f3e8ff; color:#6b21a8; }
+    .pill-g { background:#dcfce7; color:#14532d; }
+    .pill-b { background:#dbeafe; color:#1e40af; }
+    .pill-r { background:#fce7f3; color:#9d174d; }
+
+    /* ── PHILOSOPHY BREAK ── */
+    #philosophy {
+      background: var(--dark);
+      background-image: radial-gradient(ellipse 50% 70% at 50% 50%, rgba(234,88,12,.08) 0%, transparent 70%);
+      padding: 6rem 2rem; text-align: center;
+    }
+    .phi-inner { max-width: 780px; margin: 0 auto; }
+    .phi-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 1.75rem;
+    }
+    .phi-inner blockquote {
+      font-size: clamp(1.75rem,4vw,2.75rem); font-weight: 800;
+      color: white; line-height: 1.25; letter-spacing: -.03em;
+      margin-bottom: 1.5rem;
+    }
+    .phi-inner blockquote em { color: var(--amber); font-style: normal; }
+    .phi-cite { font-size: 13px; color: rgba(255,255,255,.3); font-style: normal; }
+
+    /* ── COMPETENCIES ── */
+    .comp-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 1.25rem; margin-top: 2.5rem;
+    }
+    .comp-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem; box-shadow: var(--sh-sm);
+    }
+    .comp-icon {
+      width: 46px; height: 46px; border-radius: 11px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .comp-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .75rem; }
+    .comp-list { list-style: none; padding: 0; }
+    .comp-list li {
+      font-size: 13px; color: var(--muted);
+      padding: .35rem 0; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .55rem; line-height: 1.5;
+    }
+    .comp-list li:last-child { border-bottom: none; }
+    .cdot {
+      width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display:flex; flex-direction:column; gap:1rem; margin-top:2.5rem; }
+    .exp-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem;
+      box-shadow: var(--sh-sm);
+      border-left: 4px solid transparent;
+      transition: border-left-color .2s;
+    }
+    .exp-card:hover { border-left-color: var(--orange); }
+    .exp-head {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 1rem; margin-bottom: .5rem;
+    }
+    .exp-head h3 { font-size: 1rem; font-weight: 700; }
+    .exp-period {
+      font-size: 12px; font-weight: 600; color: var(--muted);
+      background: var(--bg); padding: .22rem .65rem;
+      border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+    }
+    .exp-role { font-size: 13px; color: var(--orange); font-weight: 600; margin-bottom: .75rem; }
+    .exp-bul { list-style: none; padding: 0; }
+    .exp-bul li {
+      font-size: 14px; color: var(--muted);
+      padding: .22rem 0 .22rem 1.2rem;
+      position: relative; line-height: 1.65;
+    }
+    .exp-bul li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--orange); font-size: 12px; top: .33rem;
+    }
+
+    /* ── CREDENTIALS ── */
+    .cred-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem; margin-top: 2.5rem;
+    }
+    .cred-note { font-size: 13px; color: var(--muted); line-height: 1.65; margin-top: 1rem; }
+    .card ul { list-style: none; padding: 0; }
+    .card ul li {
+      font-size: 14px; color: var(--muted);
+      padding: .35rem 0; border-bottom: 1px solid var(--border);
+      line-height: 1.55;
+    }
+    .card ul li:last-child { border-bottom: none; }
+    .card ul li strong { color: var(--text); }
+
+    /* ── ADDITIONAL ── */
+    .add-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem; margin-top: 2.5rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact-section {
+      background: var(--dark);
+      background-image: radial-gradient(ellipse 40% 60% at 80% 50%, rgba(234,88,12,.1) 0%, transparent 60%);
+      padding: 6.5rem 2rem; text-align: center;
+    }
+    .contact-inner { max-width: 500px; margin: 0 auto; }
+    #contact-section .section-eyebrow { color: var(--amber); }
+    #contact-section h2 {
+      font-size: clamp(2rem,4vw,2.75rem); font-weight: 800;
+      color: white; letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    #contact-section p {
+      font-size: 15px; color: rgba(255,255,255,.45);
+      line-height: 1.75; margin-bottom: 2rem;
+    }
+    .contact-btns { display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding: 1.5rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span, footer a {
+      font-size: 13px; color: rgba(255,255,255,.28); text-decoration: none;
+    }
+    footer a:hover { color: white; }
+
+
+
+    /* ── VISUAL PORTFOLIO ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .work-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--sh-sm);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .work-card:hover { transform: translateY(-3px); box-shadow: var(--sh); }
+    .work-img {
+      height: 205px;
+      overflow: hidden;
+      background: #e5e7eb;
+      border-bottom: 1px solid var(--border);
+    }
+    .work-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .35s ease;
+    }
+    .work-card:hover .work-img img { transform: scale(1.04); }
+    .work-body { padding: 1.25rem 1.35rem 1.4rem; }
+    .work-kicker {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: .35rem;
+    }
+    .work-body h3 {
+      font-size: .98rem;
+      font-weight: 750;
+      line-height: 1.3;
+      margin-bottom: .55rem;
+    }
+    .work-body p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .proof-band {
+      margin-top: 1.75rem;
+      background: var(--dark);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1.15fr 2fr;
+      gap: 1.5rem;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .proof-band::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(234,88,12,.22), transparent 65%);
+    }
+    .proof-band h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+    .proof-band p { font-size: 13px; color: rgba(255,255,255,.55); line-height: 1.65; }
+    .proof-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: .75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .proof-metric {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 10px;
+      padding: .85rem;
+    }
+    .proof-metric strong { display: block; color: white; font-size: 1.2rem; line-height: 1; margin-bottom: .3rem; }
+    .proof-metric span { display: block; color: rgba(255,255,255,.4); font-size: 11px; line-height: 1.35; }
+
+    /* ── EXPERIENCE TIMELINE UPGRADE ── */
+    .exp-card { position: relative; }
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 1.4rem;
+      width: 4px;
+      height: 2rem;
+      background: var(--orange);
+      border-radius: 0 4px 4px 0;
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .exp-card:hover::before { opacity: 1; }
+    .metric-row { display:flex; flex-wrap:wrap; gap:.4rem; margin-top:.8rem; }
+    .metric-chip {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      background: #fff4e6;
+      border: 1px solid #fed7aa;
+      padding: .18rem .58rem;
+      border-radius: 999px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-card { display: none; }
+      .prog-featured { grid-template-columns: 1fr; gap: 2rem; }
+      .prog-featured::after { display: none; }
+      .vs-pair { grid-template-columns: 1fr; }
+      .prog-grid { grid-template-columns: 1fr 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .proof-band { grid-template-columns: 1fr; }
+      .proof-metrics { grid-template-columns: repeat(2,1fr); }
+      .comp-grid { grid-template-columns: 1fr 1fr; }
+      .strip-inner { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width:640px) {
+      .nav-links { display: none; }
+      .strip-inner { grid-template-columns: repeat(2,1fr); }
+      .about-grid, .prog-grid, .portfolio-grid, .comp-grid,
+      .cred-grid, .add-grid { grid-template-columns: 1fr; }
+      .proof-metrics { grid-template-columns: 1fr 1fr; }
+      .feat-mini-stats { grid-template-columns: repeat(2,1fr); }
+      .exp-head { flex-direction: column; gap: .3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- NAV -->
+<nav id="top">
+  <a href="#top" class="nav-logo" aria-label="Home">GR</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#work-samples">Work Samples</a></li>
+    <li><a href="#competencies">Competencies</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#credentials">Education</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+  </ul>
+  <a href="https://www.linkedin.com/in/gusroque/" class="nav-cta" target="_blank" rel="noopener">LinkedIn</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Learning Design &amp; Development</div>
+      <h1>Gus Roque,<br>Ed.D.</h1>
+      <p class="hero-desc">Learning &amp; Development leader with 15+ years building AI-powered leadership programs, global capability academies, and scalable learning operations across Amazon, Royal Caribbean Group, and higher education.</p>
+      <div class="hero-chips">
+        <span class="hero-chip hot">AI-First L&amp;D</span>
+        <span class="hero-chip">Enterprise L&amp;D Strategy</span>
+        <span class="hero-chip">Global Program Governance</span>
+        <span class="hero-chip">LATAM Specialist</span>
+        <span class="hero-chip">Ed.D.</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#programs" class="btn btn-orange">View Programs</a>
+        <a href="#contact-section" class="btn btn-ghost">Connect</a>
+      </div>
+    </div>
+    <div class="hero-card" aria-hidden="true">
+      <div class="hero-card-top">
+        <div class="hero-mono">GR</div>
+        <div>
+          <div class="hc-name">Gus Roque, Ed.D.</div>
+          <div class="hc-role">Sr. L&amp;D Manager, Amazon GOLD</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><strong>Miami, FL</strong><span>Based</span></div>
+        <div class="hstat"><strong>15+ yrs</strong><span>L&amp;D leadership</span></div>
+        <div class="hstat"><strong>Global</strong><span>multi-region delivery</span></div>
+        <div class="hstat"><strong>Bilingual+</strong><span>EN / ES, PT</span></div>
+        <div class="hstat"><strong>Ed.D.</strong><span>Adult Education, FIU</span></div>
+        <div class="hstat"><strong>AI-First</strong><span>10X program creator</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT STRIP -->
+<div id="impact-strip">
+  <div class="strip-inner">
+    <div class="sstat"><strong>15+</strong><span>Years in L&amp;D</span></div>
+    <div class="sstat"><strong>1,900+</strong><span>Leaders in portfolio</span></div>
+    <div class="sstat"><strong>3 Languages</strong><span>EN, ES, PT</span></div>
+    <div class="sstat"><strong>6+ Awards</strong><span>Brandon Hall, CLO, OLC</span></div>
+    <div class="sstat"><strong>3 Sectors</strong><span>Enterprise, Hospitality, Higher Ed</span></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<main id="main">
+<div class="section" id="about">
+  <div class="section-eyebrow">About</div>
+  <h2>Building learning that actually changes behavior</h2>
+  <p class="lead">I own complex learning portfolios end-to-end: strategy, governance, design, delivery, and evaluation, with measurable enterprise impact.</p>
+  <div class="about-grid">
+    <div class="card">
+      <h3>Executive Summary</h3>
+      <p>Known for translating business ambiguity into clear learning mechanisms, metrics, and leader-ready experiences across regions. Currently leading the LXD function at Amazon GOLD, overseeing a global portfolio of multi-day leadership programs (HR4/HR5/HR6/HR7) serving 1,900+ eligible participants across L4 through L8. Doctoral candidate at Florida International University researching professional identity in L&amp;D. Co-creator of the 10X AI Leadership Solutions Sprint, a 2-day program helping Amazon senior leaders move from AI tool use to operating model transformation.</p>
+    </div>
+    <div class="card">
+      <h3>How I operate</h3>
+      <ul class="op-list">
+        <li><span class="op-dot"></span><div><strong>AI-first acceleration:</strong> faster design cycles without sacrificing rigor or consistency</div></li>
+        <li><span class="op-dot"></span><div><strong>Governance and quality:</strong> standards, onboarding mechanisms, and design QA that scale</div></li>
+        <li><span class="op-dot"></span><div><strong>High-judgment practice:</strong> scenarios, simulations, and decision-ready application</div></li>
+        <li><span class="op-dot"></span><div><strong>Measurement:</strong> outcomes-based evaluation, behavior change signals, stakeholder-ready reporting</div></li>
+        <li><span class="op-dot"></span><div><strong>LATAM fluency:</strong> delivering in Spanish with NPS 95.83 vs 81.78 global benchmark</div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- PROGRAMS -->
+<div class="prog-section-bg">
+<div class="section" id="programs">
+  <div class="section-eyebrow">Programs</div>
+  <h2>Selected Programs &amp; Portfolio</h2>
+  <p class="lead">A cross-section of enterprise learning initiatives spanning Amazon, Royal Caribbean Group, and higher education.</p>
+
+  <!-- 10X FEATURED CARD -->
+  <div class="prog-featured">
+    <div>
+      <div class="feat-tag">Signature Program</div>
+      <h3>10X AI Leadership Solutions Sprint</h3>
+      <p class="feat-desc">A 2-day intensive co-designed and co-facilitated with Dr. Mark Boccia (Amazon GOLD) to move senior leaders past AI tool adoption into actual operating model transformation. Built on McKinsey, PwC, and HBR research. Field-tested with Amazon L6/L7 leaders. Participants leave with a working AI solution, a business case their finance partner can defend, and a 90-day deployment plan.</p>
+      <div class="vs-pair">
+        <div class="vs-box">
+          <div class="vl">Stage 2 Thinking</div>
+          <h4>2X</h4>
+          <p>Do the same work faster. Save 30 minutes on a report you never questioned.</p>
+        </div>
+        <div class="vs-box gold">
+          <div class="vl">Stage 3/4 Thinking</div>
+          <h4>10X</h4>
+          <p>Ask whether the work should exist at all. Redesign the operating model.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="feat-right-label">10 Keys across 3 Clusters</div>
+      <div class="cl-mini">
+        <div class="cl-mini-num">Cluster 1</div>
+        <h4>Strategic Transformation Architecture</h4>
+        <div class="key-chips">
+          <span class="kchip">Problem Reframing</span>
+          <span class="kchip">RAAP Classification</span>
+          <span class="kchip">10X Shortlist</span>
+          <span class="kchip">The Provocateur</span>
+        </div>
+      </div>
+      <div class="cl-mini">
+        <div class="cl-mini-num">Cluster 2</div>
+        <h4>Impact Demonstration &amp; Scaling</h4>
+        <div class="key-chips">
+          <span class="kchip">Flywheel Mapping</span>
+          <span class="kchip">Impact Measurement</span>
+          <span class="kchip">Business Case Defense</span>
+        </div>
+      </div>
+      <div class="cl-mini">
+        <div class="cl-mini-num">Cluster 3</div>
+        <h4>Human-Centered Change &amp; Activation</h4>
+        <div class="key-chips">
+          <span class="kchip">The 3R Model</span>
+          <span class="kchip">Consequence Mapping</span>
+          <span class="kchip">90-Day Cascade</span>
+        </div>
+      </div>
+      <div class="feat-mini-stats">
+        <div class="fms"><strong>L6/L7</strong><span>Amazon senior leader audience</span></div>
+        <div class="fms"><strong>3</strong><span>deliverables per participant</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAM GRID -->
+  <div class="prog-grid">
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_hrx.jpg" alt="HRX leadership workshop participants in a large conference setting" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#f59e0b">HRX</div>
+        <div>
+          <div class="prog-org">Amazon GOLD</div>
+          <h3>HRX Workshop Series (HR4&ndash;HR7)</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>Multi-day in-person leadership capability programs for Amazon HR professionals at L4 through L8. Full portfolio ownership across design, governance, delivery, facilitator readiness, and evaluation.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-a">920 participants</span>
+        <span class="pill pill-a">16.77% knowledge gain</span>
+        <span class="pill pill-a">60.42% penetration</span>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_latam.jpg" alt="PXT Academy cohort group photos from global sessions" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#0891b2">PXTA</div>
+        <div>
+          <div class="prog-org">Amazon GOLD</div>
+          <h3>PXT Academy</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>3-day capability academy for Amazon HR leaders across Global Ops PXT. Includes the PXT Capabilities Guidebook, translated into Spanish and Brazilian Portuguese. High-visibility quarterly delivery across multiple regions.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-t">NPS 100 (MX &amp; BR)</span>
+        <span class="pill pill-t">28&ndash;45% gain</span>
+        <span class="pill pill-t">24 countries</span>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_highjudgment.jpg" alt="High-Judgment eLearning module cover showing stress and decision-making scenarios" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#7c3aed">HJ</div>
+        <div>
+          <div class="prog-org">Amazon GOLD</div>
+          <h3>High-Judgment Training Series</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>9-module eLearning and ILT series building critical decision-making capability across Amazon PXT. Covers bias, stress, DEI, courage, and leadership communication. Six modules refreshed in 15 days with 200+ enhancements.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-p">9 modules</span>
+        <span class="pill pill-p">15-day rapid refresh</span>
+        <span class="pill pill-p">Global delivery</span>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_capabilities.jpg" alt="Global Ops-PXT Capabilities Guidebook cover, translated into Spanish and Portuguese" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#059669">LAT</div>
+        <div>
+          <div class="prog-org">Amazon LATAM</div>
+          <h3>LATAM Learning Programs</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>Regionally adapted programs delivered in Spanish across Mexico, Brazil, and Costa Rica. CMT workshops, SLE/SLII certifications, and the 10-week PXT Academy "Three E's" curriculum for L5+ leaders.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-g">NPS 95.83 vs 81.78 global</span>
+        <span class="pill pill-g">100% satisfaction</span>
+        <span class="pill pill-g">MX / BR / CR</span>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_rcg.jpg" alt="Royal Caribbean Group workshop with participants reviewing learning materials together" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#2563eb">RCG</div>
+        <div>
+          <div class="prog-org">Royal Caribbean Group</div>
+          <h3>Multimedia Learning &amp; Onboarding</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>Award-winning onboarding and training programs for global shipboard and corporate audiences. Design Thinking programs and immersive learning experiences for crew and shoreside teams.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-b">Brandon Hall Gold</span>
+        <span class="pill pill-b">Communicator Awards</span>
+        <span class="pill pill-b">CLO Silver</span>
+      </div>
+    </div>
+
+    <div class="prog-card">
+      <div class="prog-card-img">
+        <img src="images/card_fiu.jpg" alt="FIU Online course design and learning technology interface" loading="lazy">
+      </div>
+      <div class="prog-card-top">
+        <div class="prog-abbr" style="background:#db2777">FIU</div>
+        <div>
+          <div class="prog-org">Florida International University</div>
+          <h3>Higher Education &amp; Instructional Design</h3>
+        </div>
+      </div>
+      <div class="prog-body">
+        <p>10 years leading large-scale online learning at FIU Online, consulting with faculty on instructional strategy and technology. Currently adjunct faculty teaching IDH 3035 Honors Design Thinking Seminar.</p>
+      </div>
+      <div class="prog-footer">
+        <span class="pill pill-r">OLC Award</span>
+        <span class="pill pill-r">Adjunct Faculty</span>
+        <span class="pill pill-r">Doctoral Candidate</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+
+<!-- VISUAL PORTFOLIO -->
+<div class="section" id="work-samples">
+  <div class="section-eyebrow">Visual Portfolio</div>
+  <h2>Selected work samples and artifacts</h2>
+  <p class="lead">A more visual view of the environments, assets, and learning products behind the resume: workshops, academies, multimedia courses, localization, and capability-building systems.</p>
+
+  <div class="portfolio-grid">
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_workshop.jpg" alt="Large leadership workshop with participants working in groups" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Facilitation &amp; Cohort Design</div>
+        <h3>Leadership workshops at enterprise scale</h3>
+        <p>Designed and governed multi-day cohort experiences that combine facilitator-led practice, peer interaction, and behavior-change measurement.</p>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_systems.jpg" alt="System analysis slide showing stakeholder maps and process visuals" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Systems Thinking</div>
+        <h3>From training request to operating mechanism</h3>
+        <p>Translated ambiguous business needs into structured learning systems: goals, audiences, artifacts, workflows, launch plans, and evaluation logic.</p>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_fiu_courses.jpg" alt="FIU course interface and online learning portfolio screenshots" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Online Learning</div>
+        <h3>Course design and digital learning ecosystems</h3>
+        <p>Led online learning and instructional technology work across FIU, building scalable faculty-facing and student-facing learning experiences.</p>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_cornell.jpg" alt="Cornell eCornell leadership course screenshot" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Executive Learning</div>
+        <h3>Leadership development partnerships</h3>
+        <p>Connected external learning assets, internal capability models, and business priorities into coherent leader development experiences.</p>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_cocktail.jpg" alt="Interactive training screen for cocktail preparation" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Multimedia Learning</div>
+        <h3>Scenario-based and media-rich training</h3>
+        <p>Built visual, applied learning for operational audiences where the experience needed to be clear, engaging, and immediately usable.</p>
+      </div>
+    </article>
+
+    <article class="work-card">
+      <div class="work-img"><img src="images/work_designthinking.jpg" alt="Design thinking tools slide with post-it notes and ideation activities" loading="lazy"></div>
+      <div class="work-body">
+        <div class="work-kicker">Design Thinking</div>
+        <h3>Human-centered problem solving</h3>
+        <p>Taught and applied design thinking methods across higher education, enterprise workshops, and innovation-focused learning programs.</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="proof-band">
+    <div>
+      <h3>Visuals should prove capability, not decorate the page.</h3>
+      <p>This section turns portfolio assets into evidence: program scale, design quality, delivery environments, and measurable outcomes.</p>
+    </div>
+    <div class="proof-metrics">
+      <div class="proof-metric"><strong>1,900+</strong><span>leaders in Amazon portfolio</span></div>
+      <div class="proof-metric"><strong>95.83</strong><span>LATAM average NPS</span></div>
+      <div class="proof-metric"><strong>9</strong><span>high-judgment modules</span></div>
+      <div class="proof-metric"><strong>3</strong><span>enterprise sectors</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETENCIES -->
+<div class="section" id="competencies">
+  <div class="section-eyebrow">Competencies</div>
+  <h2>Strategy, systems, and delivery capabilities</h2>
+  <p class="lead">Aligned to enterprise learning outcomes across global organizations.</p>
+  <div class="comp-grid">
+
+    <div class="comp-card">
+      <div class="comp-icon" style="background:#fff4e6">
+        <!-- Target icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/>
+          <circle cx="12" cy="12" r="6"/>
+          <circle cx="12" cy="12" r="2"/>
+        </svg>
+      </div>
+      <h3>Strategy &amp; Leadership</h3>
+      <ul class="comp-list">
+        <li><span class="cdot" style="background:#ea580c"></span>Enterprise L&amp;D Strategy</li>
+        <li><span class="cdot" style="background:#ea580c"></span>Leadership Development</li>
+        <li><span class="cdot" style="background:#ea580c"></span>Stakeholder Management</li>
+        <li><span class="cdot" style="background:#ea580c"></span>Global Program Governance</li>
+        <li><span class="cdot" style="background:#ea580c"></span>LXD Team Leadership</li>
+      </ul>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-icon" style="background:#e0f9ff">
+        <!-- Edit/pen icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0891b2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+        </svg>
+      </div>
+      <h3>Design &amp; Enablement</h3>
+      <ul class="comp-list">
+        <li><span class="cdot" style="background:#0891b2"></span>AI-First Instructional Design</li>
+        <li><span class="cdot" style="background:#0891b2"></span>Capability Academies</li>
+        <li><span class="cdot" style="background:#0891b2"></span>High-Judgment Programs</li>
+        <li><span class="cdot" style="background:#0891b2"></span>Localization (ES / PT)</li>
+        <li><span class="cdot" style="background:#0891b2"></span>Multimedia Learning Design</li>
+      </ul>
+    </div>
+
+    <div class="comp-card">
+      <div class="comp-icon" style="background:#f3e8ff">
+        <!-- Bar chart icon -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <h3>Operations &amp; Measurement</h3>
+      <ul class="comp-list">
+        <li><span class="cdot" style="background:#7c3aed"></span>Learning Operations</li>
+        <li><span class="cdot" style="background:#7c3aed"></span>Analytics &amp; Kirkpatrick Evaluation</li>
+        <li><span class="cdot" style="background:#7c3aed"></span>Facilitator Readiness &amp; Standards</li>
+        <li><span class="cdot" style="background:#7c3aed"></span>AI-enabled Workflows &amp; Automation</li>
+        <li><span class="cdot" style="background:#7c3aed"></span>Design Quality Frameworks</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<div style="background:var(--bg)">
+<div class="section" id="experience">
+  <div class="section-eyebrow">Experience</div>
+  <h2>Learning leadership across enterprise,<br>hospitality, and higher education</h2>
+  <div class="exp-list">
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Amazon: Global Operations Learning &amp; Development</h3>
+        <span class="exp-period">2024&ndash;Present</span>
+      </div>
+      <div class="exp-role">Senior Manager, Learning Design &amp; Development &bull; Miami, FL</div>
+      <ul class="exp-bul">
+        <li>Own a global portfolio of multi-day leadership and capability programs (HR4/HR5/HR6/HR7) across strategy, governance, design quality, facilitator readiness, and measurement.</li>
+        <li>Scaled enterprise delivery: HR5 (920 participants, 35 sessions), HR7 (232 leaders, 8 sessions), HR4 (375 learners, 15 sessions).</li>
+        <li>Improved capability outcomes through data-driven design: HR5 achieved 16.77% knowledge gain; evaluation confirmed behavior improvement (+5.2%) and manager-observed growth (+10.3%).</li>
+        <li>Co-designed and launched the 10X AI Leadership Solutions Sprint for Amazon L6/L7 leaders, establishing an AI-first operating model transformation curriculum across Global Ops.</li>
+        <li>Elevated LXD team performance via operating standards, onboarding mechanisms, and quality frameworks; accelerated design cycles through AI-enabled workflows.</li>
+      </ul>
+      <div class="metric-row"><span class="metric-chip">1,900+ eligible leaders</span><span class="metric-chip">HR4-HR7 portfolio</span><span class="metric-chip">10X AI Sprint</span></div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Amazon: LATAM, Global Operations Learning &amp; Development</h3>
+        <span class="exp-period">2023&ndash;2024</span>
+      </div>
+      <div class="exp-role">Regional L&amp;D Specialist &bull; Mexico, Brazil, Costa Rica</div>
+      <ul class="exp-bul">
+        <li>Led multi-country delivery and enablement across LATAM; built senior stakeholder partnerships with Heads of HR for Mexico and Brazil.</li>
+        <li>Facilitated 13+ programs with average NPS 95.83 vs 81.78 global benchmark and 100% course satisfaction.</li>
+        <li>Delivered cohorts with NPS 100 in MX and BR; Costa Rica cohort achieved 83.33 NPS and 41.81% knowledge gain.</li>
+        <li>Localized and redesigned assets for Spanish- and Portuguese-speaking audiences, including full translation of the PXT Capabilities Guidebook.</li>
+      </ul>
+      <div class="metric-row"><span class="metric-chip">NPS 95.83</span><span class="metric-chip">MX / BR / CR</span><span class="metric-chip">Spanish + Portuguese</span></div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Amazon: Human Resources Learning &amp; Development</h3>
+        <span class="exp-period">2022&ndash;2023</span>
+      </div>
+      <div class="exp-role">Global L&amp;D Manager &bull; Global</div>
+      <ul class="exp-bul">
+        <li>Built Amazon's first dedicated instructional design and multimedia teams within HR L&amp;D, establishing foundational design quality standards.</li>
+        <li>Designed and deployed multi-day leadership programs across multiple regions; translated complex requirements into scalable learning solutions.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Amazon: North America Consumer Fulfillment</h3>
+        <span class="exp-period">2020&ndash;2022</span>
+      </div>
+      <div class="exp-role">Learning Technologist &bull; USA</div>
+      <ul class="exp-bul">
+        <li>Designed and implemented digital learning experiences supporting large-scale operational capability building across NACF.</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Royal Caribbean Group</h3>
+        <span class="exp-period">2018&ndash;2020</span>
+      </div>
+      <div class="exp-role">Manager, Multimedia Learning Design &amp; Development &bull; Miami, FL</div>
+      <ul class="exp-bul">
+        <li>Led multimedia learning design for global shipboard and corporate audiences; built onboarding and capability programs for diverse crew populations.</li>
+        <li>Produced award-winning learning experiences recognized by Brandon Hall (Gold &amp; Bronze) and Communicator Awards (Excellence &amp; Distinction).</li>
+      </ul>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-head">
+        <h3>Florida International University (FIU Online)</h3>
+        <span class="exp-period">2008&ndash;2018</span>
+      </div>
+      <div class="exp-role">Educational Technology Manager / Sr. Instructional Designer / Consultant &bull; Miami, FL</div>
+      <ul class="exp-bul">
+        <li>Led large-scale online learning initiatives and consulted with faculty on instructional strategy, learning technology, and course design for a major research university.</li>
+        <li>Recipient of OLC Effective Practice Award for innovation in affordable online learning.</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- CREDENTIALS -->
+<div class="section" id="credentials">
+  <div class="section-eyebrow">Education &amp; Certifications</div>
+  <h2>Formal training and recognized credentials</h2>
+  <div class="cred-grid">
+    <div class="card">
+      <h3>Education</h3>
+      <ul>
+        <li>Ed.D., Adult Education &amp; Human Resource Development, Florida International University</li>
+        <li>M.S., Curriculum &amp; Instruction (Instructional Technologies), Florida International University</li>
+        <li>B.S., Business Administration (Management Information Systems), Florida International University</li>
+      </ul>
+      <p class="cred-note">Doctoral research: professional identity of L&amp;D professionals. Presented at ATD and Academy of Human Resource Development. Adjunct faculty at FIU teaching IDH 3035 Honors Design Thinking Seminar.</p>
+    </div>
+    <div class="card">
+      <h3>Certifications</h3>
+      <ul>
+        <li>SLII Facilitator (Situational Leadership II)</li>
+        <li>Everything DiSC Workplace</li>
+        <li>Multipliers Leadership</li>
+        <li>Certified Design Thinking Practitioner</li>
+        <li>Quality Matters</li>
+        <li>Disney Institute: People Management</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ADDITIONAL -->
+<div style="background:var(--bg)">
+<div class="section" id="additional">
+  <div class="section-eyebrow">Additional</div>
+  <h2>Publications, awards, affiliations, and tools</h2>
+  <div class="add-grid">
+    <div class="card">
+      <h3>Publications &amp; Awards</h3>
+      <ul>
+        <li>Published in <em>Adult Learning</em>, <em>Canadian Journal of Education</em>, and additional peer-reviewed outlets</li>
+        <li>Communicator Awards: Excellence &amp; Distinction</li>
+        <li>Chief Learning Officer Award: Business Impact, Silver</li>
+        <li>Brandon Hall: Gold &amp; Bronze</li>
+        <li>OLC Effective Practice Award</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Affiliations, Ventures, Tools &amp; Languages</h3>
+      <ul>
+        <li><strong>Affiliations:</strong> ATD; OLC; Quality Matters; Latinos @Amazon</li>
+        <li><strong>Ventures:</strong> Biscayne Strategy (custom L&amp;D consulting, incl. Restaurant Brands International); AiDDIE (AI advisory for L&amp;D teams)</li>
+        <li><strong>Tools:</strong> Adobe Creative Cloud; Articulate 360; Vyond; Synthesia; LMS platforms; AI content &amp; automation tools</li>
+        <li><strong>Languages:</strong> English (Fluent); Spanish (Fluent); Portuguese (Conversational)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT -->
+<div id="contact-section">
+  <div class="contact-inner">
+    <div class="section-eyebrow">Contact</div>
+    <h2>Let's connect</h2>
+    <p>Open to conversations about learning leadership, AI-first program design, LATAM capability development, and organizational transformation.</p>
+    <div class="contact-btns">
+      <a href="https://www.linkedin.com/in/gusroque/" class="btn btn-orange" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#top" class="btn btn-outline-white">Back to top</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span>&copy; <span id="yr"></span> Gus Roque. Built with GitHub Pages.</span>
+    <a href="#top">Back to top &uarr;</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
