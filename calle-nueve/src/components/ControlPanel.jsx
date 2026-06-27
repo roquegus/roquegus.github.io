@@ -1,11 +1,10 @@
-import { useRef, useState, useCallback } from 'react';
-import { PALETTE_LABELS, DEFAULT_PIP_COLOR_MAP } from '../config.js';
+import { useState } from 'react';
+import {
+  PIP_STYLES, DIVIDER_LINE_STYLES, ORNAMENT_TYPES,
+} from '../config.js';
 import { exportCardPng, exportAllPdf } from '../utils/exportUtils.js';
 
-const PIP_NAMES = {
-  parchment: 'Parchment', yellow: 'Yellow', pink: 'Pink',
-  teal: 'Teal', brown: 'Brown', gold: 'Gold', mahogany: 'Mahogany',
-};
+// ── Tiny reusable controls ────────────────────────────────────────────────────
 
 const Toggle = ({ checked, onChange }) => (
   <label className="toggle">
@@ -14,36 +13,76 @@ const Toggle = ({ checked, onChange }) => (
   </label>
 );
 
+const ColorRow = ({ label, value, onChange }) => (
+  <div className="color-row">
+    <span className="color-swatch" style={{ background: value }} />
+    <label>{label}</label>
+    <span className="hex-val">{value}</span>
+    <input type="color" value={value} onChange={e => onChange(e.target.value)} />
+  </div>
+);
+
+const SliderRow = ({ label, value, min, max, step = 1, onChange, unit = '' }) => (
+  <div className="slider-row">
+    <div className="slider-header">
+      <label>{label}</label>
+      <span className="slider-val">{value}{unit}</span>
+    </div>
+    <input
+      type="range" min={min} max={max} step={step}
+      value={value}
+      onChange={e => onChange(Number(e.target.value))}
+    />
+  </div>
+);
+
+const SelectRow = ({ label, value, options, onChange }) => (
+  <div className="select-row">
+    <label>{label}</label>
+    <select value={value} onChange={e => onChange(e.target.value)}>
+      {Object.entries(options).map(([k, v]) => (
+        <option key={k} value={k}>{v}</option>
+      ))}
+    </select>
+  </div>
+);
+
+// ── Pip style pill picker ─────────────────────────────────────────────────────
+const PipStylePicker = ({ value, onChange }) => (
+  <div className="style-picker">
+    {Object.entries(PIP_STYLES).map(([k, label]) => (
+      <button
+        key={k}
+        className={`style-pill${value === k ? ' active' : ''}`}
+        onClick={() => onChange(k)}
+      >
+        {label}
+      </button>
+    ))}
+  </div>
+);
+
+// ── Main panel ────────────────────────────────────────────────────────────────
 const ControlPanel = ({
-  palette, onPaletteChange,
-  pipColorMap, onPipMapChange,
+  settings, onSettingChange,
   showGuides, onShowGuides,
-  showBack, onShowBack,
+  showBack,   onShowBack,
   selectedTile,
   selectedCardSvgRef,
   allCardSvgRefs,
   cardBackSvgRef,
   deck,
 }) => {
-  const [progress, setProgress] = useState(null); // null | { done, total }
+  const [progress, setProgress] = useState(null);
   const [exporting, setExporting] = useState(false);
 
-  const handlePaletteColor = (key, value) => {
-    onPaletteChange({ ...palette, [key]: value });
-  };
-
-  const handlePipMap = (pip, colorKey) => {
-    onPipMapChange({ ...pipColorMap, [pip]: colorKey });
-  };
+  const set = (key) => (val) => onSettingChange(key, val);
 
   const handleExportCard = async () => {
     if (!selectedCardSvgRef?.current) return;
     setExporting(true);
-    try {
-      await exportCardPng(selectedCardSvgRef.current, selectedTile?.id ?? 'card');
-    } finally {
-      setExporting(false);
-    }
+    try { await exportCardPng(selectedCardSvgRef.current, selectedTile?.id ?? 'card'); }
+    finally { setExporting(false); }
   };
 
   const handleExportAll = async () => {
@@ -52,13 +91,10 @@ const ControlPanel = ({
     setProgress({ done: 0, total: allCardSvgRefs.length + 1 });
     try {
       const svgEls = [
-        ...allCardSvgRefs.map((ref, i) => ({ el: ref.current, id: deck[i]?.id })),
+        ...allCardSvgRefs.map((r, i) => ({ el: r.current, id: deck[i]?.id })),
         { el: cardBackSvgRef.current, id: 'back' },
       ].filter(x => x.el);
-
-      await exportAllPdf(svgEls, (done, total) => {
-        setProgress({ done, total });
-      });
+      await exportAllPdf(svgEls, (done, total) => setProgress({ done, total }));
     } finally {
       setExporting(false);
       setProgress(null);
@@ -67,49 +103,55 @@ const ControlPanel = ({
 
   return (
     <aside className="control-panel">
-      {/* ── Selected card preview ── */}
-      {selectedTile && (
-        <div className="panel-section">
-          <h2>Selected — {selectedTile.id}{selectedTile.isHero ? ' ★' : ''}</h2>
-          <div className="selected-preview" style={{ minHeight: 120 }}>
-            {/* Shown via the hidden full-res node; this is just a label */}
-            <span style={{ color: 'var(--text-muted)', fontSize: 11, fontFamily: 'monospace', padding: '8px' }}>
-              Click Export PNG to download this card
-            </span>
-          </div>
-          <button className="btn btn-ghost" onClick={handleExportCard} disabled={exporting}>
-            EXPORT PNG  822 × 1122
-          </button>
-        </div>
-      )}
 
-      {/* ── Export all ── */}
+      {/* ── Pip Style ── */}
       <div className="panel-section">
-        <h2>Export Deck</h2>
-        <button className="btn btn-primary" onClick={handleExportAll} disabled={exporting}>
-          {exporting && progress
-            ? `RENDERING ${progress.done} / ${progress.total}…`
-            : 'EXPORT ALL 56 CARDS — PDF'}
-        </button>
-        {progress && (
-          <div className="progress-bar">
-            <div
-              className="progress-bar-fill"
-              style={{ width: `${(progress.done / progress.total) * 100}%` }}
-            />
-          </div>
-        )}
-        <p className="export-note">
-          Exports at 822 × 1122 px (300 DPI bleed). Guides always off in exports.
-          Run RGB→CMYK pass externally before upload to MakePlayingCards.
-        </p>
+        <h2>Pip Style</h2>
+        <PipStylePicker value={settings.pipStyle} onChange={set('pipStyle')} />
+        <SliderRow
+          label="Pip Size" unit="px"
+          value={settings.pipSize} min={20} max={100} step={2}
+          onChange={set('pipSize')}
+        />
       </div>
 
-      {/* ── Display toggles ── */}
+      {/* ── Colors ── */}
+      <div className="panel-section">
+        <h2>Colors</h2>
+        <ColorRow label="Card Background" value={settings.cardBg}      onChange={set('cardBg')} />
+        <ColorRow label="Pips / Icons"    value={settings.pipColor}    onChange={set('pipColor')} />
+        <ColorRow label="Index & Text"    value={settings.textColor}   onChange={set('textColor')} />
+        <ColorRow label="Hero Accent"     value={settings.accentColor} onChange={set('accentColor')} />
+        <ColorRow label="Divider"         value={settings.dividerColor} onChange={set('dividerColor')} />
+      </div>
+
+      {/* ── Divider ── */}
+      <div className="panel-section">
+        <h2>Divider</h2>
+        <SelectRow
+          label="Line Style"
+          value={settings.dividerLineStyle}
+          options={DIVIDER_LINE_STYLES}
+          onChange={set('dividerLineStyle')}
+        />
+        <SelectRow
+          label="Ornament"
+          value={settings.dividerOrnament}
+          options={ORNAMENT_TYPES}
+          onChange={set('dividerOrnament')}
+        />
+        <SliderRow
+          label="Thickness" unit="px"
+          value={settings.dividerThickness} min={1} max={8} step={0.5}
+          onChange={set('dividerThickness')}
+        />
+      </div>
+
+      {/* ── Display ── */}
       <div className="panel-section">
         <h2>Display</h2>
         <div className="toggle-row">
-          <label>Show trim / safe guides</label>
+          <label>Trim / safe guides</label>
           <Toggle checked={showGuides} onChange={onShowGuides} />
         </div>
         <div className="toggle-row">
@@ -118,41 +160,31 @@ const ControlPanel = ({
         </div>
       </div>
 
-      {/* ── Color palette ── */}
+      {/* ── Export ── */}
       <div className="panel-section">
-        <h2>Color Palette</h2>
-        {Object.entries(PALETTE_LABELS).map(([key, label]) => (
-          <div className="palette-row" key={key}>
-            <label>{label}</label>
-            <span className="hex-val">{palette[key]}</span>
-            <input
-              type="color"
-              value={palette[key]}
-              onChange={e => handlePaletteColor(key, e.target.value)}
-            />
+        <h2>Export</h2>
+        {selectedTile && (
+          <button className="btn btn-ghost" onClick={handleExportCard} disabled={exporting}>
+            PNG — {selectedTile.id}  (822 × 1122)
+          </button>
+        )}
+        <button className="btn btn-primary" onClick={handleExportAll} disabled={exporting}>
+          {exporting && progress
+            ? `Rendering ${progress.done} / ${progress.total}…`
+            : 'PDF — All 56 Cards'}
+        </button>
+        {progress && (
+          <div className="progress-bar">
+            <div className="progress-bar-fill"
+              style={{ width: `${(progress.done / progress.total) * 100}%` }} />
           </div>
-        ))}
+        )}
+        <p className="export-note">
+          Exports at 822 × 1122 px bleed. Guides always off.
+          Run RGB→CMYK before uploading to MakePlayingCards.
+        </p>
       </div>
 
-      {/* ── Pip → color mapping ── */}
-      <div className="panel-section">
-        <h2>Pip Color Map</h2>
-        <div className="pip-map-grid">
-          {Array.from({ length: 10 }, (_, i) => (
-            <div className="pip-map-cell" key={i}>
-              <span>{i}</span>
-              <select
-                value={pipColorMap[i]}
-                onChange={e => handlePipMap(i, e.target.value)}
-              >
-                {Object.keys(PALETTE_LABELS).map(k => (
-                  <option key={k} value={k}>{PIP_NAMES[k]}</option>
-                ))}
-              </select>
-            </div>
-          ))}
-        </div>
-      </div>
     </aside>
   );
 };

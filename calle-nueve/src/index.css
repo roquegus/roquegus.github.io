@@ -133,69 +133,164 @@ body {
   padding-bottom: 6px;
 }
 
-/* palette editor */
-.palette-row {
+/* ── Color rows ── */
+.color-row {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.palette-row label {
+.color-row label {
   flex: 1;
   font-size: 11px;
   color: var(--text-muted);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
   text-transform: uppercase;
 }
 
-.palette-row input[type="color"] {
-  width: 36px;
-  height: 26px;
+.color-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 1px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+.color-row input[type="color"] {
+  width: 32px;
+  height: 24px;
   border: 1px solid var(--border);
   border-radius: 3px;
   cursor: pointer;
   background: none;
   padding: 1px;
+  flex-shrink: 0;
 }
 
-.palette-row .hex-val {
+.hex-val {
   font-family: monospace;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--text-muted);
-  width: 58px;
+  width: 52px;
+  flex-shrink: 0;
 }
 
-/* pip color mapping */
-.pip-map-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 4px;
+/* ── Pip style pill picker ── */
+.style-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
-.pip-map-cell {
+.style-pill {
+  padding: 5px 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  background: var(--control-bg);
+  color: var(--text-muted);
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.style-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.style-pill.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* ── Slider rows ── */
+.slider-row {
   display: flex;
   flex-direction: column;
+  gap: 5px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 3px;
 }
 
-.pip-map-cell span {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 13px;
+.slider-header label {
+  font-size: 11px;
   color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
 }
 
-.pip-map-cell select {
+.slider-val {
+  font-family: monospace;
+  font-size: 11px;
+  color: var(--accent);
+}
+
+input[type="range"] {
   width: 100%;
-  font-size: 10px;
-  padding: 2px 2px;
+  appearance: none;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  border: 2px solid var(--bg);
+}
+
+/* ── Select rows ── */
+.select-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.select-row label {
+  flex: 1;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.select-row select {
+  flex: 1.4;
+  padding: 5px 8px;
   background: var(--control-bg);
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: 3px;
+  font-size: 11px;
   cursor: pointer;
   appearance: none;
-  text-align: center;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23a89080'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 24px;
 }
 
 /* toggles */

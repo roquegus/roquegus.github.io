@@ -1,87 +1,96 @@
-// ── Card dimensions ──────────────────────────────────────────────────────────
-export const CARD_W = 822;
-export const CARD_H = 1122;
+// ── Card dimensions ───────────────────────────────────────────────────────────
+export const CARD_W    = 822;
+export const CARD_H    = 1122;
 export const TRIM_INSET = 36;
 export const SAFE_INSET = 72;
-export const MID_Y = CARD_H / 2; // 561
+export const MID_Y     = CARD_H / 2; // 561
 
-// ── Editable color palette ────────────────────────────────────────────────────
-export const DEFAULT_PALETTE = {
-  teal:      '#005B56', // Calle Ocho Teal
-  pink:      '#FF8C94', // Flamingo Pink
-  yellow:    '#EAB308', // Canary Yellow
-  brown:     '#92400E', // Cigar Leaf Brown
-  parchment: '#FAFAF9', // Aged Parchment
-  gold:      '#D4AF37', // Cigar Band Gold
-  mahogany:  '#2A1610', // Tobacco Mahogany
+// ── Pip style options ─────────────────────────────────────────────────────────
+export const PIP_STYLES = {
+  cultural: 'Cuban Cultural Icons',
+  dots:     'Classic Dots',
+  rings:    'Rings',
+  numbers:  'Numbers',
+  diamonds: 'Minimal Diamonds',
 };
 
-export const PALETTE_LABELS = {
-  teal:      'Calle Ocho Teal',
-  pink:      'Flamingo Pink',
-  yellow:    'Canary Yellow',
-  brown:     'Cigar Leaf Brown',
-  parchment: 'Aged Parchment',
-  gold:      'Cigar Band Gold',
-  mahogany:  'Tobacco Mahogany',
+// ── Divider style options ─────────────────────────────────────────────────────
+export const DIVIDER_LINE_STYLES = {
+  solid:  'Solid',
+  double: 'Double',
+  dashed: 'Dashed',
+  none:   'No Line',
 };
 
-// ── Pip value → background palette key ───────────────────────────────────────
-export const DEFAULT_PIP_COLOR_MAP = {
-  0: 'parchment',
-  1: 'yellow',
-  2: 'yellow',
-  3: 'yellow',
-  4: 'pink',
-  5: 'pink',
-  6: 'pink',
-  7: 'teal',
-  8: 'teal',
-  9: 'teal',
+export const ORNAMENT_TYPES = {
+  leaf:    'Tobacco Leaf',
+  diamond: 'Diamond',
+  star:    'Star',
+  none:    'None',
 };
 
-// ── Background key → foreground key (contrast) ────────────────────────────────
-export const FG_FOR_BG = {
-  parchment: 'mahogany',
-  yellow:    'mahogany',
-  pink:      'mahogany',
-  teal:      'parchment',
-  brown:     'parchment',
-  gold:      'mahogany',
-  mahogany:  'parchment',
+// ── Default settings (all card visual variables) ──────────────────────────────
+export const DEFAULT_SETTINGS = {
+  // Card colors
+  cardBg:       '#005B56', // Calle Ocho Teal — full card background
+  pipColor:     '#FAFAF9', // Aged Parchment — icons, dots, pip elements
+  textColor:    '#FAFAF9', // index numbers, corner text, footer
+  accentColor:  '#D4AF37', // Cigar Band Gold — hero frame, corner ornaments
+  dividerColor: '#D4AF37', // divider line and ornaments
+
+  // Pip style
+  pipStyle: 'cultural',
+  pipSize:  60,            // base size in card units (20–100 slider)
+
+  // Divider
+  dividerLineStyle:  'solid',
+  dividerOrnament:   'leaf',
+  dividerThickness:  2,    // 1–6 px
 };
 
-export function getBg(pip, palette, pipColorMap) {
-  return palette[pipColorMap[pip]];
-}
+// ── Pip zone geometry (card-unit coordinates) ─────────────────────────────────
+export const ZONE_X1 = 130;
+export const ZONE_X2 = CARD_W - 130; // 692
+export const TOP_Y1  = 215;           // below corner index block
+export const TOP_Y2  = MID_Y - 50;   // 511 — above divider gap
 
-export function getFg(pip, palette, pipColorMap) {
-  const bgKey = pipColorMap[pip];
-  return palette[FG_FOR_BG[bgKey]];
-}
+// ── Symmetric domino pip layouts ──────────────────────────────────────────────
+// Each entry: array of [xFraction, yFraction] within the pip zone bounding box.
+// x: 0=left edge, 1=right edge; y: 0=top, 1=bottom.
+// L=0.25, C=0.5, R=0.75  ·  columns mirror perfectly across centre.
+const L = 0.25, C = 0.5, R = 0.75;
 
-// ── Domino pip layouts ─────────────────────────────────────────────────────────
-// Each entry is an array of [xFraction, yFraction] within the pip zone bounding box.
 export const PIP_LAYOUTS = {
-  0: [[0.5, 0.5]],
-  1: [[0.5, 0.5]],
-  2: [[0.5, 0.22], [0.5, 0.78]],
-  3: [[0.72, 0.18], [0.5, 0.5], [0.28, 0.82]],
-  4: [[0.28, 0.22], [0.72, 0.22], [0.28, 0.78], [0.72, 0.78]],
-  5: [[0.28, 0.18], [0.72, 0.18], [0.5, 0.5], [0.28, 0.82], [0.72, 0.82]],
-  6: [[0.28, 0.15], [0.72, 0.15], [0.28, 0.5], [0.72, 0.5], [0.28, 0.85], [0.72, 0.85]],
-  7: [[0.28, 0.12], [0.72, 0.12], [0.5,  0.32], [0.28, 0.52], [0.72, 0.52], [0.28, 0.78], [0.72, 0.78]],
-  8: [[0.28, 0.10], [0.72, 0.10], [0.28, 0.35], [0.72, 0.35], [0.28, 0.60], [0.72, 0.60], [0.28, 0.85], [0.72, 0.85]],
-  9: [[0.20, 0.12], [0.5,  0.12], [0.80, 0.12],
-      [0.20, 0.50], [0.5,  0.50], [0.80, 0.50],
-      [0.20, 0.88], [0.5,  0.88], [0.80, 0.88]],
+  0: [[C, C]],                                              // 1 — centred saucer
+  1: [[C, C]],                                              // 1 — centre
+  2: [[C, 0.18], [C, 0.82]],                              // 2 — top/bottom
+  3: [[R, 0.18], [C, 0.5],  [L, 0.82]],                  // 3 — diagonal
+  4: [[L, 0.22], [R, 0.22], [L, 0.78], [R, 0.78]],       // 4 — corners
+  5: [[L, 0.18], [R, 0.18], [C, 0.5],  [L, 0.82], [R, 0.82]], // 5
+  6: [[L, 0.15], [R, 0.15],
+      [L, 0.5],  [R, 0.5],
+      [L, 0.85], [R, 0.85]],                               // 6
+  7: [[L, 0.12], [R, 0.12],            // row 1
+      [C, 0.35],                        // centre extra (7th)
+      [L, 0.57], [R, 0.57],            // row 3
+      [L, 0.82], [R, 0.82]],           // row 4
+  8: [[L, 0.10], [R, 0.10],
+      [L, 0.33], [R, 0.33],
+      [L, 0.67], [R, 0.67],
+      [L, 0.90], [R, 0.90]],           // 8 — 4 rows × 2 cols
+  9: [[L, 0.10], [C, 0.10], [R, 0.10],
+      [L, 0.50], [C, 0.50], [R, 0.50],
+      [L, 0.90], [C, 0.90], [R, 0.90]], // 9 — 3×3
 };
 
-export function getIconSize(pipCount) {
-  if (pipCount <= 1) return 72;
-  if (pipCount <= 4) return 58;
-  if (pipCount <= 6) return 50;
-  return 42;
+// ── Icon size scaling by pip count ────────────────────────────────────────────
+export function getIconSize(count, basePipSize = 60) {
+  if (count <= 1) return basePipSize * 1.3;
+  if (count <= 2) return basePipSize * 1.0;
+  if (count <= 4) return basePipSize * 0.88;
+  if (count <= 6) return basePipSize * 0.75;
+  if (count <= 8) return basePipSize * 0.65;
+  return basePipSize * 0.58; // 9
 }
 
 export const BRANDING_TEXT = '305  ·  Miami Made  ·  2026';
