@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domino Tile Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #16213e;
+      padding: 20px 32px;
+      border-bottom: 2px solid #0f3460;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #e94560;
+    }
+
+    header p {
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+    .controls {
+      background: #16213e;
+      padding: 20px 32px;
+      border-bottom: 1px solid #0f3460;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: flex-end;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #aaa;
+    }
+
+    input[type="color"] {
+      width: 52px;
+      height: 36px;
+      border: 2px solid #0f3460;
+      border-radius: 6px;
+      padding: 2px;
+      background: #0f3460;
+      cursor: pointer;
+    }
+
+    select {
+      background: #0f3460;
+      color: #e0e0e0;
+      border: 1px solid #1a4a80;
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .btn {
+      padding: 10px 22px;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.1s, opacity 0.2s;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-primary {
+      background: #e94560;
+      color: #fff;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-secondary {
+      background: #0f3460;
+      color: #e0e0e0;
+      border: 1px solid #1a4a80;
+    }
+
+    .btn-secondary:hover { opacity: 0.85; }
+
+    .tile-count {
+      font-size: 0.85rem;
+      color: #888;
+      align-self: center;
+      padding-bottom: 2px;
+    }
+
+    #preview {
+      padding: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+    }
+
+    canvas.domino {
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+      transition: transform 0.15s;
+    }
+
+    canvas.domino:hover {
+      transform: translateY(-3px) scale(1.04);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #555;
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>Domino Tile Generator</h1>
+    <p>Double-9 set &mdash; 55 tiles</p>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="control-group">
+    <label>Tile Color</label>
+    <input type="color" id="tileColor" value="#ffffff" />
+  </div>
+  <div class="control-group">
+    <label>Pip Color</label>
+    <input type="color" id="pipColor" value="#1a1a2e" />
+  </div>
+  <div class="control-group">
+    <label>Border Color</label>
+    <input type="color" id="borderColor" value="#333333" />
+  </div>
+  <div class="control-group">
+    <label>Divider Color</label>
+    <input type="color" id="dividerColor" value="#555555" />
+  </div>
+  <div class="control-group">
+    <label>Tile Size</label>
+    <select id="tileSize">
+      <option value="small">Small</option>
+      <option value="medium" selected>Medium</option>
+      <option value="large">Large</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Orientation</label>
+    <select id="orientation">
+      <option value="vertical" selected>Vertical</option>
+      <option value="horizontal">Horizontal</option>
+    </select>
+  </div>
+  <div class="control-group">
+    <label>Preset</label>
+    <select id="preset">
+      <option value="custom">Custom</option>
+      <option value="classic">Classic (White / Black)</option>
+      <option value="ivory">Ivory</option>
+      <option value="midnight">Midnight Blue</option>
+      <option value="forest">Forest Green</option>
+      <option value="crimson">Crimson</option>
+      <option value="amber">Amber</option>
+    </select>
+  </div>
+  <button class="btn btn-primary" onclick="renderAll()">Regenerate</button>
+  <button class="btn btn-secondary" onclick="downloadPDF()">Download PDF</button>
+  <span class="tile-count">55 tiles total</span>
+</div>
+
+<div id="preview"></div>
+
+<footer>Generated with the Domino Tile Generator &mdash; Double-9 Set</footer>
+
+<script>
+  const PRESETS = {
+    classic:   { tile: '#ffffff', pip: '#111111', border: '#222222', divider: '#444444' },
+    ivory:     { tile: '#f5f0e8', pip: '#2c1810', border: '#8b7355', divider: '#a08060' },
+    midnight:  { tile: '#0d1b2a', pip: '#e0f0ff', border: '#1e3a5f', divider: '#2a5080' },
+    forest:    { tile: '#1a3a2a', pip: '#a8ffb0', border: '#2d6040', divider: '#3a7050' },
+    crimson:   { tile: '#2a0a0a', pip: '#ffcccc', border: '#6a1a1a', divider: '#8a2a2a' },
+    amber:     { tile: '#1a1200', pip: '#ffd700', border: '#6b5000', divider: '#8a6800' },
+  };
+
+  const SIZES = {
+    small:  { w: 50,  h: 100, pip: 5,  border: 2, radius: 6,  divider: 1.5 },
+    medium: { w: 72,  h: 144, pip: 7,  border: 2.5, radius: 9, divider: 2 },
+    large:  { w: 100, h: 200, pip: 9,  border: 3, radius: 12, divider: 2.5 },
+  };
+
+  // Pip layout positions (relative to a unit square 0..1)
+  const PIP_LAYOUTS = {
+    0: [],
+    1: [[0.5, 0.5]],
+    2: [[0.25, 0.25], [0.75, 0.75]],
+    3: [[0.25, 0.25], [0.5, 0.5], [0.75, 0.75]],
+    4: [[0.25, 0.25], [0.75, 0.25], [0.25, 0.75], [0.75, 0.75]],
+    5: [[0.25, 0.25], [0.75, 0.25], [0.5, 0.5], [0.25, 0.75], [0.75, 0.75]],
+    6: [[0.25, 0.2], [0.75, 0.2], [0.25, 0.5], [0.75, 0.5], [0.25, 0.8], [0.75, 0.8]],
+    7: [[0.25, 0.17], [0.75, 0.17], [0.25, 0.5], [0.5, 0.33], [0.75, 0.5], [0.25, 0.83], [0.75, 0.83]],
+    8: [[0.25, 0.17], [0.75, 0.17], [0.25, 0.42], [0.75, 0.42], [0.25, 0.67], [0.75, 0.67], [0.25, 0.87], [0.75, 0.87]],
+    9: [[0.25, 0.15], [0.75, 0.15], [0.25, 0.38], [0.75, 0.38], [0.5, 0.5], [0.25, 0.62], [0.75, 0.62], [0.25, 0.85], [0.75, 0.85]],
+  };
+
+  function generateTiles() {
+    const tiles = [];
+    for (let a = 0; a <= 9; a++) {
+      for (let b = a; b <= 9; b++) {
+        tiles.push([a, b]);
+      }
+    }
+    return tiles; // 55 tiles
+  }
+
+  function getConfig() {
+    const sizeKey = document.getElementById('tileSize').value;
+    const orientation = document.getElementById('orientation').value;
+    const s = SIZES[sizeKey];
+    const isH = orientation === 'horizontal';
+    return {
+      tileColor:    document.getElementById('tileColor').value,
+      pipColor:     document.getElementById('pipColor').value,
+      borderColor:  document.getElementById('borderColor').value,
+      dividerColor: document.getElementById('dividerColor').value,
+      tileW: isH ? s.h : s.w,
+      tileH: isH ? s.w : s.h,
+      halfW: isH ? s.w : s.w,   // half-square dimensions
+      halfH: isH ? s.h : s.w,   // used for pip layout
+      pip:      s.pip,
+      border:   s.border,
+      radius:   s.radius,
+      divider:  s.divider,
+      sizeKey,
+      isH,
+    };
+  }
+
+  function drawDomino(canvas, a, b, cfg) {
+    canvas.width  = cfg.tileW;
+    canvas.height = cfg.tileH;
+    const ctx = canvas.getContext('2d');
+    const { tileW: W, tileH: H, border: bw, radius: r, pip: pr,
+            divider: dw, tileColor, pipColor, borderColor, dividerColor, isH } = cfg;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Tile background
+    ctx.beginPath();
+    roundRect(ctx, 0, 0, W, H, r);
+    ctx.fillStyle = tileColor;
+    ctx.fill();
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = bw;
+    ctx.stroke();
+
+    // Divider line
+    ctx.beginPath();
+    ctx.strokeStyle = dividerColor;
+    ctx.lineWidth = dw;
+    if (isH) {
+      ctx.moveTo(W / 2, H * 0.1);
+      ctx.lineTo(W / 2, H * 0.9);
+    } else {
+      ctx.moveTo(W * 0.1, H / 2);
+      ctx.lineTo(W * 0.9, H / 2);
+    }
+    ctx.stroke();
+
+    // Draw pips for each half
+    const halfValues = [a, b];
+    for (let side = 0; side < 2; side++) {
+      const val = halfValues[side];
+      const pips = PIP_LAYOUTS[val];
+      let ox, oy, hw, hh;
+      if (isH) {
+        ox = side === 0 ? 0 : W / 2;
+        oy = 0;
+        hw = W / 2;
+        hh = H;
+      } else {
+        ox = 0;
+        oy = side === 0 ? 0 : H / 2;
+        hw = W;
+        hh = H / 2;
+      }
+      for (const [px, py] of pips) {
+        const cx = ox + px * hw;
+        const cy = oy + py * hh;
+        ctx.beginPath();
+        ctx.arc(cx, cy, pr, 0, Math.PI * 2);
+        ctx.fillStyle = pipColor;
+        ctx.fill();
+      }
+    }
+  }
+
+  function roundRect(ctx, x, y, w, h, r) {
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+  }
+
+  function renderAll() {
+    const cfg = getConfig();
+    const tiles = generateTiles();
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    for (const [a, b] of tiles) {
+      const canvas = document.createElement('canvas');
+      canvas.className = 'domino';
+      canvas.title = `${a}-${b}`;
+      drawDomino(canvas, a, b, cfg);
+      preview.appendChild(canvas);
+    }
+  }
+
+  function applyPreset(name) {
+    if (!PRESETS[name]) return;
+    const p = PRESETS[name];
+    document.getElementById('tileColor').value   = p.tile;
+    document.getElementById('pipColor').value    = p.pip;
+    document.getElementById('borderColor').value = p.border;
+    document.getElementById('dividerColor').value= p.divider;
+  }
+
+  document.getElementById('preset').addEventListener('change', (e) => {
+    applyPreset(e.target.value);
+    renderAll();
+  });
+
+  ['tileColor','pipColor','borderColor','dividerColor','tileSize','orientation'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      document.getElementById('preset').value = 'custom';
+      renderAll();
+    });
+    document.getElementById(id).addEventListener('change', () => {
+      document.getElementById('preset').value = 'custom';
+      renderAll();
+    });
+  });
+
+  async function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const cfg = getConfig();
+    const tiles = generateTiles();
+
+    // Page size A4 in mm
+    const pageW = 210, pageH = 297;
+    const margin = 10;
+    const gap = 4;
+
+    // Scale tiles to fit nicely; use a medium fixed size for PDF regardless of preview size
+    const PDF_SIZES = { small: 0.9, medium: 1.0, large: 1.1 };
+    const scale = PDF_SIZES[cfg.sizeKey];
+
+    // Convert px to mm (96 dpi → 25.4/96 mm/px)
+    const pxToMm = 25.4 / 96;
+    const tW = cfg.tileW * pxToMm * scale;
+    const tH = cfg.tileH * pxToMm * scale;
+
+    const cols = Math.floor((pageW - 2 * margin + gap) / (tW + gap));
+    const rows = Math.floor((pageH - 2 * margin + gap) / (tH + gap));
+    const perPage = cols * rows;
+
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+
+    // Render each tile to a temporary canvas, then embed as PNG
+    const tempCanvas = document.createElement('canvas');
+
+    for (let i = 0; i < tiles.length; i++) {
+      if (i > 0 && i % perPage === 0) doc.addPage();
+      const [a, b] = tiles[i];
+      drawDomino(tempCanvas, a, b, cfg);
+      const imgData = tempCanvas.toDataURL('image/png');
+      const idx = i % perPage;
+      const col = idx % cols;
+      const row = Math.floor(idx / cols);
+      const x = margin + col * (tW + gap);
+      const y = margin + row * (tH + gap);
+      doc.addImage(imgData, 'PNG', x, y, tW, tH);
+    }
+
+    doc.save('domino-tiles-double9.pdf');
+  }
+
+  // Initial render
+  renderAll();
+</script>
+</body>
+</html>
