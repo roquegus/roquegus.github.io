@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createRoot } from "react-dom/client";
+import { flushSync } from "react-dom";
 import { useApp } from "../../store";
 import type { PreviewMode } from "../../types";
 import DominoCardSVG from "../CardRenderer/DominoCardSVG";
@@ -68,10 +69,13 @@ export default function CenterArea() {
           const container = document.createElement("div");
           document.body.appendChild(container);
           const root = createRoot(container);
-          root.render(
-            <DominoCardSVG card={card} tokens={tokens} showTrimLine={false} showSafeZone={false} />
-          );
+          flushSync(() => {
+            root.render(
+              <DominoCardSVG card={card} tokens={tokens} showTrimLine={false} showSafeZone={false} />
+            );
+          });
           const el = container.querySelector("svg") as SVGElement | null;
+          root.unmount();
           document.body.removeChild(container);
           return el;
         },
@@ -79,10 +83,13 @@ export default function CenterArea() {
           const container = document.createElement("div");
           document.body.appendChild(container);
           const root = createRoot(container);
-          root.render(
-            <CardBack tokens={tokens} showTrim={false} showSafe={false} />
-          );
+          flushSync(() => {
+            root.render(
+              <CardBack tokens={tokens} showTrim={false} showSafe={false} />
+            );
+          });
           const el = container.querySelector("svg") as SVGElement | null;
+          root.unmount();
           document.body.removeChild(container);
           return el;
         },
