@@ -1,0 +1,5 @@
+{
+  "buildCommand": "npm --prefix calle-nueve-studio install && npm --prefix calle-nueve-studio run build",
+  "outputDirectory": "calle-nueve-studio/dist",
+  "installCommand": "echo skip"
+}
