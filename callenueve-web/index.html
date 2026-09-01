@@ -1,651 +1,699 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Calle Nueve</title>
-  <meta name="description" content="Cuban double-nine domino sets where every pip tells a story. Ten hand-drawn cultural icons, artisan quality. Join the waitlist." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calle Nueve | Cuban Double-Nine Domino Card Deck</title>
+  <meta name="description" content="Calle Nueve is a premium 55-card deck that reimagines Cuban double-nine dominoes as a portable card game. Designed with amor in Miami." />
+  <meta property="og:title" content="Calle Nueve | Cuban Double-Nine Domino Card Deck" />
+  <meta property="og:description" content="A 55-card Tropical Deco deck inspired by Cuban domino culture, Calle Ocho, cafecito, chucho, and Miami tables." />
+  <meta property="og:image" content="assets/calle-nueve-deck-spread.jpeg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700;800&family=Sacramento&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
   <style>
-    /* ── Tokens ── */
     :root {
-      --ground: #0B0907;
-      --surface: #1A120C;
-      --surface-raised: #241810;
-      --accent: #C8863A;
-      --accent-dim: rgba(200,134,58,0.12);
-      --accent-border: rgba(200,134,58,0.28);
-      --teal: #4D9B8A;
-      --text: #EDE5D4;
-      --muted: #9B8C78;
-      --border: rgba(237,229,212,0.09);
+      --teal: #0D9488;
+      --pink: #F472B6;
+      --yellow: #EAB308;
+      --brown: #92400E;
+      --parchment: #FAFAF9;
+      --gold: #D97706;
+      --ink: #2A1610;
+      --cream: #F6EFDf;
+      --muted: #73523C;
+      --shadow: 0 24px 80px rgba(42, 22, 16, 0.18);
     }
 
-    /* ── Reset ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--ground);
-      color: var(--text);
-      font-family: 'DM Sans', system-ui, sans-serif;
-      font-weight: 300;
-      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      color: var(--ink);
+      font-family: Lato, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244,114,182,0.16), transparent 28rem),
+        radial-gradient(circle at top right, rgba(13,148,136,0.18), transparent 30rem),
+        linear-gradient(180deg, var(--parchment), #F2E5CC 68%, var(--parchment));
       overflow-x: hidden;
     }
-    img { max-width: 100%; }
 
-    /* ── Nav ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1.5rem 3rem;
-      background: linear-gradient(to bottom, rgba(11,9,7,0.95) 0%, transparent 100%);
-    }
-    .nav-logo {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 1rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text); text-decoration: none;
-    }
-    .nav-cta {
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.55rem 1.3rem;
-      border: 1px solid var(--accent-border);
-      color: var(--accent); text-decoration: none;
-      transition: background 0.18s, color 0.18s;
-    }
-    .nav-cta:hover { background: var(--accent); color: var(--ground); }
-    .nav-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    /* ── Hero ── */
-    .hero {
-      min-height: 100svh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 3.5rem;
-      padding: 8rem 2rem 6rem;
-      position: relative;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(45deg, rgba(146,64,14,.08) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(13,148,136,.08) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(244,114,182,.08) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(234,179,8,.08) 75%);
+      background-size: 46px 46px;
+      background-position: 0 0, 0 23px, 23px -23px, -23px 0;
+      mix-blend-mode: multiply;
+      z-index: -2;
     }
 
-    .hero-badge {
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--accent);
-      border: 1px solid var(--accent-border);
-      padding: 0.4rem 1.1rem;
-    }
+    img { width: 100%; display: block; }
+    a { color: inherit; }
 
-    .hero-card {
-      width: min(260px, 58vw);
-      filter: drop-shadow(0 40px 80px rgba(0,0,0,0.8))
-              drop-shadow(0 0 48px rgba(200,134,58,0.12));
-      transform: rotate(-2.5deg);
-      animation: cardrise 1.3s cubic-bezier(0.22,1,0.36,1) both;
-    }
-    @keyframes cardrise {
-      from { opacity: 0; transform: rotate(-2.5deg) translateY(48px); }
-      to   { opacity: 1; transform: rotate(-2.5deg) translateY(0); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .hero-card, .hero-text { animation: none !important; }
-    }
-
-    .hero-text {
+    .announcement {
+      background: var(--ink);
+      color: var(--parchment);
       text-align: center;
-      animation: textrise 1.4s 0.25s cubic-bezier(0.22,1,0.36,1) both;
-    }
-    @keyframes textrise {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .hero-headline {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.6rem, 7vw, 5.5rem);
-      font-weight: 300; font-style: italic;
-      line-height: 1.05; text-wrap: balance;
-      margin-bottom: 1.25rem;
+      padding: .65rem 1rem;
+      font-size: .82rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-weight: 900;
     }
 
-    .hero-sub {
-      color: var(--muted);
-      font-size: 1rem; line-height: 1.75;
-      max-width: 44ch; margin: 0 auto 2.25rem;
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(250,250,249,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid rgba(217,119,6,.35);
     }
+
+    .nav {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: .12em;
+      font-size: 2rem;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-weight: 900;
+    }
+
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--teal); }
 
     .btn {
-      display: inline-block;
-      background: var(--accent); color: var(--ground);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.11em; text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      border: 0;
       text-decoration: none;
-      padding: 0.85rem 2rem;
-      transition: opacity 0.18s;
+      cursor: pointer;
+      padding: 1rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .78rem;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
-    .btn:hover { opacity: 0.84; }
-    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
-    /* ── Story ── */
-    .story {
-      padding: 9rem 3rem;
-      max-width: 1080px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 7rem; align-items: center;
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(42,22,16,.18); }
+    .btn-primary { background: var(--teal); color: white; }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-outline { border: 2px solid var(--teal); color: var(--teal); background: transparent; }
+
+    .section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 5.5rem 1.25rem;
+    }
+
+    .hero {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5.5rem 1.25rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 3.5rem;
+      align-items: center;
     }
 
     .eyebrow {
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      color: var(--brown);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .82rem;
+      margin-bottom: 1rem;
     }
 
-    .story h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 400;
-      line-height: 1.15; text-wrap: balance;
-      margin-bottom: 1.75rem;
+    .eyebrow::before, .eyebrow::after {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
     }
 
-    .story p {
-      color: var(--muted);
-      line-height: 1.85; font-size: 1.05rem;
-      max-width: 52ch;
-    }
-    .story p + p { margin-top: 1.1rem; }
-
-    .story-tile {
-      display: flex; justify-content: center; align-items: center;
-    }
-    .story-tile svg {
-      width: min(190px, 42vw);
-      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.65));
-      transform: rotate(3.5deg);
-    }
-
-    /* ── Icons ── */
-    .icons-section {
-      padding: 9rem 3rem;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .icons-inner { max-width: 1080px; margin: 0 auto; }
-
-    .icons-section h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(1.9rem, 3.5vw, 2.75rem); font-weight: 400;
-      text-align: center; text-wrap: balance;
-      margin-bottom: 0.75rem;
-    }
-    .icons-desc {
-      text-align: center; color: var(--muted);
-      font-size: 0.95rem; margin-bottom: 4rem;
-    }
-
-    .icons-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 1.25rem;
-    }
-
-    .icon-card {
-      background: var(--surface-raised);
-      border: 1px solid var(--border);
-      padding: 2rem 1.25rem 1.75rem;
-      text-align: center;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 1rem;
-      transition: border-color 0.18s, transform 0.18s;
-      cursor: default;
-    }
-    .icon-card:hover {
-      border-color: var(--accent-border);
-      transform: translateY(-3px);
-    }
-
-    .icon-svg {
-      width: 44px; height: 44px;
-      color: var(--accent);
-      flex-shrink: 0;
-    }
-
-    .icon-label {
-      font-size: 0.68rem; font-weight: 500;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ── Waitlist ── */
-    .waitlist {
-      padding: 11rem 2rem;
-      text-align: center;
-      max-width: 560px; margin: 0 auto;
-    }
-
-    .waitlist h2 {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(2.4rem, 5.5vw, 3.8rem);
-      font-weight: 300; font-style: italic;
-      line-height: 1.08; text-wrap: balance;
-      margin-bottom: 1.1rem;
-    }
-
-    .waitlist-sub {
-      color: var(--muted); line-height: 1.75;
-      margin-bottom: 2.75rem; font-size: 1rem;
-    }
-
-    .wl-form {
-      display: flex; max-width: 420px; margin: 0 auto;
-    }
-
-    .wl-form input[type="email"] {
-      flex: 1;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-right: none;
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      padding: 0.85rem 1.2rem;
-      outline: none;
-      transition: border-color 0.18s;
-      min-width: 0;
-    }
-    .wl-form input[type="email"]::placeholder { color: var(--muted); }
-    .wl-form input[type="email"]:focus { border-color: var(--accent-border); }
-
-    .wl-form button {
-      background: var(--accent); color: var(--ground);
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.72rem; font-weight: 500;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 0.85rem 1.5rem;
-      cursor: pointer; white-space: nowrap;
-      transition: opacity 0.18s;
-      flex-shrink: 0;
-    }
-    .wl-form button:hover { opacity: 0.84; }
-    .wl-form button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-    .wl-note {
-      margin-top: 1rem;
-      font-size: 0.75rem; color: var(--muted); opacity: 0.65;
-    }
-
-    .wl-success {
-      display: none;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic; font-size: 1.2rem;
+    h1, h2, h3 { margin: 0; }
+    h1 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(4.25rem, 9vw, 8.5rem);
+      line-height: .86;
+      letter-spacing: .045em;
       color: var(--teal);
+      text-shadow: 3px 3px 0 rgba(217,119,6,.18);
     }
 
-    /* ── Footer ── */
+    .hero h2 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.55rem, 3.2vw, 3.1rem);
+      line-height: 1.03;
+      margin: 1rem 0 1.25rem;
+      max-width: 650px;
+    }
+
+    .lead {
+      font-size: clamp(1.05rem, 1.7vw, 1.32rem);
+      line-height: 1.7;
+      color: #4B3023;
+      max-width: 620px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin: 2rem 0 1.25rem;
+    }
+
+    .microcopy { color: var(--muted); font-size: .93rem; }
+
+    .hero-card {
+      position: relative;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(250,250,249,.88), rgba(246,239,223,.72));
+      padding: .75rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(146,64,14,.16);
+    }
+
+    .hero-card img {
+      border-radius: 22px;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border: 7px solid rgba(250,250,249,.86);
+    }
+
+    .seal {
+      position: absolute;
+      left: -1rem;
+      bottom: -1.15rem;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: var(--gold);
+      color: var(--ink);
+      border: 8px solid var(--parchment);
+      box-shadow: 0 16px 40px rgba(42,22,16,.25);
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 1.65rem;
+      line-height: .95;
+      letter-spacing: .06em;
+      transform: rotate(-8deg);
+    }
+
+    .ticker {
+      overflow: hidden;
+      background: var(--teal);
+      color: var(--parchment);
+      border-block: 4px solid var(--gold);
+    }
+
+    .ticker-track {
+      width: max-content;
+      display: flex;
+      gap: 2rem;
+      padding: .85rem 0;
+      animation: marquee 26s linear infinite;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      font-size: .86rem;
+    }
+
+    .ticker span { padding-inline: 1rem; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    .center { text-align: center; }
+    .section-title {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5rem);
+      letter-spacing: .05em;
+      color: var(--ink);
+      line-height: .95;
+      margin-bottom: 1rem;
+    }
+
+    .section-kicker {
+      font-family: Sacramento, cursive;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--teal);
+      margin-bottom: .6rem;
+    }
+
+    .section-copy {
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+      font-size: 1.08rem;
+      color: #4B3023;
+    }
+
+    .grid { display: grid; gap: 1.25rem; }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .tile {
+      background: rgba(250,250,249,.86);
+      border: 1px solid rgba(146,64,14,.18);
+      border-top: 6px solid var(--gold);
+      border-radius: 22px;
+      padding: 1.55rem;
+      box-shadow: 0 12px 32px rgba(42,22,16,.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tile::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px -45px auto;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(13,148,136,.12);
+    }
+
+    .tile h3 {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2rem;
+      letter-spacing: .05em;
+      margin-bottom: .45rem;
+    }
+
+    .tile p { margin: 0; line-height: 1.65; color: #523626; }
+
+    .showcase {
+      display: grid;
+      grid-template-columns: .92fr 1.08fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .image-frame {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 10px solid rgba(250,250,249,.88);
+      box-shadow: var(--shadow);
+      transform: rotate(-1.5deg);
+      background: white;
+    }
+
+    .image-frame.alt { transform: rotate(1.5deg); }
+    .image-frame img { aspect-ratio: 16 / 10; object-fit: cover; }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0 0;
+      display: grid;
+      gap: .85rem;
+    }
+
+    .feature-list li {
+      display: flex;
+      gap: .8rem;
+      align-items: flex-start;
+      line-height: 1.55;
+      padding: .85rem 1rem;
+      background: rgba(250,250,249,.72);
+      border-radius: 16px;
+      border: 1px solid rgba(146,64,14,.13);
+    }
+
+    .feature-list b { color: var(--teal); }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--gold);
+      border-radius: 50%;
+      margin-top: .45rem;
+      flex: 0 0 auto;
+    }
+
+    .icon-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+
+    .pip {
+      min-height: 112px;
+      border-radius: 18px;
+      background: var(--parchment);
+      border: 1px solid rgba(146,64,14,.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .45rem;
+      text-align: center;
+      padding: .8rem;
+    }
+
+    .pip .num {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.1rem;
+      color: var(--brown);
+      line-height: 1;
+    }
+
+    .pip .ico { font-size: 1.75rem; }
+    .pip small { font-size: .75rem; color: var(--muted); font-weight: 900; text-transform: uppercase; letter-spacing: .06em; }
+
+    .product-band {
+      background: var(--ink);
+      color: var(--parchment);
+      margin: 2rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-band::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .1;
+      background-image: radial-gradient(circle at center, var(--gold) 1px, transparent 1.5px);
+      background-size: 22px 22px;
+    }
+
+    .band-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 5rem 1.25rem;
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .product-band .section-title { color: var(--parchment); }
+    .product-band .section-copy { color: #F2E5CC; margin-left: 0; }
+
+    .price-card {
+      background: var(--parchment);
+      color: var(--ink);
+      border-radius: 26px;
+      padding: 2rem;
+      border: 6px double var(--gold);
+      box-shadow: 0 24px 70px rgba(0,0,0,.25);
+    }
+
+    .price {
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 4.5rem;
+      color: var(--teal);
+      line-height: 1;
+      margin: .35rem 0 .8rem;
+    }
+
+    .price-card ul {
+      margin: 1rem 0 1.5rem;
+      padding-left: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .faq {
+      max-width: 900px;
+      margin: 2rem auto 0;
+      display: grid;
+      gap: .85rem;
+    }
+
+    details {
+      background: rgba(250,250,249,.85);
+      border: 1px solid rgba(146,64,14,.16);
+      border-radius: 18px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    details p { color: #523626; line-height: 1.65; }
+
     footer {
-      border-top: 1px solid var(--border);
-      padding: 2.25rem 3rem;
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 2rem;
+      background: var(--ink);
+      color: var(--parchment);
+      padding: 3rem 1.25rem;
+      text-align: center;
+      border-top: 5px solid var(--gold);
     }
 
-    .footer-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.9rem; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--muted);
+    footer .brand { color: var(--parchment); margin-bottom: .8rem; }
+    footer p { margin: .25rem 0; color: #EBDCC4; }
+
+    .mobile-cta {
+      display: none;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      padding: .8rem 1rem;
+      background: rgba(250,250,249,.94);
+      border-top: 1px solid rgba(146,64,14,.18);
+      box-shadow: 0 -10px 30px rgba(42,22,16,.12);
     }
 
-    .footer-links {
-      display: flex; gap: 2.5rem; list-style: none;
-    }
-    .footer-links a {
-      font-size: 0.72rem; letter-spacing: 0.1em;
-      text-transform: uppercase; color: var(--muted);
-      text-decoration: none; transition: color 0.18s;
-    }
-    .footer-links a:hover { color: var(--accent); }
+    .mobile-cta .btn { width: 100%; }
 
-    /* ── Responsive ── */
-    @media (max-width: 720px) {
-      nav { padding: 1.25rem 1.5rem; }
-      .story {
-        grid-template-columns: 1fr; gap: 3.5rem;
-        padding: 6rem 1.5rem;
-      }
-      .story-tile { order: -1; }
-      .icons-section { padding: 6rem 1.5rem; }
-      .waitlist { padding: 7rem 1.5rem; }
-      .wl-form { flex-direction: column; }
-      .wl-form input[type="email"] {
-        border-right: 1px solid var(--border);
-        border-bottom: none;
-      }
-      .wl-form button { padding: 0.85rem; }
-      footer {
-        flex-direction: column; gap: 1.25rem;
-        text-align: center; padding: 2rem 1.5rem;
-      }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
+    @media (max-width: 920px) {
+      .hero, .showcase, .band-inner { grid-template-columns: 1fr; }
+      .hero { padding-top: 3rem; }
+      .grid-3, .grid-2 { grid-template-columns: 1fr; }
+      .icon-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .nav-links a:not(.btn) { display: none; }
+      .seal { width: 116px; height: 116px; font-size: 1.25rem; left: .75rem; bottom: .75rem; }
+      .mobile-cta { display: block; }
+      body { padding-bottom: 76px; }
+    }
+
+    @media (max-width: 520px) {
+      .brand { font-size: 1.65rem; }
+      .nav { padding: .9rem 1rem; }
+      .btn { padding: .9rem 1rem; font-size: .72rem; }
+      .section { padding: 4rem 1rem; }
+      .hero { padding-inline: 1rem; }
+      .icon-row { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
+  <div class="announcement">First edition drop coming soon - designed in Miami</div>
 
-<!-- ── Nav ── -->
-<nav aria-label="Site navigation">
-  <a href="/" class="nav-logo">Calle Nueve</a>
-  <a href="#waitlist" class="nav-cta">Join Waitlist</a>
-</nav>
+  <header>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#top" class="brand" aria-label="Calle Nueve home">Calle Nueve</a>
+      <div class="nav-links">
+        <a href="#how">How it works</a>
+        <a href="#deck">The deck</a>
+        <a href="#buy" class="btn btn-primary">Buy now</a>
+      </div>
+    </nav>
+  </header>
 
-<!-- ── Hero ── -->
-<section class="hero" aria-label="Hero">
-  <span class="hero-badge">Double-nine · Cuban domino sets</span>
-
-  <!-- 9/9 Domino Card -->
-  <svg class="hero-card" viewBox="0 0 822 1122" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="9-9 Calle Nueve domino card">
-    <!-- Card body -->
-    <rect width="822" height="1122" rx="28" fill="#1A120C"/>
-    <!-- Outer frame -->
-    <rect x="7" y="7" width="808" height="1108" rx="24" fill="none" stroke="#C8863A" stroke-width="2.5" opacity="0.45"/>
-    <!-- Inner frame -->
-    <rect x="22" y="22" width="778" height="1078" rx="16" fill="none" stroke="#C8863A" stroke-width="1" opacity="0.2"/>
-    <!-- Divider -->
-    <line x1="64" y1="561" x2="758" y2="561" stroke="#C8863A" stroke-width="1.5" opacity="0.38"/>
-    <circle cx="64" cy="561" r="4" fill="#C8863A" opacity="0.35"/>
-    <circle cx="758" cy="561" r="4" fill="#C8863A" opacity="0.35"/>
-    <!-- Corner indices -->
-    <text x="52" y="94" font-family="Georgia,serif" font-size="60" font-weight="300" fill="#C8863A" opacity="0.65">9</text>
-    <text x="770" y="1094" font-family="Georgia,serif" font-size="60" font-weight="300" fill="#C8863A" opacity="0.65" text-anchor="end">9</text>
-
-    <!-- TOP HALF — 3×3 grid of 9 pips -->
-    <!-- Row 1: y=170 -->
-    <circle cx="205" cy="170" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="170" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="170" r="24" fill="#C8863A" opacity="0.88"/>
-    <!-- Row 2: y=290 -->
-    <circle cx="205" cy="290" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="290" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="290" r="24" fill="#C8863A" opacity="0.88"/>
-    <!-- Row 3: y=410 -->
-    <circle cx="205" cy="410" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="410" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="410" r="24" fill="#C8863A" opacity="0.88"/>
-
-    <!-- BOTTOM HALF — mirror of top -->
-    <!-- Row 1 (mirrored): 561+(561-410)=712 -->
-    <circle cx="205" cy="712" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="712" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="712" r="24" fill="#C8863A" opacity="0.88"/>
-    <!-- Row 2: 561+(561-290)=832 -->
-    <circle cx="205" cy="832" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="832" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="832" r="24" fill="#C8863A" opacity="0.88"/>
-    <!-- Row 3: 561+(561-170)=952 -->
-    <circle cx="205" cy="952" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="411" cy="952" r="24" fill="#C8863A" opacity="0.88"/>
-    <circle cx="617" cy="952" r="24" fill="#C8863A" opacity="0.88"/>
-  </svg>
-
-  <div class="hero-text">
-    <h1 class="hero-headline">Cuban dominoes,<br>reimagined.</h1>
-    <p class="hero-sub">
-      A double-nine set where every pip tells a story.
-      Ten hand-drawn Cuban cultural icons, printed on premium card stock,
-      designed for the table and the collection alike.
-    </p>
-    <a href="#waitlist" class="btn">Reserve your spot</a>
-  </div>
-</section>
-
-<!-- ── Story ── -->
-<section class="story">
-  <div>
-    <p class="eyebrow">The origin</p>
-    <h2>Where the street meets the table</h2>
-    <p>
-      In Cuba, dominoes aren't just a game — they're a ritual.
-      Played on sidewalks and porches, in backyards and bodegas,
-      the click of tiles marks an afternoon well spent.
-    </p>
-    <p>
-      Calle Nueve is a tribute to that tradition, rebuilt from scratch.
-      Each set replaces the standard dots with ten hand-drawn Cuban
-      cultural icons — a cafecito, a flamingo, a palm, a cigar, and six more —
-      making every tile a small piece of the island's soul.
-    </p>
-    <p>
-      Printed on premium card stock, finished for the collector,
-      and made to be played.
-    </p>
-  </div>
-
-  <div class="story-tile" aria-hidden="true">
-    <!-- 6/4 tile accent — gold top, teal bottom -->
-    <svg viewBox="0 0 822 1122" xmlns="http://www.w3.org/2000/svg">
-      <rect width="822" height="1122" rx="28" fill="#1E140E"/>
-      <rect x="7" y="7" width="808" height="1108" rx="24" fill="none" stroke="#C8863A" stroke-width="2" opacity="0.35"/>
-      <line x1="64" y1="561" x2="758" y2="561" stroke="#C8863A" stroke-width="1.5" opacity="0.3"/>
-      <circle cx="64" cy="561" r="3.5" fill="#C8863A" opacity="0.3"/>
-      <circle cx="758" cy="561" r="3.5" fill="#C8863A" opacity="0.3"/>
-      <text x="52" y="88" font-family="Georgia,serif" font-size="54" font-weight="300" fill="#C8863A" opacity="0.55">6</text>
-      <text x="770" y="1088" font-family="Georgia,serif" font-size="54" font-weight="300" fill="#4D9B8A" opacity="0.55" text-anchor="end">4</text>
-      <!-- 6 pips, top half (2×3) -->
-      <circle cx="274" cy="185" r="22" fill="#C8863A" opacity="0.82"/>
-      <circle cx="548" cy="185" r="22" fill="#C8863A" opacity="0.82"/>
-      <circle cx="274" cy="295" r="22" fill="#C8863A" opacity="0.82"/>
-      <circle cx="548" cy="295" r="22" fill="#C8863A" opacity="0.82"/>
-      <circle cx="274" cy="405" r="22" fill="#C8863A" opacity="0.82"/>
-      <circle cx="548" cy="405" r="22" fill="#C8863A" opacity="0.82"/>
-      <!-- 4 pips, bottom half (2×2) -->
-      <circle cx="274" cy="705" r="22" fill="#4D9B8A" opacity="0.82"/>
-      <circle cx="548" cy="705" r="22" fill="#4D9B8A" opacity="0.82"/>
-      <circle cx="274" cy="945" r="22" fill="#4D9B8A" opacity="0.82"/>
-      <circle cx="548" cy="945" r="22" fill="#4D9B8A" opacity="0.82"/>
-    </svg>
-  </div>
-</section>
-
-<!-- ── Icons ── -->
-<section class="icons-section">
-  <div class="icons-inner">
-    <h2>Nine icons. One tradition.</h2>
-    <p class="icons-desc">Each value carries a different piece of Cuban culture.</p>
-
-    <div class="icons-grid" role="list">
-
-      <!-- Cafecito -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M11 20h26l-2 18H13L11 20z"/>
-          <line x1="11" y1="20" x2="37" y2="20"/>
-          <path d="M37 24q7 0 7 6t-7 6"/>
-          <path d="M8 40q8 4 16 4t16-4"/>
-          <path d="M20 14q-2-4 0-7M28 14q-2-4 0-7"/>
-        </svg>
-        <span class="icon-label">Cafecito</span>
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">55-card domino deck</div>
+        <h1>Calle Nueve</h1>
+        <h2>The Cuban double-nine, reimagined as a playing card deck.</h2>
+        <p class="lead">Same table energy. Same strategy. Same chucho. A premium Tropical Deco deck made for cafecito breaks, beach days, backyard games, and anywhere the tiles do not travel.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#buy">Buy first edition</a>
+          <a class="btn btn-outline" href="#how">See how it works</a>
+        </div>
+        <p class="microcopy">55 cards from 0-0 to 9-9. Premium linen feel. Hecho con amor en Miami.</p>
       </div>
 
-      <!-- Flamingo -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <ellipse cx="26" cy="30" rx="10" ry="9"/>
-          <path d="M23 22c-1-8 4-14 26-14" opacity="0.0"/>
-          <path d="M24 21C22 13 26 8 26 5"/>
-          <circle cx="26" cy="4" r="2.5"/>
-          <line x1="28" y1="4" x2="33" y2="6"/>
-          <path d="M22 39l-3 7-4 1"/>
-          <line x1="15" y1="47" x2="22" y2="47"/>
-          <line x1="30" y1="39" x2="30" y2="45"/>
-          <line x1="27" y1="45" x2="34" y2="45"/>
-        </svg>
-        <span class="icon-label">Flamingo</span>
+      <div class="hero-card" aria-label="Calle Nueve product image">
+        <img src="assets/calle-nueve-deck-spread.jpeg" alt="Calle Nueve card deck fanned out on a cafe table with a wooden box and cafecito" />
+        <div class="seal">First<br>Edition<br>Drop</div>
       </div>
+    </section>
 
-      <!-- Palm Tree -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M24 46C23 36 22 28 21 20"/>
-          <path d="M21 20C15 16 7 12 5 5"/>
-          <path d="M21 20C18 12 21 6 25 3"/>
-          <path d="M21 20C25 12 33 9 38 5"/>
-          <path d="M21 20C28 18 36 16 42 14"/>
-          <circle cx="21" cy="20" r="3" fill="currentColor" opacity="0.5" stroke="none"/>
-        </svg>
-        <span class="icon-label">Palma</span>
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>La Gorda</span><span>✦</span><span>El Chucho</span><span>✦</span><span>Cafecito ready</span><span>✦</span><span>Play anywhere</span><span>✦</span><span>Calle Ocho energy</span><span>✦</span>
+        <span>La Gorda</span><span>✦</span><span>El Chucho</span><span>✦</span><span>Cafecito ready</span><span>✦</span><span>Play anywhere</span><span>✦</span><span>Calle Ocho energy</span><span>✦</span>
       </div>
-
-      <!-- Maracas -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="24" cy="16" r="11"/>
-          <line x1="24" y1="27" x2="24" y2="45"/>
-          <line x1="19" y1="44" x2="29" y2="44"/>
-          <circle cx="20" cy="13" r="1.5" fill="currentColor" stroke="none"/>
-          <circle cx="28" cy="13" r="1.5" fill="currentColor" stroke="none"/>
-          <circle cx="24" cy="20" r="1.5" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="icon-label">Maraca</span>
-      </div>
-
-      <!-- Cigar -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 24q0-6 6-6l26 0q4 0 5 3l1 2"/>
-          <path d="M6 24q0 6 6 6l26 0q4 0 5-3l1-2"/>
-          <line x1="18" y1="18" x2="18" y2="30"/>
-          <line x1="24" y1="18" x2="24" y2="30"/>
-          <path d="M38 18l4-4M38 30l4 4"/>
-          <circle cx="43" cy="24" r="1.5" fill="currentColor" stroke="none" opacity="0.7"/>
-          <path d="M28 10q-2-4 0-7M32 12q0-5 2-8" stroke-width="1" opacity="0.6"/>
-        </svg>
-        <span class="icon-label">Cigarro</span>
-      </div>
-
-      <!-- Sun -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-          <circle cx="24" cy="24" r="8"/>
-          <line x1="24" y1="5" x2="24" y2="10"/>
-          <line x1="24" y1="38" x2="24" y2="43"/>
-          <line x1="5" y1="24" x2="10" y2="24"/>
-          <line x1="38" y1="24" x2="43" y2="24"/>
-          <line x1="11" y1="11" x2="14.5" y2="14.5"/>
-          <line x1="33.5" y1="33.5" x2="37" y2="37"/>
-          <line x1="37" y1="11" x2="33.5" y2="14.5"/>
-          <line x1="11" y1="37" x2="14.5" y2="33.5"/>
-        </svg>
-        <span class="icon-label">Sol</span>
-      </div>
-
-      <!-- Turtle -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <ellipse cx="24" cy="25" rx="13" ry="11"/>
-          <line x1="24" y1="14" x2="24" y2="36" opacity="0.35"/>
-          <line x1="11" y1="25" x2="37" y2="25" opacity="0.35"/>
-          <circle cx="38" cy="25" r="4.5"/>
-          <circle cx="39" cy="24" r="1" fill="currentColor" stroke="none"/>
-          <path d="M12 15l-4-4M12 35l-4 4M34 12l2-4M34 38l2 4"/>
-        </svg>
-        <span class="icon-label">Tortuga</span>
-      </div>
-
-      <!-- Domino tile -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="8" y="9" width="32" height="30" rx="4"/>
-          <line x1="8" y1="24" x2="40" y2="24"/>
-          <circle cx="17" cy="17" r="2.5" fill="currentColor" stroke="none"/>
-          <circle cx="31" cy="17" r="2.5" fill="currentColor" stroke="none"/>
-          <circle cx="17" cy="31" r="2.5" fill="currentColor" stroke="none"/>
-          <circle cx="24" cy="31" r="2.5" fill="currentColor" stroke="none"/>
-          <circle cx="31" cy="31" r="2.5" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="icon-label">Ficha</span>
-      </div>
-
-      <!-- Star / Estrella -->
-      <div class="icon-card" role="listitem">
-        <svg class="icon-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M24 5l3.5 12.5L40.5 18l-10 8.5 3.5 13L24 32l-10 7.5 3.5-13L7.5 18l13-0.5z"/>
-        </svg>
-        <span class="icon-label">Estrella</span>
-      </div>
-
     </div>
+
+    <section class="section center" id="how">
+      <div class="section-kicker">Dominoes, but pocket ready.</div>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-copy">Every card represents one double-nine domino tile. Match numbers, control the ends, block the table, and talk your talk. If you know dominoes, you already know the rhythm.</p>
+      <div class="grid grid-3">
+        <article class="tile">
+          <h3>Each Card = A Tile</h3>
+          <p>All 55 combinations are included, from La Blanquita to La Gorda.</p>
+        </article>
+        <article class="tile">
+          <h3>Same Game</h3>
+          <p>Numbers replace suits. Strategy replaces luck. The table still has a memory.</p>
+        </article>
+        <article class="tile">
+          <h3>Play Anywhere</h3>
+          <p>No heavy box of tiles. No perfect table. Just shuffle, deal, and play.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section showcase" id="deck">
+      <div class="image-frame">
+        <img src="assets/calle-nueve-hero-card.jpeg" alt="Close-up of a Calle Nueve hero card on a wooden table" />
+      </div>
+      <div>
+        <div class="section-kicker">Tropical Deco Edition</div>
+        <h2 class="section-title">Built Like a Keepsake. Played Like a Game.</h2>
+        <p class="lead">Calle Nueve blends Havana-era Art Deco, Little Havana table culture, and a portable card format. It is not a generic deck with domino dots. Every number has a cultural icon. Every card has a personality.</p>
+        <ul class="feature-list">
+          <li><span class="dot"></span><span><b>Hero doubles:</b> La Gorda, Duque, Galleguito, La Blanquita, and the rest of the trophies of the deck.</span></li>
+          <li><span class="dot"></span><span><b>Built-in chucho:</b> Nicknames and quips that make every play feel alive.</span></li>
+          <li><span class="dot"></span><span><b>Premium feel:</b> Designed for linen-finish cardstock and a collectible cigar-box presentation.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section center">
+      <div class="section-kicker">The rhythm of the table</div>
+      <h2 class="section-title">10 Numbers. 10 Miami Icons.</h2>
+      <p class="section-copy">Instead of plain dots, Calle Nueve uses a distinct icon system inspired by cafecito, palms, guayaberas, flamingos, cigar bands, sunrays, and domino tiles.</p>
+      <div class="icon-row">
+        <div class="pip"><div class="num">0</div><div class="ico">☕</div><small>Clean saucer</small></div>
+        <div class="pip"><div class="num">1</div><div class="ico">☕</div><small>Cafecito cup</small></div>
+        <div class="pip"><div class="num">2</div><div class="ico">🪇</div><small>Maracas</small></div>
+        <div class="pip"><div class="num">3</div><div class="ico">🌴</div><small>Palms</small></div>
+        <div class="pip"><div class="num">4</div><div class="ico">🐢</div><small>Sea turtles</small></div>
+        <div class="pip"><div class="num">5</div><div class="ico">●</div><small>Guayabera buttons</small></div>
+        <div class="pip"><div class="num">6</div><div class="ico">🦩</div><small>Flamingos</small></div>
+        <div class="pip"><div class="num">7</div><div class="ico">▰</div><small>Cigar bands</small></div>
+        <div class="pip"><div class="num">8</div><div class="ico">☀</div><small>Deco sunrays</small></div>
+        <div class="pip"><div class="num">9</div><div class="ico">▥</div><small>Domino tiles</small></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="center">
+        <div class="section-kicker">Where it belongs</div>
+        <h2 class="section-title">From the Ventanita to the Beach Bag.</h2>
+        <p class="section-copy">Calle Nueve is made for the moments when the culture shows up but the tiles stay home.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="tile">
+          <h3>Backyard Games</h3>
+          <p>Bring it out after dinner, between stories, when someone says they only have ten minutes.</p>
+        </article>
+        <article class="tile">
+          <h3>Cafecito Breaks</h3>
+          <p>Quick hands. Fast talk. A small deck with big table energy.</p>
+        </article>
+        <article class="tile">
+          <h3>Travel Days</h3>
+          <p>Airport gate, hotel room, beach chair, park bench. The game finally travels light.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="product-band" id="buy">
+      <div class="band-inner">
+        <div>
+          <div class="section-kicker">First Edition</div>
+          <h2 class="section-title">Your Table Is Waiting.</h2>
+          <p class="section-copy">A premium 55-card Cuban double-nine domino deck, designed in Miami with a Tropical Deco look and a whole lot of chucho.</p>
+        </div>
+        <div class="price-card">
+          <p class="eyebrow" style="margin-bottom:.4rem;">Calle Nueve deck</p>
+          <div class="price">$29.99</div>
+          <p>First edition price. Update this button with your Shopify checkout link when the product page is live.</p>
+          <ul>
+            <li>55-card double-nine system</li>
+            <li>Tropical Deco art direction</li>
+            <li>Premium linen-finish target</li>
+            <li>Designed with amor in Miami</li>
+          </ul>
+          <a class="btn btn-primary" href="https://callenueve.com" target="_blank" rel="noopener">Buy on Shopify</a>
+          <p class="microcopy">Replace this link with your Shopify product URL.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section center">
+      <div class="section-kicker">Questions before you play?</div>
+      <h2 class="section-title">Quick Answers</h2>
+      <div class="faq">
+        <details>
+          <summary>Is this a different game from dominoes?</summary>
+          <p>No. It is the double-nine domino system translated into a card format. The goal is portability without losing the core play pattern.</p>
+        </details>
+        <details>
+          <summary>How many cards are in the deck?</summary>
+          <p>55 cards, covering every combination from 0-0 through 9-9.</p>
+        </details>
+        <details>
+          <summary>Why cards instead of tiles?</summary>
+          <p>Tiles are great at the table. Cards travel better. Calle Nueve is made for beaches, parks, cafes, flights, and quick games anywhere.</p>
+        </details>
+        <details>
+          <summary>Is this made for collectors or players?</summary>
+          <p>Both. The deck is meant to look like a keepsake and still function as a playable game.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="brand">Calle Nueve</div>
+    <p>Cuban double-nine, reimagined as a card deck.</p>
+    <p>Hecho con amor en Miami, Florida.</p>
+  </footer>
+
+  <div class="mobile-cta">
+    <a class="btn btn-primary" href="#buy">Buy first edition</a>
   </div>
-</section>
-
-<!-- ── Waitlist ── -->
-<section class="waitlist" id="waitlist" aria-labelledby="wl-heading">
-  <h2 id="wl-heading">Be among the first.</h2>
-  <p class="waitlist-sub">
-    The inaugural Calle Nueve set is in production.
-    Join the list to get early access and behind-the-scenes updates.
-  </p>
-
-  <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
-  <!-- Sign up free at formspree.io → New Form → copy the ID -->
-  <form class="wl-form" id="wlForm" novalidate>
-    <input type="email" name="email" placeholder="your@email.com"
-           required autocomplete="email" aria-label="Email address" />
-    <button type="submit">Reserve</button>
-  </form>
-
-  <p class="wl-note">No spam. Just dominoes.</p>
-  <p class="wl-success" id="wlSuccess" role="status">
-    You're on the list. We'll be in touch.
-  </p>
-</section>
-
-<!-- ── Footer ── -->
-<footer>
-  <span class="footer-name">Calle Nueve</span>
-  <ul class="footer-links">
-    <li><a href="https://studio.callenueve.com">Studio</a></li>
-    <li><a href="mailto:hello@callenueve.com">Contact</a></li>
-  </ul>
-</footer>
-
-<script>
-  const form = document.getElementById('wlForm');
-  const success = document.getElementById('wlSuccess');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = form.querySelector('input').value.trim();
-    if (!email) return;
-
-    const btn = form.querySelector('button');
-    btn.textContent = '…';
-    btn.disabled = true;
-
-    // TODO: Replace with your Formspree form ID
-    // Get one free at https://formspree.io → New Form
-    const FORM_ID = 'YOUR_FORM_ID';
-
-    try {
-      const res = await fetch(`https://formspree.io/f/${FORM_ID}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ email }),
-      });
-      if (res.ok) {
-        form.style.display = 'none';
-        success.style.display = 'block';
-      } else {
-        throw new Error();
-      }
-    } catch {
-      btn.textContent = 'Reserve';
-      btn.disabled = false;
-      alert('Something went wrong. Try again.');
-    }
-  });
-</script>
-
 </body>
 </html>
