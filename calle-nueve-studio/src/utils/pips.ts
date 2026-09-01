@@ -45,9 +45,9 @@ export function getPipPositions(value: number): PipPosition[] {
       return [
         { x: 0.3, y: 0.18 },
         { x: 0.7, y: 0.18 },
-        { x: 0.25, y: 0.5 },
+        { x: 0.3, y: 0.5 },
         { x: 0.5, y: 0.5 },
-        { x: 0.75, y: 0.5 },
+        { x: 0.7, y: 0.5 },
         { x: 0.3, y: 0.82 },
         { x: 0.7, y: 0.82 },
       ];
