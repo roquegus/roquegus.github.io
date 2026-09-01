@@ -458,3 +458,107 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 3px; }
+
+/* ── Auth screen ──────────────────────────────────────── */
+.auth-screen {
+  display: flex; align-items: center; justify-content: center;
+  height: 100vh; background: var(--bg-deep);
+}
+.auth-card {
+  background: var(--bg-panel); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 36px 32px; width: 360px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.auth-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 36px;
+  color: var(--accent); letter-spacing: 2px; line-height: 1;
+}
+.auth-title {
+  color: var(--text-primary); font-size: 16px; font-weight: 700; letter-spacing: .5px;
+}
+.auth-subtitle {
+  color: var(--text-muted); font-size: 11px; letter-spacing: 1px;
+  text-transform: uppercase; margin-bottom: 16px;
+}
+.auth-form { display: flex; flex-direction: column; gap: 10px; }
+.auth-error {
+  color: var(--red-text); font-size: 12px;
+  background: #f871711a; border: 1px solid #f871714d;
+  border-radius: var(--radius-sm); padding: 6px 10px;
+}
+.auth-success {
+  color: var(--green-text); font-size: 12px;
+  background: #4ade801a; border: 1px solid #4ade804d;
+  border-radius: var(--radius-sm); padding: 10px 12px;
+  margin-top: 8px;
+}
+.auth-toggle {
+  background: none; border: none; color: var(--text-muted);
+  font-size: 12px; cursor: pointer; margin-top: 10px;
+  text-align: center; padding: 4px;
+}
+.auth-toggle:hover { color: var(--accent); }
+
+/* ── Projects screen ──────────────────────────────────── */
+.projects-screen {
+  display: flex; flex-direction: column; height: 100vh;
+  background: var(--bg-deep); overflow: hidden;
+}
+.projects-header {
+  background: var(--bg-panel); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 24px; flex-shrink: 0;
+}
+.projects-brand { display: flex; align-items: center; gap: 10px; }
+.projects-title {
+  color: var(--text-primary); font-size: 13px; font-weight: 700; letter-spacing: .5px;
+}
+.projects-header-actions { display: flex; align-items: center; gap: 12px; }
+.projects-user { color: var(--text-muted); font-size: 11px; }
+.projects-body {
+  flex: 1; overflow-y: auto; padding: 32px;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+}
+.projects-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px;
+}
+.projects-heading {
+  color: var(--text-primary); font-size: 18px; font-weight: 700;
+}
+.projects-status { color: var(--text-muted); font-size: 13px; }
+.projects-error { color: var(--red-text); }
+.projects-empty {
+  text-align: center; color: var(--text-muted);
+  padding: 60px 0; display: flex; flex-direction: column; align-items: center; gap: 16px;
+}
+.projects-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px;
+}
+.project-card {
+  background: var(--bg-panel); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden; position: relative;
+  transition: border-color .15s;
+}
+.project-card:hover { border-color: var(--accent-dim); }
+.project-card-body {
+  cursor: pointer; display: flex; flex-direction: column; gap: 0;
+}
+.project-card-swatch { height: 80px; flex-shrink: 0; }
+.project-card-info { padding: 12px 14px 14px; }
+.project-card-name {
+  color: var(--text-primary); font-size: 13px; font-weight: 700; margin-bottom: 4px;
+}
+.project-card-meta { color: var(--text-secondary); font-size: 11px; line-height: 1.5; }
+.project-card-date {
+  color: var(--text-muted); font-size: 10px; margin-top: 6px; letter-spacing: .3px;
+}
+.project-card-delete {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--bg-card); border: 1px solid var(--border);
+  color: var(--text-muted); border-radius: 50%; width: 22px; height: 22px;
+  cursor: pointer; font-size: 10px; display: flex; align-items: center;
+  justify-content: center; opacity: 0; transition: opacity .15s, color .15s;
+}
+.project-card:hover .project-card-delete { opacity: 1; }
+.project-card-delete:hover { color: var(--red-text); border-color: var(--red-text); }
