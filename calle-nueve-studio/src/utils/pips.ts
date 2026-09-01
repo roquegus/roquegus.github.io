@@ -19,10 +19,10 @@ export function getPipPositions(value: number): PipPosition[] {
       ];
     case 4:
       return [
-        { x: 0.33, y: 0.25 },
-        { x: 0.67, y: 0.25 },
-        { x: 0.33, y: 0.75 },
-        { x: 0.67, y: 0.75 },
+        { x: 0.33, y: 0.28 },
+        { x: 0.67, y: 0.28 },
+        { x: 0.33, y: 0.72 },
+        { x: 0.67, y: 0.72 },
       ];
     case 5:
       return [
@@ -53,14 +53,14 @@ export function getPipPositions(value: number): PipPosition[] {
       ];
     case 8:
       return [
-        { x: 0.3, y: 0.18 },
-        { x: 0.7, y: 0.18 },
+        { x: 0.3, y: 0.14 },
+        { x: 0.7, y: 0.14 },
         { x: 0.3, y: 0.38 },
         { x: 0.7, y: 0.38 },
         { x: 0.3, y: 0.62 },
         { x: 0.7, y: 0.62 },
-        { x: 0.3, y: 0.82 },
-        { x: 0.7, y: 0.82 },
+        { x: 0.3, y: 0.86 },
+        { x: 0.7, y: 0.86 },
       ];
     case 9:
       return [
