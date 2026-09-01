@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import { flushSync } from "react-dom";
 import { useApp } from "../../store";
@@ -40,6 +40,18 @@ export default function CenterArea() {
   const [exportProgress, setExportProgress] = useState({ current: 0, total: 0, label: "" });
   const [exportingPdf, setExportingPdf] = useState(false);
   const [pdfProgress, setPdfProgress] = useState({ current: 0, total: 0, label: "" });
+  const canvasRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!canvasRef.current) return;
+    const { clientWidth: w, clientHeight: h } = canvasRef.current;
+    const pad = 48;
+    const fitZoom = Math.min(
+      (w - pad) / PRINT.width,
+      (h - pad) / PRINT.height
+    );
+    dispatch({ type: "SET_ZOOM", payload: Math.round(fitZoom * 100) / 100 });
+  }, []);
 
   const cardInView = deck[selectedCardIndex];
 
@@ -219,7 +231,7 @@ export default function CenterArea() {
         </div>
       </div>
 
-      <div className="center-canvas">
+      <div className="center-canvas" ref={canvasRef}>
         {previewMode === "production" ? (
           <div className="production-panel">
             <Preflight />
