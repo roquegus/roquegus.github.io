@@ -43,13 +43,13 @@ export function getPipPositions(value: number): PipPosition[] {
       ];
     case 7:
       return [
-        { x: 0.33, y: 0.18 },
-        { x: 0.67, y: 0.18 },
-        { x: 0.33, y: 0.42 },
-        { x: 0.67, y: 0.42 },
+        { x: 0.3, y: 0.18 },
+        { x: 0.7, y: 0.18 },
+        { x: 0.25, y: 0.5 },
         { x: 0.5, y: 0.5 },
-        { x: 0.33, y: 0.82 },
-        { x: 0.67, y: 0.82 },
+        { x: 0.75, y: 0.5 },
+        { x: 0.3, y: 0.82 },
+        { x: 0.7, y: 0.82 },
       ];
     case 8:
       return [
