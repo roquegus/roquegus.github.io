@@ -35,7 +35,8 @@ export type BackPattern =
   | "diamonds"
   | "sunburst"
   | "art-deco"
-  | "plain";
+  | "plain"
+  | "custom";
 
 export type DesignTokens = {
   background: {
@@ -92,6 +93,7 @@ export type DesignTokens = {
     rotation: number;
     centerMedallion: boolean;
     nonDirectionalCheck: boolean;
+    customImage?: string;
   };
 };
 

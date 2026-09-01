@@ -225,6 +225,19 @@ export default function CardBack({
         return (
           <rect x={0} y={0} width={PRINT.width} height={PRINT.height} fill={colors.backBackground} />
         );
+      case "custom":
+        return back.customImage ? (
+          <image
+            href={back.customImage}
+            x={0}
+            y={0}
+            width={PRINT.width}
+            height={PRINT.height}
+            preserveAspectRatio="xMidYMid slice"
+          />
+        ) : (
+          <rect x={0} y={0} width={PRINT.width} height={PRINT.height} fill={colors.backBackground} />
+        );
       default:
         return (
           <MosaicPattern
