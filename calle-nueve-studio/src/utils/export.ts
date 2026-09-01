@@ -1,4 +1,5 @@
 import JSZip from "jszip";
+import { jsPDF } from "jspdf";
 import type { DominoCard, DesignTokens, OrderInfo } from "../types";
 import { PRINT, APP_VERSION, APP_NAME } from "../constants/print";
 
@@ -203,6 +204,105 @@ function buildProofHtml(deck: DominoCard[]): string {
 <div class="grid">${cells}</div>
 </body>
 </html>`;
+}
+
+export async function exportPdfProof(
+  deck: DominoCard[],
+  order: OrderInfo,
+  renderFaceCard: (card: DominoCard) => SVGElement | null,
+  onProgress?: ExportProgressCallback
+): Promise<Blob> {
+  // A4 portrait in mm: 210 × 297
+  const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+  const pageW = 210;
+  const pageH = 297;
+  const margin = 12;
+
+  // Cover page
+  pdf.setFillColor(13, 13, 15);
+  pdf.rect(0, 0, pageW, pageH, "F");
+  pdf.setTextColor(196, 154, 42);
+  pdf.setFontSize(28);
+  pdf.setFont("helvetica", "bold");
+  pdf.text("CALLE NUEVE", pageW / 2, 60, { align: "center" });
+  pdf.setFontSize(14);
+  pdf.setFont("helvetica", "normal");
+  pdf.setTextColor(232, 232, 240);
+  pdf.text("Proof — Design Review", pageW / 2, 72, { align: "center" });
+  pdf.setFontSize(10);
+  pdf.setTextColor(136, 136, 160);
+  const infoLines = [
+    order.customerName ? `Customer: ${order.customerName}` : null,
+    order.orderNumber ? `Order: ${order.orderNumber}` : null,
+    order.printVendor ? `Vendor: ${order.printVendor}` : null,
+    `Date: ${new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}`,
+    `${deck.length} face cards`,
+  ].filter(Boolean) as string[];
+  infoLines.forEach((line, i) => {
+    pdf.text(line, pageW / 2, 90 + i * 7, { align: "center" });
+  });
+  pdf.setFontSize(8);
+  pdf.setTextColor(85, 85, 104);
+  pdf.text("This proof is for design review only. Final colors may vary in print.", pageW / 2, pageH - 16, { align: "center" });
+
+  // Contact sheet pages — 6 cards per row, cells sized to fit A4
+  const cols = 6;
+  const cellW = (pageW - margin * 2) / cols;
+  const cellH = cellW * (PRINT.height / PRINT.width); // maintain card aspect
+  const rows = Math.floor((pageH - margin * 2 - 10) / cellH);
+  const perPage = cols * rows;
+
+  const total = deck.length;
+  let current = 0;
+
+  for (let i = 0; i < deck.length; i += perPage) {
+    pdf.addPage();
+    pdf.setFillColor(13, 13, 15);
+    pdf.rect(0, 0, pageW, pageH, "F");
+
+    const batch = deck.slice(i, i + perPage);
+    for (let j = 0; j < batch.length; j++) {
+      const card = batch[j];
+      const col = j % cols;
+      const row = Math.floor(j / cols);
+      const x = margin + col * cellW;
+      const y = margin + row * cellH;
+
+      const el = renderFaceCard(card);
+      if (el) {
+        const svgData = new XMLSerializer().serializeToString(el);
+        const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(svgBlob);
+        await new Promise<void>((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement("canvas");
+            const scale = 2; // 2× for quality
+            canvas.width = PRINT.width * scale;
+            canvas.height = PRINT.height * scale;
+            const ctx = canvas.getContext("2d")!;
+            ctx.scale(scale, scale);
+            ctx.drawImage(img, 0, 0, PRINT.width, PRINT.height);
+            URL.revokeObjectURL(url);
+            const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+            pdf.addImage(dataUrl, "JPEG", x, y, cellW, cellH);
+            // label
+            pdf.setFontSize(5);
+            pdf.setTextColor(card.isHero ? 196 : 136, card.isHero ? 154 : 136, card.isHero ? 42 : 160);
+            pdf.text(card.label + (card.isHero ? " ★" : ""), x + cellW / 2, y + cellH + 2.5, { align: "center" });
+            resolve();
+          };
+          img.onerror = reject;
+          img.src = url;
+        });
+      }
+
+      current++;
+      onProgress?.(current, total, card.label);
+    }
+  }
+
+  return pdf.output("blob");
 }
 
 export function downloadBlob(blob: Blob, filename: string) {

@@ -4,7 +4,7 @@ import { PRINT } from "../../constants/print";
 import type { PreflightItem, PreflightStatus } from "../../types";
 
 function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[] {
-  const { tokens, deck, showGuides, showTrimLine, showSafeZone } = state;
+  const { tokens, deck, showGuides, showTrimLine, showSafeZone, order } = state;
   const { typography } = tokens;
 
   const checks: PreflightItem[] = [
@@ -106,6 +106,24 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
       message: !tokens.back.nonDirectionalCheck
         ? "Mark non-directional check as verified in Card Back panel"
         : undefined,
+    },
+    {
+      id: "order-customer",
+      label: "Customer name set",
+      status: order.customerName?.trim() ? "pass" : "fail",
+      message: !order.customerName?.trim() ? "Enter customer name in Order panel before exporting" : undefined,
+    },
+    {
+      id: "order-number",
+      label: "Order number set",
+      status: order.orderNumber?.trim() ? "pass" : "fail",
+      message: !order.orderNumber?.trim() ? "Enter order number in Order panel before exporting" : undefined,
+    },
+    {
+      id: "order-vendor",
+      label: "Print vendor set",
+      status: order.printVendor?.trim() ? "pass" : "warning",
+      message: !order.printVendor?.trim() ? "Print vendor not set — add it in Order panel" : undefined,
     },
   ];
 

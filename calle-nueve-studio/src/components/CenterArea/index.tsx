@@ -9,6 +9,7 @@ import Preflight from "../Production/Preflight";
 import { PRINT } from "../../constants/print";
 import {
   exportProductionZip,
+  exportPdfProof,
   downloadBlob,
   svgToPng,
 } from "../../utils/export";
@@ -37,6 +38,8 @@ export default function CenterArea() {
 
   const [exporting, setExporting] = useState(false);
   const [exportProgress, setExportProgress] = useState({ current: 0, total: 0, label: "" });
+  const [exportingPdf, setExportingPdf] = useState(false);
+  const [pdfProgress, setPdfProgress] = useState({ current: 0, total: 0, label: "" });
 
   const cardInView = deck[selectedCardIndex];
 
@@ -105,6 +108,39 @@ export default function CenterArea() {
       alert("Export failed. See console for details.");
     }
     setExporting(false);
+  };
+
+  const handleExportPdf = async () => {
+    if (exportingPdf) return;
+    setExportingPdf(true);
+    try {
+      const blob = await exportPdfProof(
+        deck,
+        state.order,
+        (card) => {
+          const container = document.createElement("div");
+          document.body.appendChild(container);
+          const root = createRoot(container);
+          flushSync(() => {
+            root.render(
+              <DominoCardSVG card={card} tokens={tokens} showTrimLine={false} showSafeZone={false} />
+            );
+          });
+          const el = container.querySelector("svg") as SVGElement | null;
+          root.unmount();
+          document.body.removeChild(container);
+          return el;
+        },
+        (current, total, label) => setPdfProgress({ current, total, label })
+      );
+      const safeOrder = (state.order.orderNumber || "C9-0001").replace(/[^a-zA-Z0-9]/g, "_");
+      const safeCustomer = (state.order.customerName || "Customer").replace(/[^a-zA-Z0-9]/g, "_");
+      downloadBlob(blob, `Calle9_Proof_${safeOrder}_${safeCustomer}.pdf`);
+    } catch (e) {
+      console.error(e);
+      alert("PDF export failed. See console.");
+    }
+    setExportingPdf(false);
   };
 
   const handleExportPng = async () => {
@@ -255,6 +291,15 @@ export default function CenterArea() {
               Export PNG (this card)
             </button>
           )}
+          <button
+            className={`btn-secondary export-btn ${exportingPdf ? "exporting" : ""}`}
+            onClick={handleExportPdf}
+            disabled={exportingPdf}
+          >
+            {exportingPdf
+              ? `PDF… ${pdfProgress.current}/${pdfProgress.total}`
+              : "Export PDF Proof"}
+          </button>
           <button
             className={`btn-primary export-btn ${exporting ? "exporting" : ""}`}
             onClick={handleExportZip}

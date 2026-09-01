@@ -128,6 +128,13 @@ export type PreviewMode =
   | "back"
   | "production";
 
+export type OrderStatus =
+  | "draft"
+  | "proof_sent"
+  | "approved"
+  | "printing"
+  | "shipped";
+
 export type PreflightStatus = "pass" | "warning" | "fail";
 
 export type PreflightItem = {

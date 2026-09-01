@@ -2,12 +2,15 @@ import { useState } from "react";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import AuthScreen from "./screens/AuthScreen";
 import ProjectsScreen from "./screens/ProjectsScreen";
+import ProofScreen from "./screens/ProofScreen";
 import { AppProvider } from "./store";
 import LeftSidebar from "./components/LeftSidebar";
 import CenterArea from "./components/CenterArea";
 import RightSidebar from "./components/RightSidebar";
 import type { CloudProject } from "./lib/supabase";
 import "./index.css";
+
+const proofToken = new URLSearchParams(window.location.search).get("proof");
 
 function AppInner() {
   const { user, loading } = useAuth();
@@ -52,6 +55,9 @@ function AppInner() {
 }
 
 export default function App() {
+  if (proofToken) {
+    return <ProofScreen token={proofToken} />;
+  }
   return (
     <AuthProvider>
       <AppInner />
