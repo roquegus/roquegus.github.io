@@ -15,10 +15,9 @@ renders the net at 300 DPI, `TuckBoxPanel.tsx` edits it (stored as `tokens.tuckB
 places the art on MPC's 9.955×13 in template page at the template offset. Exports embed Google Fonts as
 base64 (`utils/fonts.ts`) because SVG-in-<img> cannot see page fonts.
 
-**OPEN QUESTION — card size.** MPC "domino size" cards are 1.75×3.5 in, but `PRINT` is the poker template
-(822×1122 px = 2.5×3.5 in + bleed). The tuck box the user ordered is the domino-size box. If the deck is
-domino size, PRINT must become ~597×1122 (1.75+0.24 bleed) and the layout constants need re-checking.
-`order.cardSizePreset` is a label only; it does not change dimensions.
+**Card size is MPC domino size: 1.75×3.5 in (44×89 mm).** `PRINT` = 597×1122 px at 300 DPI
+(1/8 in bleed = 36 px, further 1/8 in safe = 72 px). Confirmed by the user against MPC's product page.
+`order.cardSizePreset` is a label only and is forced to the domino label on load.
 
 ## Branch
 `claude/calle-nueve-studio-sarb2y` on `roquegus/roquegus.github.io`
@@ -117,8 +116,8 @@ type DesignTokens = {
 
 ## Print constants
 ```typescript
-PRINT = { width: 822, height: 1122, trimInset: 36, safeInset: 72, dpi: 300 }
+PRINT = { width: 597, height: 1122, trimInset: 36, safeInset: 72, dpi: 300 }  // MPC domino size
 ```
-Safe zone rect: x=72, y=72, width=678, height=978
-Trim rect: x=36, y=36, width=750, height=1050
+Safe zone rect: x=72, y=72, width=453, height=978
+Trim rect: x=36, y=36, width=525, height=1050  (= 1.75 × 3.5 in)
 Divider Y: 561 (H/2)

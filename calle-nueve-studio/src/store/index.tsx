@@ -52,7 +52,7 @@ const defaultOrder: OrderInfo = {
   orderNumber: "C9-0001",
   notes: "",
   printVendor: "MakePlayingCards",
-  cardSizePreset: "Poker",
+  cardSizePreset: "Domino (1.75 × 3.5 in)",
   exportDate: new Date().toISOString().split("T")[0],
   projectVersion: "0.1.0",
 };
@@ -61,7 +61,8 @@ function makeInitialState(project?: CloudProject | null): AppState {
   if (project) {
     return {
       tokens: project.design_tokens,
-      order: project.order_info,
+      // The Studio only produces MPC domino-size cards; older projects stored "Poker" as a label
+      order: { ...project.order_info, cardSizePreset: defaultOrder.cardSizePreset },
       previewMode: "single",
       selectedCardIndex: 0,
       showTrimLine: false,

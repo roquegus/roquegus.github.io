@@ -10,8 +10,9 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
   const checks: PreflightItem[] = [
     {
       id: "canvas-size",
-      label: "Canvas is 822 × 1122 px",
+      label: `Canvas is ${PRINT.width} × ${PRINT.height} px — ${PRINT.cardSize}`,
       status: "pass",
+      message: "MPC domino size with 1/8 in bleed",
     },
     {
       id: "trim-inset",
@@ -46,10 +47,10 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
     {
       id: "pips-safe",
       label: "Pips inside safe zone",
-      status: tokens.pips.size > 110
+      status: tokens.pips.size > 100
         ? "warning"
         : "pass",
-      message: tokens.pips.size > 110 ? "Pip size is very large; 8 and 9 layouts may overlap" : undefined,
+      message: tokens.pips.size > 100 ? "Pip size is very large for the domino card width; 8 and 9 layouts may overlap" : undefined,
     },
     {
       id: "divider-safe",

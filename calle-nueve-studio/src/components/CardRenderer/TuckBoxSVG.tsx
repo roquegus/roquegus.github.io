@@ -5,6 +5,7 @@ import DividerLine from "./DividerLine";
 import PipIcon from "./PipIcon";
 import DominoCardSVG from "./DominoCardSVG";
 import { DECK } from "../../utils/deck";
+import { PRINT } from "../../constants/print";
 
 type Props = {
   tokens: DesignTokens;
@@ -250,8 +251,8 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
               </g>
 
               {box.frontStyle === "hero-card" ? (
-                <g transform={`translate(${fcx - 822 * 0.26},${f.y + 262}) scale(0.52)`}>
-                  <rect x={-10} y={-10} width={842} height={1142} rx={14} fill="#000" opacity={0.18} />
+                <g transform={`translate(${fcx - PRINT.width * 0.26},${f.y + 262}) scale(0.52)`}>
+                  <rect x={-10} y={-10} width={PRINT.width + 20} height={PRINT.height + 20} rx={14} fill="#000" opacity={0.18} />
                   <DominoCardSVG card={hero} tokens={tokens} />
                 </g>
               ) : (

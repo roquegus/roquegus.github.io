@@ -53,14 +53,12 @@ export default function OrderPanel() {
           </select>
         </div>
         <div className="field">
-          <label>Card Size Preset</label>
+          <label>Card Size</label>
           <select
             value={order.cardSizePreset}
             onChange={(e) => set("cardSizePreset", e.target.value)}
           >
-            <option>Poker</option>
-            <option>Bridge</option>
-            <option>Tarot</option>
+            <option>Domino (1.75 × 3.5 in)</option>
           </select>
         </div>
         <div className="field">
