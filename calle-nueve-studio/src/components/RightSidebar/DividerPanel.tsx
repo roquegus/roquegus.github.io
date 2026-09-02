@@ -54,7 +54,7 @@ export default function DividerPanel() {
         />
       </ControlRow>
       <ControlRow label="Ornament Size">
-        <Slider value={d.ornamentSize} min={0} max={60} onChange={(v) => updateDivider({ ornamentSize: v })} />
+        <Slider value={d.ornamentSize} min={0} max={140} onChange={(v) => updateDivider({ ornamentSize: v })} />
       </ControlRow>
     </Accordion>
   );

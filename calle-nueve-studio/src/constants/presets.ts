@@ -27,7 +27,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 2,
       width: 0.85,
       ornament: "leaf",
-      ornamentSize: 24,
+      ornamentSize: 64,
     },
     border: {
       outerWidth: 8,
@@ -78,7 +78,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 3,
       width: 0.9,
       ornament: "flourish",
-      ornamentSize: 28,
+      ornamentSize: 72,
     },
     border: {
       outerWidth: 10,
@@ -129,7 +129,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 2,
       width: 0.8,
       ornament: "diamond",
-      ornamentSize: 20,
+      ornamentSize: 56,
     },
     border: {
       outerWidth: 6,
@@ -180,7 +180,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 1.5,
       width: 0.75,
       ornament: "flourish",
-      ornamentSize: 32,
+      ornamentSize: 80,
     },
     border: {
       outerWidth: 12,
@@ -231,7 +231,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 2,
       width: 0.8,
       ornament: "sun",
-      ornamentSize: 28,
+      ornamentSize: 72,
     },
     border: {
       outerWidth: 8,
@@ -282,7 +282,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       thickness: 2,
       width: 0.85,
       ornament: "leaf",
-      ornamentSize: 26,
+      ornamentSize: 68,
     },
     border: {
       outerWidth: 9,
