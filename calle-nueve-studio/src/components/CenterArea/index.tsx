@@ -7,9 +7,13 @@ import DominoCardSVG from "../CardRenderer/DominoCardSVG";
 import CardBack from "../CardRenderer/CardBack";
 import Preflight from "../Production/Preflight";
 import { PRINT } from "../../constants/print";
+import { TUCK_PX, getTuckBox } from "../../constants/tuckbox";
+import TuckBoxSVG from "../CardRenderer/TuckBoxSVG";
 import {
   exportProductionZip,
   exportPdfProof,
+  exportTuckBoxPng,
+  exportTuckBoxPdf,
   downloadBlob,
   svgToPng,
 } from "../../utils/export";
@@ -19,6 +23,7 @@ const MODES: { value: PreviewMode; label: string }[] = [
   { value: "grid", label: "Grid View" },
   { value: "heroes", label: "Hero Cards" },
   { value: "back", label: "Card Back" },
+  { value: "box", label: "Tuck Box" },
   { value: "production", label: "Production" },
 ];
 
@@ -40,18 +45,44 @@ export default function CenterArea() {
   const [exportProgress, setExportProgress] = useState({ current: 0, total: 0, label: "" });
   const [exportingPdf, setExportingPdf] = useState(false);
   const [pdfProgress, setPdfProgress] = useState({ current: 0, total: 0, label: "" });
+  const [exportingBox, setExportingBox] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
+  const isBox = previewMode === "box";
 
+  // Fit the card (or the box net) to the canvas on load and when switching in/out of box mode
   useEffect(() => {
     if (!canvasRef.current) return;
     const { clientWidth: w, clientHeight: h } = canvasRef.current;
     const pad = 48;
-    const fitZoom = Math.min(
-      (w - pad) / PRINT.width,
-      (h - pad) / PRINT.height
-    );
+    const dw = isBox ? TUCK_PX.w : PRINT.width;
+    const dh = isBox ? TUCK_PX.h : PRINT.height;
+    const fitZoom = Math.min((w - pad) / dw, (h - pad) / dh);
     dispatch({ type: "SET_ZOOM", payload: Math.round(fitZoom * 100) / 100 });
-  }, []);
+  }, [isBox]);
+
+  const handleExportBox = async (kind: "png" | "pdf") => {
+    if (exportingBox) return;
+    setExportingBox(true);
+    const container = document.createElement("div");
+    document.body.appendChild(container);
+    const root = createRoot(container);
+    try {
+      flushSync(() => {
+        root.render(<TuckBoxSVG tokens={tokens} showDieline={false} />);
+      });
+      const el = container.querySelector("svg") as SVGElement | null;
+      if (!el) throw new Error("Box render failed");
+      const blob = kind === "pdf" ? await exportTuckBoxPdf(el) : await exportTuckBoxPng(el);
+      const safeOrder = (state.order.orderNumber || "C9-0001").replace(/[^a-zA-Z0-9]/g, "_");
+      downloadBlob(blob, `Calle9_TuckBox_${safeOrder}.${kind}`);
+    } catch (e) {
+      console.error(e);
+      alert("Box export failed. See console for details.");
+    }
+    root.unmount();
+    document.body.removeChild(container);
+    setExportingBox(false);
+  };
 
   const cardInView = deck[selectedCardIndex];
 
@@ -194,7 +225,7 @@ export default function CenterArea() {
         </div>
 
         <div className="toolbar-controls">
-          {previewMode !== "production" && previewMode !== "back" && (
+          {previewMode !== "production" && previewMode !== "back" && previewMode !== "box" && (
             <>
               <button className="btn-ghost" onClick={prev} disabled={selectedCardIndex === 0}>◀</button>
               <span className="card-counter">
@@ -235,6 +266,12 @@ export default function CenterArea() {
         {previewMode === "production" ? (
           <div className="production-panel">
             <Preflight />
+          </div>
+        ) : previewMode === "box" ? (
+          <div className="card-preview-single" style={{ width: TUCK_PX.w * zoom, height: TUCK_PX.h * zoom }}>
+            <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: TUCK_PX.w, height: TUCK_PX.h }}>
+              <TuckBoxSVG tokens={tokens} showDieline={getTuckBox(tokens).showDieline} />
+            </div>
           </div>
         ) : previewMode === "back" ? (
           <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
@@ -297,6 +334,23 @@ export default function CenterArea() {
           </div>
         )}
 
+        {previewMode === "box" && (
+          <div className="card-info">
+            <span className="card-info-label">Tuck Box</span>
+            <span className="card-info-dims">MPC domino size · 19 mm deck · {TUCK_PX.w} × {TUCK_PX.h} · {PRINT.dpi} DPI · 3 mm bleed</span>
+          </div>
+        )}
+
+        {previewMode === "box" ? (
+          <div className="export-actions">
+            <button className="btn-secondary" onClick={() => handleExportBox("png")} disabled={exportingBox}>
+              Export Box PNG
+            </button>
+            <button className="btn-primary export-btn" onClick={() => handleExportBox("pdf")} disabled={exportingBox}>
+              {exportingBox ? "Exporting…" : "Export Box PDF (MPC template)"}
+            </button>
+          </div>
+        ) : (
         <div className="export-actions">
           {previewMode === "single" && (
             <button className="btn-secondary" onClick={handleExportPng}>
@@ -322,6 +376,7 @@ export default function CenterArea() {
               : "Export Production Package"}
           </button>
         </div>
+        )}
       </div>
     </main>
   );

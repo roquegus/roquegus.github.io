@@ -2,30 +2,74 @@ import JSZip from "jszip";
 import { jsPDF } from "jspdf";
 import type { DominoCard, DesignTokens, OrderInfo } from "../types";
 import { PRINT, APP_VERSION, APP_NAME } from "../constants/print";
+import { TUCK_PT, TUCK_PX } from "../constants/tuckbox";
+import { getEmbeddedFontCss } from "./fonts";
 
-export async function svgToPng(svgElement: SVGElement): Promise<Blob> {
+// Serialize an SVG element with the Google Fonts embedded so <img> rendering keeps them.
+export async function serializeSvg(svgElement: SVGElement): Promise<string> {
+  const fontCss = await getEmbeddedFontCss();
+  const clone = svgElement.cloneNode(true) as SVGElement;
+  if (fontCss) {
+    const style = document.createElementNS("http://www.w3.org/2000/svg", "style");
+    style.textContent = fontCss;
+    clone.insertBefore(style, clone.firstChild);
+  }
+  return new XMLSerializer().serializeToString(clone);
+}
+
+export async function renderSvgToCanvas(
+  svgElement: SVGElement,
+  width: number,
+  height: number,
+  scale = 1
+): Promise<HTMLCanvasElement> {
+  const svgData = await serializeSvg(svgElement);
   return new Promise((resolve, reject) => {
-    const svgData = new XMLSerializer().serializeToString(svgElement);
     const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
     const url = URL.createObjectURL(svgBlob);
     const img = new Image();
     img.onload = () => {
       const canvas = document.createElement("canvas");
-      canvas.width = PRINT.width;
-      canvas.height = PRINT.height;
+      canvas.width = Math.round(width * scale);
+      canvas.height = Math.round(height * scale);
       const ctx = canvas.getContext("2d")!;
       ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, PRINT.width, PRINT.height);
-      ctx.drawImage(img, 0, 0, PRINT.width, PRINT.height);
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       URL.revokeObjectURL(url);
-      canvas.toBlob((blob) => {
-        if (blob) resolve(blob);
-        else reject(new Error("Canvas toBlob failed"));
-      }, "image/png");
+      resolve(canvas);
     };
     img.onerror = reject;
     img.src = url;
   });
+}
+
+export async function svgToPng(
+  svgElement: SVGElement,
+  width: number = PRINT.width,
+  height: number = PRINT.height
+): Promise<Blob> {
+  const canvas = await renderSvgToCanvas(svgElement, width, height);
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error("Canvas toBlob failed"));
+    }, "image/png");
+  });
+}
+
+export async function exportTuckBoxPng(svgEl: SVGElement): Promise<Blob> {
+  return svgToPng(svgEl, TUCK_PX.w, TUCK_PX.h);
+}
+
+// PDF on the same 9.955 x 13 in page as MPC's Domino_19mm template, with the
+// artwork placed exactly where the template's bleed sheet sits.
+export async function exportTuckBoxPdf(svgEl: SVGElement): Promise<Blob> {
+  const canvas = await renderSvgToCanvas(svgEl, TUCK_PX.w, TUCK_PX.h);
+  const dataUrl = canvas.toDataURL("image/jpeg", 0.92);
+  const pdf = new jsPDF({ orientation: "portrait", unit: "pt", format: [TUCK_PT.page.w, TUCK_PT.page.h] });
+  pdf.addImage(dataUrl, "JPEG", TUCK_PT.offset.x, TUCK_PT.offset.y, TUCK_PT.sheet.w, TUCK_PT.sheet.h);
+  return pdf.output("blob");
 }
 
 export async function exportCardPng(svgEl: SVGElement): Promise<Blob> {
@@ -270,7 +314,7 @@ export async function exportPdfProof(
 
       const el = renderFaceCard(card);
       if (el) {
-        const svgData = new XMLSerializer().serializeToString(el);
+        const svgData = await serializeSvg(el);
         const svgBlob = new Blob([svgData], { type: "image/svg+xml;charset=utf-8" });
         const url = URL.createObjectURL(svgBlob);
         await new Promise<void>((resolve, reject) => {

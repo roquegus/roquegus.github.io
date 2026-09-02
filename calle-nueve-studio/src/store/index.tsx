@@ -6,8 +6,9 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import type { DesignTokens, OrderInfo, PreviewMode, DominoCard } from "../types";
+import type { DesignTokens, OrderInfo, PreviewMode, DominoCard, TuckBoxDesign } from "../types";
 import { PRESETS } from "../constants/presets";
+import { getTuckBox } from "../constants/tuckbox";
 import { DECK } from "../utils/deck";
 import { saveProject, type CloudProject } from "../lib/supabase";
 
@@ -149,6 +150,7 @@ type AppContextType = {
   updateTypography: (partial: Partial<DesignTokens["typography"]>) => void;
   updateFooter: (partial: Partial<DesignTokens["footer"]>) => void;
   updateBack: (partial: Partial<DesignTokens["back"]>) => void;
+  updateTuckBox: (partial: Partial<TuckBoxDesign>) => void;
   saveNow: () => Promise<void>;
 };
 
@@ -247,6 +249,8 @@ export function AppProvider({ children, initialProject }: AppProviderProps) {
     dispatch({ type: "PATCH_TOKENS", payload: { footer: { ...state.tokens.footer, ...partial } } });
   const updateBack = (partial: Partial<DesignTokens["back"]>) =>
     dispatch({ type: "PATCH_TOKENS", payload: { back: { ...state.tokens.back, ...partial } } });
+  const updateTuckBox = (partial: Partial<TuckBoxDesign>) =>
+    dispatch({ type: "PATCH_TOKENS", payload: { tuckBox: { ...getTuckBox(state.tokens), ...partial } } });
 
   return (
     <AppContext.Provider
@@ -261,6 +265,7 @@ export function AppProvider({ children, initialProject }: AppProviderProps) {
         updateTypography,
         updateFooter,
         updateBack,
+        updateTuckBox,
         saveNow,
       }}
     >

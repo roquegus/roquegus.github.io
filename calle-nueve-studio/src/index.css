@@ -563,6 +563,26 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 .project-card:hover .project-card-delete { opacity: 1; }
 .project-card-delete:hover { color: var(--red-text); border-color: var(--red-text); }
 
+/* ── Text inputs inside control rows ─────────────────── */
+.control-text, .control-textarea {
+  width: 100%;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 11px;
+  padding: 4px 6px;
+  font-family: inherit;
+}
+.control-text:focus, .control-textarea:focus { outline: none; border-color: var(--accent); }
+.control-textarea { resize: vertical; line-height: 1.4; }
+.panel-hint {
+  color: var(--text-muted);
+  font-size: 10px;
+  line-height: 1.45;
+  margin: 2px 0 8px;
+}
+
 /* ── Order status badges ─────────────────────────────── */
 .order-status-badge {
   display: inline-block;

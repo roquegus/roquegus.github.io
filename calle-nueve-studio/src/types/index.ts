@@ -95,6 +95,22 @@ export type DesignTokens = {
     nonDirectionalCheck: boolean;
     customImage?: string;
   };
+  tuckBox?: TuckBoxDesign;
+};
+
+export type TuckBoxFrontStyle = "emblem" | "hero-card" | "custom";
+
+export type TuckBoxDesign = {
+  frontStyle: TuckBoxFrontStyle;
+  title: string;
+  subtitle: string;
+  tagline: string;
+  edition: string;
+  url: string;
+  backText: string;
+  showIcons: boolean;
+  showDieline: boolean;
+  customImage?: string;
 };
 
 export type OrderInfo = {
@@ -126,6 +142,7 @@ export type PreviewMode =
   | "grid"
   | "heroes"
   | "back"
+  | "box"
   | "production";
 
 export type OrderStatus =

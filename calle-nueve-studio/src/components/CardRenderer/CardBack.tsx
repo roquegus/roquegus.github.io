@@ -1,4 +1,4 @@
-import type { DesignTokens } from "../../types";
+import type { DesignTokens, BackPattern } from "../../types";
 import { PRINT } from "../../constants/print";
 
 type CardBackProps = {
@@ -16,9 +16,9 @@ const diamondPts = (cx: number, cy: number, r: number) =>
 const patternId = (name: string, scale: number, color: string, accent: string) =>
   `${name}-${Math.round(scale * 100)}-${color.replace("#", "")}-${accent.replace("#", "")}`;
 
-type PatternProps = { scale: number; rotation: number; color: string; accent: string };
+type PatternProps = { scale: number; rotation: number; color: string; accent: string; fillW?: number; fillH?: number };
 
-function AzulejoPattern({ scale, rotation, color, accent }: PatternProps) {
+function AzulejoPattern({ scale, rotation, color, accent, fillW = W, fillH = H }: PatternProps) {
   const s = 64 * scale;
   const h = s / 2;
   const id = patternId("azulejo", scale, color, accent);
@@ -41,12 +41,12 @@ function AzulejoPattern({ scale, rotation, color, accent }: PatternProps) {
           <polygon points={diamondPts(h, h, h * 0.22)} fill={accent} />
         </pattern>
       </defs>
-      <rect x={0} y={0} width={W} height={H} fill={`url(#${id})`} />
+      <rect x={0} y={0} width={fillW} height={fillH} fill={`url(#${id})`} />
     </g>
   );
 }
 
-function DiamondsPattern({ scale, rotation, color, accent }: PatternProps) {
+function DiamondsPattern({ scale, rotation, color, accent, fillW = W, fillH = H }: PatternProps) {
   const s = 50 * scale;
   const h = s / 2;
   const id = patternId("diamonds", scale, color, accent);
@@ -60,17 +60,24 @@ function DiamondsPattern({ scale, rotation, color, accent }: PatternProps) {
           <polygon points={diamondPts(h, h, h * 0.2)} fill={accent} />
         </pattern>
       </defs>
-      <rect x={0} y={0} width={W} height={H} fill={`url(#${id})`} />
+      <rect x={0} y={0} width={fillW} height={fillH} fill={`url(#${id})`} />
     </g>
   );
 }
 
-function SunburstPattern({ color, accent, centerX, centerY }: { color: string; accent: string; centerX: number; centerY: number }) {
+function SunburstPattern({
+  color,
+  accent,
+  centerX,
+  centerY,
+  fillW = W,
+  fillH = H,
+}: { color: string; accent: string; centerX: number; centerY: number; fillW?: number; fillH?: number }) {
   const rays = 24;
-  const r = Math.max(W, H) * 1.2;
+  const r = Math.max(fillW, fillH) * 1.2;
   return (
     <g>
-      <rect x={0} y={0} width={W} height={H} fill={color} />
+      <rect x={0} y={0} width={fillW} height={fillH} fill={color} />
       {Array.from({ length: rays }).map((_, i) => {
         const a1 = (i * Math.PI * 2) / rays;
         const a2 = ((i + 0.5) * Math.PI * 2) / rays;
@@ -90,7 +97,7 @@ function SunburstPattern({ color, accent, centerX, centerY }: { color: string; a
   );
 }
 
-function ArtDecoPattern({ scale, rotation, color, accent }: PatternProps) {
+function ArtDecoPattern({ scale, rotation, color, accent, fillW = W, fillH = H }: PatternProps) {
   const s = 60 * scale;
   const h = s / 2;
   const id = patternId("artdeco", scale, color, accent);
@@ -109,7 +116,7 @@ function ArtDecoPattern({ scale, rotation, color, accent }: PatternProps) {
           <polygon points={diamondPts(h, h, s * 0.12)} fill={accent} opacity={0.5} />
         </pattern>
       </defs>
-      <rect x={0} y={0} width={W} height={H} fill={`url(#${id})`} />
+      <rect x={0} y={0} width={fillW} height={fillH} fill={`url(#${id})`} />
     </g>
   );
 }
@@ -140,8 +147,45 @@ function BackFrame({ accent }: { accent: string }) {
   );
 }
 
+// Fills a w×h area with one of the back patterns. Used by the card back and the tuck box.
+export function PatternFill({
+  pattern,
+  scale,
+  rotation,
+  color,
+  accent,
+  w,
+  h,
+  centerX,
+  centerY,
+}: {
+  pattern: BackPattern;
+  scale: number;
+  rotation: number;
+  color: string;
+  accent: string;
+  w: number;
+  h: number;
+  centerX: number;
+  centerY: number;
+}) {
+  switch (pattern) {
+    case "diamonds":
+      return <DiamondsPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
+    case "sunburst":
+      return <SunburstPattern color={color} accent={accent} centerX={centerX} centerY={centerY} fillW={w} fillH={h} />;
+    case "art-deco":
+      return <ArtDecoPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
+    case "plain":
+    case "custom":
+      return <rect x={0} y={0} width={w} height={h} fill={color} />;
+    default:
+      return <AzulejoPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
+  }
+}
+
 // Medallion with a domino emblem instead of text so the back stays non-directional
-function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: number; color: string; accent: string }) {
+export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: number; color: string; accent: string }) {
   const r = 120;
   const tw = r * 0.52;
   const th = r * 1.0;

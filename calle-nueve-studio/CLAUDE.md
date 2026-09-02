@@ -9,7 +9,16 @@ Order workflow live: status pipeline (draft → proof_sent → approved → prin
 shareable customer proof links (`?proof=<token>`, via SECURITY DEFINER RPCs in `migrations/002_order_workflow.sql`),
 PDF proof export (jsPDF), preflight order-info checks.
 Cuban pip icons are proper vector illustrations (0–100 viewBox in `PipIcon.tsx`), with a drop-shadow filter
-(`#pipShadow` in `DominoCardSVG.tsx`) and count-aware pip sizing in `PipZone.tsx`.
+(`#pipShadow` in `DominoCardSVG.tsx`). Pips are one size regardless of count (user requirement).
+Tuck box designer: `constants/tuckbox.ts` holds the MPC Domino_19mm dieline geometry (points), `TuckBoxSVG.tsx`
+renders the net at 300 DPI, `TuckBoxPanel.tsx` edits it (stored as `tokens.tuckBox`), and `exportTuckBoxPdf`
+places the art on MPC's 9.955×13 in template page at the template offset. Exports embed Google Fonts as
+base64 (`utils/fonts.ts`) because SVG-in-<img> cannot see page fonts.
+
+**OPEN QUESTION — card size.** MPC "domino size" cards are 1.75×3.5 in, but `PRINT` is the poker template
+(822×1122 px = 2.5×3.5 in + bleed). The tuck box the user ordered is the domino-size box. If the deck is
+domino size, PRINT must become ~597×1122 (1.75+0.24 bleed) and the layout constants need re-checking.
+`order.cardSizePreset` is a label only; it does not change dimensions.
 
 ## Branch
 `claude/calle-nueve-studio-sarb2y` on `roquegus/roquegus.github.io`

@@ -74,15 +74,11 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
     },
     {
       id: "fonts",
-      label: "No missing fonts",
-      status:
-        tokens.typography.indexFont !== "system" ||
-        tokens.typography.footerFont !== "system"
-          ? "warning"
-          : "pass",
+      label: "Fonts embedded in exports",
+      status: "pass",
       message:
         tokens.typography.indexFont !== "system"
-          ? `Using ${tokens.typography.indexFont} — ensure font is loaded`
+          ? `${tokens.typography.indexFont} is embedded into PNG/PDF exports automatically`
           : undefined,
     },
     {
