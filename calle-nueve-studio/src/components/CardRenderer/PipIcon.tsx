@@ -190,7 +190,7 @@ function CubanIcon({
       return (
         <>
           <rect x="12" y="18" width="76" height="64" rx="8" fill={tileFill} stroke={tileStroke} strokeWidth={tileSw} />
-          <line x1="12" y1="50" x2="88" y2="50" stroke={color} strokeWidth={Math.max(tileSw * 0.7, 2.5)} />
+          <line x1="12" y1="50" x2="88" y2="50" stroke={fillMode === "two-tone" ? sec : color} strokeWidth={Math.max(tileSw * 0.7, 2.5)} />
           <circle cx="30" cy="33" r="6" fill={pipFill} />
           <circle cx="50" cy="36" r="6" fill={pipFill} />
           <circle cx="70" cy="33" r="6" fill={pipFill} />
