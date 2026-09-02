@@ -83,7 +83,7 @@ src/
 ```
 
 ## Known gaps / next session ideas
-1. **Card back + divider ornament polish** — pips got a vector pass; card-back patterns and divider ornaments are still primitive shapes.
+1. **Existing cloud projects keep old token sizes** — pip size / ornament size defaults were raised ~2.2x; projects saved before that look small until the user re-applies a preset or moves the sliders. A one-time migration on load could scale them.
 2. **Auto-email proof link / invoice PDF** — next revenue features (Supabase Edge Function + Resend; jsPDF quote).
 3. **Font loading verification** — Bebas Neue and Playfair Display are loaded via Google Fonts in CSS. For offline/print accuracy, consider embedding fonts as base64 in SVG exports.
 4. **PNG export async rendering** — the current export renders SVGs by inserting into the DOM and reading the SVG element. Works well but runs sequentially; could be parallelized.

@@ -117,8 +117,8 @@ function CornerDecorations({
   color: string;
   outerBorderWidth: number;
 }) {
-  const pad = outerBorderWidth + 8;
-  const cs = 18;
+  const pad = outerBorderWidth + 16;
+  const cs = 34;
   const corners = [
     [pad, pad, 1, 1],
     [W - pad, pad, -1, 1],
@@ -129,19 +129,8 @@ function CornerDecorations({
     <g>
       {corners.map(([cx, cy, sx, sy], i) => (
         <g key={i} transform={`translate(${cx},${cy}) scale(${sx},${sy})`}>
-          <path
-            d={`M0,0 L${cs},0`}
-            stroke={color}
-            strokeWidth={2}
-            fill="none"
-          />
-          <path
-            d={`M0,0 L0,${cs}`}
-            stroke={color}
-            strokeWidth={2}
-            fill="none"
-          />
-          <circle cx={0} cy={0} r={3} fill={color} />
+          <path d={`M0,${cs} L0,0 L${cs},0`} stroke={color} strokeWidth={2.5} fill="none" />
+          <polygon points="5,5 20,5 5,20" fill={color} opacity={0.85} />
         </g>
       ))}
     </g>
