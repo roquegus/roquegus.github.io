@@ -16,7 +16,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "cuban-icons",
-      size: 36,
+      size: 80,
       spacing: 8,
       strokeWidth: 1.5,
       fillMode: "solid",
@@ -67,7 +67,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "cuban-icons",
-      size: 34,
+      size: 76,
       spacing: 7,
       strokeWidth: 2,
       fillMode: "two-tone",
@@ -118,7 +118,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "rings",
-      size: 32,
+      size: 72,
       spacing: 6,
       strokeWidth: 2.5,
       fillMode: "outline",
@@ -169,7 +169,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "diamonds",
-      size: 30,
+      size: 68,
       spacing: 8,
       strokeWidth: 1,
       fillMode: "solid",
@@ -220,7 +220,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "diamonds",
-      size: 28,
+      size: 64,
       spacing: 7,
       strokeWidth: 1.5,
       fillMode: "solid",
@@ -271,7 +271,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "cuban-icons",
-      size: 32,
+      size: 72,
       spacing: 6,
       strokeWidth: 1.5,
       fillMode: "solid",
@@ -322,7 +322,7 @@ export const PRESETS: Record<string, DesignTokens> = {
     },
     pips: {
       style: "classic-dots",
-      size: 26,
+      size: 60,
       spacing: 6,
       strokeWidth: 0,
       fillMode: "solid",

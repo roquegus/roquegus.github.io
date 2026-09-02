@@ -199,6 +199,9 @@ export default function DominoCardSVG({
           <rect x={1} y={1} width={8} height={8} fill="#000" opacity={0.04} />
           <rect x={11} y={11} width={8} height={8} fill="#000" opacity={0.04} />
         </pattern>
+        <filter id="pipShadow" x="-30%" y="-30%" width="160%" height="160%" colorInterpolationFilters="sRGB">
+          <feDropShadow dx="0" dy="1.5" stdDeviation="2" floodColor="#000" floodOpacity="0.35" />
+        </filter>
       </defs>
 
       {/* Background */}

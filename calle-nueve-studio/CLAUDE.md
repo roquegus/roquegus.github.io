@@ -3,8 +3,13 @@
 ## What this is
 A static web app for designing, previewing, and exporting print-ready Cuban double-nine domino playing card decks. Internal production tool for fulfilling customer orders.
 
-## Current status: MVP COMPLETE ✓
-Build passes clean. All 55 cards render. Export ZIP works.
+## Current status: IN PRODUCTION ✓
+Deployed on Vercel at studio.callenueve.com from `main` (root `vercel.json`). Supabase auth + cloud projects.
+Order workflow live: status pipeline (draft → proof_sent → approved → printing → shipped),
+shareable customer proof links (`?proof=<token>`, via SECURITY DEFINER RPCs in `migrations/002_order_workflow.sql`),
+PDF proof export (jsPDF), preflight order-info checks.
+Cuban pip icons are proper vector illustrations (0–100 viewBox in `PipIcon.tsx`), with a drop-shadow filter
+(`#pipShadow` in `DominoCardSVG.tsx`) and count-aware pip sizing in `PipZone.tsx`.
 
 ## Branch
 `claude/calle-nueve-studio-sarb2y` on `roquegus/roquegus.github.io`
@@ -78,8 +83,8 @@ src/
 ```
 
 ## Known gaps / next session ideas
-1. **PDF proof export** — brief asks for proof.pdf; currently only an HTML contact sheet. Could use jsPDF to render card thumbnails per page.
-2. **Cuban icon fidelity** — the pip icons are simplified SVG shapes. A real polish pass with proper vector art for each of the 10 icons would elevate the product.
+1. **Card back + divider ornament polish** — pips got a vector pass; card-back patterns and divider ornaments are still primitive shapes.
+2. **Auto-email proof link / invoice PDF** — next revenue features (Supabase Edge Function + Resend; jsPDF quote).
 3. **Font loading verification** — Bebas Neue and Playfair Display are loaded via Google Fonts in CSS. For offline/print accuracy, consider embedding fonts as base64 in SVG exports.
 4. **PNG export async rendering** — the current export renders SVGs by inserting into the DOM and reading the SVG element. Works well but runs sequentially; could be parallelized.
 5. **CMYK note** — exports are RGB (browser limitation). The production notes file and order-summary.json already call this out. A future improvement could add a color profile embed hint.

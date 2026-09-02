@@ -32,7 +32,7 @@ export default function PipsPanel() {
         />
       </ControlRow>
       <ControlRow label="Size">
-        <Slider value={p.size} min={16} max={60} onChange={(v) => updatePips({ size: v })} />
+        <Slider value={p.size} min={24} max={120} onChange={(v) => updatePips({ size: v })} />
       </ControlRow>
       <ControlRow label="Spacing">
         <Slider value={p.spacing} min={0} max={20} onChange={(v) => updatePips({ spacing: v })} />

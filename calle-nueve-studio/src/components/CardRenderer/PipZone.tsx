@@ -24,7 +24,10 @@ export default function PipZone({
 }: PipZoneProps) {
   const positions = getPipPositions(value);
   const { pips, colors } = tokens;
-  const size = pips.size;
+  // Sparse layouts get larger pips to fill the zone; dense ones shrink to avoid crowding
+  const sizeScale =
+    value <= 1 ? 1.6 : value <= 3 ? 1.3 : value <= 5 ? 1.15 : value <= 7 ? 1 : 0.92;
+  const size = pips.size * sizeScale;
 
   const content = (
     <g>
@@ -32,7 +35,7 @@ export default function PipZone({
         const px = x + pos.x * width - size / 2;
         const py = y + pos.y * height - size / 2;
         return (
-          <g key={i} transform={`translate(${px},${py})`}>
+          <g key={i} transform={`translate(${px},${py})`} filter="url(#pipShadow)">
             <PipIcon
               value={value}
               style={pips.style}

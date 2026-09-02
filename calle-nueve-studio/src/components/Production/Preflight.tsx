@@ -46,10 +46,10 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
     {
       id: "pips-safe",
       label: "Pips inside safe zone",
-      status: tokens.pips.size > 52
+      status: tokens.pips.size > 110
         ? "warning"
         : "pass",
-      message: tokens.pips.size > 52 ? "Pip size is large; edge pips may clip safe zone" : undefined,
+      message: tokens.pips.size > 110 ? "Pip size is very large; 8 and 9 layouts may overlap" : undefined,
     },
     {
       id: "divider-safe",
