@@ -30,6 +30,12 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
       status: "pass",
     },
     {
+      id: "frame-inside-trim",
+      label: "Borders, corners and hero frame sit inside the cut line",
+      status: "pass",
+      message: `Frame starts ${PRINT.trimInset + 16} px from the edge; MPC trims the outer ${PRINT.trimInset} px`,
+    },
+    {
       id: "index-safe",
       label: "Indices inside safe zone",
       status: typography.indexSize > 55

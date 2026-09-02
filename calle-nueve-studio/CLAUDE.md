@@ -18,6 +18,9 @@ base64 (`utils/fonts.ts`) because SVG-in-<img> cannot see page fonts.
 **Card size is MPC domino size: 1.75×3.5 in (44×89 mm).** `PRINT` = 597×1122 px at 300 DPI
 (1/8 in bleed = 36 px, further 1/8 in safe = 72 px). Confirmed by the user against MPC's product page.
 `order.cardSizePreset` is a label only and is forced to the domino label on load.
+**MPC trims the outer 36 px.** Anything meant to be seen (borders, corner brackets, hero frame, divider
+end caps, back frame) must start at `FRAME = trimInset + 16 = 52 px` or deeper; text stays inside the
+72 px safe line. Only background/texture may live in the bleed strip. `DividerLine` takes `inset` for this.
 
 ## Branch
 `claude/calle-nueve-studio-sarb2y` on `roquegus/roquegus.github.io`

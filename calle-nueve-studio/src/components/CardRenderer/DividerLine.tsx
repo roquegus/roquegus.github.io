@@ -9,6 +9,8 @@ type DividerLineProps = {
   ornamentSize: number;
   cardWidth: number;
   y: number;
+  /** Keep the divider inside this margin on each side (e.g. the safe zone) */
+  inset?: number;
 };
 
 const diamondPts = (cx: number, cy: number, rx: number, ry = rx) =>
@@ -229,9 +231,11 @@ export default function DividerLine({
   ornamentSize,
   cardWidth,
   y,
+  inset = 0,
 }: DividerLineProps) {
-  const w = cardWidth * widthFraction;
-  const x1 = (cardWidth - w) / 2;
+  const avail = cardWidth - inset * 2;
+  const w = avail * widthFraction;
+  const x1 = inset + (avail - w) / 2;
   const x2 = cardWidth - x1;
   const cx = cardWidth / 2;
 

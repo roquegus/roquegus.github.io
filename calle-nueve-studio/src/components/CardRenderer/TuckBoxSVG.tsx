@@ -217,9 +217,9 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
             <image href={box.customImage} x={f.x} y={f.y} width={f.w} height={f.h + B} preserveAspectRatio="xMidYMid slice" />
           ) : (
             <>
-              <rect x={f.x + 18} y={f.y + 18} width={f.w - 36} height={f.h - 36} fill="none" stroke={colors.border} strokeWidth={4} />
-              <rect x={f.x + 26} y={f.y + 26} width={f.w - 52} height={f.h - 52} fill="none" stroke={colors.border} strokeWidth={1.5} opacity={0.6} />
-              <Brackets r={f} inset={36} color={colors.border} />
+              <rect x={f.x + 36} y={f.y + 36} width={f.w - 72} height={f.h - 72} fill="none" stroke={colors.border} strokeWidth={4} />
+              <rect x={f.x + 44} y={f.y + 44} width={f.w - 88} height={f.h - 88} fill="none" stroke={colors.border} strokeWidth={1.5} opacity={0.6} />
+              <Brackets r={f} inset={54} color={colors.border} />
 
               <text
                 x={fcx}

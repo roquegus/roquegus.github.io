@@ -9,6 +9,8 @@ type CardBackProps = {
 
 const W = PRINT.width;
 const H = PRINT.height;
+// MPC cuts the outer 36 px off; frames must sit inside that line
+const FRAME = PRINT.trimInset + 16;
 
 const diamondPts = (cx: number, cy: number, r: number) =>
   `${cx},${cy - r} ${cx + r},${cy} ${cx},${cy + r} ${cx - r},${cy}`;
@@ -121,9 +123,9 @@ function ArtDecoPattern({ scale, rotation, color, accent, fillW = W, fillH = H }
   );
 }
 
-// Inset frame with corner brackets; fully 180°-symmetric
+// Inset frame with corner brackets; fully 180°-symmetric. Sits on the safe line.
 function BackFrame({ accent }: { accent: string }) {
-  const inset = 54;
+  const inset = PRINT.safeInset;
   const w = W - inset * 2;
   const h = H - inset * 2;
   const L = 44;
@@ -251,10 +253,10 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
 
       {border.outerWidth > 0 && (
         <rect
-          x={border.outerWidth / 2}
-          y={border.outerWidth / 2}
-          width={W - border.outerWidth}
-          height={H - border.outerWidth}
+          x={FRAME + border.outerWidth / 2}
+          y={FRAME + border.outerWidth / 2}
+          width={W - FRAME * 2 - border.outerWidth}
+          height={H - FRAME * 2 - border.outerWidth}
           fill="none"
           stroke={colors.border}
           strokeWidth={border.outerWidth}
@@ -262,10 +264,10 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
       )}
       {border.innerWidth > 0 && (
         <rect
-          x={border.outerWidth + 4 + border.innerWidth / 2}
-          y={border.outerWidth + 4 + border.innerWidth / 2}
-          width={W - (border.outerWidth + 4) * 2 - border.innerWidth}
-          height={H - (border.outerWidth + 4) * 2 - border.innerWidth}
+          x={FRAME + border.outerWidth + 4 + border.innerWidth / 2}
+          y={FRAME + border.outerWidth + 4 + border.innerWidth / 2}
+          width={W - (FRAME + border.outerWidth + 4) * 2 - border.innerWidth}
+          height={H - (FRAME + border.outerWidth + 4) * 2 - border.innerWidth}
           fill="none"
           stroke={colors.border}
           strokeWidth={border.innerWidth}

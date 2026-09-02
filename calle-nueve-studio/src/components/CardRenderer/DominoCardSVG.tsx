@@ -16,6 +16,8 @@ const W = PRINT.width;
 const H = PRINT.height;
 const SAFE = PRINT.safeInset;
 const TRIM = PRINT.trimInset;
+// MPC cuts the outer 36 px (TRIM) off. Borders and decorations must sit inside that line.
+const FRAME = TRIM + 16;
 
 const SAFE_W = W - SAFE * 2;
 
@@ -67,8 +69,8 @@ function HeroFrame({
   innerBorderWidth: number;
   outerBorderWidth: number;
 }) {
-  const pad = outerBorderWidth + 6;
-  const cornerSize = 24;
+  const pad = FRAME + outerBorderWidth + 5 + innerBorderWidth + 8;
+  const cornerSize = 20;
   const x = pad;
   const y = pad;
   const w = W - pad * 2;
@@ -117,8 +119,8 @@ function CornerDecorations({
   color: string;
   outerBorderWidth: number;
 }) {
-  const pad = outerBorderWidth + 16;
-  const cs = 34;
+  const pad = FRAME + outerBorderWidth + 6;
+  const cs = 22;
   const corners = [
     [pad, pad, 1, 1],
     [W - pad, pad, -1, 1],
@@ -130,7 +132,7 @@ function CornerDecorations({
       {corners.map(([cx, cy, sx, sy], i) => (
         <g key={i} transform={`translate(${cx},${cy}) scale(${sx},${sy})`}>
           <path d={`M0,${cs} L0,0 L${cs},0`} stroke={color} strokeWidth={2.5} fill="none" />
-          <polygon points="5,5 20,5 5,20" fill={color} opacity={0.85} />
+          <polygon points="4,4 14,4 4,14" fill={color} opacity={0.85} />
         </g>
       ))}
     </g>
@@ -209,13 +211,13 @@ export default function DominoCardSVG({
         />
       )}
 
-      {/* Outer border */}
+      {/* Outer border — inside the trim line so it survives the cut */}
       {border.outerWidth > 0 && (
         <rect
-          x={border.outerWidth / 2}
-          y={border.outerWidth / 2}
-          width={W - border.outerWidth}
-          height={H - border.outerWidth}
+          x={FRAME + border.outerWidth / 2}
+          y={FRAME + border.outerWidth / 2}
+          width={W - FRAME * 2 - border.outerWidth}
+          height={H - FRAME * 2 - border.outerWidth}
           fill="none"
           stroke={colors.border}
           strokeWidth={border.outerWidth}
@@ -225,10 +227,10 @@ export default function DominoCardSVG({
       {/* Inner border */}
       {border.innerWidth > 0 && (
         <rect
-          x={border.outerWidth + 5 + border.innerWidth / 2}
-          y={border.outerWidth + 5 + border.innerWidth / 2}
-          width={W - (border.outerWidth + 5) * 2 - border.innerWidth}
-          height={H - (border.outerWidth + 5) * 2 - border.innerWidth}
+          x={FRAME + border.outerWidth + 5 + border.innerWidth / 2}
+          y={FRAME + border.outerWidth + 5 + border.innerWidth / 2}
+          width={W - (FRAME + border.outerWidth + 5) * 2 - border.innerWidth}
+          height={H - (FRAME + border.outerWidth + 5) * 2 - border.innerWidth}
           fill="none"
           stroke={colors.border}
           strokeWidth={border.innerWidth}
@@ -252,8 +254,8 @@ export default function DominoCardSVG({
 
       {/* Top-left index */}
       <text
-        x={SAFE + 8}
-        y={SAFE + 4}
+        x={SAFE + 12}
+        y={SAFE + 8}
         fontSize={typography.indexSize}
         fontFamily={fontFamily}
         fill={colors.index}
@@ -263,8 +265,8 @@ export default function DominoCardSVG({
         {card.top}
       </text>
       <text
-        x={SAFE + 8}
-        y={SAFE + typography.indexSize + 6}
+        x={SAFE + 12}
+        y={SAFE + typography.indexSize + 10}
         fontSize={typography.indexSize * 0.7}
         fontFamily={fontFamily}
         fill={colors.index}
@@ -278,8 +280,8 @@ export default function DominoCardSVG({
       {/* Bottom-right index (rotated 180°) */}
       <g transform={`rotate(180, ${W / 2}, ${H / 2})`}>
         <text
-          x={SAFE + 8}
-          y={SAFE + 4}
+          x={SAFE + 12}
+          y={SAFE + 8}
           fontSize={typography.indexSize}
           fontFamily={fontFamily}
           fill={colors.index}
@@ -289,8 +291,8 @@ export default function DominoCardSVG({
           {card.top}
         </text>
         <text
-          x={SAFE + 8}
-          y={SAFE + typography.indexSize + 6}
+          x={SAFE + 12}
+          y={SAFE + typography.indexSize + 10}
           fontSize={typography.indexSize * 0.7}
           fontFamily={fontFamily}
           fill={colors.index}
@@ -322,6 +324,7 @@ export default function DominoCardSVG({
         ornament={divider.ornament}
         ornamentSize={divider.ornamentSize}
         cardWidth={W}
+        inset={SAFE}
         y={DIVIDER_Y}
       />
 
@@ -340,7 +343,7 @@ export default function DominoCardSVG({
       {footer.visible && (
         <text
           x={W / 2}
-          y={H - SAFE - 8}
+          y={H - SAFE - 12}
           fontSize={typography.footerSize}
           fontFamily={footerFontFamily}
           fill={colors.footer}
