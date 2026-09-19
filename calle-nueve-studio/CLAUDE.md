@@ -20,8 +20,8 @@ base64 (`utils/fonts.ts`) because SVG-in-<img> cannot see page fonts.
 `order.cardSizePreset` is a label only and is forced to the domino label on load.
 **"Clean" preset (corporate gifts, 2026-09-19).** White tile, flat black 100 px dots (`pips.size 118`,
 `pips.flat`, `pips.spread 24` gives columns at x 158 / 298.5 / 439), one 18 px accent bar with round ends
-(`divider.type "bar"`) and a flat rivet (`ornament "spinner"`), no index (`typography.indexVisible false`),
-no footer, no frame on the back (`back.frame false`). Per client: change the divider color, the back
+(`divider.type "bar"`) and a flat rivet (`ornament "spinner"`), corner index ON (Gus insists; the
+`typography.indexVisible` toggle exists for clients who want it off), no footer, no frame on the back (`back.frame false`). Per client: change the divider color, the back
 background color, and upload a logo in the Card Back panel (`back.logo` data URL, `logoMirrored`,
 `logoWhiteBack`; PNG under 300 px on the short side triggers a soft-print warning). Pip zones are now
 point-symmetric (bottom zone mirrors the top) and the 7 uses the same 3-column grid as 8 and 9.

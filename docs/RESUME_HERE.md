@@ -4,7 +4,7 @@ Last updated: 2026-09-19 (session 4). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.3.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.3.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.

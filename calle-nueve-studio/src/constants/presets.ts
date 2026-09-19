@@ -359,7 +359,8 @@ export const PRESETS: Record<string, DesignTokens> = {
   },
 
   // Corporate gift theme: white tile, big flat black dots, one accent bar with a
-  // spinner, no text. Per client: change the divider/back accent and add a logo.
+  // spinner, corner index only (no footer). Per client: change the divider/back
+  // accent and add a logo.
   "Clean": {
     background: { color: "#FFFFFF", texture: "none", opacity: 1 },
     colors: {
@@ -402,7 +403,7 @@ export const PRESETS: Record<string, DesignTokens> = {
       indexSize: 34,
       footerSize: 14,
       tracking: 0,
-      indexVisible: false,
+      indexVisible: true,
     },
     footer: { text: "", visible: false },
     back: {

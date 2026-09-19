@@ -6,6 +6,11 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.3.1 - 2026-09-19
+
+### Changed
+- Clean preset shows the corner index by default. Gus: the little numbers are critical to the game. Footer stays off.
+
 ## 0.3.0 - 2026-09-19
 
 ### Added

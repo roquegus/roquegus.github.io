@@ -59,6 +59,11 @@ Who: Claude.
 Why: with equal-size pips, the old 7 (columns at 0.3 and 0.7) left 12 px between pips on the middle row. On the shared grid it reads as 2-3-2 next to 3-2-3 and 3-3-3.
 Rules out: the narrower 7.
 
+## 2026-09-19 The Clean theme keeps the corner index numbers
+Who: Gus, overriding the handoff's "no text at all".
+Why: "the little numbers on the sides are critical to the card game." The footer stays off. The Show Index toggle still exists for any client who wants them gone.
+Rules out: shipping Clean decks without the index.
+
 ## 2026-09-19 The repo is the memory. Every session updates the ledger before ending
 Who: Gus ("it didn't remember anything, that worries me").
 Why: Claude sessions share nothing except the repo. Root `CLAUDE.md` is auto-read; it points to `docs/RESUME_HERE.md`, `docs/DECISIONS.md`, `docs/SESSIONS.md`, `CHANGELOG.md`.
