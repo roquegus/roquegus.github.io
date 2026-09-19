@@ -46,4 +46,4 @@ Semantic-ish: `MAJOR.MINOR.PATCH`.
 - MINOR: a new feature, theme, screen, or export.
 - MAJOR: reserved for a change that breaks saved projects.
 
-The version lives in three places and must match: `calle-nueve-studio/package.json`, `APP_VERSION` in `calle-nueve-studio/src/constants/print.ts`, and the top block of `CHANGELOG.md`. The Studio shows it in the header so Gus can confirm a deploy landed. Tag releases: `git tag v0.3.0 && git push origin v0.3.0`.
+The version lives in three places and must match: `calle-nueve-studio/package.json`, `APP_VERSION` in `calle-nueve-studio/src/constants/print.ts`, and the top block of `CHANGELOG.md`. The Studio shows it in the header so Gus can confirm a deploy landed. Git tags cannot be pushed from Claude sessions (the git proxy returns 403 for tags), so do not try. `CHANGELOG.md` is the release record. If Gus wants a GitHub Release, he creates it on github.com under Releases with the tag name `v0.3.0`.
