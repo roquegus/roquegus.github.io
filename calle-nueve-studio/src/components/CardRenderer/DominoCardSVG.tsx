@@ -25,8 +25,7 @@ const DIVIDER_Y = H / 2;
 
 const PIP_ZONE_X = SAFE;
 const PIP_ZONE_W = SAFE_W;
-const TOP_PIP_Y = SAFE + 60;
-const BOTTOM_PIP_Y = DIVIDER_Y + 10;
+const DIVIDER_GAP = 20;
 
 function TextureOverlay({ texture, opacity }: { texture: string; opacity: number }) {
   if (texture === "none") return null;
@@ -160,8 +159,14 @@ export default function DominoCardSVG({
       ? "system-ui, sans-serif"
       : `'${typography.footerFont}', serif`;
 
-  const topPipHeight = DIVIDER_Y - TOP_PIP_Y - 20;
-  const bottomPipHeight = H - SAFE - BOTTOM_PIP_Y - (footer.visible ? 40 : 10);
+  const indexVisible = typography.indexVisible !== false;
+  // Leave room for the corner index when it is shown. The bottom zone mirrors the
+  // top zone about the card center so the face is point-symmetric.
+  const topInset = indexVisible ? 60 : 20;
+  const TOP_PIP_Y = SAFE + topInset;
+  const topPipHeight = DIVIDER_Y - DIVIDER_GAP - TOP_PIP_Y;
+  const BOTTOM_PIP_Y = DIVIDER_Y + DIVIDER_GAP;
+  const bottomPipHeight = topPipHeight;
 
   return (
     <svg
@@ -200,7 +205,7 @@ export default function DominoCardSVG({
       <TextureOverlay texture={background.texture} opacity={background.opacity} />
 
       {/* Hero accent background highlight */}
-      {card.isHero && (
+      {card.isHero && border.heroFrame && (
         <rect
           x={SAFE / 2}
           y={SAFE / 2}
@@ -253,6 +258,7 @@ export default function DominoCardSVG({
       )}
 
       {/* Top-left index */}
+      {indexVisible && (<>
       <text
         x={SAFE + 12}
         y={SAFE + 8}
@@ -303,6 +309,7 @@ export default function DominoCardSVG({
           {card.bottom}
         </text>
       </g>
+      </>)}
 
       {/* Top pip zone */}
       <PipZone

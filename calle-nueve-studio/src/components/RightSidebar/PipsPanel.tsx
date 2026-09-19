@@ -34,8 +34,11 @@ export default function PipsPanel() {
       <ControlRow label="Size">
         <Slider value={p.size} min={24} max={120} onChange={(v) => updatePips({ size: v })} />
       </ControlRow>
-      <ControlRow label="Spacing">
-        <Slider value={p.spacing} min={0} max={20} onChange={(v) => updatePips({ spacing: v })} />
+      <ControlRow label="Column Spread">
+        <Slider value={p.spread ?? 0} min={0} max={40} onChange={(v) => updatePips({ spread: v })} />
+      </ControlRow>
+      <ControlRow label="Flat (no shadow)">
+        <Toggle value={p.flat === true} onChange={(v) => updatePips({ flat: v })} />
       </ControlRow>
       <ControlRow label="Stroke Width">
         <Slider value={p.strokeWidth} min={0} max={6} step={0.5} onChange={(v) => updatePips({ strokeWidth: v })} />

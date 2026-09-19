@@ -1,6 +1,6 @@
 import type { DesignTokens } from "../../types";
 import { TUCK_PT, TUCK_PX, PT, getTuckBox } from "../../constants/tuckbox";
-import { PatternFill, CenterMedallion } from "./CardBack";
+import { PatternFill, CenterMedallion, BackLogo } from "./CardBack";
 import DividerLine from "./DividerLine";
 import PipIcon from "./PipIcon";
 import DominoCardSVG from "./DominoCardSVG";
@@ -257,7 +257,11 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
                 </g>
               ) : (
                 <>
-                  <CenterMedallion cx={fcx} cy={f.y + 440} color={backBg} accent={accent} />
+                  {back.logo ? (
+                    <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={260} />
+                  ) : (
+                    <CenterMedallion cx={fcx} cy={f.y + 440} color={backBg} accent={accent} />
+                  )}
                   {box.showIcons &&
                     iconRows.map((row, ri) =>
                       row.map((v, ci) => (
@@ -299,9 +303,13 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         <text x={bcx} y={bk.y + 224} textAnchor="middle" fontFamily={bodyFont} fontSize={14} fill={accent} letterSpacing={3} opacity={0.85}>
           {box.subtitle}
         </text>
-        <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>
-          <CenterMedallion cx={0} cy={0} color={backBg} accent={accent} />
-        </g>
+        {back.logo ? (
+          <BackLogo href={back.logo} cx={bcx} cy={bk.y + 400} box={220} />
+        ) : (
+          <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>
+            <CenterMedallion cx={0} cy={0} color={backBg} accent={accent} />
+          </g>
+        )}
         {backLines.map((line, i) => (
           <text key={i} x={bcx} y={bk.y + 560 + i * 28} textAnchor="middle" fontFamily={bodyFont} fontSize={17} fill={accent}>
             {line}

@@ -16,6 +16,7 @@ export type PipStyle =
 export type FillMode = "solid" | "outline" | "two-tone";
 export type DividerType =
   | "straight"
+  | "bar"
   | "double-line"
   | "tobacco-leaf"
   | "rope"
@@ -28,7 +29,8 @@ export type OrnamentType =
   | "diamond"
   | "sun"
   | "tile"
-  | "flourish";
+  | "flourish"
+  | "spinner";
 export type IndexFont = "Bebas Neue" | "Playfair Display" | "system";
 export type BackPattern =
   | "mosaic"
@@ -62,6 +64,10 @@ export type DesignTokens = {
     strokeWidth: number;
     fillMode: FillMode;
     symmetryLock: boolean;
+    /** Extra horizontal spread of the pip columns, percent (0-40). */
+    spread?: number;
+    /** No drop shadow or highlight; flat print-style pips. */
+    flat?: boolean;
   };
   divider: {
     type: DividerType;
@@ -82,6 +88,8 @@ export type DesignTokens = {
     indexSize: number;
     footerSize: number;
     tracking: number;
+    /** Corner index numbers. Defaults to true when missing. */
+    indexVisible?: boolean;
   };
   footer: {
     text: string;
@@ -94,6 +102,16 @@ export type DesignTokens = {
     centerMedallion: boolean;
     nonDirectionalCheck: boolean;
     customImage?: string;
+    /** Inset frame with corner brackets. Defaults to true when missing. */
+    frame?: boolean;
+    /** Client logo (data URL) centered on the back. */
+    logo?: string;
+    /** Print the logo twice, the lower one rotated 180°, so the back reads either way up. */
+    logoMirrored?: boolean;
+    /** Use a white field behind the logo instead of the back color. */
+    logoWhiteBack?: boolean;
+    /** Smallest pixel dimension of the uploaded logo (raster only), for the resolution warning. */
+    logoMinPx?: number;
   };
   tuckBox?: TuckBoxDesign;
 };

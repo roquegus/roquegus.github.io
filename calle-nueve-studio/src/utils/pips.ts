@@ -42,14 +42,15 @@ export function getPipPositions(value: number): PipPosition[] {
         { x: 0.67, y: 0.8 },
       ];
     case 7:
+      // Same 3-column grid as 8 and 9 (2-3-2) so equal-size pips never crowd
       return [
-        { x: 0.3, y: 0.18 },
-        { x: 0.7, y: 0.18 },
-        { x: 0.3, y: 0.5 },
+        { x: 0.25, y: 0.18 },
+        { x: 0.75, y: 0.18 },
+        { x: 0.25, y: 0.5 },
         { x: 0.5, y: 0.5 },
-        { x: 0.7, y: 0.5 },
-        { x: 0.3, y: 0.82 },
-        { x: 0.7, y: 0.82 },
+        { x: 0.75, y: 0.5 },
+        { x: 0.25, y: 0.82 },
+        { x: 0.75, y: 0.82 },
       ];
     case 8:
       return [

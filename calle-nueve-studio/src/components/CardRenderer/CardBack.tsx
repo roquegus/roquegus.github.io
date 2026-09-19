@@ -219,10 +219,41 @@ export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: num
   );
 }
 
+// Client logo centered in the safe area. Mirrored mode prints it twice, the lower
+// copy rotated 180°, so a face-down card reads the same either way up.
+export function BackLogo({
+  href,
+  mirrored,
+  cx,
+  cy,
+  box = 300,
+}: {
+  href: string;
+  mirrored?: boolean;
+  cx: number;
+  cy: number;
+  box?: number;
+}) {
+  if (mirrored) {
+    const b = box * 0.8;
+    const gap = box * 0.2;
+    return (
+      <g>
+        <image href={href} x={cx - b / 2} y={cy - gap / 2 - b} width={b} height={b} preserveAspectRatio="xMidYMid meet" />
+        <g transform={`rotate(180 ${cx} ${cy})`}>
+          <image href={href} x={cx - b / 2} y={cy - gap / 2 - b} width={b} height={b} preserveAspectRatio="xMidYMid meet" />
+        </g>
+      </g>
+    );
+  }
+  return <image href={href} x={cx - box / 2} y={cy - box / 2} width={box} height={box} preserveAspectRatio="xMidYMid meet" />;
+}
+
 export default function CardBack({ tokens, showTrim = false, showSafe = false }: CardBackProps) {
   const { back, colors, border } = tokens;
   const cx = W / 2;
   const cy = H / 2;
+  const showFrame = back.frame !== false && back.pattern !== "custom";
 
   const renderPattern = () => {
     switch (back.pattern) {
@@ -248,8 +279,12 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
   return (
     <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`} xmlns="http://www.w3.org/2000/svg">
       {renderPattern()}
-      {back.pattern !== "custom" && <BackFrame accent={colors.backAccent} />}
+      {back.logo && back.logoWhiteBack && (
+        <rect x={0} y={0} width={W} height={H} fill="#FFFFFF" />
+      )}
+      {showFrame && <BackFrame accent={colors.backAccent} />}
       {back.centerMedallion && <CenterMedallion cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} />}
+      {back.logo && <BackLogo href={back.logo} mirrored={back.logoMirrored} cx={cx} cy={cy} />}
 
       {border.outerWidth > 0 && (
         <rect

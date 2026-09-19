@@ -17,6 +17,13 @@ export default function TypographyPanel() {
 
   return (
     <Accordion title="Typography">
+      <ControlRow label="Show Index">
+        <input
+          type="checkbox"
+          checked={t.indexVisible !== false}
+          onChange={(e) => updateTypography({ indexVisible: e.target.checked })}
+        />
+      </ControlRow>
       <ControlRow label="Index Font">
         <Select
           value={t.indexFont}

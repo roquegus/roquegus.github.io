@@ -357,6 +357,63 @@ export const PRESETS: Record<string, DesignTokens> = {
       nonDirectionalCheck: true,
     },
   },
+
+  // Corporate gift theme: white tile, big flat black dots, one accent bar with a
+  // spinner, no text. Per client: change the divider/back accent and add a logo.
+  "Clean": {
+    background: { color: "#FFFFFF", texture: "none", opacity: 1 },
+    colors: {
+      pip: "#111111",
+      pipSecondary: "#111111",
+      border: "#111111",
+      divider: "#E5097F",
+      index: "#111111",
+      footer: "#111111",
+      heroAccent: "#E5097F",
+      backBackground: "#E5097F",
+      backAccent: "#FFFFFF",
+    },
+    pips: {
+      style: "classic-dots",
+      size: 118,
+      spacing: 8,
+      spread: 24,
+      strokeWidth: 0,
+      fillMode: "solid",
+      symmetryLock: true,
+      flat: true,
+    },
+    divider: {
+      type: "bar",
+      thickness: 18,
+      width: 0.96,
+      ornament: "spinner",
+      ornamentSize: 34,
+    },
+    border: {
+      outerWidth: 0,
+      innerWidth: 0,
+      cornerDecorations: false,
+      heroFrame: false,
+    },
+    typography: {
+      indexFont: "Bebas Neue",
+      footerFont: "Bebas Neue",
+      indexSize: 34,
+      footerSize: 14,
+      tracking: 0,
+      indexVisible: false,
+    },
+    footer: { text: "", visible: false },
+    back: {
+      pattern: "plain",
+      scale: 1,
+      rotation: 0,
+      centerMedallion: false,
+      nonDirectionalCheck: true,
+      frame: false,
+    },
+  },
 };
 
 export const PRESET_NAMES = Object.keys(PRESETS);

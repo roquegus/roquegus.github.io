@@ -1,4 +1,3 @@
-
 import type { DesignTokens } from "../../types";
 import { getPipPositions } from "../../utils/pips";
 import PipIcon from "./PipIcon";
@@ -26,14 +25,18 @@ export default function PipZone({
   const { pips, colors } = tokens;
   // Pips are always the same size regardless of count, like a real domino tile
   const size = pips.size;
+  // Optional extra column spread, measured from the zone's center line
+  const spread = 1 + (pips.spread ?? 0) / 100;
+  const flat = pips.flat === true;
 
   const content = (
     <g>
       {positions.map((pos, i) => {
-        const px = x + pos.x * width - size / 2;
+        const fx = 0.5 + (pos.x - 0.5) * spread;
+        const px = x + fx * width - size / 2;
         const py = y + pos.y * height - size / 2;
         return (
-          <g key={i} transform={`translate(${px},${py})`} filter="url(#pipShadow)">
+          <g key={i} transform={`translate(${px},${py})`} filter={flat ? undefined : "url(#pipShadow)"}>
             <PipIcon
               value={value}
               style={pips.style}
@@ -42,6 +45,7 @@ export default function PipZone({
               secondaryColor={colors.pipSecondary}
               strokeWidth={pips.strokeWidth}
               fillMode={pips.fillMode}
+              flat={flat}
             />
           </g>
         );

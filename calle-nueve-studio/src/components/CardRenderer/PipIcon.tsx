@@ -8,6 +8,8 @@ type PipIconProps = {
   secondaryColor: string;
   strokeWidth: number;
   fillMode: FillMode;
+  /** Skip the specular highlight (flat print-style pips). */
+  flat?: boolean;
 };
 
 // All Cuban icons are drawn in a 0–100 coordinate space and scaled via viewBox.
@@ -213,11 +215,13 @@ export default function PipIcon({
   secondaryColor,
   strokeWidth,
   fillMode,
+  flat = false,
 }: PipIconProps) {
   const half = size / 2;
   const fill = fillMode === "outline" ? "none" : color;
   const stroke = color;
   const sw = strokeWidth;
+  const highlight = fillMode !== "outline" && !flat;
 
   if (style === "cuban-icons") {
     return (
@@ -269,7 +273,7 @@ export default function PipIcon({
             strokeWidth={sw * 0.5}
           />
         )}
-        {fillMode !== "outline" && (
+        {highlight && (
           <polygon
             points={`${half},${size * 0.14} ${size * 0.72},${half * 0.86} ${half},${half * 0.9} ${size * 0.28},${half * 0.86}`}
             fill="#fff"
@@ -298,7 +302,7 @@ export default function PipIcon({
       {fillMode === "two-tone" && (
         <circle cx={half} cy={half} r={half * 0.45} fill={secondaryColor} />
       )}
-      {fillMode !== "outline" && (
+      {highlight && (
         <circle cx={half * 0.68} cy={half * 0.68} r={half * 0.26} fill="#fff" opacity={0.2} />
       )}
     </svg>

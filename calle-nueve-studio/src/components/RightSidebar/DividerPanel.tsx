@@ -6,6 +6,7 @@ import type { DividerType, OrnamentType } from "../../types";
 
 const DIVIDER_OPTIONS: { value: DividerType; label: string }[] = [
   { value: "straight", label: "Straight" },
+  { value: "bar", label: "Bar (round ends)" },
   { value: "double-line", label: "Double Line" },
   { value: "tobacco-leaf", label: "Tobacco Leaf" },
   { value: "rope", label: "Rope" },
@@ -21,6 +22,7 @@ const ORNAMENT_OPTIONS: { value: OrnamentType; label: string }[] = [
   { value: "sun", label: "Sun" },
   { value: "tile", label: "Tile" },
   { value: "flourish", label: "Flourish" },
+  { value: "spinner", label: "Spinner (rivet)" },
 ];
 
 export default function DividerPanel() {
@@ -38,7 +40,7 @@ export default function DividerPanel() {
         />
       </ControlRow>
       <ControlRow label="Thickness">
-        <Slider value={d.thickness} min={0.5} max={8} step={0.5} onChange={(v) => updateDivider({ thickness: v })} />
+        <Slider value={d.thickness} min={0.5} max={24} step={0.5} onChange={(v) => updateDivider({ thickness: v })} />
       </ControlRow>
       <ControlRow label="Width">
         <Slider value={Math.round(d.width * 100)} min={40} max={100} onChange={(v) => updateDivider({ width: v / 100 })} />

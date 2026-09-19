@@ -80,6 +80,15 @@ function Ornament({ ornament, size, color }: { ornament: OrnamentType; size: num
         </g>
       );
 
+    case "spinner":
+      // Flat rivet, like the metal spinner on an acrylic domino. No gradients: they go muddy in CMYK.
+      return (
+        <g>
+          <circle r={h} fill="#D5D8DC" stroke="#8E939B" strokeWidth={Math.max(h * 0.18, 2)} />
+          <circle r={h * 0.28} fill="#8E939B" opacity={0.6} />
+        </g>
+      );
+
     case "flourish": {
       const sw = Math.max(h * 0.1, 2);
       const scroll = (s: number) =>
@@ -121,6 +130,9 @@ function Segment({
   if (len <= 0) return null;
 
   switch (type) {
+    case "bar":
+      return <line x1={sx} y1={y} x2={ex} y2={y} stroke={color} strokeWidth={thickness} strokeLinecap="round" />;
+
     case "double-line": {
       const off = thickness * 1.5 + 1;
       return (
@@ -240,17 +252,20 @@ export default function DividerLine({
   const cx = cardWidth / 2;
 
   const showOrnament = ornament !== "none" && ornamentSize > 0;
-  const gap = showOrnament ? ornamentSize * 0.75 : 0;
+  // A spinner sits on top of a continuous line; every other ornament breaks the line.
+  const gap = showOrnament && ornament !== "spinner" ? ornamentSize * 0.75 : 0;
   const segments: [number, number][] = gap > 0 ? [[x1, cx - gap], [cx + gap, x2]] : [[x1, x2]];
   const cap = thickness * 1.5 + 3;
+  // The bar type has round ends instead of diamond end caps.
+  const endCaps = type !== "bar";
 
   return (
     <g>
       {segments.map(([sx, ex], i) => (
         <Segment key={i} type={type} sx={sx} ex={ex} y={y} thickness={thickness} color={color} />
       ))}
-      <polygon points={diamondPts(x1, y, cap)} fill={color} />
-      <polygon points={diamondPts(x2, y, cap)} fill={color} />
+      {endCaps && <polygon points={diamondPts(x1, y, cap)} fill={color} />}
+      {endCaps && <polygon points={diamondPts(x2, y, cap)} fill={color} />}
       {type === "ornamental" && showOrnament && [-1, 1].map((d) => (
         <polygon key={d} points={diamondPts(cx + d * (gap + cap * 1.6), y, cap * 0.8)} fill={color} />
       ))}

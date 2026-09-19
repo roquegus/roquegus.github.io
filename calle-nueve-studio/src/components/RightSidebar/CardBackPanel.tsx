@@ -1,4 +1,3 @@
-
 import { useRef } from "react";
 import Accordion from "../ui/Accordion";
 import ControlRow, { ColorPicker, Select, Slider, Toggle } from "../ui/ControlRow";
@@ -14,11 +13,24 @@ const PATTERN_OPTIONS: { value: BackPattern; label: string }[] = [
   { value: "custom", label: "Custom Image" },
 ];
 
+// The logo box prints 300 px wide at 300 DPI (1 in). Rasters smaller than that get upscaled.
+const LOGO_MIN_PX = 300;
+
+function readImageSize(dataUrl: string): Promise<number> {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(Math.min(img.naturalWidth, img.naturalHeight));
+    img.onerror = () => resolve(0);
+    img.src = dataUrl;
+  });
+}
+
 export default function CardBackPanel() {
   const { state, updateBack, updateColors } = useApp();
   const b = state.tokens.back;
   const c = state.tokens.colors;
   const uploadRef = useRef<HTMLInputElement>(null);
+  const logoRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -31,6 +43,22 @@ export default function CardBackPanel() {
     reader.readAsDataURL(file);
     e.target.value = "";
   };
+
+  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const dataUrl = ev.target?.result as string;
+      const isVector = file.type === "image/svg+xml";
+      const minPx = isVector ? undefined : await readImageSize(dataUrl);
+      updateBack({ logo: dataUrl, logoMinPx: minPx });
+    };
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
+
+  const lowRes = b.logo && b.logoMinPx !== undefined && b.logoMinPx > 0 && b.logoMinPx < LOGO_MIN_PX;
 
   return (
     <Accordion title="Card Back">
@@ -82,11 +110,55 @@ export default function CardBackPanel() {
           <ControlRow label="Back Accent">
             <ColorPicker value={c.backAccent} onChange={(v) => updateColors({ backAccent: v })} />
           </ControlRow>
+          <ControlRow label="Frame">
+            <Toggle value={b.frame !== false} onChange={(v) => updateBack({ frame: v })} />
+          </ControlRow>
         </>
       )}
       <ControlRow label="Center Medallion">
         <Toggle value={b.centerMedallion} onChange={(v) => updateBack({ centerMedallion: v })} />
       </ControlRow>
+
+      <div style={{ padding: "6px 0" }}>
+        <button className="btn-secondary" style={{ width: "100%" }} onClick={() => logoRef.current?.click()}>
+          {b.logo ? "Replace Client Logo" : "Upload Client Logo"}
+        </button>
+        <input
+          ref={logoRef}
+          type="file"
+          accept="image/png,image/svg+xml,image/webp,image/jpeg"
+          style={{ display: "none" }}
+          onChange={handleLogoUpload}
+        />
+        <p className="panel-hint">
+          Centered on the back in a 1 in box. SVG is best. PNG needs at least {LOGO_MIN_PX} px on its short side.
+        </p>
+        {lowRes && (
+          <p className="panel-hint" style={{ color: "var(--yellow-text)" }}>
+            This logo is {b.logoMinPx} px on its short side and will print soft. Ask the client for an SVG or a larger PNG.
+          </p>
+        )}
+        {b.logo && (
+          <button
+            className="btn-ghost"
+            style={{ width: "100%", marginTop: 4, fontSize: 11, color: "var(--red-text)" }}
+            onClick={() => updateBack({ logo: undefined, logoMinPx: undefined })}
+          >
+            Remove Logo
+          </button>
+        )}
+      </div>
+      {b.logo && (
+        <>
+          <ControlRow label="Mirror Logo">
+            <Toggle value={b.logoMirrored === true} onChange={(v) => updateBack({ logoMirrored: v })} />
+          </ControlRow>
+          <ControlRow label="White Back">
+            <Toggle value={b.logoWhiteBack === true} onChange={(v) => updateBack({ logoWhiteBack: v })} />
+          </ControlRow>
+        </>
+      )}
+
       <ControlRow label="Non-Directional">
         <Toggle value={b.nonDirectionalCheck} onChange={(v) => updateBack({ nonDirectionalCheck: v })} />
       </ControlRow>
