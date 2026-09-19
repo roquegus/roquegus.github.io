@@ -41,12 +41,9 @@ npm install
 npm run dev
 ```
 
-## To build for Netlify
-```
-cd calle-nueve-studio
-npm run build
-# drag dist/ into Netlify Drop
-```
+## To deploy
+Push to `main`. Vercel builds it (root `vercel.json`). `npm run build` locally first; it type-checks.
+The project ledger (resume, decisions, sessions, changelog) is at the repo root. Read `/CLAUDE.md` first.
 
 ## What was built (all complete)
 - React + TypeScript + Vite, `base: "./"` for static hosting

@@ -1,4 +1,5 @@
 import { useApp } from "../../store";
+import { APP_VERSION } from "../../constants/print";
 import ProjectPanel from "./ProjectPanel";
 import OrderPanel from "./OrderPanel";
 import PresetsPanel from "./PresetsPanel";
@@ -30,7 +31,7 @@ export default function LeftSidebar({ onBack }: Props) {
         <button className="btn-ghost" onClick={onBack} title="Back to projects">
           ←
         </button>
-        <div className="sidebar-logo">C9</div>
+        <div className="sidebar-logo" title={`Studio v${APP_VERSION}`}>C9</div>
         <div className="sidebar-title">
           <span className="sidebar-title-main">{state.projectName}</span>
           <span

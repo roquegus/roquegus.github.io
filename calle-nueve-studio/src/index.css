@@ -563,6 +563,15 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 .project-card:hover .project-card-delete { opacity: 1; }
 .project-card-delete:hover { color: var(--red-text); border-color: var(--red-text); }
 
+.app-version {
+  color: var(--text-muted);
+  font-size: 10px;
+  letter-spacing: .5px;
+  margin-left: 6px;
+  align-self: flex-end;
+  padding-bottom: 2px;
+}
+
 /* ── Text inputs inside control rows ─────────────────── */
 .control-text, .control-textarea {
   width: 100%;

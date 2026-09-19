@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { listProjects, deleteProject, updateProjectStatus, type CloudProject } from "../lib/supabase";
 import type { OrderStatus } from "../types";
+import { APP_VERSION } from "../constants/print";
 
 type Props = {
   onOpen: (project: CloudProject | null) => void;
@@ -111,6 +112,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
         <div className="projects-brand">
           <span className="sidebar-logo">C9</span>
           <span className="projects-title">Calle Nueve Studio</span>
+          <span className="app-version" title="Studio version">v{APP_VERSION}</span>
         </div>
         <div className="projects-header-actions">
           <span className="projects-user">{user?.email}</span>

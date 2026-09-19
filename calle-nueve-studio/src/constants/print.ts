@@ -11,5 +11,6 @@ export const PRINT = {
   cardSize: 'Domino 1.75" × 3.5" (44 × 89 mm)',
 } as const;
 
-export const APP_VERSION = "0.2.0";
+// Keep in sync with package.json and CHANGELOG.md
+export const APP_VERSION = "0.3.0";
 export const APP_NAME = "Calle Nueve Production Studio";
