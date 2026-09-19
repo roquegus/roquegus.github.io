@@ -31,5 +31,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Clean preset: flat 100 px black dots on a 140 px pitch, 18 px accent bar with round ends and a flat spinner, no index, no footer, no back frame, client logo on the back with mirrored and white-back options and a low-resolution warning. Verified with the handoff's 8 geometry tests, all pass.
 - Pip zones made point-symmetric for every theme. The 7 moved onto the 8/9 column grid.
 - Set up this ledger: root `CLAUDE.md`, `docs/RESUME_HERE.md`, `docs/DECISIONS.md`, `docs/SESSIONS.md`, `CHANGELOG.md`, version shown in the Studio header, tag `v0.3.0`.
-- Commits: `fac5dce`, plus the ledger commit.
+- Commits: `fac5dce`, `8b07cd5`. Tag `v0.3.0`.
 - Open: same two items from session 3.
