@@ -4,6 +4,17 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 ## Unreleased
 
+(nothing)
+
+## 0.5.0 - 2026-09-21
+
+### Added
+- Card back logo orientation: Portrait (upright) or Landscape (turned 90 degrees so wide logos read when the card is held sideways). Landscape gives a wide mark about three times the area.
+- Logo Size slider (40 to 100 percent of the largest box that fits inside the safe zone).
+- Mirror Logo works in both orientations, so a face-down card reads either way up.
+- Card Back preview has a Sideways toggle that turns the card 90 degrees; it switches on automatically for a landscape logo.
+- The tuck box uses a wider logo box when the logo is landscape.
+
 ### Website
 - How to Play: the first-hand opening now lists the three common methods (draw for it, La Gorda, highest double) instead of only La Gorda. Winner of the last hand opens every hand after.
 

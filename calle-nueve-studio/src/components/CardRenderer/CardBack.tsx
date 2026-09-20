@@ -219,34 +219,76 @@ export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: num
   );
 }
 
-// Client logo centered in the safe area. Mirrored mode prints it twice, the lower
-// copy rotated 180°, so a face-down card reads the same either way up.
+// One logo image in a w×h box centered at (cx, cy), turned by `rotate` degrees.
+function LogoImage({ href, cx, cy, w, h, rotate = 0 }: { href: string; cx: number; cy: number; w: number; h: number; rotate?: number }) {
+  return (
+    <image
+      href={href}
+      x={cx - w / 2}
+      y={cy - h / 2}
+      width={w}
+      height={h}
+      preserveAspectRatio="xMidYMid meet"
+      transform={rotate ? `rotate(${rotate} ${cx} ${cy})` : undefined}
+    />
+  );
+}
+
+// Client logo centered in the safe area.
+// Portrait: an upright square box. Landscape: a wide box turned 90° (top of the
+// logo toward the card's left edge) so it reads when the card is held sideways.
+// Mirrored prints it twice, the lower copy rotated 180°, so a face-down card
+// reads the same either way up.
 export function BackLogo({
   href,
   mirrored,
+  orientation = "portrait",
+  scale = 0.75,
   cx,
   cy,
-  box = 300,
+  box = 400,
 }: {
   href: string;
   mirrored?: boolean;
+  orientation?: "portrait" | "landscape";
+  scale?: number;
   cx: number;
   cy: number;
+  /** Largest square box (portrait) that fits at scale 1. */
   box?: number;
 }) {
+  const s = Math.min(1, Math.max(0.4, scale));
+
+  if (orientation === "landscape") {
+    if (mirrored) {
+      // Two wide boxes stacked; in the rotated frame each is w×h, so on the card
+      // each occupies h wide by w tall. Gap sits on the midline.
+      const w = 430 * s;
+      const h = 400 * s;
+      const gap = 40;
+      const off = w / 2 + gap / 2;
+      return (
+        <g>
+          <LogoImage href={href} cx={cx} cy={cy - off} w={w} h={h} rotate={-90} />
+          <LogoImage href={href} cx={cx} cy={cy + off} w={w} h={h} rotate={90} />
+        </g>
+      );
+    }
+    return <LogoImage href={href} cx={cx} cy={cy} w={880 * s} h={420 * s} rotate={-90} />;
+  }
+
+  const b = box * s;
   if (mirrored) {
-    const b = box * 0.8;
-    const gap = box * 0.2;
+    const bb = b * 0.8;
+    const gap = b * 0.2;
     return (
       <g>
-        <image href={href} x={cx - b / 2} y={cy - gap / 2 - b} width={b} height={b} preserveAspectRatio="xMidYMid meet" />
-        <g transform={`rotate(180 ${cx} ${cy})`}>
-          <image href={href} x={cx - b / 2} y={cy - gap / 2 - b} width={b} height={b} preserveAspectRatio="xMidYMid meet" />
-        </g>
+        <LogoImage href={href} cx={cx} cy={cy - gap / 2 - bb / 2} w={bb} h={bb} />
+        <LogoImage href={href} cx={cx} cy={cy + gap / 2 + bb / 2} w={bb} h={bb} rotate={180} />
       </g>
     );
   }
-  return <image href={href} x={cx - box / 2} y={cy - box / 2} width={box} height={box} preserveAspectRatio="xMidYMid meet" />;
+  return <LogoImage href={href} cx={cx} cy={cy} w={b} h={b} />;
 }
 
 export default function CardBack({ tokens, showTrim = false, showSafe = false }: CardBackProps) {
@@ -284,7 +326,16 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
       )}
       {showFrame && <BackFrame accent={colors.backAccent} />}
       {back.centerMedallion && <CenterMedallion cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} />}
-      {back.logo && <BackLogo href={back.logo} mirrored={back.logoMirrored} cx={cx} cy={cy} />}
+      {back.logo && (
+        <BackLogo
+          href={back.logo}
+          mirrored={back.logoMirrored}
+          orientation={back.logoOrientation}
+          scale={back.logoScale}
+          cx={cx}
+          cy={cy}
+        />
+      )}
 
       {border.outerWidth > 0 && (
         <rect

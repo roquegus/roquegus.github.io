@@ -112,6 +112,10 @@ export type DesignTokens = {
     logoWhiteBack?: boolean;
     /** Smallest pixel dimension of the uploaded logo (raster only), for the resolution warning. */
     logoMinPx?: number;
+    /** Landscape turns the logo 90° so wide marks read when the card is held sideways. */
+    logoOrientation?: "portrait" | "landscape";
+    /** Logo box size as a fraction of the largest box that fits (0.4 to 1). Defaults to 0.75. */
+    logoScale?: number;
   };
   tuckBox?: TuckBoxDesign;
   rulesCard?: RulesCardDesign;

@@ -45,3 +45,6 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Gus corrected the opening rule: the first-hand opener is decided several ways (draw for highest card, La Gorda, highest double); afterwards the winner of the last hand opens. Page and decision log updated.
 - Researched checkout options. Recommended Stripe Payment Links; Gus opened a Stripe account ("Calle Nueve") and reached the Add product form in sandbox mode, then paused for the night. Exact remaining steps are in RESUME_HERE.md under In progress.
 - Session ended 2026-09-20 with everything committed. Studio 0.4.0 live. No uncommitted work.
+
+## Session 6: 2026-09-21 - Landscape back logos
+- Card back logo can be portrait or landscape, with a size slider; mirrored works both ways; Sideways preview toggle in Card Back mode; tuck box follows. Verified with a wide wordmark in all five layouts against the safe line. Studio 0.5.0.

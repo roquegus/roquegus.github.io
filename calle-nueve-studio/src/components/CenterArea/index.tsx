@@ -51,17 +51,22 @@ export default function CenterArea() {
   const [exportingBox, setExportingBox] = useState(false);
   const canvasRef = useRef<HTMLDivElement>(null);
   const isBox = previewMode === "box";
+  // Card Back preview turned on its side, the way a landscape logo is meant to be read
+  const landscapeLogo = !!tokens.back.logo && tokens.back.logoOrientation === "landscape";
+  const [sideways, setSideways] = useState(landscapeLogo);
+  useEffect(() => setSideways(landscapeLogo), [landscapeLogo]);
+  const showSideways = previewMode === "back" && sideways;
 
-  // Fit the card (or the box net) to the canvas on load and when switching in/out of box mode
+  // Fit the card (or the box net) to the canvas on load and when the preview shape changes
   useEffect(() => {
     if (!canvasRef.current) return;
     const { clientWidth: w, clientHeight: h } = canvasRef.current;
     const pad = 48;
-    const dw = isBox ? TUCK_PX.w : PRINT.width;
-    const dh = isBox ? TUCK_PX.h : PRINT.height;
+    const dw = isBox ? TUCK_PX.w : showSideways ? PRINT.height : PRINT.width;
+    const dh = isBox ? TUCK_PX.h : showSideways ? PRINT.width : PRINT.height;
     const fitZoom = Math.min((w - pad) / dw, (h - pad) / dh);
     dispatch({ type: "SET_ZOOM", payload: Math.round(fitZoom * 100) / 100 });
-  }, [isBox]);
+  }, [isBox, showSideways]);
 
   const handleExportBox = async (kind: "png" | "pdf") => {
     if (exportingBox) return;
@@ -282,6 +287,12 @@ export default function CenterArea() {
             <input type="checkbox" checked={showGuides} onChange={(e) => dispatch({ type: "SET_SHOW_GUIDES", payload: e.target.checked })} />
             <span>Guides</span>
           </label>
+          {previewMode === "back" && (
+            <label className="toggle-label" title="Turn the card on its side">
+              <input type="checkbox" checked={sideways} onChange={(e) => setSideways(e.target.checked)} />
+              <span>Sideways</span>
+            </label>
+          )}
         </div>
       </div>
 
@@ -303,11 +314,30 @@ export default function CenterArea() {
             </div>
           </div>
         ) : previewMode === "back" ? (
-          <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
-            <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
-              <CardBack tokens={tokens} showTrim={showTrimLine} showSafe={showSafeZone} />
+          showSideways ? (
+            // Card turned 90° clockwise, so a landscape logo reads upright
+            <div className="card-preview-single" style={{ width: scaledH, height: scaledW, position: "relative" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: 0,
+                  width: PRINT.width,
+                  height: PRINT.height,
+                  transform: `translate(${scaledH}px, 0) rotate(90deg) scale(${zoom})`,
+                  transformOrigin: "top left",
+                }}
+              >
+                <CardBack tokens={tokens} showTrim={showTrimLine} showSafe={showSafeZone} />
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
+              <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+                <CardBack tokens={tokens} showTrim={showTrimLine} showSafe={showSafeZone} />
+              </div>
+            </div>
+          )
         ) : previewMode === "grid" || previewMode === "heroes" ? (
           <div className="card-grid">
             {displayCards.map((card) => {

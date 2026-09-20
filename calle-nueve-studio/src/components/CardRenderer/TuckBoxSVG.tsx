@@ -258,7 +258,7 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
               ) : (
                 <>
                   {back.logo ? (
-                    <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={260} />
+                    <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={back.logoOrientation === "landscape" ? 460 : 350} scale={back.logoScale} />
                   ) : (
                     <CenterMedallion cx={fcx} cy={f.y + 440} color={backBg} accent={accent} />
                   )}
@@ -304,7 +304,7 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
           {box.subtitle}
         </text>
         {back.logo ? (
-          <BackLogo href={back.logo} cx={bcx} cy={bk.y + 400} box={220} />
+          <BackLogo href={back.logo} cx={bcx} cy={bk.y + 400} box={back.logoOrientation === "landscape" ? 460 : 300} scale={back.logoScale} />
         ) : (
           <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>
             <CenterMedallion cx={0} cy={0} color={backBg} accent={accent} />

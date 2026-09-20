@@ -150,12 +150,33 @@ export default function CardBackPanel() {
       </div>
       {b.logo && (
         <>
+          <ControlRow label="Logo Orientation">
+            <Select
+              value={b.logoOrientation ?? "portrait"}
+              options={[
+                { value: "portrait", label: "Portrait (upright)" },
+                { value: "landscape", label: "Landscape (sideways)" },
+              ]}
+              onChange={(v) => updateBack({ logoOrientation: v as "portrait" | "landscape" })}
+            />
+          </ControlRow>
+          <ControlRow label="Logo Size">
+            <Slider
+              value={Math.round((b.logoScale ?? 0.75) * 100)}
+              min={40}
+              max={100}
+              onChange={(v) => updateBack({ logoScale: v / 100 })}
+            />
+          </ControlRow>
           <ControlRow label="Mirror Logo">
             <Toggle value={b.logoMirrored === true} onChange={(v) => updateBack({ logoMirrored: v })} />
           </ControlRow>
           <ControlRow label="White Back">
             <Toggle value={b.logoWhiteBack === true} onChange={(v) => updateBack({ logoWhiteBack: v })} />
           </ControlRow>
+          {b.logoOrientation === "landscape" && (
+            <p className="panel-hint">Landscape turns the logo so it reads when the card is held sideways. The Card Back preview turns with it.</p>
+          )}
         </>
       )}
 

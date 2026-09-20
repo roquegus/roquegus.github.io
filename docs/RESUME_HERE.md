@@ -1,16 +1,16 @@
 # Resume here
 
-Last updated: 2026-09-20, end of session 5. Keep this file true. Rewrite sections, do not append.
+Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do not append.
 
 ## Current state
 
-**Studio v0.4.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.5.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
 - 8 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean. Custom presets save per project.
 - Pip styles: Cuban icons (real vector art), classic dots, rings, numbers, diamonds. Pips are one size regardless of count.
-- Card back patterns, frame, medallion, custom image, and a client logo (mirrored and white-back options).
+- Card back patterns, frame, medallion, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.

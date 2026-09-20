@@ -93,3 +93,8 @@ Rules out: stating La Gorda as the only way to open the first hand.
 Who: Claude recommended, Gus accepted and started setup.
 Why: one product on an existing static site. Stripe has no monthly fee and charges 2.9% + 30c; Shopify Starter is $5/month plus 5% per sale and Shopify Basic is $39/month. Stripe collects the shipping address, handles Apple/Google Pay and receipts. Switching the button to Shopify later is a one-line change.
 Rules out: Shopify, Big Cartel, Square Online, Etsy until volume or feature needs justify them. Revisit Shopify (or QPMN print-on-demand) when inventory, discount codes or multiple products matter.
+
+## 2026-09-21 Landscape logos rotate the logo, not the card
+Who: Claude, on Gus's request to support logos that look better sideways.
+Why: the card and every other element stay portrait (MPC prints a portrait file; the faces are portrait). Landscape mode rotates the logo box 90 degrees counterclockwise on the back, so holding the card with its left edge up reads the logo upright. The preview turns the card the same way. Mirrored landscape stacks two copies rotated 180 degrees from each other.
+Rules out: a separate landscape card template or rotating exported files.
