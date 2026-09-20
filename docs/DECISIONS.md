@@ -73,3 +73,13 @@ Rules out: keeping notes in chat, iCloud folders, or a subfolder CLAUDE.md alone
 Who: Gus ("get rid of this section, we're no longer doing that").
 Why: the retail deck is now the bold-dot look. Website images are rendered from the Studio (Clean preset, divider and back in the site teal #0D9488) so the site always matches what ships. The Cuban icon pip style still exists in the Studio for custom orders.
 Rules out: photographing prototype cards or promising icons on the site.
+
+## 2026-09-20 Every deck ships with a 56th card: a QR code to callenueve.com/play
+Who: Gus.
+Why: people who find the deck at a friend's house can read the rules and buy their own. The link is a short stable URL on our own domain so the printed code never breaks; the page behind it can change freely. The QR block is always black on white regardless of theme, error correction level H.
+Rules out: printing rules on the cards or in the box only, and QR links to third-party pages.
+
+## 2026-09-20 The rules page teaches Cuban partnership double-nine as the standard game
+Who: Claude, from web research (Pagat, Cuban sources), accepted by Gus's brief.
+Why: 4 players in pairs, 10 cards each, 15 asleep, 9|9 opens the first hand then the previous winner opens, play to the right, tranca goes to the lowest count, winners score the opponents' remaining pips, first to 100. Capicua bonus, pollona, counting all four hands and rotating the opening are listed as house rules because sources differ.
+Rules out: presenting draw-style dominoes or the double-six game as the default.

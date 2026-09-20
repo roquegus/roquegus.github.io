@@ -9,6 +9,8 @@ import Preflight from "../Production/Preflight";
 import { PRINT } from "../../constants/print";
 import { TUCK_PX, getTuckBox } from "../../constants/tuckbox";
 import TuckBoxSVG from "../CardRenderer/TuckBoxSVG";
+import RulesCardSVG from "../CardRenderer/RulesCardSVG";
+import { getRulesCard } from "../../constants/rulescard";
 import {
   exportProductionZip,
   exportPdfProof,
@@ -24,6 +26,7 @@ const MODES: { value: PreviewMode; label: string }[] = [
   { value: "heroes", label: "Hero Cards" },
   { value: "back", label: "Card Back" },
   { value: "box", label: "Tuck Box" },
+  { value: "rules", label: "Rules Card" },
   { value: "production", label: "Production" },
 ];
 
@@ -141,7 +144,21 @@ export default function CenterArea() {
         },
         (current, total, label) => {
           setExportProgress({ current, total, label });
-        }
+        },
+        getRulesCard(tokens).enabled
+          ? () => {
+              const container = document.createElement("div");
+              document.body.appendChild(container);
+              const root = createRoot(container);
+              flushSync(() => {
+                root.render(<RulesCardSVG tokens={tokens} />);
+              });
+              const el = container.querySelector("svg") as SVGElement | null;
+              root.unmount();
+              document.body.removeChild(container);
+              return el;
+            }
+          : null
       );
       const safeOrder = (state.order.orderNumber || "C9-0001").replace(/[^a-zA-Z0-9]/g, "_");
       const safeCustomer = (state.order.customerName || "Customer").replace(/[^a-zA-Z0-9]/g, "_");
@@ -192,15 +209,21 @@ export default function CenterArea() {
     container.style.left = "-9999px";
     document.body.appendChild(container);
     const root = createRoot(container);
+    const isRules = previewMode === "rules";
     root.render(
-      <DominoCardSVG card={cardInView} tokens={tokens} showTrimLine={false} showSafeZone={false} />
+      isRules ? (
+        <RulesCardSVG tokens={tokens} />
+      ) : (
+        <DominoCardSVG card={cardInView} tokens={tokens} showTrimLine={false} showSafeZone={false} />
+      )
     );
     await new Promise((r) => requestAnimationFrame(r));
     const svgEl = container.querySelector("svg") as SVGElement | null;
     if (svgEl) {
       const blob = await svgToPng(svgEl);
-      downloadBlob(blob, `card_${cardInView.id}.png`);
+      downloadBlob(blob, isRules ? "card_56_rules_qr.png" : `card_${cardInView.id}.png`);
     }
+    root.unmount();
     document.body.removeChild(container);
   };
 
@@ -225,7 +248,7 @@ export default function CenterArea() {
         </div>
 
         <div className="toolbar-controls">
-          {previewMode !== "production" && previewMode !== "back" && previewMode !== "box" && (
+          {previewMode !== "production" && previewMode !== "back" && previewMode !== "box" && previewMode !== "rules" && (
             <>
               <button className="btn-ghost" onClick={prev} disabled={selectedCardIndex === 0}>◀</button>
               <span className="card-counter">
@@ -271,6 +294,12 @@ export default function CenterArea() {
           <div className="card-preview-single" style={{ width: TUCK_PX.w * zoom, height: TUCK_PX.h * zoom }}>
             <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: TUCK_PX.w, height: TUCK_PX.h }}>
               <TuckBoxSVG tokens={tokens} showDieline={getTuckBox(tokens).showDieline} />
+            </div>
+          </div>
+        ) : previewMode === "rules" ? (
+          <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
+            <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+              <RulesCardSVG tokens={tokens} showTrimLine={showTrimLine} showSafeZone={showSafeZone} />
             </div>
           </div>
         ) : previewMode === "back" ? (
@@ -352,9 +381,9 @@ export default function CenterArea() {
           </div>
         ) : (
         <div className="export-actions">
-          {previewMode === "single" && (
+          {(previewMode === "single" || previewMode === "rules") && (
             <button className="btn-secondary" onClick={handleExportPng}>
-              Export PNG (this card)
+              {previewMode === "rules" ? "Export Rules Card PNG" : "Export PNG (this card)"}
             </button>
           )}
           <button

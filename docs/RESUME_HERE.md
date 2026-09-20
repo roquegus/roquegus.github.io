@@ -4,7 +4,7 @@ Last updated: 2026-09-20 (session 5). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.3.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.4.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -13,8 +13,9 @@ Last updated: 2026-09-20 (session 5). Keep this file true. Rewrite sections, do 
 - Card back patterns, frame, medallion, custom image, and a client logo (mirrored and white-back options).
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
+- Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
-- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, "coming soon" button.
+- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, "coming soon" button. How to Play page at /play with full Cuban double-nine rules, glossary and buy CTA.
 
 ## In progress
 
@@ -32,6 +33,7 @@ Nothing half-built. The last session ended clean.
 ## Waiting on Gus
 
 - Shopify product link for the website Buy button.
+- The rules page lists hola@callenueve.com for custom decks. Confirm that mailbox exists or give a different address.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
 - Whether custom decks should be sold on the website (the Studio is built for them; the site only sells one $29.99 deck).
 

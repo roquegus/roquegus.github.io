@@ -40,3 +40,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Rendered the hero spread and the 9-9 close-up from the Studio renderer (Clean preset, teal accent) with headless Chromium, saved as JPEG in `callenueve-web/assets/`. Netlify image links are gone.
 - Method for next time: a throwaway `preview-test.tsx` in the Studio, built with a separate Vite config into the scratchpad, screenshotted with `/opt/pw-browsers/chromium`, converted with Pillow. Bebas Neue came from the `@fontsource/bebas-neue` npm package because Google Fonts is blocked in the sandbox.
 - Open: Shopify link; the "built-in chucho" claim on the site is still unverified.
+- Later the same day: How to Play page (`callenueve-web/play/`) from web research, and the 56th QR rules card in the Studio (`RulesCardSVG`, `RulesCardPanel`, `constants/rulescard.ts`, ZIP export, preflight). `qrcode` npm package added. Studio 0.4.0.
+- Note: most rules sites are blocked by the sandbox proxy; only search snippets worked. The page's rules are consistent across Pagat, dimecuba, thecubanhistory and BoardGameGeek summaries.

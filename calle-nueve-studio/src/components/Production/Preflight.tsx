@@ -1,11 +1,14 @@
 
 import { useApp } from "../../store";
 import { PRINT } from "../../constants/print";
+import { getRulesCard } from "../../constants/rulescard";
 import type { PreflightItem, PreflightStatus } from "../../types";
 
 function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[] {
   const { tokens, deck, showGuides, showTrimLine, showSafeZone, order } = state;
   const { typography } = tokens;
+  const rules = getRulesCard(tokens);
+  const rulesOn = rules.enabled;
 
   const checks: PreflightItem[] = [
     {
@@ -76,8 +79,20 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
     },
     {
       id: "total-count",
-      label: "Export includes 56 cards (55 faces + 1 back)",
+      label: rulesOn
+        ? "Export includes 57 files (55 faces + rules QR card + 1 back)"
+        : "Export includes 56 files (55 faces + 1 back)",
       status: deck.length === 55 ? "pass" : "fail",
+    },
+    {
+      id: "rules-card",
+      label: rulesOn ? "Rules card links to a callenueve.com page" : "Rules card not included",
+      status: !rulesOn ? "warning" : /^https:\/\/callenueve\.com\//.test(rules.url) ? "pass" : "warning",
+      message: !rulesOn
+        ? "Turn on the 56th card in the Rules Card panel so players can scan for the rules"
+        : /^https:\/\/callenueve\.com\//.test(rules.url)
+          ? undefined
+          : "QR link is not on callenueve.com. Check it before printing; it cannot be changed after",
     },
     {
       id: "fonts",

@@ -12,5 +12,5 @@ export const PRINT = {
 } as const;
 
 // Keep in sync with package.json and CHANGELOG.md
-export const APP_VERSION = "0.3.1";
+export const APP_VERSION = "0.4.0";
 export const APP_NAME = "Calle Nueve Production Studio";

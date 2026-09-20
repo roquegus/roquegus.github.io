@@ -166,7 +166,8 @@ export async function exportProductionZip(
   preset: string,
   renderFaceCard: (card: DominoCard) => SVGElement | null,
   renderBackCard: () => SVGElement | null,
-  onProgress?: ExportProgressCallback
+  onProgress?: ExportProgressCallback,
+  renderRulesCard?: (() => SVGElement | null) | null
 ): Promise<Blob> {
   const zip = new JSZip();
   const safeCustomer = (order.customerName || "Customer").replace(/[^a-zA-Z0-9]/g, "_");
@@ -177,7 +178,7 @@ export async function exportProductionZip(
   const proofFolder = zip.folder(`${folderName}/01_PROOF`)!;
   const projectFolder = zip.folder(`${folderName}/02_PROJECT`)!;
 
-  const total = deck.length + 1 + 3;
+  const total = deck.length + 1 + (renderRulesCard ? 1 : 0) + 3;
   let current = 0;
 
   // Export face cards
@@ -193,6 +194,17 @@ export async function exportProductionZip(
     onProgress?.(current, total, `Rendering ${card.label}`);
   }
 
+  // 56th card: QR code to the rules page
+  if (renderRulesCard) {
+    const rulesEl = renderRulesCard();
+    if (rulesEl) {
+      const blob = await svgToPng(rulesEl);
+      pngFolder.file(`face_${String(deck.length).padStart(2, "0")}_rules_qr.png`, blob);
+    }
+    current++;
+    onProgress?.(current, total, "Rendering rules card");
+  }
+
   // Export card back
   const backEl = renderBackCard();
   if (backEl) {
@@ -206,7 +218,7 @@ export async function exportProductionZip(
   projectFolder.file("project.c9project", buildProjectJson(order, tokens, preset));
   projectFolder.file(
     "order-summary.json",
-    JSON.stringify(buildOrderSummary(order, deck.length + 1), null, 2)
+    JSON.stringify(buildOrderSummary(order, deck.length + (renderRulesCard ? 1 : 0) + 1), null, 2)
   );
   projectFolder.file("production-notes.txt", buildProductionNotes(order, preset));
   current++;

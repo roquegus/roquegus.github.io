@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Play | Calle Nueve</title>
+  <meta name="description" content="How to play Cuban double-nine dominoes with the Calle Nueve card deck. Setup, opening, passing, tranca, scoring to 100, house rules and the table talk." />
+  <meta property="og:title" content="How to Play Calle Nueve | Cuban double-nine dominoes" />
+  <meta property="og:description" content="Four players, two teams, ten cards each. The full rules of Cuban double-nine, plus the slang you will hear at the table." />
+  <meta property="og:image" content="https://callenueve.com/assets/calle-nueve-deck-spread.jpg" />
+  <meta property="og:type" content="article" />
+  <link rel="canonical" href="https://callenueve.com/play/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@600;700;800&family=Sacramento&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --teal: #0D9488;
+      --pink: #F472B6;
+      --yellow: #EAB308;
+      --brown: #92400E;
+      --parchment: #FAFAF9;
+      --gold: #D97706;
+      --ink: #2A1610;
+      --cream: #F6EFDf;
+      --muted: #73523C;
+      --shadow: 0 24px 80px rgba(42, 22, 16, 0.18);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: Lato, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(244,114,182,0.16), transparent 28rem),
+        radial-gradient(circle at top right, rgba(13,148,136,0.18), transparent 30rem),
+        linear-gradient(180deg, var(--parchment), #F2E5CC 68%, var(--parchment));
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(45deg, rgba(146,64,14,.08) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(13,148,136,.08) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(244,114,182,.08) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(234,179,8,.08) 75%);
+      background-size: 46px 46px;
+      background-position: 0 0, 0 23px, 23px -23px, -23px 0;
+      mix-blend-mode: multiply;
+      z-index: -2;
+    }
+    a { color: inherit; }
+    header {
+      position: sticky; top: 0; z-index: 20;
+      background: rgba(250,250,249,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 2px solid rgba(217,119,6,.35);
+    }
+    .nav {
+      max-width: 1180px; margin: 0 auto; padding: 1rem 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    .brand {
+      font-family: "Bebas Neue", sans-serif; letter-spacing: .12em; font-size: 2rem;
+      color: var(--teal); line-height: 1; text-decoration: none;
+    }
+    .nav-links { display: flex; align-items: center; gap: 1.25rem; font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; font-weight: 900; }
+    .nav-links a { text-decoration: none; }
+    .nav-links a:hover { color: var(--teal); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+      border: 0; text-decoration: none; cursor: pointer; padding: 1rem 1.35rem; border-radius: 999px;
+      font-weight: 900; text-transform: uppercase; letter-spacing: .12em; font-size: .78rem;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 16px 28px rgba(42,22,16,.18); }
+    .btn-primary { background: var(--teal); color: white; }
+    .btn-outline { border: 2px solid var(--teal); color: var(--teal); background: transparent; }
+
+    .hero { max-width: 900px; margin: 0 auto; padding: 4.5rem 1.25rem 2.5rem; text-align: center; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: .55rem; color: var(--brown); font-weight: 900;
+      text-transform: uppercase; letter-spacing: .16em; font-size: .82rem; margin-bottom: 1rem;
+    }
+    .eyebrow::before, .eyebrow::after { content: ""; width: 30px; height: 2px; background: var(--gold); }
+    h1, h2, h3 { margin: 0; }
+    h1 {
+      font-family: "Bebas Neue", sans-serif; font-size: clamp(3.6rem, 8vw, 6.5rem); line-height: .9;
+      letter-spacing: .045em; color: var(--teal); text-shadow: 3px 3px 0 rgba(217,119,6,.18);
+    }
+    .lead { font-size: clamp(1.05rem, 1.7vw, 1.25rem); line-height: 1.7; color: #4B3023; max-width: 680px; margin: 1.25rem auto 0; }
+
+    .section { max-width: 900px; margin: 0 auto; padding: 2.5rem 1.25rem; }
+    .section-kicker { font-family: Sacramento, cursive; font-size: clamp(1.8rem, 3.5vw, 2.6rem); color: var(--teal); margin-bottom: .3rem; }
+    .section-title { font-family: "Bebas Neue", sans-serif; font-size: clamp(2.4rem, 4.5vw, 3.6rem); letter-spacing: .05em; color: var(--ink); line-height: .95; margin-bottom: 1rem; }
+    .section p { margin: 0 0 1rem; color: #4B3023; font-size: 1.05rem; }
+
+    .quick {
+      background: var(--ink); color: var(--parchment); border-radius: 26px; padding: 2rem;
+      border: 6px double var(--gold); box-shadow: var(--shadow);
+    }
+    .quick .section-title { color: var(--parchment); }
+    .quick ol { margin: 0; padding-left: 1.4rem; font-size: 1.08rem; line-height: 1.7; }
+    .quick li { margin-bottom: .55rem; }
+    .quick li::marker { color: var(--gold); font-weight: 900; }
+    .quick b { color: #F2E5CC; }
+
+    .steps { display: grid; gap: 1rem; counter-reset: step; }
+    .step {
+      background: rgba(250,250,249,.86); border: 1px solid rgba(146,64,14,.18); border-left: 6px solid var(--gold);
+      border-radius: 18px; padding: 1.25rem 1.4rem; box-shadow: 0 12px 32px rgba(42,22,16,.06);
+    }
+    .step h3 { font-family: "Bebas Neue", sans-serif; font-size: 1.7rem; letter-spacing: .05em; margin-bottom: .4rem; }
+    .step h3::before { counter-increment: step; content: counter(step) ". "; color: var(--teal); }
+    .step p:last-child { margin-bottom: 0; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .tile {
+      background: rgba(250,250,249,.86); border: 1px solid rgba(146,64,14,.18); border-top: 6px solid var(--gold);
+      border-radius: 22px; padding: 1.4rem 1.5rem; box-shadow: 0 12px 32px rgba(42,22,16,.08);
+    }
+    .tile h3 { font-family: "Bebas Neue", sans-serif; font-size: 1.7rem; letter-spacing: .05em; margin-bottom: .45rem; }
+    .tile p { margin: 0; color: #523626; }
+
+    table { width: 100%; border-collapse: collapse; background: rgba(250,250,249,.86); border-radius: 18px; overflow: hidden; border: 1px solid rgba(146,64,14,.18); }
+    th, td { text-align: left; padding: .75rem 1rem; border-bottom: 1px solid rgba(146,64,14,.12); vertical-align: top; }
+    th { background: rgba(13,148,136,.1); font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; color: var(--brown); }
+    td:first-child { font-family: "Bebas Neue", sans-serif; font-size: 1.35rem; letter-spacing: .05em; color: var(--teal); white-space: nowrap; }
+    tr:last-child td { border-bottom: 0; }
+
+    .cards { display: inline-flex; gap: .5rem; vertical-align: middle; }
+    .card {
+      display: inline-grid; grid-template-rows: 1fr 2px 1fr; width: 34px; height: 60px; border-radius: 5px;
+      background: white; border: 1px solid rgba(42,22,16,.25); box-shadow: 0 3px 8px rgba(42,22,16,.18);
+      font-family: "Bebas Neue", sans-serif; font-size: 1.2rem; line-height: 1; text-align: center; align-items: center;
+    }
+    .card i { background: var(--teal); display: block; height: 2px; margin: 0 5px; }
+
+    .cta { text-align: center; padding: 3.5rem 1.25rem 4.5rem; }
+    .cta .price-card {
+      display: inline-block; text-align: left; background: var(--parchment); color: var(--ink); border-radius: 26px; padding: 2rem 2.25rem;
+      border: 6px double var(--gold); box-shadow: var(--shadow); max-width: 520px;
+    }
+    .cta .price { font-family: "Bebas Neue", sans-serif; font-size: 3.4rem; color: var(--teal); line-height: 1; margin: .2rem 0 .6rem; }
+    .microcopy { color: var(--muted); font-size: .93rem; }
+
+    footer { background: var(--ink); color: var(--parchment); padding: 3rem 1.25rem; text-align: center; border-top: 5px solid var(--gold); }
+    footer .brand { color: var(--parchment); margin-bottom: .8rem; display: inline-block; }
+    footer p { margin: .25rem 0; color: #EBDCC4; }
+
+    @media (max-width: 720px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+      .quick { padding: 1.5rem 1.25rem; }
+      .section { padding: 2rem 1rem; }
+      .hero { padding: 3rem 1rem 2rem; }
+    }
+    @media print {
+      header, .cta, footer, body::before { display: none; }
+      body { background: white; }
+      .quick { color: black; background: white; border-color: black; }
+      .quick .section-title, .quick b { color: black; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/" class="brand" aria-label="Calle Nueve home">Calle Nueve</a>
+      <div class="nav-links">
+        <a href="/#how">The deck</a>
+        <a href="#rules">Rules</a>
+        <a href="#talk">Table talk</a>
+        <a href="/#buy" class="btn btn-primary">Get a deck</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow">Cuban double-nine, card edition</div>
+      <h1>How to Play</h1>
+      <p class="lead">Every card is a domino tile. Same game your abuelo played, minus the box of tiles. If you know dominoes you already know the rhythm. If you do not, you will in five minutes.</p>
+    </section>
+
+    <section class="section">
+      <div class="quick">
+        <h2 class="section-title">Quick start</h2>
+        <ol>
+          <li><b>Four players, two teams.</b> Partners sit across from each other.</li>
+          <li><b>Shuffle and deal ten cards each.</b> The fifteen left over stay face down. Nobody looks at them.</li>
+          <li><b>Whoever holds the 9|9 (La Gorda) opens</b> the first hand. After that, the winner of the last hand opens with any card.</li>
+          <li><b>Play to the right.</b> On your turn, play a card that matches a number on either open end of the line.</li>
+          <li><b>No match? Say "paso."</b> You may only pass when you truly cannot play.</li>
+          <li><b>First player out of cards wins the hand</b> for their team. If nobody can play, that is a tranca: the lowest count wins.</li>
+          <li><b>Winners score the points left in the losers' hands.</b> First team to 100 wins the game.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="rules">
+      <div class="section-kicker">The full rules</div>
+      <h2 class="section-title">Step by step</h2>
+      <div class="steps">
+        <article class="step">
+          <h3>The deck</h3>
+          <p>Fifty-five cards, one for every double-nine combination from <span class="cards"><span class="card">0<i></i>0</span></span> to <span class="cards"><span class="card">9<i></i>9</span></span>. Each card has a top number and a bottom number, just like the two halves of a tile. The small numbers in the corners tell you what the card is without turning it around. A double is a card with the same number on both halves. There are ten of them.</p>
+        </article>
+        <article class="step">
+          <h3>Players and teams</h3>
+          <p>The classic game is four players in two partnerships. Partners sit opposite each other. You never show your partner your cards or talk about them. That is what the chucho is for.</p>
+          <p>Two or three players can play the same way with no teams. Each player still takes ten cards.</p>
+        </article>
+        <article class="step">
+          <h3>The deal</h3>
+          <p>Shuffle ("dale agua"). Deal ten cards to each player. The fifteen cards left over are set aside face down. They are out of the hand. Nobody draws from them, and nobody peeks. Not knowing which fifteen are asleep is half the game.</p>
+          <p>Hold your cards like a card hand. Read the corners.</p>
+        </article>
+        <article class="step">
+          <h3>The opening (la salida)</h3>
+          <p>In the first hand, whoever holds La Gorda, the 9|9, plays it to open. If nobody was dealt it, the highest double at the table opens instead.</p>
+          <p>In every hand after that, the player who won the last hand opens, and may open with any card they like. What they choose to open with is the first message of the hand.</p>
+        </article>
+        <article class="step">
+          <h3>Playing a card</h3>
+          <p>Play moves to the right, counterclockwise. On your turn, play one card so that one of its numbers touches a matching number on either open end of the line. A 5|2 can go on an end showing 5 or an end showing 2. Doubles are laid across the line, the way you would lay a tile.</p>
+          <p>Keep the line on the table so everyone can see both open ends. When it gets long, bend it.</p>
+        </article>
+        <article class="step">
+          <h3>Passing (el paso)</h3>
+          <p>If you have no card that matches either end, say "paso" and the turn moves on. You may not pass if you can play. Passing is information: everyone now knows you are missing two numbers, and a good partner will use that.</p>
+        </article>
+        <article class="step">
+          <h3>Ending the hand</h3>
+          <p>A hand ends one of two ways.</p>
+          <p><b>Dominó.</b> A player plays their last card ("me pegué"). Their team wins the hand.</p>
+          <p><b>Tranca.</b> Every player still holds cards but nobody can play on either end. The line is blocked. Each player adds up the numbers on the cards still in their hand. The player with the lowest total wins the hand for their team.</p>
+          <p>If the two lowest totals belong to opposing players and they tie, most tables call it a draw: nobody scores and the same player opens again. Agree on this before you start.</p>
+        </article>
+        <article class="step">
+          <h3>Scoring</h3>
+          <p>The winning team scores the total of all numbers left in the two opponents' hands. A 6|4 left in a hand is 10 points. La Gorda is 18. La Blanquita is 0.</p>
+          <p>The first team to reach 100 points wins the game. For a longer night, play to 150 or 200. Decide before the first shuffle.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-kicker">If your table plays them</div>
+      <h2 class="section-title">House rules</h2>
+      <div class="grid-2">
+        <article class="tile">
+          <h3>Capicúa</h3>
+          <p>You go out with a card that could have been played on either end. Some tables double the points for that hand. Others just enjoy the moment.</p>
+        </article>
+        <article class="tile">
+          <h3>Pollona</h3>
+          <p>Reaching 100 while the other team is still on zero. A shutout. Many tables count it as two games won, and everyone talks about it for a week.</p>
+        </article>
+        <article class="tile">
+          <h3>Count everyone</h3>
+          <p>Some tables score all cards left at the table, partner included. The standard is opponents only. Pick one.</p>
+        </article>
+        <article class="tile">
+          <h3>Rotate the opening</h3>
+          <p>Instead of the winner opening, some tables pass the opening one seat to the right each hand. Older style, still common.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-kicker">Play better</div>
+      <h2 class="section-title">Five things good players do</h2>
+      <div class="steps" style="counter-reset: step;">
+        <article class="step">
+          <h3>Count the numbers</h3>
+          <p>Each number appears on eleven cards. Ten are in play and fifteen cards are asleep, so nobody knows the full picture. Track what has hit the table and what people have passed on. When a number is exhausted, you own the end that shows it.</p>
+        </article>
+        <article class="step">
+          <h3>Play heavy early</h3>
+          <p>Points left in your hand at the end are points for the other team. Unload nines and eights while you have safe places to put them. "Bota la gorda" is advice, not an insult. Usually.</p>
+        </article>
+        <article class="step">
+          <h3>Read your partner</h3>
+          <p>The card your partner opens with, the numbers they keep returning to, the numbers they pass on. That is the only conversation you are allowed to have. Feed them what they want.</p>
+        </article>
+        <article class="step">
+          <h3>Starve the other side</h3>
+          <p>If the player to your right passed on a 3, keep a 3 on that end. Making an opponent pass twice in a row is how you win hands you had no business winning.</p>
+        </article>
+        <article class="step">
+          <h3>Know when to block</h3>
+          <p>If your team's count is low and theirs is heavy, a tranca is a win. If you are holding La Gorda, keep the game open and find a home for it.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="talk">
+      <div class="section-kicker">Table talk</div>
+      <h2 class="section-title">What you will hear</h2>
+      <table>
+        <thead><tr><th>Say</th><th>Means</th></tr></thead>
+        <tbody>
+          <tr><td>La Gorda</td><td>The 9|9. The fat one. Eighteen points if it dies in your hand.</td></tr>
+          <tr><td>La Blanquita</td><td>The 0|0. Zero points, and the safest card at the table.</td></tr>
+          <tr><td>Caja de muerto</td><td>The 6|6. The coffin. Ask an older player why.</td></tr>
+          <tr><td>Dale agua</td><td>Shuffle. Literally "give it water."</td></tr>
+          <tr><td>La salida</td><td>The opening card of the hand.</td></tr>
+          <tr><td>Paso</td><td>I cannot play. The only thing you are obliged to say out loud.</td></tr>
+          <tr><td>Me pegué</td><td>I am out. Said while laying your last card down harder than necessary.</td></tr>
+          <tr><td>Tranca</td><td>The line is blocked. Count your hands.</td></tr>
+          <tr><td>La fresca</td><td>Playing a number nobody has touched yet. "Te la pongo fresca."</td></tr>
+          <tr><td>Estás agachao</td><td>You are hiding a number. Usually said to a partner, usually correctly.</td></tr>
+          <tr><td>Bota la gorda</td><td>Get rid of your heavy cards. Also what people call a beginner who leads with them every time.</td></tr>
+          <tr><td>Capicúa</td><td>Going out with a card that fit both ends.</td></tr>
+          <tr><td>Pollona</td><td>A shutout.</td></tr>
+          <tr><td>Chucho</td><td>The running commentary. Friendly, loud, and required.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="cta" id="buy">
+      <div class="price-card">
+        <div class="eyebrow" style="margin-bottom:.3rem;">Found this deck at a friend's?</div>
+        <div class="price">Get your own.</div>
+        <p style="margin:0 0 1.2rem;color:#4B3023;">Fifty-five cards, domino size, made in Miami. The whole game fits in a pocket.</p>
+        <a class="btn btn-primary" href="/#buy">Calle Nueve deck</a>
+        <p class="microcopy" style="margin-top:1rem;">Custom decks for weddings, businesses and events too. Ask at hola@callenueve.com.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a href="/" class="brand">Calle Nueve</a>
+    <p>Cuban double-nine, reimagined as a card deck.</p>
+    <p>Hecho con amor en Miami, Florida.</p>
+  </footer>
+</body>
+</html>

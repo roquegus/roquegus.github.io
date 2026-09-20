@@ -4,7 +4,16 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 ## Unreleased
 
+(nothing)
+
+## 0.4.0 - 2026-09-20
+
+### Added
+- Rules card, the 56th card: a QR code to callenueve.com/play with a short message for anyone who finds the deck at a friend's house. Preview tab "Rules Card", panel with link, headline, subhead and body, include-in-export toggle (on by default), PNG export. The production ZIP names it `face_55_rules_qr.png`.
+- Preflight checks that the rules card is on and its link is on callenueve.com.
+
 ### Website
+- New How to Play page at callenueve.com/play: quick start, full rules of Cuban double-nine with cards, house rules, five strategy tips, table-talk glossary, and a buy call to action. Print-friendly. "Rules" link in the homepage nav.
 - Removed the "10 Numbers. 10 Miami Icons" section and every mention of the icon system.
 - Replaced the two Netlify photos with renders of the actual cards (Clean theme in brand teal), served from `callenueve-web/assets/`. Share preview image updated.
 

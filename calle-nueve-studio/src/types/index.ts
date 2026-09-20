@@ -114,6 +114,16 @@ export type DesignTokens = {
     logoMinPx?: number;
   };
   tuckBox?: TuckBoxDesign;
+  rulesCard?: RulesCardDesign;
+};
+
+/** The 56th card: a QR code to the How to Play page. */
+export type RulesCardDesign = {
+  enabled: boolean;
+  url: string;
+  headline: string;
+  subhead: string;
+  body: string;
 };
 
 export type TuckBoxFrontStyle = "emblem" | "hero-card" | "custom";
@@ -161,6 +171,7 @@ export type PreviewMode =
   | "heroes"
   | "back"
   | "box"
+  | "rules"
   | "production";
 
 export type OrderStatus =

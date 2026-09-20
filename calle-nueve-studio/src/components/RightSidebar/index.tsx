@@ -7,6 +7,7 @@ import TypographyPanel from "./TypographyPanel";
 import BackgroundPanel from "./BackgroundPanel";
 import CardBackPanel from "./CardBackPanel";
 import TuckBoxPanel from "./TuckBoxPanel";
+import RulesCardPanel from "./RulesCardPanel";
 
 export default function RightSidebar() {
   return (
@@ -23,6 +24,7 @@ export default function RightSidebar() {
         <BackgroundPanel />
         <CardBackPanel />
         <TuckBoxPanel />
+        <RulesCardPanel />
       </div>
     </aside>
   );
