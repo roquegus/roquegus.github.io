@@ -88,3 +88,8 @@ Rules out: presenting draw-style dominoes or the double-six game as the default.
 Who: Gus, correcting the page ("there's multiple ways to decide who opens the first hand. then, whoever won the last hand, goes out first").
 Why: sources give three methods for the first hand: draw a card for the highest total before the deal (most common in Cuba and Miami), whoever holds La Gorda, or the highest double. The page lists all three and says to pick one. Every hand after the first is opened by whoever won the previous hand, with any card.
 Rules out: stating La Gorda as the only way to open the first hand.
+
+## 2026-09-20 Checkout is a Stripe Payment Link, not Shopify (for now)
+Who: Claude recommended, Gus accepted and started setup.
+Why: one product on an existing static site. Stripe has no monthly fee and charges 2.9% + 30c; Shopify Starter is $5/month plus 5% per sale and Shopify Basic is $39/month. Stripe collects the shipping address, handles Apple/Google Pay and receipts. Switching the button to Shopify later is a one-line change.
+Rules out: Shopify, Big Cartel, Square Online, Etsy until volume or feature needs justify them. Revisit Shopify (or QPMN print-on-demand) when inventory, discount codes or multiple products matter.

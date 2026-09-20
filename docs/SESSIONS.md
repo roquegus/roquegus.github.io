@@ -43,3 +43,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Later the same day: How to Play page (`callenueve-web/play/`) from web research, and the 56th QR rules card in the Studio (`RulesCardSVG`, `RulesCardPanel`, `constants/rulescard.ts`, ZIP export, preflight). `qrcode` npm package added. Studio 0.4.0.
 - Note: most rules sites are blocked by the sandbox proxy; only search snippets worked. The page's rules are consistent across Pagat, dimecuba, thecubanhistory and BoardGameGeek summaries.
 - Gus corrected the opening rule: the first-hand opener is decided several ways (draw for highest card, La Gorda, highest double); afterwards the winner of the last hand opens. Page and decision log updated.
+- Researched checkout options. Recommended Stripe Payment Links; Gus opened a Stripe account ("Calle Nueve") and reached the Add product form in sandbox mode, then paused for the night. Exact remaining steps are in RESUME_HERE.md under In progress.
+- Session ended 2026-09-20 with everything committed. Studio 0.4.0 live. No uncommitted work.

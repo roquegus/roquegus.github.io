@@ -1,6 +1,6 @@
 # Resume here
 
-Last updated: 2026-09-20 (session 5). Keep this file true. Rewrite sections, do not append.
+Last updated: 2026-09-20, end of session 5. Keep this file true. Rewrite sections, do not append.
 
 ## Current state
 
@@ -19,7 +19,14 @@ Last updated: 2026-09-20 (session 5). Keep this file true. Rewrite sections, do 
 
 ## In progress
 
-Nothing half-built. The last session ended clean.
+**Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
+
+What is left, in order:
+1. Gus: switch Stripe to the live account and finish activation (business details, bank).
+2. Gus: Product catalog > Add product: "Calle Nueve Deck", one-off, $29.99.
+3. Gus: Payments > Payment Links > New: that product, quantity adjustable, collect shipping address (US), shipping rate "USPS First Class" $4.95, after payment redirect to https://callenueve.com/thanks. Copy the buy.stripe.com link.
+4. Claude: point every Buy button on `callenueve-web/index.html` and `callenueve-web/play/index.html` at the link, label "Buy now, $29.99", remove the "coming soon" announcement bar and seal, build `callenueve-web/thanks/index.html`.
+5. Later, if volume grows: Shopify Basic, or QPMN (MPC's print-on-demand marketplace with Shopify integration) for zero inventory.
 
 ## Next (in Gus's priority order, none started)
 
@@ -32,7 +39,7 @@ Nothing half-built. The last session ended clean.
 
 ## Waiting on Gus
 
-- Shopify product link for the website Buy button.
+- The Stripe Payment Link (see In progress).
 - The rules page lists hola@callenueve.com for custom decks. Confirm that mailbox exists or give a different address.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
 - Whether custom decks should be sold on the website (the Studio is built for them; the site only sells one $29.99 deck).
