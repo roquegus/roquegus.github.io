@@ -19,6 +19,8 @@ Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do 
 
 ## In progress
 
+**Skyline Development client deck (started 2026-09-21).** Project "Skyline Development" exists in the Studio (order C9-0002, Clean preset, landscape logo mode preset, tuck box text filled in). Blocked on brand assets: the sandbox cannot reach skylinedevelopmentfl.com, any mirror, or the archive, so the logo file and exact colors are not in yet. The accent #1F2A44 is a placeholder. When Gus provides the logo (file upload) and colors (hex or a screenshot), set divider + backBackground to the primary color, upload the logo in Card Back (landscape if wide), save a custom preset named "Skyline Development", render a proof, and send him the proof link.
+
 **Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
 
 What is left, in order:

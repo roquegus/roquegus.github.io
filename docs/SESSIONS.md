@@ -48,3 +48,4 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 
 ## Session 6: 2026-09-21 - Landscape back logos
 - Card back logo can be portrait or landscape, with a size slider; mirrored works both ways; Sideways preview toggle in Card Back mode; tuck box follows. Verified with a wide wordmark in all five layouts against the safe line. Studio 0.5.0.
+- New client: Skyline Development (Miami roofing GC). Created the Studio project via Supabase with Clean tokens and order details. Could not fetch their site or logo from the sandbox; asked Gus for the logo file and colors.
