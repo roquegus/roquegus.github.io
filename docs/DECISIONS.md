@@ -68,3 +68,8 @@ Rules out: shipping Clean decks without the index.
 Who: Gus ("it didn't remember anything, that worries me").
 Why: Claude sessions share nothing except the repo. Root `CLAUDE.md` is auto-read; it points to `docs/RESUME_HERE.md`, `docs/DECISIONS.md`, `docs/SESSIONS.md`, `CHANGELOG.md`.
 Rules out: keeping notes in chat, iCloud folders, or a subfolder CLAUDE.md alone.
+
+## 2026-09-20 The website shows the Clean theme in brand teal, and the icon system is retired from the site
+Who: Gus ("get rid of this section, we're no longer doing that").
+Why: the retail deck is now the bold-dot look. Website images are rendered from the Studio (Clean preset, divider and back in the site teal #0D9488) so the site always matches what ships. The Cuban icon pip style still exists in the Studio for custom orders.
+Rules out: photographing prototype cards or promising icons on the site.

@@ -7,7 +7,7 @@
   <meta name="description" content="Calle Nueve is a premium 55-card deck that reimagines Cuban double-nine dominoes as a portable card game. Designed with amor in Miami." />
   <meta property="og:title" content="Calle Nueve | Cuban Double-Nine Domino Card Deck" />
   <meta property="og:description" content="A 55-card Tropical Deco deck inspired by Cuban domino culture, Calle Ocho, cafecito, chucho, and Miami tables." />
-  <meta property="og:image" content="https://calle9.netlify.app/assets/calle-nueve-deck-spread.jpeg" />
+  <meta property="og:image" content="https://callenueve.com/assets/calle-nueve-deck-spread.jpg" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -212,7 +212,7 @@
 
     .hero-card img {
       border-radius: 22px;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
       border: 7px solid rgba(250,250,249,.86);
     }
@@ -336,7 +336,7 @@
     }
 
     .image-frame.alt { transform: rotate(1.5deg); }
-    .image-frame img { aspect-ratio: 16 / 10; object-fit: cover; }
+    .image-frame img { aspect-ratio: 16 / 9; object-fit: cover; }
 
     .feature-list {
       list-style: none;
@@ -367,37 +367,7 @@
       flex: 0 0 auto;
     }
 
-    .icon-row {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: .8rem;
-      margin-top: 2rem;
-    }
 
-    .pip {
-      min-height: 112px;
-      border-radius: 18px;
-      background: var(--parchment);
-      border: 1px solid rgba(146,64,14,.18);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: .45rem;
-      text-align: center;
-      padding: .8rem;
-    }
-
-    .pip .num {
-      font-family: "Bebas Neue", sans-serif;
-      font-size: 2.1rem;
-      color: var(--brown);
-      line-height: 1;
-    }
-
-    .pip .ico { font-size: 1.75rem; }
-    .pip svg { width: 60px; height: 60px; overflow: visible; }
-    .pip small { font-size: .75rem; color: var(--muted); font-weight: 900; text-transform: uppercase; letter-spacing: .06em; }
 
     .product-band {
       background: var(--ink);
@@ -505,7 +475,6 @@
       .hero, .showcase, .band-inner { grid-template-columns: 1fr; }
       .hero { padding-top: 3rem; }
       .grid-3, .grid-2 { grid-template-columns: 1fr; }
-      .icon-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .nav-links a:not(.btn) { display: none; }
       .seal { width: 116px; height: 116px; font-size: 1.25rem; left: .75rem; bottom: .75rem; }
       .mobile-cta { display: block; }
@@ -518,7 +487,6 @@
       .btn { padding: .9rem 1rem; font-size: .72rem; }
       .section { padding: 4rem 1rem; }
       .hero { padding-inline: 1rem; }
-      .icon-row { grid-template-columns: 1fr; }
       .hero-actions .btn { width: 100%; }
     }
   </style>
@@ -552,7 +520,7 @@
       </div>
 
       <div class="hero-card" aria-label="Calle Nueve product image">
-        <img src="https://calle9.netlify.app/assets/calle-nueve-deck-spread.jpeg" alt="Calle Nueve card deck fanned out on a cafe table with a wooden box and cafecito" />
+        <img src="assets/calle-nueve-deck-spread.jpg" alt="Calle Nueve cards fanned out: bold black pips, a teal center line, and the teal card back" />
         <div class="seal">First<br>Edition<br>Drop</div>
       </div>
     </section>
@@ -586,12 +554,12 @@
 
     <section class="section showcase" id="deck">
       <div class="image-frame">
-        <img src="https://calle9.netlify.app/assets/calle-nueve-hero-card.jpeg" alt="Close-up of a Calle Nueve hero card on a wooden table" />
+        <img src="assets/calle-nueve-hero-card.jpg" alt="Close-up of the Calle Nueve 9-9 hero card next to the card back" />
       </div>
       <div>
         <div class="section-kicker">Tropical Deco Edition</div>
         <h2 class="section-title">Built Like a Keepsake. Played Like a Game.</h2>
-        <p class="lead">Calle Nueve blends Havana-era Art Deco, Little Havana table culture, and a portable card format. It is not a generic deck with domino dots. Every number has a cultural icon. Every card has a personality.</p>
+        <p class="lead">Calle Nueve blends Havana-era Art Deco, Little Havana table culture, and a portable card format. Bold black pips you can read across the table, one clean line, and a corner index so every hand plays fast.</p>
         <ul class="feature-list">
           <li><span class="dot"></span><span><b>Hero doubles:</b> La Gorda, Duque, Galleguito, La Blanquita, and the rest of the trophies of the deck.</span></li>
           <li><span class="dot"></span><span><b>Built-in chucho:</b> Nicknames and quips that make every play feel alive.</span></li>
@@ -600,43 +568,6 @@
       </div>
     </section>
 
-    <section class="section center">
-      <div class="section-kicker">The rhythm of the table</div>
-      <h2 class="section-title">10 Numbers. 10 Miami Icons.</h2>
-      <p class="section-copy">Instead of plain dots, Calle Nueve uses a distinct icon system inspired by cafecito, maracas, palms, sea turtles, hibiscus, flamingos, cigars, Deco sunrays, and domino tiles.</p>
-      <div class="icon-row">
-        <div class="pip"><div class="num">0</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="40" fill="none" stroke="#8B1A1A" stroke-width="4"/><circle cx="50" cy="50" r="10" fill="#8B1A1A" opacity=".5"/></svg>
-          <small>Clean saucer</small></div>
-        <div class="pip"><div class="num">1</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#8B1A1A" stroke-width="4" stroke-linecap="round" opacity=".75"><path d="M36,24 Q29,15 36,7"/><path d="M52,22 Q45,13 52,5"/></g><ellipse cx="50" cy="78" rx="42" ry="9" fill="#8B1A1A"/><path d="M20,30 L78,30 L70,68 Q50,82 30,68 Z" fill="#8B1A1A"/><path d="M70,40 C100,40 100,64 70,64" fill="none" stroke="#8B1A1A" stroke-width="6" stroke-linecap="round"/><path d="M26,38 Q50,44 74,38" fill="none" stroke="#C49A2A" stroke-width="2.5" stroke-linecap="round" opacity=".7"/></svg>
-          <small>Cafecito</small></div>
-        <div class="pip"><div class="num">2</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><g stroke="#8B1A1A" stroke-width="7" stroke-linecap="round"><line x1="28" y1="42" x2="50" y2="92"/><line x1="72" y1="42" x2="50" y2="92"/></g><circle cx="28" cy="24" r="20" fill="#8B1A1A"/><circle cx="72" cy="24" r="20" fill="#8B1A1A"/><circle cx="28" cy="24" r="8" fill="#C49A2A"/><circle cx="72" cy="24" r="8" fill="#C49A2A"/></svg>
-          <small>Maracas</small></div>
-        <div class="pip"><div class="num">3</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M44,96 Q36,72 32,48 Q30,26 50,12 Q70,26 68,48 Q64,72 56,96 Z" fill="#8B1A1A"/><g fill="none" stroke="#8B1A1A" stroke-width="6" stroke-linecap="round"><path d="M50,14 Q22,4 6,22"/><path d="M50,14 Q14,24 4,52"/><path d="M50,14 Q46,4 42,2"/><path d="M50,14 Q86,24 96,52"/><path d="M50,14 Q78,4 94,22"/></g><circle cx="43" cy="20" r="5" fill="#C49A2A"/><circle cx="56" cy="18" r="5" fill="#C49A2A"/></svg>
-          <small>Palms</small></div>
-        <div class="pip"><div class="num">4</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#8B1A1A"><path d="M24,42 Q4,28 6,46 Q8,60 22,54"/><path d="M76,42 Q96,28 94,46 Q92,60 78,54"/><path d="M26,66 Q8,76 12,84 Q14,90 28,80"/><path d="M74,66 Q92,76 88,84 Q86,90 72,80"/><path d="M43,30 L57,30 L56,22 Q50,18 44,22 Z"/><ellipse cx="50" cy="54" rx="28" ry="24"/><ellipse cx="50" cy="18" rx="9" ry="8"/></g><g fill="none" stroke="#C49A2A" stroke-width="2" opacity=".6"><path d="M24,50 Q50,46 76,50"/><path d="M22,58 Q50,54 78,58"/><path d="M34,36 Q50,32 66,36"/><path d="M50,32 L50,76" stroke-width="1.5"/></g><circle cx="45" cy="16" r="2" fill="#C49A2A"/><circle cx="55" cy="16" r="2" fill="#C49A2A"/></svg>
-          <small>Sea turtles</small></div>
-        <div class="pip"><div class="num">5</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50,50 C36,38 38,12 50,6 C62,12 64,38 50,50" fill="#8B1A1A"/><path transform="rotate(72 50 50)" d="M50,50 C36,38 38,12 50,6 C62,12 64,38 50,50" fill="#C49A2A"/><path transform="rotate(144 50 50)" d="M50,50 C36,38 38,12 50,6 C62,12 64,38 50,50" fill="#8B1A1A"/><path transform="rotate(216 50 50)" d="M50,50 C36,38 38,12 50,6 C62,12 64,38 50,50" fill="#C49A2A"/><path transform="rotate(288 50 50)" d="M50,50 C36,38 38,12 50,6 C62,12 64,38 50,50" fill="#8B1A1A"/><circle cx="50" cy="50" r="11" fill="#C49A2A" stroke="#8B1A1A" stroke-width="2"/><circle cx="50" cy="50" r="5" fill="#8B1A1A"/></svg>
-          <small>Hibiscus</small></div>
-        <div class="pip"><div class="num">6</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M32,62 Q30,44 48,34 Q68,26 74,50 Q76,70 56,76 Q34,80 32,62 Z" fill="#8B1A1A"/><path d="M50,35 C55,22 64,18 62,8" fill="none" stroke="#8B1A1A" stroke-width="8" stroke-linecap="round"/><circle cx="62" cy="6" r="9" fill="#8B1A1A"/><path d="M67,8 Q80,5 78,13 Q76,17 68,14" fill="#C49A2A" stroke="#8B1A1A" stroke-width="1.5"/><circle cx="64" cy="4" r="2.5" fill="#C49A2A"/><g stroke="#8B1A1A" stroke-linecap="round"><path d="M50,76 L48,92" stroke-width="4"/><path d="M48,92 L42,98 M48,92 L54,98" stroke-width="3"/></g><path d="M36,56 Q52,50 70,58" fill="none" stroke="#C49A2A" stroke-width="2.5" stroke-linecap="round" opacity=".7"/></svg>
-          <small>Flamingos</small></div>
-        <div class="pip"><div class="num">7</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="none" stroke="#8B1A1A" stroke-width="4" stroke-linecap="round"><path d="M10,36 Q4,26 10,18" opacity=".55"/><path d="M16,40 Q10,30 16,22" opacity=".35"/></g><path d="M16,38 L80,36 Q94,36 94,50 Q94,64 80,64 L16,62 Z" fill="#8B1A1A"/><circle cx="16" cy="50" r="12" fill="#C49A2A" stroke="#8B1A1A" stroke-width="1.5"/><rect x="44" y="35" width="13" height="30" rx="2" fill="#C49A2A" stroke="#8B1A1A" stroke-width="1"/><path d="M28,43 L78,42 M28,57 L78,58" stroke="#C49A2A" stroke-width="1" opacity=".4"/></svg>
-          <small>Cigars</small></div>
-        <div class="pip"><div class="num">8</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><g fill="#8B1A1A"><path d="M42,50 L50,6 L58,50"/><path transform="rotate(90 50 50)" d="M42,50 L50,6 L58,50"/><path transform="rotate(180 50 50)" d="M42,50 L50,6 L58,50"/><path transform="rotate(270 50 50)" d="M42,50 L50,6 L58,50"/></g><g fill="#C49A2A"><path transform="rotate(45 50 50)" d="M47,50 L50,14 L53,50"/><path transform="rotate(135 50 50)" d="M47,50 L50,14 L53,50"/><path transform="rotate(225 50 50)" d="M47,50 L50,14 L53,50"/><path transform="rotate(315 50 50)" d="M47,50 L50,14 L53,50"/></g><circle cx="50" cy="50" r="22" fill="#8B1A1A"/><circle cx="50" cy="50" r="14" fill="#C49A2A" stroke="#8B1A1A" stroke-width="1.5"/><circle cx="50" cy="50" r="5" fill="#8B1A1A"/></svg>
-          <small>Deco sunrays</small></div>
-        <div class="pip"><div class="num">9</div>
-          <svg viewBox="0 0 100 100" aria-hidden="true"><rect x="12" y="18" width="76" height="64" rx="8" fill="#8B1A1A"/><line x1="12" y1="50" x2="88" y2="50" stroke="#C49A2A" stroke-width="2.5"/><g fill="#C49A2A"><circle cx="30" cy="33" r="6"/><circle cx="50" cy="36" r="6"/><circle cx="70" cy="33" r="6"/><circle cx="34" cy="66" r="6"/><circle cx="66" cy="66" r="6"/></g></svg>
-          <small>Domino tiles</small></div>
-      </div>
-    </section>
 
     <section class="section">
       <div class="center">
@@ -674,7 +605,7 @@
           <ul>
             <li>55-card double-nine system, 0-0 through 9-9</li>
             <li>Domino size, 1.75 × 3.5 in (44 × 89 mm)</li>
-            <li>Tropical Deco art direction with 10 cultural icons</li>
+            <li>Bold pips, corner index, clean Tropical Deco look</li>
             <li>Premium linen-finish cardstock</li>
             <li>Designed with amor in Miami</li>
           </ul>

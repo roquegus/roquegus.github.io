@@ -4,7 +4,9 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 ## Unreleased
 
-(nothing)
+### Website
+- Removed the "10 Numbers. 10 Miami Icons" section and every mention of the icon system.
+- Replaced the two Netlify photos with renders of the actual cards (Clean theme in brand teal), served from `callenueve-web/assets/`. Share preview image updated.
 
 ## 0.3.1 - 2026-09-19
 

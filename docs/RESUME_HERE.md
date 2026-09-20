@@ -1,6 +1,6 @@
 # Resume here
 
-Last updated: 2026-09-19 (session 4). Keep this file true. Rewrite sections, do not append.
+Last updated: 2026-09-20 (session 5). Keep this file true. Rewrite sections, do not append.
 
 ## Current state
 
@@ -14,7 +14,7 @@ Last updated: 2026-09-19 (session 4). Keep this file true. Rewrite sections, do 
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
-- Website callenueve.com: landing page, real icon art, no placeholder copy, "coming soon" button.
+- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, "coming soon" button.
 
 ## In progress
 
@@ -31,7 +31,6 @@ Nothing half-built. The last session ended clean.
 
 ## Waiting on Gus
 
-- Product photos: the website still loads two JPEGs from the old calle9.netlify.app. He needs to upload them into `callenueve-web/assets/` (the sandbox cannot reach Netlify). Then switch the `img src` and `og:image`.
 - Shopify product link for the website Buy button.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
 - Whether custom decks should be sold on the website (the Studio is built for them; the site only sells one $29.99 deck).

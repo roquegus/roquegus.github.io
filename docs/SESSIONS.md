@@ -34,3 +34,9 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Gus then asked for the corner index back on Clean ("critical to the card game"). Preset changed, 0.3.1.
 - Commits: `fac5dce`, `8b07cd5`, `c628f0b`, plus the 0.3.1 commit. A `v0.3.0` tag exists locally only; the git proxy refuses tag pushes (403).
 - Open: same two items from session 3.
+
+## Session 5: 2026-09-20 - Website cleanup with real card renders
+- Removed the icon section and icon copy from callenueve.com. Price bullet and showcase copy now describe bold pips and the corner index.
+- Rendered the hero spread and the 9-9 close-up from the Studio renderer (Clean preset, teal accent) with headless Chromium, saved as JPEG in `callenueve-web/assets/`. Netlify image links are gone.
+- Method for next time: a throwaway `preview-test.tsx` in the Studio, built with a separate Vite config into the scratchpad, screenshotted with `/opt/pw-browsers/chromium`, converted with Pillow. Bebas Neue came from the `@fontsource/bebas-neue` npm package because Google Fonts is blocked in the sandbox.
+- Open: Shopify link; the "built-in chucho" claim on the site is still unverified.
