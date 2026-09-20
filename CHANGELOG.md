@@ -6,6 +6,11 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.5.1 - 2026-09-21
+
+### Fixed
+- Tuck box front draws a plaque in the back color behind a client logo, so white knockout logos stay visible on the light front panel.
+
 ## 0.5.0 - 2026-09-21
 
 ### Added

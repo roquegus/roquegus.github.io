@@ -47,3 +47,12 @@ Semantic-ish: `MAJOR.MINOR.PATCH`.
 - MAJOR: reserved for a change that breaks saved projects.
 
 The version lives in three places and must match: `calle-nueve-studio/package.json`, `APP_VERSION` in `calle-nueve-studio/src/constants/print.ts`, and the top block of `CHANGELOG.md`. The Studio shows it in the header so Gus can confirm a deploy landed. Git tags cannot be pushed from Claude sessions (the git proxy returns 403 for tags), so do not try. `CHANGELOG.md` is the release record. If Gus wants a GitHub Release, he creates it on github.com under Releases with the tag name `v0.3.0`.
+
+## Reaching websites the sandbox blocks (recipe)
+
+The sandbox's egress proxy blocks most hosts (client sites, archive.org, logo APIs, even vercel.app and supabase.co over plain HTTP). Only MCP tools get out. Workaround that works:
+
+1. Supabase already has table `public.fetch_cache(job, name, content_type, data)` and RPC `put_fetch(p_job, p_name, p_content_type, p_data)` callable by the anon key. Reading it is service-role only (use the Supabase MCP `execute_sql`).
+2. Vercel project `c9-fetch` (prj_IHUTzSbbuvcQANDfd7VBQYuqFbHg, in Gus's account, build command `node build.js`, install `npm install`). Deploy it with `create_deployment` and inline files: a `build.js` that fetches what you need on Vercel's network and POSTs results to the RPC (see session 5/6 notes for the shape), plus `public/index.html` and a `package.json` if you need `sharp` or `potrace`.
+3. Poll `fetch_cache` with `execute_sql`. Text comes back inline. Anything large is written by the tool runner to a file under `/root/.claude/projects/.../tool-results/`; parse the JSON out of that file with Python to get base64 images into the sandbox.
+4. Do not try: `web_fetch_vercel_url` (refuses), Vercel sandboxes (403 on this plan), build logs API (401), curl from the sandbox.

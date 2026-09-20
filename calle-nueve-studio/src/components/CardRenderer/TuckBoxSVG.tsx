@@ -258,7 +258,12 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
               ) : (
                 <>
                   {back.logo ? (
-                    <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={back.logoOrientation === "landscape" ? 460 : 350} scale={back.logoScale} />
+                    // Plaque in the back color so a white knockout logo stays visible on the light front
+                    <>
+                      <rect x={f.x + 40} y={f.y + 262} width={f.w - 80} height={356} rx={22} fill={backBg} />
+                      <rect x={f.x + 52} y={f.y + 274} width={f.w - 104} height={332} rx={16} fill="none" stroke={accent} strokeWidth={1.5} opacity={0.5} />
+                      <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={back.logoOrientation === "landscape" ? 400 : 300} scale={back.logoScale} />
+                    </>
                   ) : (
                     <CenterMedallion cx={fcx} cy={f.y + 440} color={backBg} accent={accent} />
                   )}

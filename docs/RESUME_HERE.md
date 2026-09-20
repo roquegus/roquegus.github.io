@@ -4,7 +4,7 @@ Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.5.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.5.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -19,7 +19,7 @@ Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do 
 
 ## In progress
 
-**Skyline Development client deck (started 2026-09-21).** Project "Skyline Development" exists in the Studio (order C9-0002, Clean preset, landscape logo mode preset, tuck box text filled in). Blocked on brand assets: the sandbox cannot reach skylinedevelopmentfl.com, any mirror, or the archive, so the logo file and exact colors are not in yet. The accent #1F2A44 is a placeholder. When Gus provides the logo (file upload) and colors (hex or a screenshot), set divider + backBackground to the primary color, upload the logo in Card Back (landscape if wide), save a custom preset named "Skyline Development", render a proof, and send him the proof link.
+**Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
 
 **Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
 

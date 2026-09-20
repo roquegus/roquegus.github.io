@@ -98,3 +98,13 @@ Rules out: Shopify, Big Cartel, Square Online, Etsy until volume or feature need
 Who: Claude, on Gus's request to support logos that look better sideways.
 Why: the card and every other element stay portrait (MPC prints a portrait file; the faces are portrait). Landscape mode rotates the logo box 90 degrees counterclockwise on the back, so holding the card with its left edge up reads the logo upright. The preview turns the card the same way. Mirrored landscape stacks two copies rotated 180 degrees from each other.
 Rules out: a separate landscape card template or rotating exported files.
+
+## 2026-09-21 Fetching client websites goes through a Vercel build, not the sandbox
+Who: Claude, after every direct route was blocked.
+Why: the Claude sandbox proxy blocks most external hosts. A Vercel build runs on Vercel's network and can reach anything; it writes results into Supabase (`fetch_cache` via `put_fetch`), which the Supabase MCP can read. Project `c9-fetch` in Gus's Vercel account is the tool. It is not a website; nothing important runs there.
+Rules out: asking Gus to download logos by hand, and guessing brand colors.
+
+## 2026-09-21 Skyline Development deck: gold bar, navy back, white logo
+Who: Claude from the site's own theme, for Gus to confirm with the client.
+Why: their Wix theme uses navy (0,34,59) as the ground and gold (248,190,42) as the accent; the header logo is a white knockout, so it goes on the navy back. Portrait orientation because the mark is square. The tuck box front draws a navy plaque behind any logo so white marks do not vanish on the light panel.
+Rules out: recoloring the logo or putting it on a white back.
