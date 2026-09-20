@@ -42,3 +42,4 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Open: Shopify link; the "built-in chucho" claim on the site is still unverified.
 - Later the same day: How to Play page (`callenueve-web/play/`) from web research, and the 56th QR rules card in the Studio (`RulesCardSVG`, `RulesCardPanel`, `constants/rulescard.ts`, ZIP export, preflight). `qrcode` npm package added. Studio 0.4.0.
 - Note: most rules sites are blocked by the sandbox proxy; only search snippets worked. The page's rules are consistent across Pagat, dimecuba, thecubanhistory and BoardGameGeek summaries.
+- Gus corrected the opening rule: the first-hand opener is decided several ways (draw for highest card, La Gorda, highest double); afterwards the winner of the last hand opens. Page and decision log updated.

@@ -81,5 +81,10 @@ Rules out: printing rules on the cards or in the box only, and QR links to third
 
 ## 2026-09-20 The rules page teaches Cuban partnership double-nine as the standard game
 Who: Claude, from web research (Pagat, Cuban sources), accepted by Gus's brief.
-Why: 4 players in pairs, 10 cards each, 15 asleep, 9|9 opens the first hand then the previous winner opens, play to the right, tranca goes to the lowest count, winners score the opponents' remaining pips, first to 100. Capicua bonus, pollona, counting all four hands and rotating the opening are listed as house rules because sources differ.
+Why: 4 players in pairs, 10 cards each, 15 asleep, play to the right, tranca goes to the lowest count, winners score the opponents' remaining pips, first to 100. Capicua bonus, pollona, counting all four hands and rotating the opening are listed as house rules because sources differ.
 Rules out: presenting draw-style dominoes or the double-six game as the default.
+
+## 2026-09-20 The first-hand opener is presented as a choice; after that the winner of the last hand opens
+Who: Gus, correcting the page ("there's multiple ways to decide who opens the first hand. then, whoever won the last hand, goes out first").
+Why: sources give three methods for the first hand: draw a card for the highest total before the deal (most common in Cuba and Miami), whoever holds La Gorda, or the highest double. The page lists all three and says to pick one. Every hand after the first is opened by whoever won the previous hand, with any card.
+Rules out: stating La Gorda as the only way to open the first hand.

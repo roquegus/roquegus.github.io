@@ -4,7 +4,8 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 ## Unreleased
 
-(nothing)
+### Website
+- How to Play: the first-hand opening now lists the three common methods (draw for it, La Gorda, highest double) instead of only La Gorda. Winner of the last hand opens every hand after.
 
 ## 0.4.0 - 2026-09-20
 
