@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { getProjectByProofToken, submitProofResponse, type CloudProject } from "../lib/supabase";
 import { generateDeck } from "../utils/deck";
 import DominoCardSVG from "../components/CardRenderer/DominoCardSVG";
+import CardBack from "../components/CardRenderer/CardBack";
+import RulesCardSVG from "../components/CardRenderer/RulesCardSVG";
 import { PRINT } from "../constants/print";
+import { getRulesCard } from "../constants/rulescard";
 
 type Props = {
   token: string;
@@ -16,6 +19,12 @@ export default function ProofScreen({ token }: Props) {
   const [submitted, setSubmitted] = useState(false);
   const [note, setNote] = useState("");
   const [choice, setChoice] = useState<"approved" | "changes_requested" | null>(null);
+  const [viewportW, setViewportW] = useState(() => window.innerWidth);
+  useEffect(() => {
+    const onResize = () => setViewportW(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -65,9 +74,11 @@ export default function ProofScreen({ token }: Props) {
   }
 
   const deck = generateDeck();
-  const gs = 0.13;
+  // On phones size the cards so four fit per row; on wider screens keep the fixed thumbnail
+  const gs = Math.min(0.13, (viewportW - 24 - 3 * 6) / 4 / PRINT.width);
   const cardW = PRINT.width * gs;
   const cardH = PRINT.height * gs;
+  const rules = getRulesCard(project.design_tokens);
 
   if (submitted) {
     return (
@@ -104,7 +115,7 @@ export default function ProofScreen({ token }: Props) {
 
       <div className="proof-intro">
         <p>
-          Please review all 55 card designs below. When you're satisfied, click <strong>Approve Design</strong>.
+          Please review the card back and all 55 faces below. When you're satisfied, click <strong>Approve Design</strong>.
           If anything needs to change, click <strong>Request Changes</strong> and leave a note.
         </p>
       </div>
@@ -121,6 +132,14 @@ export default function ProofScreen({ token }: Props) {
       )}
 
       <div className="proof-card-grid">
+        <div className="proof-card-cell proof-card-hero" style={{ width: cardW, height: cardH + 16 }} title="Card back">
+          <div style={{ width: cardW, height: cardH, overflow: "hidden" }}>
+            <div style={{ transform: `scale(${gs})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+              <CardBack tokens={project.design_tokens} />
+            </div>
+          </div>
+          <div className="proof-card-label">Back</div>
+        </div>
         {deck.map((card) => (
           <div
             key={card.id}
@@ -141,6 +160,16 @@ export default function ProofScreen({ token }: Props) {
             <div className="proof-card-label">{card.label}{card.isHero ? " ★" : ""}</div>
           </div>
         ))}
+        {rules.enabled && (
+          <div className="proof-card-cell" style={{ width: cardW, height: cardH + 16 }} title="Rules card">
+            <div style={{ width: cardW, height: cardH, overflow: "hidden" }}>
+              <div style={{ transform: `scale(${gs})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+                <RulesCardSVG tokens={project.design_tokens} />
+              </div>
+            </div>
+            <div className="proof-card-label">Rules</div>
+          </div>
+        )}
       </div>
 
       {!alreadyResponded && (

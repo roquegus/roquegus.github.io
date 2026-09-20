@@ -694,8 +694,15 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 }
 
 /* ── Proof Screen ────────────────────────────────────── */
+/* The app shell locks body/#root to the viewport with overflow hidden (right for the
+   editor). The proof page is its own scroll container so phones can scroll it. */
 .proof-screen {
-  min-height: 100vh;
+  height: 100vh;
+  height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
   background: #0f0f12;
   color: #e8e8f0;
   font-family: system-ui, -apple-system, sans-serif;
@@ -879,4 +886,17 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
   font-size: 11px;
   border-top: 1px solid #1a1a20;
   margin-top: 40px;
+}
+
+/* Proof page on phones. Kept last so it wins over the desktop rules above. */
+@media (max-width: 640px) {
+  .proof-header { padding: 16px; gap: 14px; }
+  .proof-title { font-size: 17px; }
+  .proof-intro { padding: 0 16px; margin-top: 16px; font-size: 14px; }
+  .proof-already-responded { margin: 0 16px 12px; }
+  .proof-card-grid { padding: 12px; gap: 6px; justify-content: center; }
+  .proof-response-panel { margin: 24px 12px 0; padding: 20px 16px; }
+  .proof-choice-row { flex-direction: column; }
+  .proof-choice-btn { padding: 14px; font-size: 15px; }
+  .proof-submit-btn { padding: 14px; font-size: 15px; }
 }

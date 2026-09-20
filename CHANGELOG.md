@@ -6,6 +6,14 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.5.2 - 2026-09-21
+
+### Fixed
+- Customer proof page scrolls on phones (it is now its own scroll container; the app shell had locked the page to the screen height). Cards size to four per row on small screens, buttons stack, padding tightened.
+
+### Added
+- Proof page shows the card back first and the rules card last, so the client sees their logo and the QR card.
+
 ## 0.5.1 - 2026-09-21
 
 ### Fixed
