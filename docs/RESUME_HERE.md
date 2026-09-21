@@ -1,6 +1,6 @@
 # Resume here
 
-Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do not append.
+Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do not append.
 
 ## Current state
 
@@ -19,7 +19,11 @@ Last updated: 2026-09-21 (session 6). Keep this file true. Rewrite sections, do 
 
 ## In progress
 
-**Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
+**Miami souvenir deck line (research done 2026-09-21, nothing built).** Gus wants 2 to 4 Miami designs for souvenir shops and museum stores at $20 to $25. Research and four concepts (Domino Park, Deco Beach, Vice Nights, Gran Habana) with palettes, box specs, channels and pricing are in `docs/RESEARCH_souvenir_line.md`; the full brief with mockups is the artifact "Miami Souvenir Decks". Recommendation: build Domino Park and Deco Beach first at $24.99. Waiting on Gus to pick two, confirm names and price. Then: new back patterns (tile star, stepped sunburst, grid, lattice), rooster and lifeguard tower vector marks, presets, proof sheets.
+
+**Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), navy pips and navy index numbers (Gus's call, 2026-09-21), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
+
+**MCB deck.** Order C9-0001 for Sunem Roque, status proof_sent (2026-09-21). Proof link given to Gus: `?proof=5f349dcc-f1dc-479f-bfe7-9db1a4d6afb1`. Waiting on the customer's response.
 
 **Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
 
@@ -41,6 +45,7 @@ What is left, in order:
 
 ## Waiting on Gus
 
+- Souvenir line: which two concepts go first, deck names, and price (see In progress).
 - The Stripe Payment Link (see In progress).
 - The rules page lists hola@callenueve.com for custom decks. Confirm that mailbox exists or give a different address.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
