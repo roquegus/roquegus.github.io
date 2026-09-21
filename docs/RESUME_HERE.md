@@ -4,7 +4,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.8.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.8.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -52,6 +52,8 @@ What is left, in order:
 6. Production queue dashboard.
 
 ## Waiting on Gus
+
+- MPC order 160921267374 (placed 2026-09-21 03:35 UTC, deck unknown): MPC flagged white in the box bleed. Fixed in 0.8.1. Gus re-exports the box PDF from the Studio, clicks Modify on the MPC order, replaces the box artwork, and replies to Jojo at MPC.
 
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 

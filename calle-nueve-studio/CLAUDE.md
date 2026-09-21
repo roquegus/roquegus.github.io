@@ -137,3 +137,5 @@ PRINT = { width: 597, height: 1122, trimInset: 36, safeInset: 72, dpi: 300 }  //
 Safe zone rect: x=72, y=72, width=453, height=978
 Trim rect: x=36, y=36, width=525, height=1050  (= 1.75 × 3.5 in)
 Divider Y: 561 (H/2)
+
+**Tuck box bleed (2026-09-21).** The box sheet is not clipped to the dieline. The back pattern must cover the entire 411 x 449.6 pt sheet; MPC rejects white in the bleed. Only the front panel has its own clip.

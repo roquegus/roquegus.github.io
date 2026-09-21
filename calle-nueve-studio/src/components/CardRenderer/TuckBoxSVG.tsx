@@ -200,7 +200,10 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         </clipPath>
       </defs>
 
-      <g clipPath="url(#tuckClip)">
+      {/* No clip on the sheet: MPC wants the artwork to cover the whole bleed sheet,
+          not just the die-cut plus 8.5 pt. A clipped export left white slivers in the
+          bleed at concave corners (MPC flagged it on order 160921267374). */}
+      <g>
         {/* Whole sheet carries the card-back pattern so sides, back and flaps wrap seamlessly */}
         <rect x={0} y={0} width={W} height={H} fill={backBg} />
         <PatternFill

@@ -6,6 +6,11 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.8.1 - 2026-09-21
+
+### Fixed
+- Tuck box exports now cover the entire bleed sheet with the back pattern. The old export clipped the art to the die-cut plus 8.5 pt, which left white slivers in the bleed at inside corners; MPC flagged it on order 160921267374.
+
 ## 0.8.0 - 2026-09-21
 
 ### Added
