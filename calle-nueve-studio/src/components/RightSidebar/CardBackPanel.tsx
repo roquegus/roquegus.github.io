@@ -8,6 +8,7 @@ const PATTERN_OPTIONS: { value: BackPattern; label: string }[] = [
   { value: "mosaic", label: "Cuban Mosaico" },
   { value: "cuban-tile", label: "Cuban Floor Tile" },
   { value: "deco-rays", label: "Deco Sunburst" },
+  { value: "miami-sunset", label: "Miami Sunset (palms)" },
   { value: "diamonds", label: "Diamonds" },
   { value: "sunburst", label: "Sunburst" },
   { value: "art-deco", label: "Art Deco" },
@@ -118,11 +119,13 @@ export default function CardBackPanel() {
           <ControlRow label="Back Color 4">
             <ColorPicker value={c.backTertiary ?? c.backBackground} onChange={(v) => updateColors({ backTertiary: v })} />
           </ControlRow>
-          {(b.pattern === "cuban-tile" || b.pattern === "deco-rays") && (
+          {(b.pattern === "cuban-tile" || b.pattern === "deco-rays" || b.pattern === "miami-sunset") && (
             <p className="panel-hint">
               {b.pattern === "cuban-tile"
                 ? "Tile: Background is the cream, Accent the diamond and frame, Color 3 the grid, Color 4 the small dots."
-                : "Sunburst: Background is the ground, Accent the lines and frame, Color 3 the rays, Color 4 the inner ray and porthole."}
+                : b.pattern === "deco-rays"
+                  ? "Sunburst: Background is the ground, Accent the lines and frame, Color 3 the rays, Color 4 the inner ray and porthole."
+                  : "Sunset: Background is the sky at the edges, Accent the palms, Color 3 the sunset band and sun, Color 4 the sun core and frame."}
             </p>
           )}
           <ControlRow label="Frame">

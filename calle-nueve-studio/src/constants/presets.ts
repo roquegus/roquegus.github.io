@@ -561,6 +561,80 @@ export const PRESETS: Record<string, DesignTokens> = {
       showDieline: true,
     },
   },
+
+  // Retro Miami sunset deck (2026-09-21): cream tiles with flat navy dots and a
+  // coral bar, a symmetric sunset back with a banded sun and palm silhouettes,
+  // sand label box with a flamingo stamp.
+  "Miami Sunset": {
+    background: { color: "#FFF6E5", texture: "none", opacity: 1 },
+    colors: {
+      pip: "#14213D",
+      pipSecondary: "#14213D",
+      border: "#14213D",
+      divider: "#FF6F61",
+      index: "#14213D",
+      footer: "#14213D",
+      heroAccent: "#FF6F61",
+      backBackground: "#1FA5A0",
+      backAccent: "#14213D",
+      backSecondary: "#FF6F61",
+      backTertiary: "#FFB347",
+    },
+    pips: {
+      style: "classic-dots",
+      size: 118,
+      spacing: 8,
+      spread: 24,
+      strokeWidth: 0,
+      fillMode: "solid",
+      symmetryLock: true,
+      flat: true,
+    },
+    divider: {
+      type: "bar",
+      thickness: 18,
+      width: 0.96,
+      ornament: "spinner",
+      ornamentSize: 34,
+    },
+    border: {
+      outerWidth: 0,
+      innerWidth: 0,
+      cornerDecorations: false,
+      heroFrame: false,
+    },
+    typography: {
+      indexFont: "Bebas Neue",
+      footerFont: "Bebas Neue",
+      indexSize: 34,
+      footerSize: 14,
+      tracking: 0,
+      indexVisible: true,
+    },
+    footer: { text: "", visible: false },
+    back: {
+      pattern: "miami-sunset",
+      scale: 1,
+      rotation: 0,
+      centerMedallion: false,
+      nonDirectionalCheck: true,
+      frame: false,
+    },
+    tuckBox: {
+      frontStyle: "cartouche",
+      frontColor: "#FFF6E5",
+      title: "MIAMI SUNSET",
+      subtitle: "MIAMI · FLORIDA",
+      tagline: "55 CARDS · DOUBLE NINE",
+      tagline2: "55 CARTAS · DOBLE NUEVE",
+      edition: "SOUVENIR EDITION",
+      url: "CALLENUEVE.COM",
+      backText:
+        "Palms, a sunset and a game of dominoes. Miami, in your pocket.\nPalmas, un atardecer y una partida de dominó. Miami, en tu bolsillo.\nScan the last card to learn the game in two minutes.",
+      showIcons: false,
+      showDieline: true,
+    },
+  },
 };
 
 export const PRESET_NAMES = Object.keys(PRESETS);

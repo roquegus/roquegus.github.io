@@ -36,6 +36,7 @@ export type BackPattern =
   | "mosaic"
   | "cuban-tile"
   | "deco-rays"
+  | "miami-sunset"
   | "diamonds"
   | "sunburst"
   | "art-deco"

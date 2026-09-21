@@ -133,3 +133,8 @@ Rules out: asking Gus to resize or crop anything himself.
 Who: Claude from the site's theme; it is Gus's own company so he confirms directly.
 Why: biscaynestrategy.com is a Squarespace site with black sections and a white script wordmark; its theme accent is navy hsl(218, 37%, 23%), which is #253551. Black back with the white logo landscape (the mark is 2.3 times wider than tall), white faces with black dots and a navy bar. The site serves the logo at 2500 px, so that original was used instead of the 1500 px page version.
 Rules out: inverting the logo to black on white; a navy back (the brand reads black and white).
+
+## 2026-09-21 Miami Sunset deck: symmetric sunset with palms, flamingo on the box
+Who: Gus asked for a clean deck that "screams Miami" with flamingos or palms, inspired by his reference images; Claude chose the composition.
+Why: the references are retro sunset posters (teal to orange to coral, palm silhouettes, a flamingo on a gradient). A single flamingo on the back would be one-way, so the back uses palms in the lower left with a 180-degree copy in the upper right around a banded sun, which reads the same from every seat. The flamingo carries the box. Faces stay Clean-style (cream, flat navy dots, coral bar) so the deck is easy to read at the table.
+Rules out: a one-way flamingo back (can be added as a variant if Gus prefers it), gradients that pass through grey (a warm pale stop sits between the teal and the sunset).

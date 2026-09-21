@@ -4,13 +4,13 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.6.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.7.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
-- 10 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean, Domino Park, Deco Beach. Custom presets save per project.
+- 11 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean, Domino Park, Deco Beach, Miami Sunset. Custom presets save per project.
 - Pip styles: Cuban icons (real vector art), classic dots, rings, numbers, diamonds. Pips are one size regardless of count.
-- Card back patterns (Cuban Mosaico, Cuban Floor Tile, Deco Sunburst, Diamonds, Sunburst, Art Deco, Plain, Custom), up to four back colors, frame, three medallion styles, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
+- Card back patterns (Cuban Mosaico, Cuban Floor Tile, Deco Sunburst, Miami Sunset, Diamonds, Sunburst, Art Deco, Plain, Custom), up to four back colors, frame, three medallion styles, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
 - Tuck box front styles: Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
@@ -20,7 +20,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 ## In progress
 
-**Miami souvenir deck line (first two decks built 2026-09-21, Studio 0.6.0).** Gus approved the research recommendation: Domino Park and Deco Beach first, at $24.99, working names kept. Both exist as Studio presets and as Studio projects ("Domino Park (souvenir)" C9-0003, "Deco Beach (souvenir)" C9-0004, status draft, Gus's account). Faces, backs and tuck boxes rendered and checked against the trim and safe lines. Research for all four concepts is in `docs/RESEARCH_souvenir_line.md`; the brief with mockups is the artifact "Miami Souvenir Decks". Stamps drawn and loaded (see below). Not built: Vice Nights, Gran Habana. Next for this line: Gus reviews both decks in the Studio, then orders a sample of each from MPC (matte aqueous box, gold foil on Domino Park, silver on Deco Beach) and gets the per-deck cost for the pricing math.
+**Miami souvenir deck line (three decks built 2026-09-21, Studio 0.7.0).** Gus approved the research recommendation: Domino Park and Deco Beach at $24.99, then asked for a third, simpler deck that "screams Miami" with flamingos or palms, based on the four reference images in his Notion page "The Double 9 > Style Guide / Deck Design" (retro sunset gradients, palm silhouettes, a flamingo). Built "Miami Sunset". All three exist as Studio presets and projects ("Domino Park (souvenir)" C9-0003, "Deco Beach (souvenir)" C9-0004, "Miami Sunset (souvenir)" C9-0007, status draft). Faces, backs and tuck boxes rendered and checked against the trim and safe lines; stamps drawn as vector art. Research for all concepts is in `docs/RESEARCH_souvenir_line.md`. Gus mentioned a "Concept Art" folder that no session could find (not in the repo, Drive, Notion or the sandbox); if he has newer references, he pastes them into the chat. Not built: Vice Nights, Gran Habana. Next: Gus reviews the three decks, then orders one sample of each from MPC and reports the per-deck cost.
 
 **Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), navy pips and navy index numbers (Gus's call, 2026-09-21), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
 
@@ -52,7 +52,7 @@ What is left, in order:
 
 ## Waiting on Gus
 
-- Souvenir line: look at Domino Park and Deco Beach in the Studio and say what to change. Then order one sample of each from MPC and report the per-deck cost.
+- Souvenir line: look at Domino Park, Deco Beach and Miami Sunset in the Studio and say what to change. Then order one sample of each from MPC and report the per-deck cost. If a "Concept Art" folder exists with newer references, paste the images into the chat.
 - The Stripe Payment Link (see In progress).
 - The rules page lists hola@callenueve.com for custom decks. Confirm that mailbox exists or give a different address.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.

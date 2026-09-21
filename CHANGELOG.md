@@ -6,6 +6,12 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.7.0 - 2026-09-21
+
+### Added
+- "Miami Sunset" preset, the third souvenir deck: cream tiles with flat navy dots and a coral bar, a symmetric sunset back (teal to orange to coral, a banded sun, palm silhouettes in the lower left and mirrored upper right), sand label box with a flamingo stamp.
+- Card back pattern "Miami Sunset (palms)", drawn in code with the four back colors.
+
 ## 0.6.1 - 2026-09-21
 
 ### Added

@@ -9,3 +9,5 @@ Vector art used by Studio projects, kept here so it is never lost. The Studio st
 
 To reuse: Tuck Box panel > Upload Stamp (stamps) or Card Back panel > Upload Client Logo (logos). SVG is preferred over PNG.
 - `clients/biscayne-strategy-white-1500.png`: Biscayne Strategy white script logo from biscaynestrategy.com (1500 px page version, trimmed). The project itself holds the 2500 px original.
+- `stamps/flamingo-miami-sunset.svg`: flamingo, coral #FF6F61. Tuck box stamp on "Miami Sunset (souvenir)".
+- `stamps/palm-miami-sunset.svg`: palm silhouette, navy #14213D. The same shape is drawn in code by `Palm` in `CardBack.tsx` for the Miami Sunset back; this file is the reference copy.

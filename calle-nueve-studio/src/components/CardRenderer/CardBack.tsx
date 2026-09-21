@@ -231,6 +231,109 @@ function DecoRaysPattern({
   );
 }
 
+// Blend two hex colors; t = 0 gives a, t = 1 gives b.
+function mixHex(a: string, b: string, t: number): string {
+  const pa = a.replace("#", "");
+  const pb = b.replace("#", "");
+  const out = [0, 2, 4].map((i) => {
+    const va = parseInt(pa.slice(i, i + 2), 16);
+    const vb = parseInt(pb.slice(i, i + 2), 16);
+    return Math.round(va + (vb - va) * t).toString(16).padStart(2, "0");
+  });
+  return `#${out.join("")}`;
+}
+
+// A palm silhouette, crown at the origin, trunk running down to (70, 660). Drawn
+// once here and reused for the Miami Sunset back and the tuck box.
+const PALM_FRONDS = [
+  "M 0 0 Q -134 -108 -320 -125 Q -186 -17 0 0 Z",
+  "M 0 0 Q -43 -184 -188 -313 Q -145 -129 0 0 Z",
+  "M 0 0 Q 47 -177 -13 -350 Q -61 -173 0 0 Z",
+  "M 0 0 Q 145 -129 188 -313 Q 43 -184 0 0 Z",
+  "M 0 0 Q 186 -17 320 -125 Q 134 -108 0 0 Z",
+  "M 0 0 Q -142 -21 -297 48 Q -155 70 0 0 Z",
+  "M 0 0 Q 155 70 297 48 Q 142 -21 0 0 Z",
+  "M 0 0 Q -131 60 -235 196 Q -104 135 0 0 Z",
+  "M 0 0 Q 104 135 235 196 Q 131 60 0 0 Z",
+];
+export function Palm({ x, y, scale, color, flip = false }: { x: number; y: number; scale: number; color: string; flip?: boolean }) {
+  return (
+    <g transform={`translate(${x},${y}) scale(${flip ? -scale : scale},${scale})`} fill={color} stroke={color} strokeLinecap="round" strokeLinejoin="round">
+      <path d="M 70 660 C 10 490, -40 310, 0 10" fill="none" strokeWidth={46} />
+      <path d="M 90 660 C 50 540, 20 450, 25 330" fill="none" strokeWidth={32} />
+      <g strokeWidth={6}>
+        {PALM_FRONDS.map((d, i) => (
+          <path key={i} d={d} />
+        ))}
+      </g>
+      <circle cx={-20} cy={34} r={26} />
+      <circle cx={26} cy={36} r={26} />
+      <circle cx={4} cy={66} r={24} />
+    </g>
+  );
+}
+
+// Miami Sunset (souvenir deck): a sky that runs from the ground color at the top
+// and bottom edges to the secondary color in the middle, a banded sun in the
+// center, and palms in the lower-left corner with a 180-degree copy in the
+// upper right, so the back reads the same either way up.
+function MiamiSunsetPattern({
+  color,
+  accent,
+  secondary,
+  tertiary,
+  fillW = W,
+  fillH = H,
+  centerX = W / 2,
+  centerY = H / 2,
+}: { color: string; accent: string; secondary: string; tertiary: string; fillW?: number; fillH?: number; centerX?: number; centerY?: number }) {
+  const id = `sunset-${Math.round(centerX)}-${Math.round(centerY)}-${Math.round(fillH)}-${secondary.replace("#", "")}`;
+  const sunR = 200;
+  const halfH = fillH / 2;
+  // A warm pale stop between the sky color and the sunset keeps the blend from going grey
+  const mint = mixHex(color, "#FFF3D6", 0.55);
+  const palms = (rot: number) => (
+    <g transform={rot ? `rotate(180 ${centerX} ${centerY})` : undefined}>
+      <Palm x={centerX - 235} y={centerY + halfH - 300} scale={0.6} color={accent} />
+      <Palm x={centerX + 110} y={centerY + halfH - 200} scale={0.4} color={accent} flip />
+    </g>
+  );
+  const sunPale = mixHex(tertiary, "#FFF8E1", 0.55);
+  return (
+    <g>
+      <defs>
+        <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={color} />
+          <stop offset="0.2" stopColor={mint} />
+          <stop offset="0.38" stopColor={tertiary} />
+          <stop offset="0.5" stopColor={secondary} />
+          <stop offset="0.62" stopColor={tertiary} />
+          <stop offset="0.8" stopColor={mint} />
+          <stop offset="1" stopColor={color} />
+        </linearGradient>
+        <linearGradient id={`${id}-sun`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={sunPale} />
+          <stop offset="0.5" stopColor={tertiary} />
+          <stop offset="1" stopColor={sunPale} />
+        </linearGradient>
+        <clipPath id={`${id}-sunclip`}>
+          <circle cx={centerX} cy={centerY} r={sunR} />
+        </clipPath>
+      </defs>
+      <rect x={0} y={0} width={fillW} height={fillH} fill={`url(#${id}-sky)`} />
+      <circle cx={centerX} cy={centerY} r={sunR + 30} fill={sunPale} opacity={0.3} />
+      <circle cx={centerX} cy={centerY} r={sunR} fill={`url(#${id}-sun)`} />
+      <g clipPath={`url(#${id}-sunclip)`} fill={secondary} opacity={0.7}>
+        {[-150, -96, -48, 48, 96, 150].map((dy, i) => (
+          <rect key={i} x={centerX - sunR} y={centerY + dy - (i % 3 === 0 ? 5 : i % 3 === 1 ? 8 : 11)} width={sunR * 2} height={i % 3 === 0 ? 10 : i % 3 === 1 ? 16 : 22} />
+        ))}
+      </g>
+      {palms(0)}
+      {palms(180)}
+    </g>
+  );
+}
+
 // Heavy frame for the tile back: a wide accent band at the trim-safe line and a
 // thin tertiary line inside it.
 function TileFrame({ accent, tertiary }: { accent: string; tertiary: string }) {
@@ -308,6 +411,8 @@ export function PatternFill({
       return <CubanTilePattern scale={scale} rotation={rotation} color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
     case "deco-rays":
       return <DecoRaysPattern color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
+    case "miami-sunset":
+      return <MiamiSunsetPattern color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
     case "diamonds":
       return <DiamondsPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
     case "sunburst":
@@ -521,6 +626,8 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
         return <CubanTilePattern scale={back.scale} rotation={back.rotation} color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
       case "deco-rays":
         return <DecoRaysPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
+      case "miami-sunset":
+        return <MiamiSunsetPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
       case "diamonds":
         return <DiamondsPattern scale={back.scale} rotation={back.rotation} color={colors.backBackground} accent={colors.backAccent} />;
       case "sunburst":
@@ -548,7 +655,8 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
       )}
       {showFrame && back.pattern === "cuban-tile" && <TileFrame accent={colors.backAccent} tertiary={tertiary} />}
       {showFrame && back.pattern === "deco-rays" && <DecoFrame accent={colors.backAccent} />}
-      {showFrame && back.pattern !== "cuban-tile" && back.pattern !== "deco-rays" && <BackFrame accent={colors.backAccent} />}
+      {showFrame && back.pattern === "miami-sunset" && <DecoFrame accent={tertiary} />}
+      {showFrame && back.pattern !== "cuban-tile" && back.pattern !== "deco-rays" && back.pattern !== "miami-sunset" && <BackFrame accent={colors.backAccent} />}
       {back.centerMedallion && (
         <Medallion style={back.medallionStyle} cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />
       )}
