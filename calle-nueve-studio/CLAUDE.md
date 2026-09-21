@@ -139,3 +139,5 @@ Trim rect: x=36, y=36, width=525, height=1050  (= 1.75 × 3.5 in)
 Divider Y: 561 (H/2)
 
 **Tuck box bleed (2026-09-21).** The box sheet is not clipped to the dieline. The back pattern must cover the entire 411 x 449.6 pt sheet; MPC rejects white in the bleed. Only the front panel has its own clip, and its white bleed strip below the cut line is inset by one bleed width on each side so the neighbouring bottom flaps keep the pattern in their bleed (MPC ticket 812727).
+
+**Rendering print files outside the browser (2026-09-21).** Plain `chromium --screenshot` caps the viewport at about 1034 px tall, so anything taller (a 1122 px card, the box sheet) loses its bottom. Use Playwright instead: `playwright-core` in the scratchpad with `executablePath` set to `/opt/pw-browsers/chromium_headless_shell-1194/chrome-linux/headless_shell`, `setViewportSize` per file, `page.screenshot({ clip, fullPage: true })`. The harness is a throwaway `src/preview-test.tsx` that reads `location.hash` for the card index (0-54 faces, 55 back, 56 rules card, 57 box), served from the built preview with `python3 -m http.server 4173`. Delete the harness files before committing.

@@ -53,6 +53,8 @@ What is left, in order:
 
 ## Waiting on Gus
 
+- Local printer test: the Pristine Pools print package (ZIP) and a Gmail draft "Quote request: one sample deck..." are ready. Gus adds a printer's address, attaches the ZIP, sends. Candidates: Mr. Playing Card (Orlando, 15-deck minimum, own boxes), Greener Printer (no minimum, mail order), a Miami print shop of his choice.
+
 
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 
