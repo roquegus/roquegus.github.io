@@ -4,7 +4,8 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 ## Unreleased
 
-(nothing)
+### Website
+- Buy buttons on callenueve.com and /play go to the Stripe payment link. "Coming soon" bar and seal replaced with "available now". New /thanks page for after payment.
 
 ## 0.8.2 - 2026-09-21
 

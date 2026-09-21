@@ -17,7 +17,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
 - Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Social accounts not yet created.
-- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, "coming soon" button. How to Play page at /play with full Cuban double-nine rules, glossary and buy CTA.
+- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, Buy buttons on the Stripe payment link. How to Play page at /play with full Cuban double-nine rules, glossary and buy CTA.
 
 ## In progress
 
@@ -33,14 +33,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 **MCB deck (Miami Chic Balloons, Sunem's company).** Order C9-0001, status printing. MPC order 160921267374 placed 2026-09-21; MPC flagged a white edge on the bottom flaps (the front panel's white bleed strip overlapped the flaps' bleed). Gus told MPC to proceed on 2026-09-21; those flap edges tuck inside the box. Real fix shipped in 0.8.2 for future orders. Do not touch this project.
 
-**Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
-
-What is left, in order:
-1. Gus: switch Stripe to the live account and finish activation (business details, bank).
-2. Gus: Product catalog > Add product: "Calle Nueve Deck", one-off, $29.99.
-3. Gus: Payments > Payment Links > New: that product, quantity adjustable, collect shipping address (US), shipping rate "USPS First Class" $4.95, after payment redirect to https://callenueve.com/thanks. Copy the buy.stripe.com link.
-4. Claude: point every Buy button on `callenueve-web/index.html` and `callenueve-web/play/index.html` at the link, label "Buy now, $29.99", remove the "coming soon" announcement bar and seal, build `callenueve-web/thanks/index.html`.
-5. Later, if volume grows: Shopify Basic, or QPMN (MPC's print-on-demand marketplace with Shopify integration) for zero inventory.
+**Checkout is live (2026-09-21).** Stripe account "Calle Nueve" activated (live keys); Stripe was still running its new-account review on Sep 21 (payouts paused 2 to 3 days, link works). Payment link `https://buy.stripe.com/eVq28q0TC7Wr9HF6C84ZG00` for "Calle Nueve Deck" $29.99 is on every Buy button on callenueve.com and /play, the "coming soon" bar and seal are gone, and `/thanks/` exists. Still to set on the link in Stripe (Gus, under Payment Links > the link > More options): adjustable quantity on, a shipping rate (USPS First Class $4.95), and the after-payment redirect to https://callenueve.com/thanks. Automatic tax is on (Stripe Tax; fine, small fee per order). Fulfilment is manual: Stripe emails Gus on each order; he ships and marks it.
 
 ## Next (in Gus's priority order, none started)
 
@@ -59,7 +52,7 @@ What is left, in order:
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 
 - Souvenir line: look at Domino Park, Deco Beach, Miami Sunset and Flamingo Card in the Studio and say what to change. Pick which Miami deck goes to print. Then order one sample of each from MPC and report the per-deck cost.
-- The Stripe Payment Link (see In progress).
+- Stripe: finish the review if Stripe emails for a document; set quantity, shipping rate and the /thanks redirect on the payment link.
 - Gmail "Send mail as" for hola@callenueve.com and the SPF record edit (Part 2 and 3 of the inbox walkthrough in session 7) are not done yet; replies still go out from the personal Gmail until then.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
 - Whether custom decks should be sold on the website (the Studio is built for them; the site only sells one $29.99 deck).
