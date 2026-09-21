@@ -195,8 +195,14 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
           <path d={lidTongue(B)} />
           <path d={bottomTongue(B)} />
         </clipPath>
+        {/* The front panel plus its bottom bleed, with the bleed strip inset by one
+            bleed width on each side. The bottom flaps sit right next to that strip
+            and need the dark pattern in their own bleed; a full-width white strip
+            printed as a white edge on the flaps (MPC ticket 812727). */}
         <clipPath id="tuckFrontClip">
-          <rect x={f.x} y={f.y} width={f.w} height={f.h + B} />
+          <path
+            d={`M${f.x},${f.y} L${f.x + f.w},${f.y} L${f.x + f.w},${f.y + f.h} L${f.x + f.w - B},${f.y + f.h} L${f.x + f.w - B},${f.y + f.h + B} L${f.x + B},${f.y + f.h + B} L${f.x + B},${f.y + f.h} L${f.x},${f.y + f.h} Z`}
+          />
         </clipPath>
       </defs>
 

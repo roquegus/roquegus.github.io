@@ -6,6 +6,11 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.8.2 - 2026-09-21
+
+### Fixed
+- Tuck box: the front panel's white bleed strip below its cut line no longer runs the full panel width. It is inset by one bleed width on each side so the two bottom flaps next to it keep the dark pattern in their own bleed. MPC's picture on ticket 812727 showed the white edge on the flap; 0.8.1 had fixed the wrong thing.
+
 ## 0.8.1 - 2026-09-21
 
 ### Fixed

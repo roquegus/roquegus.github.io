@@ -4,7 +4,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.8.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.8.2 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -31,7 +31,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 **Souvenir stamps (done 2026-09-21).** ChatGPT output was poor, so Claude drew the rooster and the lifeguard tower as vector art (`calle-nueve-studio/art/stamps/`) and loaded them as tuck box stamps on both souvenir projects. Both card backs stay as the Studio draws them (the ChatGPT back prompts are optional). Gus to review the stamps on the box; small edits (thicker tail, different pose) are quick.
 
-**MCB deck (Miami Chic Balloons, Sunem's company).** Order C9-0001, status printing. MPC order 160921267374 placed 2026-09-21; MPC flagged white in the box bleed, fixed in 0.8.1, box re-uploaded as PNG. Do not touch this project.
+**MCB deck (Miami Chic Balloons, Sunem's company).** Order C9-0001, status printing. MPC order 160921267374 placed 2026-09-21; MPC flagged a white edge on the bottom flaps (the front panel's white bleed strip overlapped the flaps' bleed). Gus told MPC to proceed on 2026-09-21; those flap edges tuck inside the box. Real fix shipped in 0.8.2 for future orders. Do not touch this project.
 
 **Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
 
