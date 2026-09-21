@@ -53,11 +53,11 @@ What is left, in order:
 
 ## Waiting on Gus
 
-- Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/. Needs the hola@callenueve.com mailbox first (see below).
+- Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 
 - Souvenir line: look at Domino Park, Deco Beach, Miami Sunset and Flamingo Card in the Studio and say what to change. Pick which Miami deck goes to print. Then order one sample of each from MPC and report the per-deck cost.
 - The Stripe Payment Link (see In progress).
-- The rules page lists hola@callenueve.com for custom decks. Confirm that mailbox exists or give a different address.
+- Gmail "Send mail as" for hola@callenueve.com and the SPF record edit (Part 2 and 3 of the inbox walkthrough in session 7) are not done yet; replies still go out from the personal Gmail until then.
 - Whether "built-in chucho: nicknames and quips" on the website is true. The cards carry no text like that.
 - Whether custom decks should be sold on the website (the Studio is built for them; the site only sells one $29.99 deck).
 
@@ -75,5 +75,5 @@ Open the Studio in a private window (the normal window caches the old bundle). T
 
 - Vercel: two projects, `calle-nueve-studio` (studio.callenueve.com) and `callenueve-web` (callenueve.com). Both deploy from `main` of `roquegus/roquegus.github.io`.
 - Supabase: project "Calle Nueve", ref `oniuuwzugacxywrbqgub`, us-west-2. One table `projects` with RLS. Migrations in `calle-nueve-studio/migrations/`. Both have been run.
-- Cloudflare DNS: CNAMEs to Vercel, proxy off.
+- Cloudflare DNS: CNAMEs to Vercel, proxy off. Cloudflare Email Routing is on for callenueve.com: hola@ and catch-all forward to roquegus@gmail.com (set up 2026-09-21, test delivery confirmed in the Activity log).
 - Printer: MakePlayingCards. Cards = "Custom Domino Deck Game Cards" (1.75 x 3.5 in). Box = "Custom Tuck Box for Domino Sized Cards".
