@@ -1,6 +1,6 @@
 import type { DesignTokens } from "../../types";
 import { TUCK_PT, TUCK_PX, PT, getTuckBox } from "../../constants/tuckbox";
-import { PatternFill, CenterMedallion, BackLogo } from "./CardBack";
+import { PatternFill, Medallion, BackLogo } from "./CardBack";
 import DividerLine from "./DividerLine";
 import PipIcon from "./PipIcon";
 import DominoCardSVG from "./DominoCardSVG";
@@ -165,6 +165,11 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
   const box = getTuckBox(tokens);
   const accent = colors.backAccent;
   const backBg = colors.backBackground;
+  const secondary = colors.backSecondary ?? accent;
+  const tertiary = colors.backTertiary ?? backBg;
+  const medallion = (cx: number, cy: number) => (
+    <Medallion style={back.medallionStyle} cx={cx} cy={cy} color={backBg} accent={accent} secondary={secondary} tertiary={tertiary} />
+  );
   const titleFont = fam(typography.indexFont);
   const bodyFont = fam(typography.footerFont);
   const hero = DECK.find((c) => c.top === 9 && c.bottom === 9) ?? DECK[0];
@@ -204,6 +209,8 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
           rotation={back.rotation}
           color={backBg}
           accent={accent}
+          secondary={secondary}
+          tertiary={tertiary}
           w={W}
           h={H}
           centerX={bcx}
@@ -215,6 +222,63 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
           <rect x={f.x} y={f.y} width={f.w} height={f.h + B} fill={background.color} />
           {box.frontStyle === "custom" && box.customImage ? (
             <image href={box.customImage} x={f.x} y={f.y} width={f.w} height={f.h + B} preserveAspectRatio="xMidYMid slice" />
+          ) : box.frontStyle === "cartouche" ? (
+            // Souvenir front: a label in the style of a cigar-box lithograph. Panel
+            // in the front color, a secondary frame with a tertiary inner line, an
+            // accent oval carrying the title in two lines, then the place line,
+            // the two taglines and the brand line.
+            (() => {
+              const words = box.title.trim().split(/\s+/);
+              const split = words.length > 1 ? Math.ceil(words.length / 2) : 1;
+              const line1 = words.length > 1 ? words.slice(0, split).join(" ") : box.title;
+              const line2 = words.length > 1 ? words.slice(split).join(" ") : "";
+              const ovalCy = f.y + 330;
+              const t1 = Math.min(72, Math.floor(260 / (0.45 * Math.max(line1.length, 3))));
+              const t2 = line2 ? Math.min(72, Math.floor(260 / (0.45 * Math.max(line2.length, 3)))) : 0;
+              const ts = Math.min(t1, t2 || t1);
+              return (
+                <>
+                  <rect x={f.x} y={f.y} width={f.w} height={f.h + B} fill={box.frontColor ?? background.color} />
+                  <rect x={f.x + 22} y={f.y + 22} width={f.w - 44} height={f.h - 44} fill="none" stroke={secondary} strokeWidth={8} />
+                  <rect x={f.x + 40} y={f.y + 40} width={f.w - 80} height={f.h - 80} fill="none" stroke={tertiary} strokeWidth={3} />
+                  <ellipse cx={fcx} cy={ovalCy} rx={170} ry={128} fill={accent} />
+                  <ellipse cx={fcx} cy={ovalCy} rx={154} ry={112} fill="none" stroke={tertiary} strokeWidth={4} />
+                  {line2 ? (
+                    <>
+                      <text x={fcx} y={ovalCy - 6} textAnchor="middle" fontFamily={titleFont} fontSize={ts} fill={box.frontColor ?? background.color} letterSpacing={3}>
+                        {line1}
+                      </text>
+                      <text x={fcx} y={ovalCy + ts * 0.92} textAnchor="middle" fontFamily={titleFont} fontSize={ts} fill={tertiary} letterSpacing={3}>
+                        {line2}
+                      </text>
+                    </>
+                  ) : (
+                    <text x={fcx} y={ovalCy + ts * 0.36} textAnchor="middle" fontFamily={titleFont} fontSize={ts} fill={box.frontColor ?? background.color} letterSpacing={3}>
+                      {line1}
+                    </text>
+                  )}
+                  <text x={fcx} y={f.y + 530} textAnchor="middle" fontFamily={bodyFont} fontSize={26} fill={accent} letterSpacing={6}>
+                    {box.subtitle}
+                  </text>
+                  <line x1={fcx - 100} y1={f.y + 580} x2={fcx + 100} y2={f.y + 580} stroke={tertiary} strokeWidth={3} />
+                  <text x={fcx} y={f.y + 660} textAnchor="middle" fontFamily={bodyFont} fontSize={20} fill={accent} letterSpacing={2}>
+                    {box.tagline}
+                  </text>
+                  {box.tagline2 && (
+                    <text x={fcx} y={f.y + 694} textAnchor="middle" fontFamily={bodyFont} fontSize={20} fill={accent} letterSpacing={2}>
+                      {box.tagline2}
+                    </text>
+                  )}
+                  <g transform={`translate(${fcx},${f.y + 830}) scale(0.5)`}>{medallion(0, 0)}</g>
+                  <text x={fcx} y={f.y + f.h - 92} textAnchor="middle" fontFamily={titleFont} fontSize={22} fill={secondary} letterSpacing={4}>
+                    {box.edition}
+                  </text>
+                  <text x={fcx} y={f.y + f.h - 58} textAnchor="middle" fontFamily={bodyFont} fontSize={14} fill={accent} letterSpacing={3} opacity={0.85}>
+                    {box.url}
+                  </text>
+                </>
+              );
+            })()
           ) : (
             <>
               <rect x={f.x + 36} y={f.y + 36} width={f.w - 72} height={f.h - 72} fill="none" stroke={colors.border} strokeWidth={4} />
@@ -265,7 +329,7 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
                       <BackLogo href={back.logo} cx={fcx} cy={f.y + 440} box={back.logoOrientation === "landscape" ? 400 : 300} scale={back.logoScale} />
                     </>
                   ) : (
-                    <CenterMedallion cx={fcx} cy={f.y + 440} color={backBg} accent={accent} />
+                    medallion(fcx, f.y + 440)
                   )}
                   {box.showIcons &&
                     iconRows.map((row, ri) =>
@@ -302,6 +366,13 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         </text>
 
         {/* BACK */}
+        {box.frontStyle === "cartouche" && (
+          // Plaque so the story reads over a busy pattern
+          <>
+            <rect x={bk.x + 46} y={bk.y + 130} width={bk.w - 92} height={bk.h - 250} rx={18} fill={box.frontColor ?? background.color} />
+            <rect x={bk.x + 58} y={bk.y + 142} width={bk.w - 116} height={bk.h - 274} rx={12} fill="none" stroke={secondary} strokeWidth={3} />
+          </>
+        )}
         <text x={bcx} y={bk.y + 190} textAnchor="middle" fontFamily={titleFont} fontSize={46} fill={accent} letterSpacing={4}>
           {box.title}
         </text>
@@ -311,9 +382,7 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         {back.logo ? (
           <BackLogo href={back.logo} cx={bcx} cy={bk.y + 400} box={back.logoOrientation === "landscape" ? 460 : 300} scale={back.logoScale} />
         ) : (
-          <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>
-            <CenterMedallion cx={0} cy={0} color={backBg} accent={accent} />
-          </g>
+          <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>{medallion(0, 0)}</g>
         )}
         {backLines.map((line, i) => (
           <text key={i} x={bcx} y={bk.y + 560 + i * 28} textAnchor="middle" fontFamily={bodyFont} fontSize={17} fill={accent}>

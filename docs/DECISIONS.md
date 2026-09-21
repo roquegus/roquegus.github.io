@@ -108,3 +108,13 @@ Rules out: asking Gus to download logos by hand, and guessing brand colors.
 Who: Claude from the site's own theme, for Gus to confirm with the client.
 Why: their Wix theme uses navy (0,34,59) as the ground and gold (248,190,42) as the accent; the header logo is a white knockout, so it goes on the navy back. Portrait orientation because the mark is square. The tuck box front draws a navy plaque behind any logo so white marks do not vanish on the light panel.
 Rules out: recoloring the logo or putting it on a white back.
+
+## 2026-09-21 Souvenir line: Domino Park and Deco Beach first, at $24.99
+Who: Gus, accepting Claude's research recommendation ("im good with your recommendations. go build").
+Why: Domino Park sells where tourists already buy Cuban dominoes (Little Havana Visitor Center, Calle Ocho shops); Deco Beach reaches the far larger South Beach and museum-store crowd. $24.99 matches the Bene Casa Cuban flag domino set, the shelf's price anchor, and leaves a keystone wholesale price of $12.50. Vice Nights is third, Gran Habana the later premium edition. Working names kept; "Calle Ocho" avoided as a deck name (festival trademark).
+Rules out: a $19.99 price (no room for foil and wholesale), naming a deck "Calle Ocho", launching all four at once.
+
+## 2026-09-21 Souvenir backs use four colors and their own patterns
+Who: Claude.
+Why: the tile and sunburst designs need more than a ground and one accent. Two optional colors were added to the tokens (`backSecondary`, `backTertiary`) rather than hard-coding palettes, so Gus can recolor a souvenir back for a client. Old projects ignore the new fields and render as before.
+Rules out: separate one-off renderers per deck.

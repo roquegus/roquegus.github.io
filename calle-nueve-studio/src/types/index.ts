@@ -34,11 +34,16 @@ export type OrnamentType =
 export type IndexFont = "Bebas Neue" | "Playfair Display" | "system";
 export type BackPattern =
   | "mosaic"
+  | "cuban-tile"
+  | "deco-rays"
   | "diamonds"
   | "sunburst"
   | "art-deco"
   | "plain"
   | "custom";
+
+/** Center medallion drawing. "domino" is the original; the others came with the souvenir line. */
+export type MedallionStyle = "domino" | "tile" | "porthole";
 
 export type DesignTokens = {
   background: {
@@ -56,6 +61,9 @@ export type DesignTokens = {
     heroAccent: string;
     backBackground: string;
     backAccent: string;
+    /** Third and fourth back colors, used by the Cuban tile and Deco rays patterns and their medallions. */
+    backSecondary?: string;
+    backTertiary?: string;
   };
   pips: {
     style: PipStyle;
@@ -100,6 +108,8 @@ export type DesignTokens = {
     scale: number;
     rotation: number;
     centerMedallion: boolean;
+    /** Which medallion to draw. Defaults to "domino". */
+    medallionStyle?: MedallionStyle;
     nonDirectionalCheck: boolean;
     customImage?: string;
     /** Inset frame with corner brackets. Defaults to true when missing. */
@@ -130,7 +140,7 @@ export type RulesCardDesign = {
   body: string;
 };
 
-export type TuckBoxFrontStyle = "emblem" | "hero-card" | "custom";
+export type TuckBoxFrontStyle = "emblem" | "hero-card" | "cartouche" | "custom";
 
 export type TuckBoxDesign = {
   frontStyle: TuckBoxFrontStyle;
@@ -143,6 +153,10 @@ export type TuckBoxDesign = {
   showIcons: boolean;
   showDieline: boolean;
   customImage?: string;
+  /** Cartouche front: a second tagline line (Spanish, for the souvenir line). */
+  tagline2?: string;
+  /** Cartouche front: panel color. Defaults to the card face color. */
+  frontColor?: string;
 };
 
 export type OrderInfo = {

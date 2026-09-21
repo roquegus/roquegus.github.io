@@ -6,6 +6,14 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.6.0 - 2026-09-21
+
+### Added
+- Souvenir line, first two decks as presets: "Domino Park" (Little Havana: cream tiles, tobacco Cuban icons, terracotta divider, Cuban floor-tile back with a tile-disk medallion, cigar-label box) and "Deco Beach" (South Beach: white tiles, flat navy dots, flamingo bar, Deco sunburst back with a porthole medallion, sand label box). Both have bilingual box copy.
+- Card back patterns "Cuban Floor Tile" and "Deco Sunburst", with two extra back colors (Back Color 3 and 4) in the Card Back panel.
+- Medallion styles: Domino Ring (the original), Tile Disk, Porthole.
+- Tuck box front style "Label (souvenir)": cigar-label cartouche with a second tagline and its own front color; the box back gets a plaque so the story reads over the pattern.
+
 ## 0.5.2 - 2026-09-21
 
 ### Fixed

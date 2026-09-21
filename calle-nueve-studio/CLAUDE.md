@@ -27,6 +27,13 @@ background color, and upload a logo in the Card Back panel (`back.logo` data URL
 point-symmetric (bottom zone mirrors the top) and the 7 uses the same 3-column grid as 8 and 9.
 Geometry was verified against the 8 tests from the handoff (all pass).
 
+**Souvenir line (2026-09-21).** Presets "Domino Park" and "Deco Beach" are the first two retail decks ($24.99,
+souvenir shops and museum stores). They use back patterns `cuban-tile` and `deco-rays`, the optional colors
+`colors.backSecondary` / `backTertiary` (Back Color 3 and 4 in the panel), `back.medallionStyle` ("tile",
+"porthole"; "domino" is the original ring), and tuck box `frontStyle: "cartouche"` (cigar-label front with
+`tagline2` and `frontColor`; the box back gets a plaque). All of it lives in `CardBack.tsx` (`PatternFill`,
+`Medallion`) and `TuckBoxSVG.tsx`. Research and the two unbuilt concepts are in `/docs/RESEARCH_souvenir_line.md`.
+
 **MPC trims the outer 36 px.** Anything meant to be seen (borders, corner brackets, hero frame, divider
 end caps, back frame) must start at `FRAME = trimInset + 16 = 52 px` or deeper; text stays inside the
 72 px safe line. Only background/texture may live in the bleed strip. `DividerLine` takes `inset` for this.

@@ -2,10 +2,12 @@ import { useRef } from "react";
 import Accordion from "../ui/Accordion";
 import ControlRow, { ColorPicker, Select, Slider, Toggle } from "../ui/ControlRow";
 import { useApp } from "../../store";
-import type { BackPattern } from "../../types";
+import type { BackPattern, MedallionStyle } from "../../types";
 
 const PATTERN_OPTIONS: { value: BackPattern; label: string }[] = [
   { value: "mosaic", label: "Cuban Mosaico" },
+  { value: "cuban-tile", label: "Cuban Floor Tile" },
+  { value: "deco-rays", label: "Deco Sunburst" },
   { value: "diamonds", label: "Diamonds" },
   { value: "sunburst", label: "Sunburst" },
   { value: "art-deco", label: "Art Deco" },
@@ -110,6 +112,19 @@ export default function CardBackPanel() {
           <ControlRow label="Back Accent">
             <ColorPicker value={c.backAccent} onChange={(v) => updateColors({ backAccent: v })} />
           </ControlRow>
+          <ControlRow label="Back Color 3">
+            <ColorPicker value={c.backSecondary ?? c.backAccent} onChange={(v) => updateColors({ backSecondary: v })} />
+          </ControlRow>
+          <ControlRow label="Back Color 4">
+            <ColorPicker value={c.backTertiary ?? c.backBackground} onChange={(v) => updateColors({ backTertiary: v })} />
+          </ControlRow>
+          {(b.pattern === "cuban-tile" || b.pattern === "deco-rays") && (
+            <p className="panel-hint">
+              {b.pattern === "cuban-tile"
+                ? "Tile: Background is the cream, Accent the diamond and frame, Color 3 the grid, Color 4 the small dots."
+                : "Sunburst: Background is the ground, Accent the lines and frame, Color 3 the rays, Color 4 the inner ray and porthole."}
+            </p>
+          )}
           <ControlRow label="Frame">
             <Toggle value={b.frame !== false} onChange={(v) => updateBack({ frame: v })} />
           </ControlRow>
@@ -118,6 +133,19 @@ export default function CardBackPanel() {
       <ControlRow label="Center Medallion">
         <Toggle value={b.centerMedallion} onChange={(v) => updateBack({ centerMedallion: v })} />
       </ControlRow>
+      {b.centerMedallion && (
+        <ControlRow label="Medallion">
+          <Select
+            value={b.medallionStyle ?? "domino"}
+            options={[
+              { value: "domino", label: "Domino Ring" },
+              { value: "tile", label: "Tile Disk" },
+              { value: "porthole", label: "Porthole" },
+            ]}
+            onChange={(v) => updateBack({ medallionStyle: v as MedallionStyle })}
+          />
+        </ControlRow>
+      )}
 
       <div style={{ padding: "6px 0" }}>
         <button className="btn-secondary" style={{ width: "100%" }} onClick={() => logoRef.current?.click()}>

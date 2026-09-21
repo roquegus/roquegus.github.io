@@ -1,4 +1,4 @@
-import type { DesignTokens, BackPattern } from "../../types";
+import type { DesignTokens, BackPattern, MedallionStyle } from "../../types";
 import { PRINT } from "../../constants/print";
 
 type CardBackProps = {
@@ -123,6 +123,132 @@ function ArtDecoPattern({ scale, rotation, color, accent, fillW = W, fillH = H }
   );
 }
 
+// Cuban hydraulic floor tile (Domino Park deck): a cream ground, a rotated square
+// in the accent color, a grid in the secondary color with a dot at each tile
+// center, and a small tertiary dot where four tiles meet. Corner shapes are drawn
+// at all four corners of the pattern cell so neighbours complete them.
+function CubanTilePattern({
+  scale,
+  rotation,
+  color,
+  accent,
+  secondary,
+  tertiary,
+  fillW = W,
+  fillH = H,
+  centerX = W / 2,
+  centerY = H / 2,
+}: PatternProps & { secondary: string; tertiary: string; centerX?: number; centerY?: number }) {
+  const s = 150 * scale;
+  const h = s / 2;
+  const id = patternId("cubantile", scale, color, accent) + secondary.replace("#", "");
+  // Put a tile center on the card center so the back is point-symmetric
+  const ox = ((centerX - h) % s + s) % s;
+  const oy = ((centerY - h) % s + s) % s;
+  return (
+    <g>
+      <defs>
+        <pattern id={id} x={ox} y={oy} width={s} height={s} patternUnits="userSpaceOnUse" patternTransform={`rotate(${rotation} ${centerX} ${centerY})`}>
+          <rect width={s} height={s} fill={color} />
+          <polygon points={diamondPts(h, h, h * 0.86)} fill={accent} />
+          <polygon points={diamondPts(h, h, h * 0.62)} fill="none" stroke={color} strokeWidth={s * 0.02} opacity={0.7} />
+          <rect x={0} y={0} width={s} height={s} fill="none" stroke={secondary} strokeWidth={s * 0.066} />
+          <circle cx={h} cy={h} r={s * 0.15} fill={secondary} />
+          <circle cx={h} cy={h} r={s * 0.062} fill={color} />
+          {[[0, 0], [s, 0], [0, s], [s, s]].map(([x, y], i) => (
+            <circle key={i} cx={x} cy={y} r={s * 0.095} fill={tertiary} />
+          ))}
+        </pattern>
+      </defs>
+      <rect x={0} y={0} width={fillW} height={fillH} fill={`url(#${id})`} />
+    </g>
+  );
+}
+
+// Miami Beach Art Deco stepped sunburst (Deco Beach deck): a fan of rays from the
+// top and bottom edge in the secondary and tertiary colors over the ground, and
+// three lines across the middle. Both halves are the same, turned 180 degrees.
+function DecoRaysPattern({
+  color,
+  secondary,
+  tertiary,
+  accent,
+  fillW = W,
+  fillH = H,
+  centerX = W / 2,
+  centerY = H / 2,
+}: { color: string; secondary: string; tertiary: string; accent: string; fillW?: number; fillH?: number; centerX?: number; centerY?: number }) {
+  const id = `decorays-${Math.round(centerX)}-${Math.round(centerY)}-${Math.round(fillH)}`;
+  const r = Math.max(fillW, fillH) * 1.3;
+  const wedges = 7; // across 180 degrees; odd count keeps the middle ray on the axis
+  const halfH = fillH / 2;
+  const fan = (apexY: number, up: boolean) => {
+    const out = [];
+    for (let i = 0; i < wedges; i++) {
+      const a1 = Math.PI + (i * Math.PI) / wedges;
+      const a2 = Math.PI + ((i + 1) * Math.PI) / wedges;
+      const s = up ? 1 : -1;
+      const fill = i % 2 === 0 ? secondary : i === 3 ? tertiary : color;
+      out.push(
+        <polygon
+          key={i}
+          points={`${centerX},${apexY} ${centerX + Math.cos(a1) * r},${apexY + s * Math.sin(a1) * r} ${centerX + Math.cos(a2) * r},${apexY + s * Math.sin(a2) * r}`}
+          fill={fill}
+        />
+      );
+    }
+    return out;
+  };
+  const arcs = (apexY: number) =>
+    [0.28, 0.4, 0.52].map((k) => (
+      <circle key={k} cx={centerX} cy={apexY} r={fillH * k} fill="none" stroke={tertiary} strokeWidth={6} opacity={0.55} />
+    ));
+  return (
+    <g>
+      <defs>
+        <clipPath id={`${id}-top`}>
+          <rect x={0} y={0} width={fillW} height={centerY} />
+        </clipPath>
+        <clipPath id={`${id}-bottom`}>
+          <rect x={0} y={centerY} width={fillW} height={fillH - centerY} />
+        </clipPath>
+      </defs>
+      <rect x={0} y={0} width={fillW} height={fillH} fill={color} />
+      <g clipPath={`url(#${id}-top)`}>
+        {fan(centerY - halfH, false)}
+        {arcs(centerY - halfH)}
+      </g>
+      <g clipPath={`url(#${id}-bottom)`}>
+        {fan(centerY + halfH, true)}
+        {arcs(centerY + halfH)}
+      </g>
+      <g stroke={accent} strokeWidth={10}>
+        <line x1={FRAME} y1={centerY - 61} x2={fillW - FRAME} y2={centerY - 61} />
+        <line x1={FRAME} y1={centerY} x2={fillW - FRAME} y2={centerY} />
+        <line x1={FRAME} y1={centerY + 61} x2={fillW - FRAME} y2={centerY + 61} />
+      </g>
+    </g>
+  );
+}
+
+// Heavy frame for the tile back: a wide accent band at the trim-safe line and a
+// thin tertiary line inside it.
+function TileFrame({ accent, tertiary }: { accent: string; tertiary: string }) {
+  return (
+    <g fill="none">
+      <rect x={FRAME + 7} y={FRAME + 7} width={W - FRAME * 2 - 14} height={H - FRAME * 2 - 14} stroke={accent} strokeWidth={14} />
+      <rect x={FRAME + 24} y={FRAME + 24} width={W - FRAME * 2 - 48} height={H - FRAME * 2 - 48} stroke={tertiary} strokeWidth={4} />
+    </g>
+  );
+}
+
+// Rounded streamline frame for the Deco back.
+function DecoFrame({ accent }: { accent: string }) {
+  return (
+    <rect x={FRAME + 6} y={FRAME + 6} width={W - FRAME * 2 - 12} height={H - FRAME * 2 - 12} rx={30} fill="none" stroke={accent} strokeWidth={12} />
+  );
+}
+
 // Inset frame with corner brackets; fully 180°-symmetric. Sits on the safe line.
 function BackFrame({ accent }: { accent: string }) {
   const inset = PRINT.safeInset;
@@ -156,6 +282,8 @@ export function PatternFill({
   rotation,
   color,
   accent,
+  secondary,
+  tertiary,
   w,
   h,
   centerX,
@@ -166,12 +294,20 @@ export function PatternFill({
   rotation: number;
   color: string;
   accent: string;
+  secondary?: string;
+  tertiary?: string;
   w: number;
   h: number;
   centerX: number;
   centerY: number;
 }) {
+  const sec = secondary ?? accent;
+  const ter = tertiary ?? color;
   switch (pattern) {
+    case "cuban-tile":
+      return <CubanTilePattern scale={scale} rotation={rotation} color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
+    case "deco-rays":
+      return <DecoRaysPattern color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
     case "diamonds":
       return <DiamondsPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
     case "sunburst":
@@ -217,6 +353,86 @@ export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: num
       </g>
     </g>
   );
+}
+
+// A double-nine domino tile, point-symmetric, centered at the origin.
+function DominoTile({ w, h, fill, pip, line }: { w: number; h: number; fill: string; pip: string; line: string }) {
+  const pr = w * 0.085;
+  const cx = [-w * 0.29, 0, w * 0.29];
+  const rows = [0.12, 0.25, 0.38].map((k) => h * k);
+  return (
+    <g>
+      <rect x={-w / 2} y={-h / 2} width={w} height={h} rx={w * 0.11} fill={fill} />
+      <line x1={-w / 2 + w * 0.1} y1={0} x2={w / 2 - w * 0.1} y2={0} stroke={line} strokeWidth={Math.max(2, w * 0.05)} />
+      {rows.map((ry) =>
+        cx.map((px) => (
+          <g key={`${ry}-${px}`}>
+            <circle cx={px} cy={-ry} r={pr} fill={pip} />
+            <circle cx={px} cy={ry} r={pr} fill={pip} />
+          </g>
+        ))
+      )}
+    </g>
+  );
+}
+
+// Domino Park medallion: a dark disk with a thin tertiary ring and a light 9|9 tile.
+function TileMedallion({ cx, cy, color, accent, secondary, tertiary }: { cx: number; cy: number; color: string; accent: string; secondary: string; tertiary: string }) {
+  const r = 150;
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r + 10} fill={color} />
+      <circle cx={cx} cy={cy} r={r} fill={accent} />
+      <circle cx={cx} cy={cy} r={r - 14} fill="none" stroke={tertiary} strokeWidth={5} />
+      <g transform={`translate(${cx},${cy})`}>
+        <DominoTile w={92} h={200} fill={color} pip={accent} line={secondary} />
+      </g>
+    </g>
+  );
+}
+
+// Deco Beach medallion: a porthole. Light disk, heavy accent ring with rivets,
+// a thin secondary ring, and a small accent 9|9 tile.
+function PortholeMedallion({ cx, cy, color, accent, secondary, tertiary }: { cx: number; cy: number; color: string; accent: string; secondary: string; tertiary: string }) {
+  const r = 150;
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={r} fill={tertiary} />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke={accent} strokeWidth={18} />
+      {Array.from({ length: 16 }).map((_, i) => {
+        const a = (i * Math.PI * 2) / 16;
+        return <circle key={i} cx={cx + Math.cos(a) * r} cy={cy + Math.sin(a) * r} r={4} fill={color} />;
+      })}
+      <circle cx={cx} cy={cy} r={r - 32} fill="none" stroke={secondary} strokeWidth={8} />
+      <g transform={`translate(${cx},${cy})`}>
+        <DominoTile w={64} h={140} fill={accent} pip={tertiary} line={tertiary} />
+      </g>
+    </g>
+  );
+}
+
+export function Medallion({
+  style = "domino",
+  cx,
+  cy,
+  color,
+  accent,
+  secondary,
+  tertiary,
+}: {
+  style?: MedallionStyle;
+  cx: number;
+  cy: number;
+  color: string;
+  accent: string;
+  secondary?: string;
+  tertiary?: string;
+}) {
+  const sec = secondary ?? accent;
+  const ter = tertiary ?? color;
+  if (style === "tile") return <TileMedallion cx={cx} cy={cy} color={color} accent={accent} secondary={sec} tertiary={ter} />;
+  if (style === "porthole") return <PortholeMedallion cx={cx} cy={cy} color={color} accent={accent} secondary={sec} tertiary={ter} />;
+  return <CenterMedallion cx={cx} cy={cy} color={color} accent={accent} />;
 }
 
 // One logo image in a w×h box centered at (cx, cy), turned by `rotate` degrees.
@@ -296,9 +512,15 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
   const cx = W / 2;
   const cy = H / 2;
   const showFrame = back.frame !== false && back.pattern !== "custom";
+  const secondary = colors.backSecondary ?? colors.backAccent;
+  const tertiary = colors.backTertiary ?? colors.backBackground;
 
   const renderPattern = () => {
     switch (back.pattern) {
+      case "cuban-tile":
+        return <CubanTilePattern scale={back.scale} rotation={back.rotation} color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
+      case "deco-rays":
+        return <DecoRaysPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
       case "diamonds":
         return <DiamondsPattern scale={back.scale} rotation={back.rotation} color={colors.backBackground} accent={colors.backAccent} />;
       case "sunburst":
@@ -324,8 +546,12 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
       {back.logo && back.logoWhiteBack && (
         <rect x={0} y={0} width={W} height={H} fill="#FFFFFF" />
       )}
-      {showFrame && <BackFrame accent={colors.backAccent} />}
-      {back.centerMedallion && <CenterMedallion cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} />}
+      {showFrame && back.pattern === "cuban-tile" && <TileFrame accent={colors.backAccent} tertiary={tertiary} />}
+      {showFrame && back.pattern === "deco-rays" && <DecoFrame accent={colors.backAccent} />}
+      {showFrame && back.pattern !== "cuban-tile" && back.pattern !== "deco-rays" && <BackFrame accent={colors.backAccent} />}
+      {back.centerMedallion && (
+        <Medallion style={back.medallionStyle} cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />
+      )}
       {back.logo && (
         <BackLogo
           href={back.logo}

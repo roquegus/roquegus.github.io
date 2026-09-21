@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Accordion from "../ui/Accordion";
-import ControlRow, { Select, Toggle } from "../ui/ControlRow";
+import ControlRow, { ColorPicker, Select, Toggle } from "../ui/ControlRow";
 import { useApp } from "../../store";
 import { getTuckBox } from "../../constants/tuckbox";
 import type { TuckBoxDesign, TuckBoxFrontStyle } from "../../types";
@@ -8,10 +8,11 @@ import type { TuckBoxDesign, TuckBoxFrontStyle } from "../../types";
 const FRONT_OPTIONS: { value: TuckBoxFrontStyle; label: string }[] = [
   { value: "emblem", label: "Emblem + Icons" },
   { value: "hero-card", label: "Hero Card (9|9)" },
+  { value: "cartouche", label: "Label (souvenir)" },
   { value: "custom", label: "Custom Image" },
 ];
 
-type TextKey = "title" | "subtitle" | "tagline" | "edition" | "url";
+type TextKey = "title" | "subtitle" | "tagline" | "tagline2" | "edition" | "url";
 
 export default function TuckBoxPanel() {
   const { state, dispatch, updateTuckBox } = useApp();
@@ -33,7 +34,7 @@ export default function TuckBoxPanel() {
     <ControlRow label={label}>
       <input
         className="control-text"
-        value={box[key]}
+        value={box[key] ?? ""}
         onChange={(e) => updateTuckBox({ [key]: e.target.value } as Partial<TuckBoxDesign>)}
       />
     </ControlRow>
@@ -76,6 +77,12 @@ export default function TuckBoxPanel() {
       {text("title", "Title")}
       {text("subtitle", "Subtitle")}
       {text("tagline", "Tagline")}
+      {box.frontStyle === "cartouche" && text("tagline2", "Tagline 2")}
+      {box.frontStyle === "cartouche" && (
+        <ControlRow label="Front Color">
+          <ColorPicker value={box.frontColor ?? state.tokens.background.color} onChange={(v) => updateTuckBox({ frontColor: v })} />
+        </ControlRow>
+      )}
       {text("edition", "Edition")}
       {text("url", "Website")}
       <ControlRow label="Back Text">
