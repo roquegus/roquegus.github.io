@@ -31,7 +31,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 **Souvenir stamps (done 2026-09-21).** ChatGPT output was poor, so Claude drew the rooster and the lifeguard tower as vector art (`calle-nueve-studio/art/stamps/`) and loaded them as tuck box stamps on both souvenir projects. Both card backs stay as the Studio draws them (the ChatGPT back prompts are optional). Gus to review the stamps on the box; small edits (thicker tail, different pose) are quick.
 
-**MCB deck.** Order C9-0001 for Sunem Roque, status proof_sent (2026-09-21). Proof link given to Gus: `?proof=5f349dcc-f1dc-479f-bfe7-9db1a4d6afb1`. Waiting on the customer's response.
+**MCB deck (Miami Chic Balloons, Sunem's company).** Order C9-0001, status printing. MPC order 160921267374 placed 2026-09-21; MPC flagged white in the box bleed, fixed in 0.8.1, box re-uploaded as PNG. Do not touch this project.
 
 **Checkout with Stripe Payment Links (paused 2026-09-20, Gus's call).** Decision made: Stripe Payment Link, not Shopify (no monthly fee, 2.9% + 30c). Gus has a Stripe account named "Calle Nueve" but was still in the sandbox (test mode) when he stopped. Nothing on the website has changed yet.
 
@@ -53,7 +53,6 @@ What is left, in order:
 
 ## Waiting on Gus
 
-- MPC order 160921267374 (placed 2026-09-21 03:35 UTC, deck unknown): MPC flagged white in the box bleed. Fixed in 0.8.1. Gus re-exports the box PDF from the Studio, clicks Modify on the MPC order, replaces the box artwork, and replies to Jojo at MPC.
 
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 
