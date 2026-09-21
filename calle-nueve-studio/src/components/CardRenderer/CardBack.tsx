@@ -334,6 +334,99 @@ function MiamiSunsetPattern({
   );
 }
 
+// A flamingo standing on one leg, facing left, in a 1000 x 1000 box (feet at the
+// bottom). Body in `color`, the folded wing a darker shade, eye in `dark`.
+export function Flamingo({ x, y, scale, color, dark }: { x: number; y: number; scale: number; color: string; dark: string }) {
+  const wing = mixHex(color, "#3A0A1E", 0.45);
+  return (
+    <g transform={`translate(${x},${y}) scale(${scale})`} fill={color} stroke={color} strokeLinecap="round" strokeLinejoin="round">
+      <ellipse cx={545} cy={545} rx={175} ry={108} transform="rotate(-10 545 545)" strokeWidth={0} />
+      <path d="M 690 480 C 760 440, 800 380, 805 320 C 780 380, 730 430, 670 455 Z" strokeWidth={12} />
+      <path d="M 705 505 C 790 490, 840 445, 860 390 C 820 440, 765 470, 700 478 Z" strokeWidth={12} />
+      <path d="M 400 520 C 320 470, 310 330, 395 262 C 460 212, 486 170, 460 122" fill="none" strokeWidth={40} />
+      <path d="M 385 505 C 370 560, 420 610, 470 620 L 420 500 Z" strokeWidth={0} />
+      <circle cx={445} cy={108} r={42} strokeWidth={0} />
+      <path d="M 412 120 C 360 128, 330 158, 340 196 C 352 172, 378 156, 414 150 Z" strokeWidth={8} />
+      <path d="M 515 645 L 515 905" fill="none" strokeWidth={14} />
+      <path d="M 515 905 L 470 945 M 515 905 L 515 950 M 515 905 L 560 945" fill="none" strokeWidth={11} />
+      <path d="M 580 640 L 604 728 L 545 792" fill="none" strokeWidth={14} />
+      {/* folded wing */}
+      <path d="M 470 520 C 540 470, 640 480, 700 540 C 640 545, 560 560, 480 545 Z" fill={wing} stroke={wing} strokeWidth={6} />
+      <path d="M 348 186 C 335 190, 328 200, 332 210 L 352 200 Z" fill={dark} stroke="none" />
+      <circle cx={458} cy={98} r={8} fill={dark} stroke="none" />
+    </g>
+  );
+}
+
+// Flamingo Card (souvenir deck): a 1910s tobacco trading card. Cream border,
+// a teal field with gold cloud streaks and reeds, a flamingo standing in the
+// reeds, and a small caption. This back is one-way by design.
+function FlamingoCardPattern({
+  color,
+  accent,
+  secondary,
+  tertiary,
+  label,
+  fillW = W,
+  fillH = H,
+}: { color: string; accent: string; secondary: string; tertiary: string; label?: string; fillW?: number; fillH?: number }) {
+  const id = `flamingocard-${tertiary.replace("#", "")}-${Math.round(fillH)}`;
+  const inset = FRAME + 22;
+  const px = inset;
+  const py = inset;
+  const pw = fillW - inset * 2;
+  const ph = fillH - inset * 2;
+  const skyTop = mixHex(tertiary, "#FFFFFF", 0.35);
+  const ink = mixHex(accent, "#000000", 0.35);
+  return (
+    <g>
+      <defs>
+        <linearGradient id={`${id}-field`} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor={skyTop} />
+          <stop offset="0.55" stopColor={tertiary} />
+          <stop offset="1" stopColor={mixHex(tertiary, "#0B3B3E", 0.3)} />
+        </linearGradient>
+        <clipPath id={`${id}-clip`}>
+          <rect x={px} y={py} width={pw} height={ph} rx={10} />
+        </clipPath>
+      </defs>
+      <rect x={0} y={0} width={fillW} height={fillH} fill={color} />
+      <rect x={px} y={py} width={pw} height={ph} rx={10} fill={`url(#${id}-field)`} />
+      <g clipPath={`url(#${id}-clip)`}>
+        {/* cloud streaks */}
+        <g fill={accent} opacity={0.9}>
+          <path d={`M ${px + 30} ${py + 90} q 90 -18 190 -6 q 60 8 120 -4 l 0 12 q -70 10 -130 2 q -90 -10 -180 8 Z`} />
+          <path d={`M ${px + 120} ${py + 140} q 110 -14 230 4 l 0 10 q -120 -12 -230 -2 Z`} />
+          <path d={`M ${px + 20} ${py + 190} q 60 -10 130 -2 l 0 9 q -70 -4 -130 4 Z`} />
+        </g>
+        {/* back reeds */}
+        <g fill="none" stroke={accent} strokeWidth={7} strokeLinecap="round" opacity={0.85}>
+          <path d={`M ${px + 60} ${py + ph} C ${px + 70} ${py + ph - 140}, ${px + 40} ${py + ph - 220}, ${px + 90} ${py + ph - 330}`} />
+          <path d={`M ${px + 110} ${py + ph} C ${px + 100} ${py + ph - 120}, ${px + 150} ${py + ph - 200}, ${px + 130} ${py + ph - 290}`} />
+          <path d={`M ${px + pw - 70} ${py + ph} C ${px + pw - 60} ${py + ph - 150}, ${px + pw - 110} ${py + ph - 230}, ${px + pw - 60} ${py + ph - 360}`} />
+          <path d={`M ${px + pw - 120} ${py + ph} C ${px + pw - 130} ${py + ph - 110}, ${px + pw - 90} ${py + ph - 180}, ${px + pw - 120} ${py + ph - 270}`} />
+          <path d={`M ${px + pw - 30} ${py + ph} C ${px + pw - 40} ${py + ph - 90}, ${px + pw - 10} ${py + ph - 150}, ${px + pw - 30} ${py + ph - 210}`} />
+        </g>
+        <Flamingo x={px + pw / 2 - 330} y={py + ph - 690} scale={0.68} color={secondary} dark={ink} />
+        {/* front reeds and water line */}
+        <g fill="none" stroke={accent} strokeWidth={8} strokeLinecap="round">
+          <path d={`M ${px + 20} ${py + ph} C ${px + 30} ${py + ph - 100}, ${px + 10} ${py + ph - 160}, ${px + 50} ${py + ph - 240}`} />
+          <path d={`M ${px + 160} ${py + ph} C ${px + 150} ${py + ph - 80}, ${px + 190} ${py + ph - 130}, ${px + 175} ${py + ph - 200}`} />
+          <path d={`M ${px + pw - 170} ${py + ph} C ${px + pw - 160} ${py + ph - 90}, ${px + pw - 200} ${py + ph - 140}, ${px + pw - 175} ${py + ph - 220}`} />
+          <path d={`M ${px + 10} ${py + ph - 40} q 80 -16 160 0 t 160 0 t 160 0`} strokeWidth={5} opacity={0.8} />
+        </g>
+      </g>
+      <rect x={px} y={py} width={pw} height={ph} rx={10} fill="none" stroke={accent} strokeWidth={3} />
+      <rect x={px - 8} y={py - 8} width={pw + 16} height={ph + 16} rx={14} fill="none" stroke={accent} strokeWidth={1.5} opacity={0.7} />
+      {label && (
+        <text x={px + pw - 22} y={py + 44} textAnchor="end" fontFamily="'Bebas Neue', Impact, sans-serif" fontSize={30} letterSpacing={4} fill={accent}>
+          {label}
+        </text>
+      )}
+    </g>
+  );
+}
+
 // Heavy frame for the tile back: a wide accent band at the trim-safe line and a
 // thin tertiary line inside it.
 function TileFrame({ accent, tertiary }: { accent: string; tertiary: string }) {
@@ -413,6 +506,9 @@ export function PatternFill({
       return <DecoRaysPattern color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
     case "miami-sunset":
       return <MiamiSunsetPattern color={color} accent={accent} secondary={sec} tertiary={ter} fillW={w} fillH={h} centerX={centerX} centerY={centerY} />;
+    case "flamingo-card":
+      // On the box sheet the card layout makes no sense; use the field color with reeds-free plain fill
+      return <rect x={0} y={0} width={w} height={h} fill={ter} />;
     case "diamonds":
       return <DiamondsPattern scale={scale} rotation={rotation} color={color} accent={accent} fillW={w} fillH={h} />;
     case "sunburst":
@@ -628,6 +724,8 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
         return <DecoRaysPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
       case "miami-sunset":
         return <MiamiSunsetPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />;
+      case "flamingo-card":
+        return <FlamingoCardPattern color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} label={back.label} />;
       case "diamonds":
         return <DiamondsPattern scale={back.scale} rotation={back.rotation} color={colors.backBackground} accent={colors.backAccent} />;
       case "sunburst":
@@ -656,7 +754,7 @@ export default function CardBack({ tokens, showTrim = false, showSafe = false }:
       {showFrame && back.pattern === "cuban-tile" && <TileFrame accent={colors.backAccent} tertiary={tertiary} />}
       {showFrame && back.pattern === "deco-rays" && <DecoFrame accent={colors.backAccent} />}
       {showFrame && back.pattern === "miami-sunset" && <DecoFrame accent={tertiary} />}
-      {showFrame && back.pattern !== "cuban-tile" && back.pattern !== "deco-rays" && back.pattern !== "miami-sunset" && <BackFrame accent={colors.backAccent} />}
+      {showFrame && !["cuban-tile", "deco-rays", "miami-sunset", "flamingo-card"].includes(back.pattern) && <BackFrame accent={colors.backAccent} />}
       {back.centerMedallion && (
         <Medallion style={back.medallionStyle} cx={cx} cy={cy} color={colors.backBackground} accent={colors.backAccent} secondary={secondary} tertiary={tertiary} />
       )}

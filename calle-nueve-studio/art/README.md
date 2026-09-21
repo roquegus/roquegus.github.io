@@ -11,3 +11,5 @@ To reuse: Tuck Box panel > Upload Stamp (stamps) or Card Back panel > Upload Cli
 - `clients/biscayne-strategy-white-1500.png`: Biscayne Strategy white script logo from biscaynestrategy.com (1500 px page version, trimmed). The project itself holds the 2500 px original.
 - `stamps/flamingo-miami-sunset.svg`: flamingo, coral #FF6F61. Tuck box stamp on "Miami Sunset (souvenir)".
 - `stamps/palm-miami-sunset.svg`: palm silhouette, navy #14213D. The same shape is drawn in code by `Palm` in `CardBack.tsx` for the Miami Sunset back; this file is the reference copy.
+- The `Flamingo` shape is also drawn in code in `CardBack.tsx` for the Flamingo Card back (with a darker folded wing).
+- Reference images Gus supplied on 2026-09-21 (neon palm, retro Miami poster, 1910s flamingo tobacco card, 1905 Coconut Grove postcard, Florida badge stickers) are stock images and are not committed; they live only in the session notes.

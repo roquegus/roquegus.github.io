@@ -9,6 +9,7 @@ const PATTERN_OPTIONS: { value: BackPattern; label: string }[] = [
   { value: "cuban-tile", label: "Cuban Floor Tile" },
   { value: "deco-rays", label: "Deco Sunburst" },
   { value: "miami-sunset", label: "Miami Sunset (palms)" },
+  { value: "flamingo-card", label: "Flamingo Card (one-way)" },
   { value: "diamonds", label: "Diamonds" },
   { value: "sunburst", label: "Sunburst" },
   { value: "art-deco", label: "Art Deco" },
@@ -119,14 +120,21 @@ export default function CardBackPanel() {
           <ControlRow label="Back Color 4">
             <ColorPicker value={c.backTertiary ?? c.backBackground} onChange={(v) => updateColors({ backTertiary: v })} />
           </ControlRow>
-          {(b.pattern === "cuban-tile" || b.pattern === "deco-rays" || b.pattern === "miami-sunset") && (
+          {(b.pattern === "cuban-tile" || b.pattern === "deco-rays" || b.pattern === "miami-sunset" || b.pattern === "flamingo-card") && (
             <p className="panel-hint">
               {b.pattern === "cuban-tile"
                 ? "Tile: Background is the cream, Accent the diamond and frame, Color 3 the grid, Color 4 the small dots."
                 : b.pattern === "deco-rays"
                   ? "Sunburst: Background is the ground, Accent the lines and frame, Color 3 the rays, Color 4 the inner ray and porthole."
-                  : "Sunset: Background is the sky at the edges, Accent the palms, Color 3 the sunset band and sun, Color 4 the sun core and frame."}
+                  : b.pattern === "miami-sunset"
+                    ? "Sunset: Background is the sky at the edges, Accent the palms, Color 3 the sunset band and sun, Color 4 the sun core and frame."
+                    : "Flamingo Card: Background is the cream border, Accent the gold reeds and caption, Color 3 the flamingo, Color 4 the teal field. This back is one-way."}
             </p>
+          )}
+          {b.pattern === "flamingo-card" && (
+            <ControlRow label="Caption">
+              <input className="control-text" value={b.label ?? ""} onChange={(e) => updateBack({ label: e.target.value })} />
+            </ControlRow>
           )}
           <ControlRow label="Frame">
             <Toggle value={b.frame !== false} onChange={(v) => updateBack({ frame: v })} />

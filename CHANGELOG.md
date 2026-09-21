@@ -6,6 +6,14 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.8.0 - 2026-09-21
+
+### Added
+- "Flamingo Card" preset: a one-way back drawn like a 1910s tobacco trading card (cream border, teal field, gold cloud streaks and reeds, a flamingo, a small caption), cream tiles with deep teal dots and a gold bar, gold label box. Card Back panel gets a Caption field for it.
+
+### Changed
+- Miami Sunset moved to the pink-and-teal palette from Gus's reference images: teal sky, hot pink sunset, pale sun, plum palms; faces get plum dots and a pink bar.
+
 ## 0.7.0 - 2026-09-21
 
 ### Added

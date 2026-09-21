@@ -37,6 +37,7 @@ export type BackPattern =
   | "cuban-tile"
   | "deco-rays"
   | "miami-sunset"
+  | "flamingo-card"
   | "diamonds"
   | "sunburst"
   | "art-deco"
@@ -111,6 +112,8 @@ export type DesignTokens = {
     centerMedallion: boolean;
     /** Which medallion to draw. Defaults to "domino". */
     medallionStyle?: MedallionStyle;
+    /** Small caption drawn by backs that carry one (Flamingo Card). */
+    label?: string;
     nonDirectionalCheck: boolean;
     customImage?: string;
     /** Inset frame with corner brackets. Defaults to true when missing. */

@@ -138,3 +138,13 @@ Rules out: inverting the logo to black on white; a navy back (the brand reads bl
 Who: Gus asked for a clean deck that "screams Miami" with flamingos or palms, inspired by his reference images; Claude chose the composition.
 Why: the references are retro sunset posters (teal to orange to coral, palm silhouettes, a flamingo on a gradient). A single flamingo on the back would be one-way, so the back uses palms in the lower left with a 180-degree copy in the upper right around a banded sun, which reads the same from every seat. The flamingo carries the box. Faces stay Clean-style (cream, flat navy dots, coral bar) so the deck is easy to read at the table.
 Rules out: a one-way flamingo back (can be added as a variant if Gus prefers it), gradients that pass through grey (a warm pale stop sits between the teal and the sunset).
+
+## 2026-09-21 Flamingo Card is a one-way back on purpose
+Who: Claude, from Gus's vintage flamingo tobacco-card reference.
+Why: the reference is a picture card with a subject, a horizon and a caption; mirroring it would kill the look. A one-way back gives away nothing in dominoes (a card's orientation says nothing about its value), so the preset sets `nonDirectionalCheck` off and the preflight stays quiet. Miami Sunset remains the symmetric option.
+Rules out: mirrored flamingos.
+
+## 2026-09-21 Miami Sunset palette is pink and teal, not orange
+Who: Gus, through the reference images ("take inspiration from the images").
+Why: four of the five references are pink and teal (neon palm, poster sky, badge stickers). Teal sky, hot pink band, pale sun, plum palms. The first version's orange sunset was replaced.
+Rules out: the orange and coral version (still one edit away in the Card Back colors).
