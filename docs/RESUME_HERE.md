@@ -4,14 +4,14 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.6.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.6.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
 - 10 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean, Domino Park, Deco Beach. Custom presets save per project.
 - Pip styles: Cuban icons (real vector art), classic dots, rings, numbers, diamonds. Pips are one size regardless of count.
 - Card back patterns (Cuban Mosaico, Cuban Floor Tile, Deco Sunburst, Diamonds, Sunburst, Art Deco, Plain, Custom), up to four back colors, frame, three medallion styles, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
-- Tuck box front styles: Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image.
+- Tuck box front styles: Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
@@ -23,6 +23,10 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 **Miami souvenir deck line (first two decks built 2026-09-21, Studio 0.6.0).** Gus approved the research recommendation: Domino Park and Deco Beach first, at $24.99, working names kept. Both exist as Studio presets and as Studio projects ("Domino Park (souvenir)" C9-0003, "Deco Beach (souvenir)" C9-0004, status draft, Gus's account). Faces, backs and tuck boxes rendered and checked against the trim and safe lines. Research for all four concepts is in `docs/RESEARCH_souvenir_line.md`; the brief with mockups is the artifact "Miami Souvenir Decks". Not built: the rooster and lifeguard-tower stamps (need commissioned vector art), Vice Nights, Gran Habana. Next for this line: Gus reviews both decks in the Studio, then orders a sample of each from MPC (matte aqueous box, gold foil on Domino Park, silver on Deco Beach) and gets the per-deck cost for the pricing math.
 
 **Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), navy pips and navy index numbers (Gus's call, 2026-09-21), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
+
+**Pristine Pools client deck (2026-09-21).** Project "Pristine Pools", order C9-0005, status draft, custom preset saved. Clean look: navy #223282 pips and index, pool blue #0080FF bar, navy back with the client's own SVG logo (from pristinepoolsmiami.com, clear-space frame removed, wordmark and dark P recolored white, light P kept pool blue), landscape at 85%. Proof token `a5662c83-0d9b-4e49-bf1b-8244cee25e00`. Waiting on Gus to review and send the proof.
+
+**Souvenir stamps.** Gus is generating the rooster (Domino Park) and lifeguard tower (Deco Beach) marks in ChatGPT with prompts from session 7. They load through Tuck Box > Upload Stamp (0.6.1). Card backs can also be replaced with ChatGPT art through Card Back > Custom Image (1024 x 1536, cropped to the card by the Studio).
 
 **MCB deck.** Order C9-0001 for Sunem Roque, status proof_sent (2026-09-21). Proof link given to Gus: `?proof=5f349dcc-f1dc-479f-bfe7-9db1a4d6afb1`. Waiting on the customer's response.
 

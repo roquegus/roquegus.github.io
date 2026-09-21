@@ -118,3 +118,13 @@ Rules out: a $19.99 price (no room for foil and wholesale), naming a deck "Calle
 Who: Claude.
 Why: the tile and sunburst designs need more than a ground and one accent. Two optional colors were added to the tokens (`backSecondary`, `backTertiary`) rather than hard-coding palettes, so Gus can recolor a souvenir back for a client. Old projects ignore the new fields and render as before.
 Rules out: separate one-off renderers per deck.
+
+## 2026-09-21 Pristine Pools deck: navy pips, pool-blue bar, white logo on navy
+Who: Claude from the site's own theme, for Gus to confirm with the client.
+Why: pristinepoolsmiami.com (Elementor) sets primary #223282 and pool blue #0080FF; the logo is a real SVG on the site, so no upscale was needed. Wordmark and the dark P go white on the navy back, the light P stays pool blue so the mark keeps its two-tone identity. Landscape because the full logo is 1.9 times wider than tall. Pips and index navy, following the choice Gus made for Skyline.
+Rules out: the white PNG the site also serves (raster, 800 px); recoloring the pool-blue P.
+
+## 2026-09-21 ChatGPT art comes in through Custom Image and the new Stamp slot
+Who: Gus asked for prompts; Claude added the slot.
+Why: ChatGPT only outputs 1024 x 1536, wider than the card. The Studio's Custom Image back scales to fill and trims the sides, so prompts keep the art in the middle 60 percent. Stamps (rooster, lifeguard tower) needed a home on the box, so the Tuck Box panel takes a square transparent image that replaces the medallion.
+Rules out: asking Gus to resize or crop anything himself.

@@ -18,6 +18,18 @@ export default function TuckBoxPanel() {
   const { state, dispatch, updateTuckBox } = useApp();
   const box = getTuckBox(state.tokens);
   const uploadRef = useRef<HTMLInputElement>(null);
+  const stampRef = useRef<HTMLInputElement>(null);
+
+  const handleStampUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      updateTuckBox({ stamp: ev.target?.result as string });
+    };
+    reader.readAsDataURL(file);
+    e.target.value = "";
+  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -93,6 +105,30 @@ export default function TuckBoxPanel() {
           onChange={(e) => updateTuckBox({ backText: e.target.value })}
         />
       </ControlRow>
+      <div style={{ padding: "6px 0" }}>
+        <button className="btn-secondary" style={{ width: "100%" }} onClick={() => stampRef.current?.click()}>
+          {box.stamp ? "Replace Stamp" : "Upload Stamp"}
+        </button>
+        <input
+          ref={stampRef}
+          type="file"
+          accept="image/png,image/svg+xml,image/webp"
+          style={{ display: "none" }}
+          onChange={handleStampUpload}
+        />
+        <p className="panel-hint">
+          A mark for the box back and the label front (rooster, lifeguard tower). Square, transparent PNG or SVG, 1000 px or more. Replaces the medallion on the box.
+        </p>
+        {box.stamp && (
+          <button
+            className="btn-ghost"
+            style={{ width: "100%", marginTop: 4, fontSize: 11, color: "var(--red-text)" }}
+            onClick={() => updateTuckBox({ stamp: undefined })}
+          >
+            Remove Stamp
+          </button>
+        )}
+      </div>
       {box.frontStyle === "emblem" && (
         <ControlRow label="Icons on Front">
           <Toggle value={box.showIcons} onChange={(v) => updateTuckBox({ showIcons: v })} />

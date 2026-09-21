@@ -269,7 +269,11 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
                       {box.tagline2}
                     </text>
                   )}
-                  <g transform={`translate(${fcx},${f.y + 830}) scale(0.5)`}>{medallion(0, 0)}</g>
+                  {box.stamp ? (
+                    <image href={box.stamp} x={fcx - 90} y={f.y + 740} width={180} height={180} preserveAspectRatio="xMidYMid meet" />
+                  ) : (
+                    <g transform={`translate(${fcx},${f.y + 830}) scale(0.5)`}>{medallion(0, 0)}</g>
+                  )}
                   <text x={fcx} y={f.y + f.h - 92} textAnchor="middle" fontFamily={titleFont} fontSize={22} fill={secondary} letterSpacing={4}>
                     {box.edition}
                   </text>
@@ -379,7 +383,9 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         <text x={bcx} y={bk.y + 224} textAnchor="middle" fontFamily={bodyFont} fontSize={14} fill={accent} letterSpacing={3} opacity={0.85}>
           {box.subtitle}
         </text>
-        {back.logo ? (
+        {box.stamp ? (
+          <image href={box.stamp} x={bcx - 130} y={bk.y + 270} width={260} height={260} preserveAspectRatio="xMidYMid meet" />
+        ) : back.logo ? (
           <BackLogo href={back.logo} cx={bcx} cy={bk.y + 400} box={back.logoOrientation === "landscape" ? 460 : 300} scale={back.logoScale} />
         ) : (
           <g transform={`translate(${bcx},${bk.y + 400}) scale(0.62)`}>{medallion(0, 0)}</g>

@@ -6,6 +6,11 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 
 (nothing)
 
+## 0.6.1 - 2026-09-21
+
+### Added
+- Tuck box stamp: upload a square transparent PNG or SVG (rooster, lifeguard tower) in the Tuck Box panel; it replaces the medallion on the box back and on the label front.
+
 ## 0.6.0 - 2026-09-21
 
 ### Added

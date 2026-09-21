@@ -157,6 +157,8 @@ export type TuckBoxDesign = {
   tagline2?: string;
   /** Cartouche front: panel color. Defaults to the card face color. */
   frontColor?: string;
+  /** Stamp artwork (data URL, transparent PNG or SVG) drawn on the box back and the label front instead of the medallion. */
+  stamp?: string;
 };
 
 export type OrderInfo = {
