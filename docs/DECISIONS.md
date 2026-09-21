@@ -148,3 +148,8 @@ Rules out: mirrored flamingos.
 Who: Gus, through the reference images ("take inspiration from the images").
 Why: four of the five references are pink and teal (neon palm, poster sky, badge stickers). Teal sky, hot pink band, pale sun, plum palms. The first version's orange sunset was replaced.
 Rules out: the orange and coral version (still one edit away in the Card Back colors).
+
+## 2026-09-21 Brand mark is the C9 domino tile; social starts with Instagram, TikTok, Facebook
+Who: Claude, for Gus to confirm by using it.
+Why: the tile with C over 9 is the product itself and reads at 40 px, which a script wordmark would not. Teal on cream is the site's own palette. Instagram is where shops and gift buyers look, TikTok is where a table video travels, and a Facebook Page is required to make Instagram a business account and to post in Cuban and Miami groups. Pinterest and YouTube wait until there is a month of content to repost.
+Rules out: a new logo direction, paying for a designer before the first decks sell, X and LinkedIn as launch channels.

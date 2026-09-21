@@ -16,6 +16,7 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
+- Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Social accounts not yet created.
 - Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), no icon section, "coming soon" button. How to Play page at /play with full Cuban double-nine rules, glossary and buy CTA.
 
 ## In progress
@@ -51,6 +52,8 @@ What is left, in order:
 6. Production queue dashboard.
 
 ## Waiting on Gus
+
+- Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/. Needs the hola@callenueve.com mailbox first (see below).
 
 - Souvenir line: look at Domino Park, Deco Beach, Miami Sunset and Flamingo Card in the Studio and say what to change. Pick which Miami deck goes to print. Then order one sample of each from MPC and report the per-deck cost.
 - The Stripe Payment Link (see In progress).
