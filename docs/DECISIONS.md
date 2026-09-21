@@ -128,3 +128,8 @@ Rules out: the white PNG the site also serves (raster, 800 px); recoloring the p
 Who: Gus asked for prompts; Claude added the slot.
 Why: ChatGPT only outputs 1024 x 1536, wider than the card. The Studio's Custom Image back scales to fill and trims the sides, so prompts keep the art in the middle 60 percent. Stamps (rooster, lifeguard tower) needed a home on the box, so the Tuck Box panel takes a square transparent image that replaces the medallion.
 Rules out: asking Gus to resize or crop anything himself.
+
+## 2026-09-21 Biscayne Strategy deck: black back, white script logo, navy bar
+Who: Claude from the site's theme; it is Gus's own company so he confirms directly.
+Why: biscaynestrategy.com is a Squarespace site with black sections and a white script wordmark; its theme accent is navy hsl(218, 37%, 23%), which is #253551. Black back with the white logo landscape (the mark is 2.3 times wider than tall), white faces with black dots and a navy bar. The site serves the logo at 2500 px, so that original was used instead of the 1500 px page version.
+Rules out: inverting the logo to black on white; a navy back (the brand reads black and white).

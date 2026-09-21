@@ -8,3 +8,4 @@ Vector art used by Studio projects, kept here so it is never lost. The Studio st
 - `clients/pristine-pools-white-on-navy.svg`: same, wordmark and dark P recolored white for the navy card back. Loaded as `back.logo` on "Pristine Pools".
 
 To reuse: Tuck Box panel > Upload Stamp (stamps) or Card Back panel > Upload Client Logo (logos). SVG is preferred over PNG.
+- `clients/biscayne-strategy-white-1500.png`: Biscayne Strategy white script logo from biscaynestrategy.com (1500 px page version, trimmed). The project itself holds the 2500 px original.

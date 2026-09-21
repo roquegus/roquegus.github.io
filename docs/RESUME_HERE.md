@@ -26,6 +26,8 @@ Last updated: 2026-09-21 (session 7). Keep this file true. Rewrite sections, do 
 
 **Pristine Pools client deck (2026-09-21).** Project "Pristine Pools", order C9-0005, status draft, custom preset saved. Clean look: navy #223282 pips and index, pool blue #0080FF bar, navy back with the client's own SVG logo (from pristinepoolsmiami.com, clear-space frame removed, wordmark and dark P recolored white, light P kept pool blue), landscape at 85%. Proof token `a5662c83-0d9b-4e49-bf1b-8244cee25e00`. Waiting on Gus to review and send the proof.
 
+**Biscayne Strategy deck (2026-09-21, Gus's own company).** Project "Biscayne Strategy", order C9-0006, status draft, custom preset saved. Clean look: black #111111 pips, index and back, navy #253551 bar, white script logo from biscaynestrategy.com (2500 px original, trimmed) landscape at 85%. Proof token `26c0526a-c731-476d-b216-1ba424970e98`. Waiting on Gus to review.
+
 **Souvenir stamps (done 2026-09-21).** ChatGPT output was poor, so Claude drew the rooster and the lifeguard tower as vector art (`calle-nueve-studio/art/stamps/`) and loaded them as tuck box stamps on both souvenir projects. Both card backs stay as the Studio draws them (the ChatGPT back prompts are optional). Gus to review the stamps on the box; small edits (thicker tail, different pose) are quick.
 
 **MCB deck.** Order C9-0001 for Sunem Roque, status proof_sent (2026-09-21). Proof link given to Gus: `?proof=5f349dcc-f1dc-479f-bfe7-9db1a4d6afb1`. Waiting on the customer's response.
