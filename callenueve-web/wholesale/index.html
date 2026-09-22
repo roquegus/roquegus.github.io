@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wholesale Line Sheet | Calle Nueve</title>
+  <meta name="description" content="Calle Nueve Miami souvenir decks for gift shops, museum stores and hotels. Four designs, wholesale pricing, made in Miami." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --teal: #0D9488; --teal-deep: #0B6F66; --pink: #F472B6; --gold: #D97706; --brown: #92400E; --parchment: #FAFAF9; --ink: #2A1610; --cream: #F6EFDF; --muted: #73523C; --line: #E3D6BC; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Lato, system-ui, sans-serif; color: var(--ink); background: var(--parchment); line-height: 1.5; }
+    a { color: var(--teal); }
+    .page { max-width: 1040px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+    .top { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; border-bottom: 3px solid var(--gold); padding-bottom: 1rem; }
+    .brand { font-family: "Bebas Neue", sans-serif; font-size: 2.6rem; letter-spacing: .06em; line-height: 1; color: var(--ink); text-decoration: none; }
+    .brand small { display: block; font-family: Lato, sans-serif; font-size: .8rem; letter-spacing: .18em; color: var(--brown); text-transform: uppercase; margin-top: .3rem; }
+    .contact { text-align: right; font-size: .9rem; color: var(--muted); }
+    .contact b { color: var(--ink); }
+    .actions { display: flex; gap: .6rem; margin: 1rem 0 0; }
+    .btn { display: inline-block; padding: .7rem 1.2rem; border-radius: 999px; font-family: "Bebas Neue", sans-serif; letter-spacing: .08em; font-size: 1rem; text-decoration: none; }
+    .btn-primary { background: var(--teal); color: #fff; }
+    .btn-outline { border: 2px solid var(--teal); color: var(--teal); }
+    h1 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 3.2rem; line-height: .95; margin: 1.6rem 0 .5rem; text-wrap: balance; }
+    h2 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.9rem; letter-spacing: .03em; margin: 2rem 0 .8rem; }
+    .lead { font-size: 1.08rem; max-width: 40em; margin: 0; }
+    .decks { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.2rem; }
+    .deck { border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #fff; break-inside: avoid; }
+    .deck img { width: 100%; display: block; aspect-ratio: 13 / 6; object-fit: cover; background: var(--cream); }
+    .deck .body { padding: .9rem 1rem 1rem; }
+    .deck h3 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.6rem; margin: 0; letter-spacing: .03em; }
+    .deck .sku { color: var(--muted); font-size: .8rem; letter-spacing: .08em; text-transform: uppercase; }
+    .deck p { margin: .4rem 0 0; font-size: .93rem; color: #523626; }
+    .swatches { display: flex; gap: 4px; margin-top: .6rem; }
+    .swatches span { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(0,0,0,.12); }
+    table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); font-size: .95rem; }
+    th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); }
+    th { background: var(--cream); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; color: var(--brown); }
+    td.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .two { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; }
+    ul { padding-left: 1.2rem; margin: .4rem 0; }
+    li { margin: .3rem 0; }
+    .note { font-size: .88rem; color: var(--muted); }
+    .foot { margin-top: 2rem; border-top: 1px solid var(--line); padding-top: 1rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    @media (max-width: 720px) { .decks, .two { grid-template-columns: 1fr; } .top { flex-direction: column; align-items: flex-start; } .contact { text-align: left; } h1 { font-size: 2.6rem; } }
+    @media print {
+      body { background: #fff; font-size: 13px; }
+      .page { padding: 0; max-width: none; }
+      .actions { display: none; }
+      .brand { font-size: 2.2rem; }
+      h1 { font-size: 2.5rem; margin: 1rem 0 .4rem; }
+      h2 { font-size: 1.5rem; margin: 1.1rem 0 .5rem; break-after: avoid; }
+      .lead { font-size: .98rem; }
+      .top { flex-direction: row; align-items: flex-end; }
+      .contact { text-align: right; }
+      .two { grid-template-columns: 1fr 1fr; }
+      .pricing { grid-template-columns: 1fr; gap: .6rem; }
+      .decks { grid-template-columns: 1fr 1fr; gap: .7rem; margin-top: .5rem; }
+      .deck img { aspect-ratio: 3.2 / 1; }
+      .deck .body { padding: .5rem .7rem .6rem; }
+      .deck h3 { font-size: 1.3rem; }
+      .deck p { font-size: .8rem; line-height: 1.4; }
+      .swatches { margin-top: .4rem; }
+      .swatches span { width: 14px; height: 14px; }
+      th, td { padding: .4rem .6rem; }
+      li { margin: .15rem 0; }
+      table, .deck { break-inside: avoid; }
+      .foot { margin-top: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <a class="brand" href="/">Calle Nueve<small>Wholesale line sheet · Fall 2026</small></a>
+      <div class="contact"><b>Gus Roque</b> · Miami, Florida<br>hola@callenueve.com · callenueve.com/wholesale</div>
+    </header>
+    <div class="actions">
+      <a class="btn btn-primary" href="/wholesale/calle-nueve-line-sheet.pdf">Download the PDF</a>
+      <a class="btn btn-outline" href="mailto:hola@callenueve.com?subject=Wholesale%20order%3A%20Calle%20Nueve%20decks">Place an order</a>
+    </div>
+
+    <h1>The Miami souvenir that gets played, not shelved.</h1>
+    <p class="lead">Calle Nueve is the Cuban double-nine domino game as a 55-card deck. Same rules, same strategy, same chucho, in a pocket-size tuck box. Four Miami designs, each with a bilingual box, a rules card with a QR code, and two cards of Cuban table talk. Designed and proofed in Miami.</p>
+
+    <h2>The four decks</h2>
+    <div class="decks">
+      <article class="deck">
+        <img src="/assets/souvenir-domino-park.jpg" alt="Domino Park deck: cream tiles, tobacco Cuban icons, Cuban floor-tile back" />
+        <div class="body">
+          <div class="sku">C9-DP · Little Havana</div>
+          <h3>Domino Park</h3>
+          <p>Cream tiles, tobacco-brown Cuban icons for pips (cafecito, maracas, palms, cigars), a terracotta bar, and a Cuban floor-tile back. Cigar-label box with a rooster stamp.</p>
+          <div class="swatches"><span style="background:#F6EFDF"></span><span style="background:#92400E"></span><span style="background:#C2410C"></span><span style="background:#0B6F66"></span></div>
+        </div>
+      </article>
+      <article class="deck">
+        <img src="/assets/souvenir-deco-beach.jpg" alt="Deco Beach deck: white tiles, navy dots, flamingo bar, Deco sunburst back" />
+        <div class="body">
+          <div class="sku">C9-DB · South Beach</div>
+          <h3>Deco Beach</h3>
+          <p>White tiles, flat navy dots, a flamingo-pink bar, and an Art Deco sunburst back with a porthole medallion. Sand-colored box with a lifeguard tower stamp.</p>
+          <div class="swatches"><span style="background:#FFFFFF"></span><span style="background:#1E3A5F"></span><span style="background:#F472B6"></span><span style="background:#F5E6C8"></span></div>
+        </div>
+      </article>
+      <article class="deck">
+        <img src="/assets/souvenir-miami-sunset.jpg" alt="Miami Sunset deck: pink and teal sunset back with palms" />
+        <div class="body">
+          <div class="sku">C9-MS · Miami</div>
+          <h3>Miami Sunset</h3>
+          <p>Cream tiles with plum dots and a hot-pink bar. The back is a teal-to-pink sunset with a banded sun and palm silhouettes. Sand box with a flamingo stamp.</p>
+          <div class="swatches"><span style="background:#24C6C4"></span><span style="background:#FF5FA8"></span><span style="background:#FFD59E"></span><span style="background:#2A1B4E"></span></div>
+        </div>
+      </article>
+      <article class="deck">
+        <img src="/assets/souvenir-flamingo-card.jpg" alt="Flamingo Card deck: vintage trading-card style flamingo back" />
+        <div class="body">
+          <div class="sku">C9-FC · Miami</div>
+          <h3>Flamingo Card</h3>
+          <p>Drawn like a 1910s tobacco trading card: cream border, teal field, gold reeds, one flamingo, "Miami · Florida" underneath. Cream tiles with deep-teal dots and a gold bar.</p>
+          <div class="swatches"><span style="background:#F3E6C8"></span><span style="background:#C9A14A"></span><span style="background:#E8456B"></span><span style="background:#5FB3B8"></span></div>
+        </div>
+      </article>
+    </div>
+
+    <h2>Pricing and terms</h2>
+    <div class="two pricing">
+      <div>
+        <table>
+          <thead><tr><th>Item</th><th class="num">Wholesale</th><th class="num">Suggested retail</th></tr></thead>
+          <tbody>
+            <tr><td>Any deck, per unit</td><td class="num">$12.50</td><td class="num">$24.99</td></tr>
+            <tr><td>Case of 6 (one design or mixed)</td><td class="num">$75.00</td><td class="num">$149.94</td></tr>
+            <tr><td>Opening order, 12 decks (2 cases)</td><td class="num">$150.00</td><td class="num">$299.88</td></tr>
+            <tr><td>Counter display for 12 decks</td><td class="num">Free with opening order</td><td class="num"></td></tr>
+          </tbody>
+        </table>
+        <p class="note">Keystone margin. Retail price is a suggestion; $22 to $28 sells in Little Havana and South Beach.</p>
+      </div>
+      <div>
+        <ul>
+          <li><b>Minimum:</b> 12 decks to open, 6 to reorder. Mix designs freely.</li>
+          <li><b>Payment:</b> first order prepaid (card, Zelle or ACH). Net 30 after that.</li>
+          <li><b>Shipping:</b> free delivery in Miami-Dade on 24 decks or more. Elsewhere USPS at cost, ships within 5 business days.</li>
+          <li><b>Custom:</b> your shop's name on the box back, or a fifth design for your store, from 48 decks.</li>
+          <li><b>Guarantee:</b> misprints replaced. Unsold decks in sellable condition may be exchanged for another design within 90 days.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>What is in the box</h2>
+    <div class="two">
+      <ul>
+        <li>55 playing cards, 0-0 through 9-9, domino size (1.75 by 3.5 in, 44 by 89 mm)</li>
+        <li>Rules card with a QR code to callenueve.com/play (English, with the Spanish terms)</li>
+        <li>Two "El chucho" cards: Cuban table talk with what it means</li>
+        <li>Linen-finish cardstock, printed tuck box, shrink-wrapped</li>
+      </ul>
+      <ul>
+        <li>Box size 1.9 by 3.7 by 0.75 in; 12 decks fit a 6 by 6 by 4 in shipper</li>
+        <li>Bilingual box copy, English and Spanish</li>
+        <li>Made for players and for the shelf: it is a real game, not a novelty deck</li>
+        <li>Ask for a sample: one deck at wholesale, credited to your opening order</li>
+      </ul>
+    </div>
+
+    <div class="foot">
+      <span>Calle Nueve · Hecho con amor en Miami</span>
+      <span>Orders and samples: hola@callenueve.com · callenueve.com/custom for corporate decks</span>
+    </div>
+  </main>
+</body>
+</html>

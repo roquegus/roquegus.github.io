@@ -34,6 +34,10 @@ souvenir shops and museum stores). They use back patterns `cuban-tile` and `deco
 `tagline2` and `frontColor`; the box back gets a plaque). All of it lives in `CardBack.tsx` (`PatternFill`,
 `Medallion`) and `TuckBoxSVG.tsx`. Research and the two unbuilt concepts are in `/docs/RESEARCH_souvenir_line.md`.
 
+**Chucho cards (2026-09-22, 0.9.0).** `tokens.sayingsCards` (`constants/sayings.ts`, `SayingsCardSVG.tsx`, `SayingsCardsPanel.tsx`) adds one or two cards of Cuban table talk after the rules card: phrase in the index font at up to 40 px (shrinks to 30 px before wrapping), meaning at 17 px in the footer font, or Playfair Display when the footer font is Bebas Neue. Entries spread evenly between y 298 and y 978 with a 10 px minimum gap; seven per card fits, eight is the cap. ZIP names: `face_56_chucho_1.png`, `face_57_chucho_2.png` (after `face_55_rules_qr.png`). Preview mode `sayings`. The default sayings mirror the glossary on callenueve.com/play; keep the two in sync.
+
+**Leads (2026-09-22).** Table `public.inquiries` (migration 003) receives the form at callenueve.com/custom via REST with the anon key (insert only). `ProjectsScreen` lists them under the projects with a handled checkbox (`listInquiries`, `setInquiryHandled` in `lib/supabase.ts`).
+
 **MPC trims the outer 36 px.** Anything meant to be seen (borders, corner brackets, hero frame, divider
 end caps, back frame) must start at `FRAME = trimInset + 16 = 52 px` or deeper; text stays inside the
 72 px safe line. Only background/texture may live in the bleed strip. `DividerLine` takes `inset` for this.

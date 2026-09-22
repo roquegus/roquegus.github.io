@@ -12,6 +12,7 @@ All notable changes to the Calle Nueve Studio and website. Format follows Keep a
 - Buy buttons on callenueve.com and /play go to the Stripe payment link. "Coming soon" bar and seal replaced with "available now". New /thanks page for after payment.
 - New /custom page: custom decks for companies, events, weddings and shops, with the three client decks, the four-step process, what is in every deck, and a request form that writes to the Studio's leads panel (email fallback if the form cannot send). Linked from the nav, the FAQ and the footer.
 - "Built-in chucho" on the homepage now describes the two chucho cards, and the FAQ says what is in the box (55 playing cards, a rules card, two chucho cards).
+- New /wholesale page and line sheet PDF (`callenueve-web/wholesale/calle-nueve-line-sheet.pdf`, two Letter pages): the four souvenir decks, wholesale $12.50 against $24.99 retail, case of 6, opening order 12, terms, what is in the box.
 
 ## 0.8.2 - 2026-09-21
 

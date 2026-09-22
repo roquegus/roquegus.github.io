@@ -153,3 +153,22 @@ Rules out: the orange and coral version (still one edit away in the Card Back co
 Who: Claude, for Gus to confirm by using it.
 Why: the tile with C over 9 is the product itself and reads at 40 px, which a script wordmark would not. Teal on cream is the site's own palette. Instagram is where shops and gift buyers look, TikTok is where a table video travels, and a Facebook Page is required to make Instagram a business account and to post in Cuban and Miami groups. Pinterest and YouTube wait until there is a month of content to repost.
 Rules out: a new logo direction, paying for a designer before the first decks sell, X and LinkedIn as launch channels.
+
+## 2026-09-22 Chucho cards: two extra cards of table talk, on by default
+Who: Gus ("since i can fit up to 65 cards in the tuck box, what if i had one (or 2??) additional cards with the cuban slangs/sayings"); Claude chose the layout and the default sayings.
+Why: the box holds 65 cards and the deck uses 57 with the rules card, so two more cost nothing at MPC. The cards make the website's "built-in chucho" claim true. Seven sayings per card, phrase in the theme's title face and the meaning under it, in the theme's colors so the cards belong to the deck. The default set is the glossary from callenueve.com/play so the printed cards and the web page agree. The panel can turn them off for a client who wants a plain deck, or edit any line ("phrase | meaning").
+Rules out: sayings in Spanish only (the buyer in a souvenir shop needs the English), more than eight per card (too small to read), a separate insert sheet (would not survive the box).
+
+## 2026-09-22 Wholesale terms on the line sheet are a starting point
+Who: Claude, for Gus to confirm or change before he sends it to a shop.
+Why: keystone pricing ($12.50 wholesale against $24.99 retail) is what gift shops expect. Case of 6, opening order of 12, reorders of 6, first order prepaid then net 30, free Miami-Dade delivery at 24 decks, exchanges within 90 days, a free counter display with the opening order. All of it is standard for a small maker and none of it is promised anywhere else yet. The counter display does not exist; drop the line or have one made before the first opening order.
+Rules out: nothing yet. Change the numbers in `callenueve-web/wholesale/index.html` and re-export the PDF (Playwright recipe in the Studio CLAUDE.md).
+
+## 2026-09-22 The custom-decks page names no price
+Who: Claude.
+Why: custom pricing depends on quantity and the printer (MPC or a local shop, still being quoted), and the three decks shown are giveaways for friends' companies. The page promises a quote within two business days and no payment before the proof is approved. Leads land in the Studio's leads panel and can fall back to email. "Ten decks or a thousand" is the only quantity claim; MPC has no minimum, so it holds.
+Rules out: a price table on the page until the printer cost is known.
+
+## 2026-09-22 Pushes go to main (and the session branch)
+Who: Claude, following the repo rule in CLAUDE.md.
+Why: Vercel deploys both sites from `main`, and every previous session pushed there. The session branch `claude/calle-nueve-studio-sarb2y` receives the same commits so the platform's branch rule is also met.
