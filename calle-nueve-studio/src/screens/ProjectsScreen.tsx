@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { listProjects, deleteProject, updateProjectStatus, type CloudProject } from "../lib/supabase";
+import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInquiryHandled, type CloudProject, type Inquiry } from "../lib/supabase";
 import type { OrderStatus } from "../types";
 import { APP_VERSION } from "../constants/print";
 
@@ -48,6 +48,9 @@ export default function ProjectsScreen({ onOpen }: Props) {
   const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
+  const [leads, setLeads] = useState<Inquiry[]>([]);
+  const [showHandled, setShowHandled] = useState(false);
+
   const load = async () => {
     setLoading(true);
     setError(null);
@@ -57,9 +60,27 @@ export default function ProjectsScreen({ onOpen }: Props) {
       setError(e instanceof Error ? e.message : "Failed to load projects");
     }
     setLoading(false);
+    try {
+      setLeads(await listInquiries());
+    } catch {
+      // Leads are a side panel; a failure here must not block the projects list
+    }
   };
 
   useEffect(() => { load(); }, []);
+
+  const handleLeadHandled = async (lead: Inquiry, handled: boolean) => {
+    setLeads((prev) => prev.map((l) => (l.id === lead.id ? { ...l, handled } : l)));
+    try {
+      await setInquiryHandled(lead.id, handled);
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Could not update the lead");
+      setLeads((prev) => prev.map((l) => (l.id === lead.id ? { ...l, handled: !handled } : l)));
+    }
+  };
+
+  const openLeads = leads.filter((l) => !l.handled);
+  const visibleLeads = showHandled ? leads : openLeads;
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
@@ -255,6 +276,63 @@ export default function ProjectsScreen({ onOpen }: Props) {
             })}
           </div>
         )}
+
+        <section className="leads">
+          <div className="leads-toolbar">
+            <h2 className="projects-heading">Leads from callenueve.com</h2>
+            {openLeads.length > 0 && <span className="leads-count">{openLeads.length} new</span>}
+            <button className="leads-toggle" onClick={() => setShowHandled((v) => !v)}>
+              {showHandled ? "Hide handled" : `Show handled (${leads.length - openLeads.length})`}
+            </button>
+          </div>
+          {visibleLeads.length === 0 ? (
+            <p className="leads-empty">
+              {leads.length === 0
+                ? "No requests yet. The form at callenueve.com/custom lands here."
+                : "Nothing new. Every request has been handled."}
+            </p>
+          ) : (
+            <table className="leads-table">
+              <thead>
+                <tr>
+                  <th>When</th>
+                  <th>Who</th>
+                  <th>Contact</th>
+                  <th>Decks</th>
+                  <th>For</th>
+                  <th>Message</th>
+                  <th>Done</th>
+                </tr>
+              </thead>
+              <tbody>
+                {visibleLeads.map((l) => (
+                  <tr key={l.id} className={l.handled ? "lead-handled" : ""}>
+                    <td style={{ whiteSpace: "nowrap" }}>{formatDate(l.created_at)}</td>
+                    <td className="lead-name">
+                      {l.name}
+                      {l.company && <div className="project-card-meta">{l.company}</div>}
+                    </td>
+                    <td>
+                      <a href={`mailto:${l.email}?subject=${encodeURIComponent("Your Calle Nueve custom deck")}`}>{l.email}</a>
+                      {l.phone && <div className="project-card-meta">{l.phone}</div>}
+                    </td>
+                    <td>{l.quantity ?? ""}</td>
+                    <td>{l.deck_type ?? ""}</td>
+                    <td className="lead-msg">{l.message ?? ""}</td>
+                    <td>
+                      <input
+                        type="checkbox"
+                        checked={l.handled}
+                        onChange={(e) => handleLeadHandled(l, e.target.checked)}
+                        title="Mark as handled"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </section>
       </div>
     </div>
   );

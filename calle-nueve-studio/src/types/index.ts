@@ -133,6 +133,26 @@ export type DesignTokens = {
   };
   tuckBox?: TuckBoxDesign;
   rulesCard?: RulesCardDesign;
+  sayingsCards?: SayingsCardsDesign;
+};
+
+/** One line of table talk: the Cuban phrase and what it means. */
+export type Saying = { es: string; en: string };
+
+/**
+ * Extra cards (57th and 58th) of Cuban domino table talk, the "chucho".
+ * The tuck box holds up to 65 cards, so there is room for them.
+ */
+export type SayingsCardsDesign = {
+  enabled: boolean;
+  /** One or two cards. */
+  count: 1 | 2;
+  headline: string;
+  subhead: string;
+  /** Sayings for card 1. */
+  sayings: Saying[];
+  /** Sayings for card 2 (used when count is 2). */
+  sayings2: Saying[];
 };
 
 /** The 56th card: a QR code to the How to Play page. */
@@ -196,6 +216,7 @@ export type PreviewMode =
   | "back"
   | "box"
   | "rules"
+  | "sayings"
   | "production";
 
 export type OrderStatus =

@@ -900,3 +900,21 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
   .proof-choice-btn { padding: 14px; font-size: 15px; }
   .proof-submit-btn { padding: 14px; font-size: 15px; }
 }
+
+/* ── Leads (custom deck requests from the website) ──────── */
+.leads { margin-top: 36px; }
+.leads-toolbar { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.leads-toolbar .projects-heading { font-size: 15px; }
+.leads-count { background: var(--accent); color: var(--bg-deep); font-size: 10px; font-weight: 700; border-radius: 999px; padding: 1px 7px; }
+.leads-toggle { margin-left: auto; background: none; border: 1px solid var(--border-light); color: var(--text-secondary); border-radius: var(--radius-sm); font-size: 10px; padding: 2px 8px; cursor: pointer; }
+.leads-table { width: 100%; border-collapse: collapse; background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; font-size: 12px; }
+.leads-table th { text-align: left; color: var(--text-muted); font-weight: 600; font-size: 10px; letter-spacing: .5px; text-transform: uppercase; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.leads-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+.leads-table tr:last-child td { border-bottom: 0; }
+.leads-table tr.lead-handled td { opacity: .5; }
+.leads-table td.lead-name { color: var(--text-primary); font-weight: 600; white-space: nowrap; }
+.leads-table td.lead-msg { max-width: 320px; white-space: pre-wrap; }
+.leads-table a { color: var(--accent); text-decoration: none; }
+.leads-table a:hover { text-decoration: underline; }
+.leads-empty { color: var(--text-muted); font-size: 12px; padding: 12px 0; }
+@media (max-width: 720px) { .leads-table { display: block; overflow-x: auto; } }

@@ -6,10 +6,11 @@ import {
   useRef,
   type ReactNode,
 } from "react";
-import type { DesignTokens, OrderInfo, PreviewMode, DominoCard, TuckBoxDesign, RulesCardDesign } from "../types";
+import type { DesignTokens, OrderInfo, PreviewMode, DominoCard, TuckBoxDesign, RulesCardDesign, SayingsCardsDesign } from "../types";
 import { PRESETS } from "../constants/presets";
 import { getTuckBox } from "../constants/tuckbox";
 import { getRulesCard } from "../constants/rulescard";
+import { getSayingsCards } from "../constants/sayings";
 import { DECK } from "../utils/deck";
 import { saveProject, type CloudProject } from "../lib/supabase";
 
@@ -154,6 +155,7 @@ type AppContextType = {
   updateBack: (partial: Partial<DesignTokens["back"]>) => void;
   updateTuckBox: (partial: Partial<TuckBoxDesign>) => void;
   updateRulesCard: (partial: Partial<RulesCardDesign>) => void;
+  updateSayingsCards: (partial: Partial<SayingsCardsDesign>) => void;
   saveNow: () => Promise<void>;
 };
 
@@ -256,6 +258,8 @@ export function AppProvider({ children, initialProject }: AppProviderProps) {
     dispatch({ type: "PATCH_TOKENS", payload: { tuckBox: { ...getTuckBox(state.tokens), ...partial } } });
   const updateRulesCard = (partial: Partial<RulesCardDesign>) =>
     dispatch({ type: "PATCH_TOKENS", payload: { rulesCard: { ...getRulesCard(state.tokens), ...partial } } });
+  const updateSayingsCards = (partial: Partial<SayingsCardsDesign>) =>
+    dispatch({ type: "PATCH_TOKENS", payload: { sayingsCards: { ...getSayingsCards(state.tokens), ...partial } } });
 
   return (
     <AppContext.Provider
@@ -272,6 +276,7 @@ export function AppProvider({ children, initialProject }: AppProviderProps) {
         updateBack,
         updateTuckBox,
         updateRulesCard,
+        updateSayingsCards,
         saveNow,
       }}
     >

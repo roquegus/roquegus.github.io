@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Custom Decks | Calle Nueve</title>
+  <meta name="description" content="Custom Cuban double-nine domino card decks with your logo, for companies, events, weddings and souvenir shops. Designed and made in Miami." />
+  <meta property="og:title" content="Custom decks | Calle Nueve" />
+  <meta property="og:description" content="Your logo on the back, your colors on the bar. A 55-card domino deck your clients will keep on the table." />
+  <meta property="og:image" content="https://callenueve.com/assets/custom-pristine-pools.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root { --teal: #0D9488; --teal-deep: #0B6F66; --pink: #F472B6; --gold: #D97706; --brown: #92400E; --parchment: #FAFAF9; --ink: #2A1610; --cream: #F6EFDF; --muted: #73523C; --line: #E3D6BC; --shadow: 0 24px 80px rgba(42,22,16,.16); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: Lato, system-ui, sans-serif; color: var(--ink); background: linear-gradient(180deg, var(--parchment), #F2E5CC 68%, var(--parchment)); line-height: 1.55; }
+    a { color: var(--teal); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.5rem; max-width: 1180px; margin: 0 auto; }
+    .brand { font-family: "Bebas Neue", sans-serif; font-size: 2rem; letter-spacing: .06em; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.4rem; align-items: center; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: .95rem; }
+    .nav-links a:hover { color: var(--teal); }
+    .btn { display: inline-block; padding: .85rem 1.4rem; border-radius: 999px; font-family: "Bebas Neue", sans-serif; letter-spacing: .08em; font-size: 1.05rem; text-decoration: none; border: 0; cursor: pointer; }
+    .btn-primary { background: var(--teal); color: #fff; }
+    .btn-primary:hover { background: var(--teal-deep); }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn-outline { border: 2px solid var(--teal); color: var(--teal); background: transparent; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: 3rem; align-items: center; padding: 3.5rem 0 3rem; }
+    .kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: .18em; color: var(--brown); font-size: 1rem; }
+    h1 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(3rem, 6vw, 5.2rem); line-height: .95; margin: .4rem 0 1rem; text-wrap: balance; }
+    h2 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1; margin: .3rem 0 .8rem; text-wrap: balance; }
+    h3 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.5rem; letter-spacing: .03em; margin: 0 0 .3rem; }
+    .lead { font-size: 1.15rem; max-width: 34em; }
+    .hero-actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.4rem; }
+    .frame { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: .8rem; box-shadow: var(--shadow); }
+    .frame img { width: 100%; display: block; border-radius: 12px; }
+    .section { padding: 3.5rem 0; }
+    .section.alt { background: var(--cream); border-block: 1px solid var(--line); }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2.4rem; align-items: start; }
+    .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+    .card img { width: 100%; display: block; aspect-ratio: 5 / 3; object-fit: cover; }
+    .card .body { padding: 1rem 1.1rem 1.2rem; }
+    .card p { margin: .2rem 0 0; color: var(--muted); font-size: .95rem; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; counter-reset: step; }
+    .step { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.2rem; }
+    .step::before { counter-increment: step; content: counter(step); display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: var(--ink); font-family: "Bebas Neue", sans-serif; font-size: 1.4rem; margin-bottom: .6rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .95rem; }
+    ul.plain { padding-left: 1.2rem; }
+    ul.plain li { margin: .35rem 0; }
+    form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.6rem; box-shadow: var(--shadow); }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    label { display: block; font-weight: 700; font-size: .88rem; margin: .8rem 0 .3rem; }
+    label:first-child { margin-top: 0; }
+    input, select, textarea { width: 100%; font: inherit; padding: .7rem .8rem; border: 1px solid #CDBBA0; border-radius: 10px; background: var(--parchment); color: var(--ink); }
+    input:focus, select:focus, textarea:focus { outline: 3px solid rgba(13,148,136,.35); border-color: var(--teal); }
+    textarea { min-height: 120px; resize: vertical; }
+    .form-actions { margin-top: 1.2rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+    .micro { color: var(--muted); font-size: .88rem; margin: 0; }
+    .status { margin-top: 1rem; padding: .9rem 1rem; border-radius: 12px; display: none; }
+    .status.ok { display: block; background: #E6F4F1; color: var(--teal-deep); border: 1px solid #B7DED6; }
+    .status.err { display: block; background: #FDECEC; color: #8A2A2A; border: 1px solid #F0C2C2; }
+    .band { background: var(--ink); color: var(--parchment); padding: 3rem 0; border-top: 5px solid var(--gold); text-align: center; }
+    .band .brand { color: var(--parchment); }
+    .band p { margin: .25rem 0; color: #EBDCC4; }
+    .band a { color: #EBDCC4; }
+    @media (max-width: 920px) {
+      .hero, .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .brand { font-size: 1.6rem; }
+      .nav { padding: .9rem 1rem; }
+      .row, .steps { grid-template-columns: 1fr; }
+      .wrap { padding-inline: 1rem; }
+      .hero-actions .btn { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/" class="brand">Calle Nueve</a>
+      <div class="nav-links">
+        <a href="/">The deck</a>
+        <a href="/play/">Rules</a>
+        <a href="/wholesale/">Wholesale</a>
+        <a href="#request" class="btn btn-primary">Request a quote</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="kicker">Custom decks</div>
+        <h1>Your logo. Their table. Every Sunday.</h1>
+        <p class="lead">A Cuban double-nine domino deck with your logo on the back and your colors on the bar. Clients throw away pens and mugs. Nobody throws away a deck they play with.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#request">Request a quote</a>
+          <a class="btn btn-outline" href="#work">See recent decks</a>
+        </div>
+      </div>
+      <div class="frame">
+        <img src="/assets/custom-pristine-pools.jpg" alt="Custom Calle Nueve deck for Pristine Pools: navy card back with the company logo, white faces with a pool blue bar" />
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="kicker">Recent decks</div>
+      <h2>Made for Miami companies</h2>
+      <div class="grid-3">
+        <div class="card">
+          <img src="/assets/custom-pristine-pools.jpg" alt="Pristine Pools deck" />
+          <div class="body"><h3>Pristine Pools</h3><p>Navy back with the logo held sideways so it reads across the table. Pool blue bar on every face.</p></div>
+        </div>
+        <div class="card">
+          <img src="/assets/custom-biscayne-strategy.jpg" alt="Biscayne Strategy deck" />
+          <div class="body"><h3>Biscayne Strategy</h3><p>Black back, white script logo, a slate bar. The corporate deck that does not look corporate.</p></div>
+        </div>
+        <div class="card">
+          <img src="/assets/custom-skyline.jpg" alt="Skyline Development deck" />
+          <div class="body"><h3>Skyline Development</h3><p>Navy back with the line-art logo, gold bar, navy pips and index to match the brand.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="kicker">How it works</div>
+      <h2>Four steps, about two weeks</h2>
+      <div class="steps">
+        <div class="step"><h3>Send your logo</h3><p>Fill in the form below. A vector logo (SVG, AI, PDF) prints sharpest, but a good PNG works.</p></div>
+        <div class="step"><h3>We design it</h3><p>Within two business days you get a private proof link with the back, all 55 faces and the box.</p></div>
+        <div class="step"><h3>You approve</h3><p>One click on the proof. Want a different color on the bar? Say so and we send it again.</p></div>
+        <div class="step"><h3>We print and ship</h3><p>Printed on linen-finish stock in a matching tuck box. Ten decks or a thousand.</p></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-2">
+        <div>
+          <div class="kicker">What is in every deck</div>
+          <h2>Not a promo item. A game.</h2>
+          <ul class="plain">
+            <li>55 playing cards, 0-0 through 9-9, domino size (1.75 by 3.5 in).</li>
+            <li>Your logo on the back, upright or sideways, and your color on the bar.</li>
+            <li>A rules card with a QR code, so anyone who finds it learns the game.</li>
+            <li>Two chucho cards of Cuban table talk, in Spanish with the English.</li>
+            <li>A tuck box with your name on the front and your story on the back.</li>
+            <li>Premium linen-finish cardstock. Designed and proofed in Miami.</li>
+          </ul>
+          <p class="micro">Also for weddings and quinces (the couple's names on the back), events and conferences, restaurants and cafecito windows, and souvenir shops. Shops: see the <a href="/wholesale/">wholesale line sheet</a>.</p>
+        </div>
+        <div class="frame">
+          <img src="/assets/custom-pristine-box.jpg" alt="Tuck box for the Pristine Pools deck" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="request">
+      <div class="grid-2">
+        <div>
+          <div class="kicker">Request a quote</div>
+          <h2>Tell us about your deck</h2>
+          <p>We reply within two business days with a price and a first look. No payment until you approve the proof.</p>
+          <p class="micro">Prefer email? Write to <a href="mailto:hola@callenueve.com">hola@callenueve.com</a> with your logo attached.</p>
+        </div>
+        <form id="quote-form" novalidate>
+          <div class="row">
+            <div><label for="name">Your name</label><input id="name" name="name" required autocomplete="name" /></div>
+            <div><label for="company">Company or event</label><input id="company" name="company" autocomplete="organization" /></div>
+          </div>
+          <div class="row">
+            <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email" /></div>
+            <div><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel" /></div>
+          </div>
+          <div class="row">
+            <div>
+              <label for="quantity">How many decks</label>
+              <select id="quantity" name="quantity">
+                <option>10 to 24</option>
+                <option selected>25 to 49</option>
+                <option>50 to 99</option>
+                <option>100 to 249</option>
+                <option>250 or more</option>
+              </select>
+            </div>
+            <div>
+              <label for="deck_type">What is it for</label>
+              <select id="deck_type" name="deck_type">
+                <option>Corporate gift</option>
+                <option>Event or conference</option>
+                <option>Wedding or quince</option>
+                <option>Restaurant or bar</option>
+                <option>Souvenir shop (wholesale)</option>
+                <option>Something else</option>
+              </select>
+            </div>
+          </div>
+          <label for="message">Anything else</label>
+          <textarea id="message" name="message" placeholder="Colors, a deadline, a link to your logo, the story for the back of the box."></textarea>
+          <div class="form-actions">
+            <button class="btn btn-gold" type="submit" id="submit-btn">Send request</button>
+            <p class="micro">We only use this to reply about your deck.</p>
+          </div>
+          <div class="status" id="status" role="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="band">
+    <div class="brand">Calle Nueve</div>
+    <p>Cuban double-nine, reimagined as a card deck.</p>
+    <p>Hecho con amor en Miami, Florida. <a href="mailto:hola@callenueve.com">hola@callenueve.com</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      var SUPABASE_URL = "https://oniuuwzugacxywrbqgub.supabase.co";
+      var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uaXV1d3p1Z2FjeHl3cmJxZ3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyMTg4NDcsImV4cCI6MjEwMzc5NDg0N30.ue6fMSqSjcDuBoJzwzYKgQ1YuwgsMNle1pf9sqj1KPM";
+      var form = document.getElementById("quote-form");
+      var status = document.getElementById("status");
+      var btn = document.getElementById("submit-btn");
+
+      function show(kind, html) { status.className = "status " + kind; status.innerHTML = html; }
+
+      function mailtoFallback(data) {
+        var body = "Name: " + data.name + "\nCompany: " + (data.company || "") + "\nEmail: " + data.email +
+          "\nPhone: " + (data.phone || "") + "\nDecks: " + data.quantity + "\nFor: " + data.deck_type + "\n\n" + (data.message || "");
+        return "mailto:hola@callenueve.com?subject=" + encodeURIComponent("Custom deck request from " + data.name) + "&body=" + encodeURIComponent(body);
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var data = {
+          name: form.name.value.trim(),
+          company: form.company.value.trim() || null,
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim() || null,
+          quantity: form.quantity.value,
+          deck_type: form.deck_type.value,
+          message: form.message.value.trim() || null,
+          source: "callenueve.com/custom"
+        };
+        if (!data.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
+          show("err", "Please add your name and a working email so we can reply.");
+          return;
+        }
+        btn.disabled = true; btn.textContent = "Sending";
+        fetch(SUPABASE_URL + "/rest/v1/inquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "apikey": ANON_KEY, "Authorization": "Bearer " + ANON_KEY, "Prefer": "return=minimal" },
+          body: JSON.stringify(data)
+        }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          show("ok", "<strong>Gracias, " + data.name.split(" ")[0] + ".</strong> Your request is in. Expect a reply from hola@callenueve.com within two business days.");
+          form.reset();
+          btn.textContent = "Sent";
+        }).catch(function () {
+          show("err", "The form could not send. <a href=\"" + mailtoFallback(data) + "\">Click here to email us instead</a>; your answers are already filled in.");
+          btn.disabled = false; btn.textContent = "Send request";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

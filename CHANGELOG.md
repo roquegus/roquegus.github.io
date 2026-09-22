@@ -2,10 +2,16 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
-## Unreleased
+## 0.9.0 - 2026-09-22
+
+### Added
+- Chucho cards: one or two extra cards of Cuban domino table talk (phrase in the title face, meaning under it), on by default as cards 57 and 58. Gus's idea: the tuck box holds up to 65 cards. New "Chucho" preview tab, "Chucho Cards" panel (count, headline, subhead, one saying per line as "phrase | meaning", reset to the standard set), single PNG export, included in the production ZIP as `face_56_chucho_1.png` and `face_57_chucho_2.png`, shown on the customer proof page. Preflight counts them and warns on a saying too long to fit. Meanings use Playfair Display when the theme's body face is Bebas Neue, since seven lines of caps do not read.
+- Leads panel on the projects screen: custom-deck requests from the website form, newest first, with a mailto link and a "handled" checkbox. Backed by the new `inquiries` table (anon can insert, signed-in users can read and update).
 
 ### Website
 - Buy buttons on callenueve.com and /play go to the Stripe payment link. "Coming soon" bar and seal replaced with "available now". New /thanks page for after payment.
+- New /custom page: custom decks for companies, events, weddings and shops, with the three client decks, the four-step process, what is in every deck, and a request form that writes to the Studio's leads panel (email fallback if the form cannot send). Linked from the nav, the FAQ and the footer.
+- "Built-in chucho" on the homepage now describes the two chucho cards, and the FAQ says what is in the box (55 playing cards, a rules card, two chucho cards).
 
 ## 0.8.2 - 2026-09-21
 

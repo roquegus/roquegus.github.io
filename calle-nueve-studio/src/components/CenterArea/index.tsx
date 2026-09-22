@@ -11,6 +11,8 @@ import { TUCK_PX, getTuckBox } from "../../constants/tuckbox";
 import TuckBoxSVG from "../CardRenderer/TuckBoxSVG";
 import RulesCardSVG from "../CardRenderer/RulesCardSVG";
 import { getRulesCard } from "../../constants/rulescard";
+import SayingsCardSVG from "../CardRenderer/SayingsCardSVG";
+import { getSayingsCards } from "../../constants/sayings";
 import {
   exportProductionZip,
   exportPdfProof,
@@ -27,8 +29,23 @@ const MODES: { value: PreviewMode; label: string }[] = [
   { value: "back", label: "Card Back" },
   { value: "box", label: "Tuck Box" },
   { value: "rules", label: "Rules Card" },
+  { value: "sayings", label: "Chucho" },
   { value: "production", label: "Production" },
 ];
+
+/** Render a component off-screen and hand back its <svg>. */
+function renderSvg(node: React.ReactNode): SVGElement | null {
+  const container = document.createElement("div");
+  document.body.appendChild(container);
+  const root = createRoot(container);
+  flushSync(() => {
+    root.render(node);
+  });
+  const el = container.querySelector("svg") as SVGElement | null;
+  root.unmount();
+  document.body.removeChild(container);
+  return el;
+}
 
 
 export default function CenterArea() {
@@ -93,6 +110,12 @@ export default function CenterArea() {
   };
 
   const cardInView = deck[selectedCardIndex];
+  // Which chucho card the Chucho tab shows (and exports as a single PNG)
+  const [sayingsInView, setSayingsInView] = useState<1 | 2>(1);
+  const sayingsCount = getSayingsCards(tokens).count;
+  useEffect(() => {
+    if (sayingsInView > sayingsCount) setSayingsInView(1);
+  }, [sayingsCount, sayingsInView]);
 
   const heroes = deck.filter((c) => c.isHero);
 
@@ -150,19 +173,11 @@ export default function CenterArea() {
         (current, total, label) => {
           setExportProgress({ current, total, label });
         },
-        getRulesCard(tokens).enabled
-          ? () => {
-              const container = document.createElement("div");
-              document.body.appendChild(container);
-              const root = createRoot(container);
-              flushSync(() => {
-                root.render(<RulesCardSVG tokens={tokens} />);
-              });
-              const el = container.querySelector("svg") as SVGElement | null;
-              root.unmount();
-              document.body.removeChild(container);
-              return el;
-            }
+        getRulesCard(tokens).enabled ? () => renderSvg(<RulesCardSVG tokens={tokens} />) : null,
+        getSayingsCards(tokens).enabled
+          ? ([1, 2] as const)
+              .slice(0, getSayingsCards(tokens).count)
+              .map((which) => () => renderSvg(<SayingsCardSVG tokens={tokens} which={which} />))
           : null
       );
       const safeOrder = (state.order.orderNumber || "C9-0001").replace(/[^a-zA-Z0-9]/g, "_");
@@ -215,9 +230,12 @@ export default function CenterArea() {
     document.body.appendChild(container);
     const root = createRoot(container);
     const isRules = previewMode === "rules";
+    const isSayings = previewMode === "sayings";
     root.render(
       isRules ? (
         <RulesCardSVG tokens={tokens} />
+      ) : isSayings ? (
+        <SayingsCardSVG tokens={tokens} which={sayingsInView} />
       ) : (
         <DominoCardSVG card={cardInView} tokens={tokens} showTrimLine={false} showSafeZone={false} />
       )
@@ -226,7 +244,10 @@ export default function CenterArea() {
     const svgEl = container.querySelector("svg") as SVGElement | null;
     if (svgEl) {
       const blob = await svgToPng(svgEl);
-      downloadBlob(blob, isRules ? "card_56_rules_qr.png" : `card_${cardInView.id}.png`);
+      downloadBlob(
+        blob,
+        isRules ? "card_56_rules_qr.png" : isSayings ? `card_chucho_${sayingsInView}.png` : `card_${cardInView.id}.png`
+      );
     }
     root.unmount();
     document.body.removeChild(container);
@@ -253,7 +274,14 @@ export default function CenterArea() {
         </div>
 
         <div className="toolbar-controls">
-          {previewMode !== "production" && previewMode !== "back" && previewMode !== "box" && previewMode !== "rules" && (
+          {previewMode === "sayings" && sayingsCount === 2 && (
+            <>
+              <button className="btn-ghost" onClick={() => setSayingsInView(1)} disabled={sayingsInView === 1}>◀</button>
+              <span className="card-counter">{sayingsInView} / 2</span>
+              <button className="btn-ghost" onClick={() => setSayingsInView(2)} disabled={sayingsInView === 2}>▶</button>
+            </>
+          )}
+          {previewMode !== "production" && previewMode !== "back" && previewMode !== "box" && previewMode !== "rules" && previewMode !== "sayings" && (
             <>
               <button className="btn-ghost" onClick={prev} disabled={selectedCardIndex === 0}>◀</button>
               <span className="card-counter">
@@ -311,6 +339,12 @@ export default function CenterArea() {
           <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
             <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
               <RulesCardSVG tokens={tokens} showTrimLine={showTrimLine} showSafeZone={showSafeZone} />
+            </div>
+          </div>
+        ) : previewMode === "sayings" ? (
+          <div className="card-preview-single" style={{ width: scaledW, height: scaledH }}>
+            <div style={{ transform: `scale(${zoom})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+              <SayingsCardSVG tokens={tokens} which={sayingsInView} showTrimLine={showTrimLine} showSafeZone={showSafeZone} />
             </div>
           </div>
         ) : previewMode === "back" ? (
@@ -411,9 +445,9 @@ export default function CenterArea() {
           </div>
         ) : (
         <div className="export-actions">
-          {(previewMode === "single" || previewMode === "rules") && (
+          {(previewMode === "single" || previewMode === "rules" || previewMode === "sayings") && (
             <button className="btn-secondary" onClick={handleExportPng}>
-              {previewMode === "rules" ? "Export Rules Card PNG" : "Export PNG (this card)"}
+              {previewMode === "rules" ? "Export Rules Card PNG" : previewMode === "sayings" ? "Export Chucho Card PNG" : "Export PNG (this card)"}
             </button>
           )}
           <button

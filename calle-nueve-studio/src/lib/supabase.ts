@@ -105,3 +105,33 @@ export async function submitProofResponse(
   });
   if (error) throw error;
 }
+
+/** A custom-deck request from the form at callenueve.com/custom. */
+export type Inquiry = {
+  id: string;
+  created_at: string;
+  name: string;
+  company: string | null;
+  email: string;
+  phone: string | null;
+  quantity: string | null;
+  deck_type: string | null;
+  message: string | null;
+  source: string | null;
+  handled: boolean;
+};
+
+export async function listInquiries(): Promise<Inquiry[]> {
+  const { data, error } = await supabase
+    .from("inquiries")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(100);
+  if (error) throw error;
+  return data as Inquiry[];
+}
+
+export async function setInquiryHandled(id: string, handled: boolean): Promise<void> {
+  const { error } = await supabase.from("inquiries").update({ handled }).eq("id", id);
+  if (error) throw error;
+}

@@ -8,6 +8,7 @@ import BackgroundPanel from "./BackgroundPanel";
 import CardBackPanel from "./CardBackPanel";
 import TuckBoxPanel from "./TuckBoxPanel";
 import RulesCardPanel from "./RulesCardPanel";
+import SayingsCardsPanel from "./SayingsCardsPanel";
 
 export default function RightSidebar() {
   return (
@@ -25,6 +26,7 @@ export default function RightSidebar() {
         <CardBackPanel />
         <TuckBoxPanel />
         <RulesCardPanel />
+        <SayingsCardsPanel />
       </div>
     </aside>
   );

@@ -167,7 +167,8 @@ export async function exportProductionZip(
   renderFaceCard: (card: DominoCard) => SVGElement | null,
   renderBackCard: () => SVGElement | null,
   onProgress?: ExportProgressCallback,
-  renderRulesCard?: (() => SVGElement | null) | null
+  renderRulesCard?: (() => SVGElement | null) | null,
+  renderSayingsCards?: (() => SVGElement | null)[] | null
 ): Promise<Blob> {
   const zip = new JSZip();
   const safeCustomer = (order.customerName || "Customer").replace(/[^a-zA-Z0-9]/g, "_");
@@ -178,7 +179,9 @@ export async function exportProductionZip(
   const proofFolder = zip.folder(`${folderName}/01_PROOF`)!;
   const projectFolder = zip.folder(`${folderName}/02_PROJECT`)!;
 
-  const total = deck.length + 1 + (renderRulesCard ? 1 : 0) + 3;
+  const sayings = renderSayingsCards ?? [];
+  const extras = (renderRulesCard ? 1 : 0) + sayings.length;
+  const total = deck.length + 1 + extras + 3;
   let current = 0;
 
   // Export face cards
@@ -205,6 +208,18 @@ export async function exportProductionZip(
     onProgress?.(current, total, "Rendering rules card");
   }
 
+  // 57th and 58th cards: Cuban table talk
+  for (let i = 0; i < sayings.length; i++) {
+    const el = sayings[i]();
+    if (el) {
+      const blob = await svgToPng(el);
+      const n = deck.length + (renderRulesCard ? 1 : 0) + i;
+      pngFolder.file(`face_${String(n).padStart(2, "0")}_chucho_${i + 1}.png`, blob);
+    }
+    current++;
+    onProgress?.(current, total, `Rendering chucho card ${i + 1}`);
+  }
+
   // Export card back
   const backEl = renderBackCard();
   if (backEl) {
@@ -218,7 +233,7 @@ export async function exportProductionZip(
   projectFolder.file("project.c9project", buildProjectJson(order, tokens, preset));
   projectFolder.file(
     "order-summary.json",
-    JSON.stringify(buildOrderSummary(order, deck.length + (renderRulesCard ? 1 : 0) + 1), null, 2)
+    JSON.stringify(buildOrderSummary(order, deck.length + extras + 1), null, 2)
   );
   projectFolder.file("production-notes.txt", buildProductionNotes(order, preset));
   current++;

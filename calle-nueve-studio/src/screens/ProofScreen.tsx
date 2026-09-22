@@ -6,6 +6,8 @@ import CardBack from "../components/CardRenderer/CardBack";
 import RulesCardSVG from "../components/CardRenderer/RulesCardSVG";
 import { PRINT } from "../constants/print";
 import { getRulesCard } from "../constants/rulescard";
+import SayingsCardSVG from "../components/CardRenderer/SayingsCardSVG";
+import { getSayingsCards } from "../constants/sayings";
 
 type Props = {
   token: string;
@@ -79,6 +81,8 @@ export default function ProofScreen({ token }: Props) {
   const cardW = PRINT.width * gs;
   const cardH = PRINT.height * gs;
   const rules = getRulesCard(project.design_tokens);
+  const sayings = getSayingsCards(project.design_tokens);
+  const sayingsCards: (1 | 2)[] = sayings.enabled ? (sayings.count === 2 ? [1, 2] : [1]) : [];
 
   if (submitted) {
     return (
@@ -115,7 +119,7 @@ export default function ProofScreen({ token }: Props) {
 
       <div className="proof-intro">
         <p>
-          Please review the card back and all 55 faces below. When you're satisfied, click <strong>Approve Design</strong>.
+          Please review the card back, all 55 faces and the extra cards below. When you're satisfied, click <strong>Approve Design</strong>.
           If anything needs to change, click <strong>Request Changes</strong> and leave a note.
         </p>
       </div>
@@ -170,6 +174,16 @@ export default function ProofScreen({ token }: Props) {
             <div className="proof-card-label">Rules</div>
           </div>
         )}
+        {sayingsCards.map((which) => (
+          <div key={`chucho-${which}`} className="proof-card-cell" style={{ width: cardW, height: cardH + 16 }} title="Chucho card">
+            <div style={{ width: cardW, height: cardH, overflow: "hidden" }}>
+              <div style={{ transform: `scale(${gs})`, transformOrigin: "top left", width: PRINT.width, height: PRINT.height }}>
+                <SayingsCardSVG tokens={project.design_tokens} which={which} />
+              </div>
+            </div>
+            <div className="proof-card-label">Chucho {sayingsCards.length === 2 ? which : ""}</div>
+          </div>
+        ))}
       </div>
 
       {!alreadyResponded && (

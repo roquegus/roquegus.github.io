@@ -2,6 +2,7 @@
 import { useApp } from "../../store";
 import { PRINT } from "../../constants/print";
 import { getRulesCard } from "../../constants/rulescard";
+import { getSayingsCards } from "../../constants/sayings";
 import type { PreflightItem, PreflightStatus } from "../../types";
 
 function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[] {
@@ -9,6 +10,16 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
   const { typography } = tokens;
   const rules = getRulesCard(tokens);
   const rulesOn = rules.enabled;
+  const sayings = getSayingsCards(tokens);
+  const sayingsN = sayings.enabled ? sayings.count : 0;
+  const totalFiles = deck.length + (rulesOn ? 1 : 0) + sayingsN + 1;
+  const parts = [`${deck.length} faces`];
+  if (rulesOn) parts.push("rules QR card");
+  if (sayingsN) parts.push(`${sayingsN} chucho card${sayingsN > 1 ? "s" : ""}`);
+  parts.push("1 back");
+  const longSaying = [...sayings.sayings, ...(sayings.count === 2 ? sayings.sayings2 : [])].find(
+    (s) => s.es.length > 30 || s.en.length > 130
+  );
 
   const checks: PreflightItem[] = [
     {
@@ -79,10 +90,21 @@ function runPreflight(state: ReturnType<typeof useApp>["state"]): PreflightItem[
     },
     {
       id: "total-count",
-      label: rulesOn
-        ? "Export includes 57 files (55 faces + rules QR card + 1 back)"
-        : "Export includes 56 files (55 faces + 1 back)",
+      label: `Export includes ${totalFiles} files (${parts.join(" + ")})`,
       status: deck.length === 55 ? "pass" : "fail",
+      message: totalFiles > 65 ? "More than 65 cards will not fit the tuck box" : undefined,
+    },
+    {
+      id: "sayings-cards",
+      label: sayingsN
+        ? `Chucho card${sayingsN > 1 ? "s" : ""} included (${sayingsN})`
+        : "Chucho cards not included",
+      status: !sayingsN ? "warning" : longSaying ? "warning" : "pass",
+      message: !sayingsN
+        ? "Turn on the table-talk cards in the Chucho Cards panel, or leave them off for a client who wants a plain deck"
+        : longSaying
+          ? `"${longSaying.es}" is long; check it fits on the Chucho tab`
+          : undefined,
     },
     {
       id: "rules-card",
