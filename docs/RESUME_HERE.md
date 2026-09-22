@@ -18,7 +18,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 - Chucho cards: one or two extra cards of Cuban table talk (cards 57 and 58), on by default, editable in the Chucho Cards panel, in the ZIP, on the proof page. Existing projects get them automatically on their next export (the defaults apply when the project has no setting).
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
 - Leads panel under the projects list: requests from callenueve.com/custom, with a mailto link and a handled checkbox. Table `inquiries` in Supabase.
-- Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Nine ready Instagram posts with captions were sent to Gus in chat on 2026-09-22 (not in the repo). Social accounts not yet created.
+- Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Nine ready Instagram posts with captions were sent to Gus in chat on 2026-09-22 (not in the repo). Instagram account @callenuevemiami created 2026-09-21 with hola@callenueve.com. TikTok and Facebook not yet.
 - Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), Buy buttons on the Stripe payment link, /play (rules and glossary), /custom (custom decks with a request form), /wholesale (line sheet page and PDF), /thanks, /brand.
 
 ## In progress
@@ -54,14 +54,13 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Waiting on Gus
 
-- Chucho cards: read the 14 default sayings on the Chucho tab and change any he does not like.
 - Wholesale numbers: confirm or change the terms on /wholesale, then the PDF gets re-exported.
-- Instagram: open the account with the kit and post the nine images that were sent in chat (captions in the same ZIP).
+- Instagram @callenuevemiami exists: post the nine images that were sent in chat (captions in the same ZIP).
 - Local printer test: the Pristine Pools print package (ZIP) and a Gmail draft "Quote request: one sample deck..." are ready. Gus emailed Mr. Playing Card on Sep 21; waiting for the quote. Note the package predates the chucho cards; re-export before printing.
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
 - Souvenir line: look at Domino Park, Deco Beach, Miami Sunset and Flamingo Card in the Studio and say what to change. Pick which Miami deck goes to print. Then order one sample of each from MPC and report the per-deck cost.
 - Stripe: finish the review if Stripe emails for a document; set the branding (icon `brand/profile-1024.png`, teal #0D9488, gold #D97706).
-- Gmail "Send mail as" for hola@callenueve.com and the SPF record edit (Part 2 and 3 of the inbox walkthrough in session 7) are not done yet; replies still go out from the personal Gmail until then.
+- Gmail "Send mail as" for hola@callenueve.com: Gus requested it on 2026-09-21 (confirmation email arrived); check it shows under Settings > Accounts. SPF record is updated (verified by DNS on 2026-09-22).
 - Whether custom decks should carry a price on the website (the page asks for a quote for now).
 
 ## Known issues
