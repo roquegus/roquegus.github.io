@@ -39,7 +39,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 **Souvenir art (2026-09-22).** Gus does not like the code-drawn backs and boxes. Two paths open: public-domain Tichnor postcards (sixteen picks sent, lettered A to P, none chosen yet) and a Fiverr illustrator (brief in `docs/BRIEF_illustrator.md`, direction "your Miami, fun colors", not a travel poster). Waiting on Gus for letters or a hire.
 
-**Chucho cards (2026-09-22, Studio 0.9.0).** Gus's idea. Two cards of table talk ship in every export by default. The retail deck sold on the site has not been printed with them yet: whichever project Gus prints for the $29.99 deck must be exported again (the cards are on by default) before the next MPC order. The website already says the box has them.
+**Retail deck project (2026-09-22).** "Calle Nueve First Edition (retail)", order C9-0009, id `267c0df6-a731-42b8-9e2e-c7c9c65cb4bf`, proof token `5dbce899-47e0-4f45-84f0-b882cfda2bb8`. Clean look in brand teal (#0D9488 bar and back, white domino medallion), chucho and rules cards on, simple teal box. This is the deck sold at callenueve.com for $29.99; export it for every retail print run. Not yet printed with the chucho cards.
 
 **Custom decks page and leads (2026-09-22).** callenueve.com/custom is live with a request form. Requests appear in the Studio's leads panel and nowhere else (no email alert yet). Gus should open the Studio a couple of times a week or ask for an email alert (Supabase Edge Function + Resend, same plumbing as item 1 in Next).
 
