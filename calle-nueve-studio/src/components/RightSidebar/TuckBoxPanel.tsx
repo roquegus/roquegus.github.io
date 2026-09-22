@@ -6,6 +6,7 @@ import { getTuckBox } from "../../constants/tuckbox";
 import type { TuckBoxDesign, TuckBoxFrontStyle } from "../../types";
 
 const FRONT_OPTIONS: { value: TuckBoxFrontStyle; label: string }[] = [
+  { value: "simple", label: "Simple (one color)" },
   { value: "emblem", label: "Emblem + Icons" },
   { value: "hero-card", label: "Hero Card (9|9)" },
   { value: "cartouche", label: "Label (souvenir)" },
@@ -137,7 +138,7 @@ export default function TuckBoxPanel() {
       <ControlRow label="Show Dieline">
         <Toggle value={box.showDieline} onChange={(v) => updateTuckBox({ showDieline: v })} />
       </ControlRow>
-      <p className="panel-hint">Sides, back and flaps use the Card Back pattern and colors. Dieline is preview-only.</p>
+      <p className="panel-hint">{box.frontStyle === "simple" ? "Simple: the whole sheet is the Back Color, so nothing can bleed wrong at the edges. Text and the medallion or logo use the Back Accent." : "Sides, back and flaps use the Card Back pattern and colors. Dieline is preview-only."}</p>
     </Accordion>
   );
 }

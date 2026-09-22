@@ -174,6 +174,10 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
   const bodyFont = fam(typography.footerFont);
   const hero = DECK.find((c) => c.top === 9 && c.bottom === 9) ?? DECK[0];
 
+  // One flat color over the whole sheet. No pattern, no separate front panel, so
+  // there is no edge where a second color could bleed the wrong way.
+  const simple = box.frontStyle === "simple";
+
   const f = R_FRONT;
   const fcx = f.x + f.w / 2;
   const titleSize = Math.min(76, Math.floor((f.w - 110) / (0.42 * Math.max(box.title.length, 4))));
@@ -212,21 +216,60 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
       <g>
         {/* Whole sheet carries the card-back pattern so sides, back and flaps wrap seamlessly */}
         <rect x={0} y={0} width={W} height={H} fill={backBg} />
-        <PatternFill
-          pattern={back.pattern === "custom" ? "mosaic" : back.pattern}
-          scale={back.scale}
-          rotation={back.rotation}
-          color={backBg}
-          accent={accent}
-          secondary={secondary}
-          tertiary={tertiary}
-          w={W}
-          h={H}
-          centerX={bcx}
-          centerY={bk.y + bk.h / 2}
-        />
+        {!simple && (
+          <PatternFill
+            pattern={back.pattern === "custom" ? "mosaic" : back.pattern}
+            scale={back.scale}
+            rotation={back.rotation}
+            color={backBg}
+            accent={accent}
+            secondary={secondary}
+            tertiary={tertiary}
+            w={W}
+            h={H}
+            centerX={bcx}
+            centerY={bk.y + bk.h / 2}
+          />
+        )}
 
         {/* FRONT */}
+        {simple ? (
+          <g>
+            <text
+              x={fcx}
+              y={f.y + 170}
+              textAnchor="middle"
+              fontFamily={titleFont}
+              fontSize={titleSize}
+              fill={accent}
+              letterSpacing={5}
+              textLength={Math.min(f.w - 110, box.title.length * titleSize * 0.62)}
+              lengthAdjust="spacing"
+            >
+              {box.title}
+            </text>
+            <text x={fcx} y={f.y + 208} textAnchor="middle" fontFamily={bodyFont} fontSize={17} fill={accent} letterSpacing={4} opacity={0.9}>
+              {box.subtitle}
+            </text>
+            <line x1={fcx - 90} y1={f.y + 250} x2={fcx + 90} y2={f.y + 250} stroke={accent} strokeWidth={2} opacity={0.7} />
+            {box.stamp ? (
+              <image href={box.stamp} x={fcx - 150} y={f.y + 330} width={300} height={300} preserveAspectRatio="xMidYMid meet" />
+            ) : back.logo ? (
+              <BackLogo href={back.logo} cx={fcx} cy={f.y + 480} box={back.logoOrientation === "landscape" ? 420 : 320} scale={back.logoScale} />
+            ) : (
+              medallion(fcx, f.y + 480)
+            )}
+            <text x={fcx} y={f.y + f.h - 130} textAnchor="middle" fontFamily={titleFont} fontSize={22} fill={accent} letterSpacing={4}>
+              {box.tagline}
+            </text>
+            <text x={fcx} y={f.y + f.h - 96} textAnchor="middle" fontFamily={bodyFont} fontSize={14} fill={accent} letterSpacing={3} opacity={0.85}>
+              {box.edition}
+            </text>
+            <text x={fcx} y={f.y + f.h - 62} textAnchor="middle" fontFamily={bodyFont} fontSize={14} fill={accent} letterSpacing={3} opacity={0.85}>
+              {box.url}
+            </text>
+          </g>
+        ) : (
         <g clipPath="url(#tuckFrontClip)">
           <rect x={f.x} y={f.y} width={f.w} height={f.h + B} fill={background.color} />
           {box.frontStyle === "custom" && box.customImage ? (
@@ -372,6 +415,7 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
             </>
           )}
         </g>
+        )}
 
         {/* LID */}
         <text x={R_LID.x + R_LID.w / 2} y={R_LID.y + R_LID.h / 2} textAnchor="middle" dominantBaseline="central" fontFamily={titleFont} fontSize={48} fill={accent} letterSpacing={4}>

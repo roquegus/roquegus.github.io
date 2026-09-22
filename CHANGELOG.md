@@ -2,6 +2,11 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.10.0 - 2026-09-22
+
+### Added
+- Tuck box front style "Simple (one color)", now the default for new projects: the whole sheet is the Back Color with no pattern and no separate front panel, so there is no second color that can bleed the wrong way at the flaps (the cause of MPC ticket 812727). Title, subtitle, medallion or logo or stamp, tagline, edition and website in the Back Accent. Gus's call: "keep it all the same color so we dont get into any troubles with bleeding over."
+
 ## 0.9.0 - 2026-09-22
 
 ### Added

@@ -40,7 +40,7 @@ export const TUCK_PX = {
 };
 
 export const DEFAULT_TUCK_BOX: TuckBoxDesign = {
-  frontStyle: "emblem",
+  frontStyle: "simple",
   title: "CALLE NUEVE",
   subtitle: "CUBAN DOUBLE-NINE DOMINO DECK",
   tagline: "55 CARDS · 0-0 TO 9-9",

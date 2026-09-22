@@ -164,7 +164,8 @@ export type RulesCardDesign = {
   body: string;
 };
 
-export type TuckBoxFrontStyle = "emblem" | "hero-card" | "cartouche" | "custom";
+/** "simple" is one flat color over the whole sheet: nothing can bleed wrong. */
+export type TuckBoxFrontStyle = "simple" | "emblem" | "hero-card" | "cartouche" | "custom";
 
 export type TuckBoxDesign = {
   frontStyle: TuckBoxFrontStyle;
