@@ -172,3 +172,12 @@ Rules out: a price table on the page until the printer cost is known.
 ## 2026-09-22 Pushes go to main (and the session branch)
 Who: Claude, following the repo rule in CLAUDE.md.
 Why: Vercel deploys both sites from `main`, and every previous session pushed there. The session branch `claude/calle-nueve-studio-sarb2y` receives the same commits so the platform's branch rule is also met.
+
+## 2026-09-22 Tuck box default is one flat color
+Who: Gus ("lets keep it all the same color so we dont get into any troubles with bleeding over").
+Why: every bleed problem so far came from a second color meeting a cut line (MPC ticket 812727). With the whole sheet in the Back Color and only text and a mark in the Back Accent, a shifted cut changes nothing. "Simple" is the default for new projects and was set on all seven draft projects by SQL; the older styles stay in the panel for anyone who wants them.
+Rules out: patterned sheets and a white front panel by default. MCB (printing) untouched.
+
+## 2026-09-22 Illustrator brief asks for "your Miami", not a style
+Who: Gus.
+Why: he wants the artist's own take, fun colors, the thing a tourist takes home. The brief lists what says Miami and what to avoid (photo-real, clip art, AI, text) and fixes only the sizes and the rights. Short public post; the spec sheet goes out after hiring.

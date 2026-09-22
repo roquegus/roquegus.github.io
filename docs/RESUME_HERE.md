@@ -4,14 +4,14 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.9.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.10.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
 - 12 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean, Domino Park, Deco Beach, Miami Sunset, Flamingo Card. Custom presets save per project.
 - Pip styles: Cuban icons (real vector art), classic dots, rings, numbers, diamonds. Pips are one size regardless of count.
 - Card back patterns (Cuban Mosaico, Cuban Floor Tile, Deco Sunburst, Miami Sunset, Flamingo Card (one-way), Diamonds, Sunburst, Art Deco, Plain, Custom), up to four back colors, frame, three medallion styles, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
-- Tuck box front styles: Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
+- Tuck box front styles: Simple (one flat color over the whole sheet, the default since 0.10.0 and set on every draft project), Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
@@ -36,6 +36,8 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 **MCB deck (Miami Chic Balloons, Sunem's company).** Order C9-0001, status printing. MPC order 160921267374 placed 2026-09-21; MPC flagged a white edge on the bottom flaps (the front panel's white bleed strip overlapped the flaps' bleed). Gus told MPC to proceed on 2026-09-21; those flap edges tuck inside the box. Real fix shipped in 0.8.2 for future orders. Do not touch this project.
 
 **Checkout is live (2026-09-21).** Stripe account "Calle Nueve" activated (live keys); Stripe was still running its new-account review on Sep 21 (payouts paused 2 to 3 days, link works). Payment link `https://buy.stripe.com/eVq28q0TC7Wr9HF6C84ZG00` for "Calle Nueve Deck" $29.99 is on every Buy button on callenueve.com and /play, the "coming soon" bar and seal are gone, and `/thanks/` exists. Gus set adjustable quantity, a shipping rate and the /thanks redirect on the link on Sep 21. Automatic tax is on (Stripe Tax; fine, small fee per order). Fulfilment is manual: Stripe emails Gus on each order; he ships and marks it. Stripe branding (icon, teal, gold) not yet set.
+
+**Souvenir art (2026-09-22).** Gus does not like the code-drawn backs and boxes. Two paths open: public-domain Tichnor postcards (sixteen picks sent, lettered A to P, none chosen yet) and a Fiverr illustrator (brief in `docs/BRIEF_illustrator.md`, direction "your Miami, fun colors", not a travel poster). Waiting on Gus for letters or a hire.
 
 **Chucho cards (2026-09-22, Studio 0.9.0).** Gus's idea. Two cards of table talk ship in every export by default. The retail deck sold on the site has not been printed with them yet: whichever project Gus prints for the $29.99 deck must be exported again (the cards are on by default) before the next MPC order. The website already says the box has them.
 
