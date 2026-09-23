@@ -252,7 +252,13 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
               {box.subtitle}
             </text>
             <line x1={fcx - 90} y1={f.y + 250} x2={fcx + 90} y2={f.y + 250} stroke={accent} strokeWidth={2} opacity={0.7} />
-            {box.stamp ? (
+            {box.customImage ? (
+              // A picture in a thin accent frame where the medallion would be (postcard art, a photo)
+              <>
+                <rect x={f.x + 26} y={f.y + 276} width={f.w - 52} height={f.h - 436} fill="none" stroke={accent} strokeWidth={3} />
+                <image href={box.customImage} x={f.x + 30} y={f.y + 280} width={f.w - 60} height={f.h - 444} preserveAspectRatio="xMidYMid slice" />
+              </>
+            ) : box.stamp ? (
               <image href={box.stamp} x={fcx - 150} y={f.y + 330} width={300} height={300} preserveAspectRatio="xMidYMid meet" />
             ) : back.logo ? (
               <BackLogo href={back.logo} cx={fcx} cy={f.y + 480} box={back.logoOrientation === "landscape" ? 420 : 320} scale={back.logoScale} />

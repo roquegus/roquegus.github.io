@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Pristine Pools: a kidney pool seen from above. Coping in navy, water in pool blue,
+       two ripple lines and a ladder in white. Reads at 34 px on the card bar. -->
+  <path d="M 20 30 C 8 30, 4 46, 12 56 C 20 66, 34 62, 44 66 C 56 71, 60 84, 74 82 C 92 79, 96 56, 84 44 C 74 34, 62 40, 52 34 C 44 29, 34 30, 20 30 Z" fill="#223282"/>
+  <path d="M 22 36 C 14 36, 11 47, 17 54 C 24 61, 36 57, 46 61 C 57 65, 62 78, 73 76 C 86 74, 89 58, 80 49 C 72 41, 62 46, 52 40 C 45 36, 36 36, 22 36 Z" fill="#0080FF"/>
+  <path d="M 24 46 q 6 -4 12 0 t 12 0" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 46 62 q 6 -4 12 0 t 12 0" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 70 50 v 20 M 78 50 v 20 M 70 57 h 8 M 70 64 h 8" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+</svg>

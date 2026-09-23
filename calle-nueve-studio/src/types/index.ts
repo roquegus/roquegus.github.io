@@ -30,7 +30,8 @@ export type OrnamentType =
   | "sun"
   | "tile"
   | "flourish"
-  | "spinner";
+  | "spinner"
+  | "custom";
 export type IndexFont = "Bebas Neue" | "Playfair Display" | "system";
 export type BackPattern =
   | "mosaic"
@@ -85,6 +86,8 @@ export type DesignTokens = {
     width: number;
     ornament: OrnamentType;
     ornamentSize: number;
+    /** Data URL of a square SVG or PNG drawn at the center of the bar when ornament is "custom". */
+    ornamentImage?: string;
   };
   border: {
     outerWidth: number;

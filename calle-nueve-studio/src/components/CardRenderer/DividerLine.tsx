@@ -11,15 +11,27 @@ type DividerLineProps = {
   y: number;
   /** Keep the divider inside this margin on each side (e.g. the safe zone) */
   inset?: number;
+  /** Picture for the "custom" ornament (data URL). */
+  ornamentImage?: string;
 };
 
 const diamondPts = (cx: number, cy: number, rx: number, ry = rx) =>
   `${cx},${cy - ry} ${cx + rx},${cy} ${cx},${cy + ry} ${cx - rx},${cy}`;
 
-function Ornament({ ornament, size, color }: { ornament: OrnamentType; size: number; color: string }) {
+function Ornament({ ornament, size, color, image }: { ornament: OrnamentType; size: number; color: string; image?: string }) {
   const h = size / 2;
   const hair = Math.max(h * 0.06, 1);
   switch (ornament) {
+    case "custom":
+      // A client mark (Pristine Pools' pool) on a white disk so it sits clean on the bar
+      return image ? (
+        <g>
+          <circle r={h * 1.08} fill="#FFFFFF" />
+          <image href={image} x={-h} y={-h} width={h * 2} height={h * 2} preserveAspectRatio="xMidYMid meet" />
+        </g>
+      ) : (
+        <circle r={h * 0.5} fill={color} />
+      );
     case "leaf":
       return (
         <g>
@@ -244,6 +256,7 @@ export default function DividerLine({
   cardWidth,
   y,
   inset = 0,
+  ornamentImage,
 }: DividerLineProps) {
   const avail = cardWidth - inset * 2;
   const w = avail * widthFraction;
@@ -253,7 +266,8 @@ export default function DividerLine({
 
   const showOrnament = ornament !== "none" && ornamentSize > 0;
   // A spinner sits on top of a continuous line; every other ornament breaks the line.
-  const gap = showOrnament && ornament !== "spinner" ? ornamentSize * 0.75 : 0;
+  // Same for the custom picture: it has its own white disk.
+  const gap = showOrnament && ornament !== "spinner" && ornament !== "custom" ? ornamentSize * 0.75 : 0;
   const segments: [number, number][] = gap > 0 ? [[x1, cx - gap], [cx + gap, x2]] : [[x1, x2]];
   const cap = thickness * 1.5 + 3;
   // The bar type has round ends instead of diamond end caps.
@@ -271,7 +285,7 @@ export default function DividerLine({
       ))}
       {showOrnament && (
         <g transform={`translate(${cx},${y})`}>
-          <Ornament ornament={ornament} size={ornamentSize} color={color} />
+          <Ornament ornament={ornament} size={ornamentSize} color={color} image={ornamentImage} />
         </g>
       )}
     </g>

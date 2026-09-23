@@ -37,7 +37,8 @@ export default function TuckBoxPanel() {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      updateTuckBox({ frontStyle: "custom", customImage: ev.target?.result as string });
+      // Simple keeps its layout and shows the picture in the frame; any other style becomes Custom
+      updateTuckBox({ frontStyle: box.frontStyle === "simple" ? "simple" : "custom", customImage: ev.target?.result as string });
     };
     reader.readAsDataURL(file);
     e.target.value = "";
@@ -72,10 +73,10 @@ export default function TuckBoxPanel() {
           onChange={(v) => updateTuckBox({ frontStyle: v as TuckBoxFrontStyle })}
         />
       </ControlRow>
-      {box.frontStyle === "custom" && (
+      {(box.frontStyle === "custom" || box.frontStyle === "simple") && (
         <div style={{ padding: "6px 0" }}>
           <button className="btn-secondary" style={{ width: "100%" }} onClick={() => uploadRef.current?.click()}>
-            {box.customImage ? "Replace Front Image" : "Upload Front Image"}
+            {box.customImage ? "Replace Front Image" : box.frontStyle === "simple" ? "Upload Front Picture (optional)" : "Upload Front Image"}
           </button>
           <input
             ref={uploadRef}
@@ -84,7 +85,12 @@ export default function TuckBoxPanel() {
             style={{ display: "none" }}
             onChange={handleImageUpload}
           />
-          <p className="panel-hint">Front panel is 1.83 × 3.57 in. Use at least 550 × 1070 px.</p>
+          <p className="panel-hint">{box.frontStyle === "simple" ? "Simple: the picture sits in a frame under the title, 489 × 680 px or larger, cropped to fit." : "Front panel is 1.83 × 3.57 in. Use at least 550 × 1070 px."}</p>
+          {box.customImage && (
+            <button className="btn-ghost" style={{ width: "100%", marginTop: 4, fontSize: 11, color: "var(--red-text)" }} onClick={() => updateTuckBox({ customImage: undefined })}>
+              Remove Front Image
+            </button>
+          )}
         </div>
       )}
       {text("title", "Title")}

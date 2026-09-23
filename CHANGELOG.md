@@ -2,6 +2,13 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.13.0 - 2026-09-23
+
+### Added
+- Divider ornament "Custom picture": upload a small square SVG or PNG and it sits on a white disk in the middle of the bar. Made for Pristine Pools (a pool seen from above, `art/clients/pristine-pools-pool-ornament.svg`).
+- Simple box style takes an optional front picture: it sits in a thin accent frame under the title where the medallion would be. Used for the postcard souvenir decks.
+- Postcard art for three souvenir decks (`art/postcards/`, public domain Tichnor Brothers linen postcards): Flamingo Card gets the Miami coral flamingo, Deco Beach gets "A Miami Beach Sundae" with the blimp, Miami Sunset gets the big-letter "Greetings from Miami" as a sideways back.
+
 ## 0.12.0 - 2026-09-23
 
 ### Added

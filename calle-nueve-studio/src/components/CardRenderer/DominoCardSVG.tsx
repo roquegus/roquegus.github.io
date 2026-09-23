@@ -330,6 +330,7 @@ export default function DominoCardSVG({
         color={colors.divider}
         ornament={divider.ornament}
         ornamentSize={divider.ornamentSize}
+        ornamentImage={divider.ornamentImage}
         cardWidth={W}
         inset={SAFE}
         y={DIVIDER_Y}
