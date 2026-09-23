@@ -135,3 +135,43 @@ export async function setInquiryHandled(id: string, handled: boolean): Promise<v
   const { error } = await supabase.from("inquiries").update({ handled }).eq("id", id);
   if (error) throw error;
 }
+
+/** Save order details (used by the quote dialog on the projects screen). */
+export async function updateOrderInfo(id: string, order_info: OrderInfo): Promise<void> {
+  const { error } = await supabase
+    .from("projects")
+    .update({ order_info, updated_at: new Date().toISOString() })
+    .eq("id", id);
+  if (error) throw error;
+}
+
+/**
+ * Copy a project as a fresh draft with a new order number: same design, presets
+ * and customer, no proof response, today's date. For repeat orders.
+ */
+export async function duplicateProject(source: CloudProject, orderNumber: string): Promise<CloudProject> {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not authenticated");
+  const { quote: _quote, ...rest } = source.order_info ?? ({} as OrderInfo);
+  const order_info: OrderInfo = {
+    ...rest,
+    orderNumber,
+    exportDate: new Date().toISOString().slice(0, 10),
+    notes: `Reorder of ${source.order_info?.orderNumber || source.name}.${rest.notes ? `\n${rest.notes}` : ""}`,
+  };
+  const { data, error } = await supabase
+    .from("projects")
+    .insert({
+      user_id: user.id,
+      name: `${source.name} (reorder ${orderNumber})`,
+      design_tokens: source.design_tokens,
+      order_info,
+      active_preset: source.active_preset,
+      custom_presets: source.custom_presets ?? {},
+      status: "draft",
+    })
+    .select()
+    .single();
+  if (error) throw error;
+  return data as CloudProject;
+}

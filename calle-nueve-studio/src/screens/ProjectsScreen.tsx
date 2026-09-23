@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInquiryHandled, type CloudProject, type Inquiry } from "../lib/supabase";
-import type { OrderStatus } from "../types";
+import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInquiryHandled, updateOrderInfo, duplicateProject, type CloudProject, type Inquiry } from "../lib/supabase";
+import type { OrderStatus, QuoteInfo } from "../types";
 import { APP_VERSION } from "../constants/print";
+import QuoteModal from "../components/QuoteModal";
+import { nextOrderNumber } from "../utils/quote";
 
 type Props = {
   onOpen: (project: CloudProject | null) => void;
@@ -81,6 +83,28 @@ export default function ProjectsScreen({ onOpen }: Props) {
 
   const openLeads = leads.filter((l) => !l.handled);
   const visibleLeads = showHandled ? leads : openLeads;
+
+  const [quoteFor, setQuoteFor] = useState<CloudProject | null>(null);
+  const [reordering, setReordering] = useState<string | null>(null);
+
+  const handleQuoteSaved = async (project: CloudProject, q: QuoteInfo) => {
+    const order_info = { ...project.order_info, quote: q };
+    await updateOrderInfo(project.id, order_info);
+    setProjects((prev) => prev.map((p) => (p.id === project.id ? { ...p, order_info } : p)));
+  };
+
+  const handleReorder = async (project: CloudProject) => {
+    const number = nextOrderNumber(projects.map((p) => p.order_info?.orderNumber ?? ""));
+    if (!confirm(`Copy "${project.name}" as a new draft with order number ${number}?`)) return;
+    setReordering(project.id);
+    try {
+      const copy = await duplicateProject(project, number);
+      setProjects((prev) => [copy, ...prev]);
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Reorder failed");
+    }
+    setReordering(null);
+  };
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
@@ -261,6 +285,21 @@ export default function ProjectsScreen({ onOpen }: Props) {
                     >
                       {copied === p.id ? "Copied!" : "Copy Proof Link"}
                     </button>
+                    <button
+                      className="btn-quote"
+                      onClick={(e) => { e.stopPropagation(); setQuoteFor(p); }}
+                      title="Make a quote or invoice PDF for this project"
+                    >
+                      {p.order_info?.quote ? `${p.order_info.quote.kind === "invoice" ? "Invoice" : "Quote"} ↓` : "Quote"}
+                    </button>
+                    <button
+                      className="btn-quote"
+                      disabled={reordering === p.id}
+                      onClick={(e) => { e.stopPropagation(); handleReorder(p); }}
+                      title="Copy this project as a new draft with the next order number"
+                    >
+                      {reordering === p.id ? "Copying…" : "Reorder"}
+                    </button>
                   </div>
 
                   <button
@@ -334,6 +373,14 @@ export default function ProjectsScreen({ onOpen }: Props) {
           )}
         </section>
       </div>
+
+      {quoteFor && (
+        <QuoteModal
+          project={quoteFor}
+          onClose={() => setQuoteFor(null)}
+          onSaved={(q) => handleQuoteSaved(quoteFor, q)}
+        />
+      )}
     </div>
   );
 }

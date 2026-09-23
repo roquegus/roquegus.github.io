@@ -194,6 +194,31 @@ export type OrderInfo = {
   cardSizePreset: string;
   exportDate: string;
   projectVersion: string;
+  /** Last quote or invoice made for this project (kept so it can be reprinted). */
+  quote?: QuoteInfo;
+};
+
+/** Inputs for the one-page quote or invoice PDF. Money in US dollars. */
+export type QuoteInfo = {
+  kind: "quote" | "invoice";
+  /** Bill-to details beyond the customer name. */
+  company: string;
+  email: string;
+  address: string;
+  quantity: number;
+  unitPrice: number;
+  /** One-time design and setup fee; 0 hides the line. */
+  setupFee: number;
+  shipping: number;
+  /** Sales tax rate in percent (Miami-Dade is 7). 0 hides the line. */
+  taxRate: number;
+  /** Deposit due to start, in percent of the total. Quotes only. */
+  depositPct: number;
+  /** ISO date the document was issued. */
+  date: string;
+  /** Days a quote is valid, or days until an invoice is due. */
+  days: number;
+  notes: string;
 };
 
 export type ProjectFile = {

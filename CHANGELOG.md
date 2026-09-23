@@ -2,6 +2,12 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.11.0 - 2026-09-23
+
+### Added
+- Quote and invoice PDF: a "Quote" button on every project card opens a dialog (decks, price per deck, setup fee, shipping, sales tax, deposit, dates, bill-to, a note) and downloads a one-page Letter PDF in the brand colors with line items, totals and terms. Number is the order number plus Q or INV. The inputs are saved on the project so the document can be printed again; the button then reads "Quote" or "Invoice" with an arrow.
+- Reorder: a "Reorder" button copies a project as a new draft with the next free C9 order number, the same design, presets and customer, a "Reorder of" note, and no proof response.
+
 ## 0.10.1 - 2026-09-23
 
 ### Changed
