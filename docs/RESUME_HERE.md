@@ -4,7 +4,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.12.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.13.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -29,7 +29,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 **Skyline Development client deck (2026-09-21).** Project set up and proofed: Clean preset, gold bar (#F8BE2A), navy back (#00223B) with the client's white line-art logo (portrait, 85%), navy pips and navy index numbers (Gus's call, 2026-09-21), custom preset "Skyline Development" saved, tuck box text filled. Order C9-0002, status draft. Proof link sent to Gus. Waiting on: Gus to send the proof to the client, and ideally a vector logo from the client (the source on their site is a 301 px PNG; we use Wix's 1600 px upscale, fine for the 1 in box, soft if enlarged).
 
-**Pristine Pools client deck (2026-09-21).** Project "Pristine Pools", order C9-0005, status draft, custom preset saved. Clean look: navy #223282 pips and index, pool blue #0080FF bar, navy back with the client's own SVG logo (from pristinepoolsmiami.com, clear-space frame removed, wordmark and dark P recolored white, light P kept pool blue), landscape at 85%. Proof token `a5662c83-0d9b-4e49-bf1b-8244cee25e00`. Waiting on Gus to review and send the proof.
+**Pristine Pools client deck (2026-09-21, bar monogram 2026-09-23).** The bar ornament is now the PP monogram from the logo (custom picture ornament, size 84).  Project "Pristine Pools", order C9-0005, status draft, custom preset saved. Clean look: navy #223282 pips and index, pool blue #0080FF bar, navy back with the client's own SVG logo (from pristinepoolsmiami.com, clear-space frame removed, wordmark and dark P recolored white, light P kept pool blue), landscape at 85%. Proof token `a5662c83-0d9b-4e49-bf1b-8244cee25e00`. Waiting on Gus to review and send the proof.
 
 **Biscayne Strategy deck (2026-09-21, Gus's own company).** Project "Biscayne Strategy", order C9-0006, status draft, custom preset saved. Clean look: black #111111 pips, index and back, navy #253551 bar, white script logo from biscaynestrategy.com (2500 px original, trimmed) landscape at 85%. Proof token `26c0526a-c731-476d-b216-1ba424970e98`. Waiting on Gus to review.
 
@@ -39,7 +39,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 **Checkout is live (2026-09-21).** Stripe account "Calle Nueve" activated (live keys); Stripe was still running its new-account review on Sep 21 (payouts paused 2 to 3 days, link works). Payment link `https://buy.stripe.com/eVq28q0TC7Wr9HF6C84ZG00` for "Calle Nueve Deck" $29.99 is on every Buy button on callenueve.com and /play, the "coming soon" bar and seal are gone, and `/thanks/` exists. Gus set adjustable quantity, a shipping rate and the /thanks redirect on the link on Sep 21. Automatic tax is on (Stripe Tax; fine, small fee per order). Fulfilment is manual: Stripe emails Gus on each order; he ships and marks it. Stripe branding (icon, teal, gold) not yet set.
 
-**Souvenir art (2026-09-22).** Gus does not like the code-drawn backs and boxes. Two paths open: public-domain Tichnor postcards (sixteen picks sent, lettered A to P, none chosen yet) and a Fiverr illustrator (brief in `docs/BRIEF_illustrator.md`, direction "your Miami, fun colors", not a travel poster). Waiting on Gus for letters or a hire.
+**Souvenir art (2026-09-23).** Gus posted the illustrator brief on Fiverr (`docs/BRIEF_illustrator.md`) and picked postcards B (flamingo), I (Miami Beach with blimp) and L (Greetings from Miami). Art is finished and in `calle-nueve-studio/art/postcards/` plus Supabase `fetch_cache` job `art-4`. The four souvenir project rows disappeared from `projects` on 2026-09-23 around 01:50 UTC (not by a Claude write; probably deleted in the Studio). If Gus confirms, recreate three projects from the presets Flamingo Card, Deco Beach, Miami Sunset with back.pattern custom + customImage, tuckBox simple + customImage, colors per `docs/SESSIONS.md`, using the SQL pattern from session 8 (jsonb from fetch_cache).
 
 **Retail deck project (2026-09-22).** "Calle Nueve First Edition (retail)", order C9-0009, id `267c0df6-a731-42b8-9e2e-c7c9c65cb4bf`, proof token `5dbce899-47e0-4f45-84f0-b882cfda2bb8`. Clean look in brand teal (#0D9488 bar and back, white domino medallion), chucho and rules cards on, simple teal box. This is the deck sold at callenueve.com for $29.99; export it for every retail print run. Not yet printed with the chucho cards.
 
