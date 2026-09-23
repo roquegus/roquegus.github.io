@@ -2,6 +2,11 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.10.1 - 2026-09-23
+
+### Changed
+- The domino in the ring medallion (card backs, box) is now the 9|9, La Gorda, instead of a 3|3. Gus: it should match the branding. Slightly larger tile so the nine dots read at box size.
+
 ## 0.10.0 - 2026-09-22
 
 ### Added

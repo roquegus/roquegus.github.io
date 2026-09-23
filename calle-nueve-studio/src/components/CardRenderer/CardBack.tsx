@@ -525,16 +525,11 @@ export function PatternFill({
 
 // Medallion with a domino emblem instead of text so the back stays non-directional
 export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: number; color: string; accent: string }) {
+  // The tile is La Gorda, the 9|9, the card the deck is named after (Gus, 2026-09-23;
+  // it used to be a 3|3).
   const r = 120;
-  const tw = r * 0.52;
-  const th = r * 1.0;
-  const pr = tw * 0.1;
-  const dx = tw * 0.24;
-  const dy = th * 0.12;
-  const pips = [
-    [-dx, -th / 4 - dy], [0, -th / 4], [dx, -th / 4 + dy],
-    [-dx, th / 4 - dy], [0, th / 4], [dx, th / 4 + dy],
-  ];
+  const tw = r * 0.6;
+  const th = r * 1.15;
   return (
     <g>
       <circle cx={cx} cy={cy} r={r + 34} fill={accent} opacity={0.12} />
@@ -546,11 +541,7 @@ export function CenterMedallion({ cx, cy, color, accent }: { cx: number; cy: num
       })}
       <circle cx={cx} cy={cy} r={r * 0.72} fill="none" stroke={accent} strokeWidth={1.5} />
       <g transform={`translate(${cx},${cy})`}>
-        <rect x={-tw / 2} y={-th / 2} width={tw} height={th} rx={8} fill={accent} />
-        <line x1={-tw / 2 + 6} y1={0} x2={tw / 2 - 6} y2={0} stroke={color} strokeWidth={2.5} />
-        {pips.map(([px, py], i) => (
-          <circle key={i} cx={px} cy={py} r={pr} fill={color} />
-        ))}
+        <DominoTile w={tw} h={th} fill={accent} pip={color} line={color} />
       </g>
     </g>
   );

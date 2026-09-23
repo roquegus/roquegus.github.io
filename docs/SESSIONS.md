@@ -90,3 +90,4 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Illustrator brief rewritten twice on Gus's direction: "your Miami", fun colors, then shortened to only what he needs. Saved in `docs/BRIEF_illustrator.md`.
 - Tuck box "Simple (one color)" style: whole sheet in the Back Color, no pattern, no front panel, text and medallion or logo or stamp in the Back Accent. Default for new projects; set on all seven draft projects by SQL. Rendered in three themes with the dieline to check placement. Studio 0.10.0, commit `167edf0`.
 - Created the retail project "Calle Nueve First Edition (retail)" C9-0009 in Supabase (Clean in brand teal, chucho and rules on, simple box) so the $29.99 deck has a source of truth. Rendered face, back, chucho, rules and box from the preview build.
+- Medallion tile changed from 3|3 to 9|9 (La Gorda) at Gus's request; checked on the retail back and box at print size. Studio 0.10.1.
