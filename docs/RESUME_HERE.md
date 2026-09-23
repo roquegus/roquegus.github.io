@@ -4,7 +4,7 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.11.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.12.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -17,10 +17,11 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
 - Chucho cards: one or two extra cards of Cuban table talk (cards 57 and 58), on by default, editable in the Chucho Cards panel, in the ZIP, on the proof page. Existing projects get them automatically on their next export (the defaults apply when the project has no setting).
 - Order workflow: status pipeline (draft, proof_sent, approved, printing, shipped), filter tabs, customer proof link (`?proof=<token>`, no login needed) with Approve / Request changes, preflight checks for order info.
+- Rush flag, "Needed By" date and a Queue tab (production queue with next steps) on the projects screen.
 - Quote and invoice PDF from the project card (dialog, one-page Letter PDF, inputs saved on the project). Reorder button (copy as a new draft with the next order number).
 - Leads panel under the projects list: requests from callenueve.com/custom, with a mailto link and a handled checkbox. Table `inquiries` in Supabase.
 - Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Nine ready Instagram posts with captions were sent to Gus in chat on 2026-09-22 (not in the repo). Instagram account @callenuevemiami created 2026-09-21 with hola@callenueve.com. TikTok and Facebook not yet.
-- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), Buy buttons on the Stripe payment link, /play (rules and glossary), /custom (custom decks with a request form), /wholesale (line sheet page and PDF), /thanks, /brand.
+- Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), Buy buttons on the Stripe payment link, /play (rules and glossary), /custom (custom decks with a request form), /wholesale (line sheet page and PDF), /policies (shipping, returns, privacy), /thanks, /brand. Product photos are rendered from the design files (`callenueve-web/assets/product-hero.jpg`, `product-square.jpg`); the scene is an HTML file in the session scratchpad, rebuild it from the Studio CLAUDE.md notes if the box changes.
 
 ## In progress
 
@@ -49,11 +50,9 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 ## Next (in Gus's priority order, none started)
 
 1. Auto-email the proof link when status moves to Proof Sent, and an email alert for new leads (Supabase Edge Function + Resend). Needs Gus to open a Resend account and paste the key into Vercel.
-2. Rendered product photos (3D box and deck) for the site, Instagram and the line sheet.
-3. Rush order flag with surcharge.
-4. Customer self-service design picker on callenueve.com.
-5. Production queue dashboard.
-Done: quote and invoice PDF (0.11.0), reorder button (0.11.0).
+2. Customer self-service design picker on callenueve.com.
+3. Stripe orders inside the Studio (needs a restricted Stripe key in Vercel).
+Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue, product photos, policies page, sitemap.
 
 ## Waiting on Gus
 

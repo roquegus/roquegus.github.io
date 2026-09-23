@@ -183,6 +183,7 @@ export default function CenterArea() {
       const safeOrder = (state.order.orderNumber || "C9-0001").replace(/[^a-zA-Z0-9]/g, "_");
       const safeCustomer = (state.order.customerName || "Customer").replace(/[^a-zA-Z0-9]/g, "_");
       downloadBlob(blob, `Calle9_Order_${safeOrder}_${safeCustomer}.zip`);
+      dispatch({ type: "SET_ORDER", payload: { exportDate: new Date().toISOString().slice(0, 10) } });
     } catch (e) {
       console.error(e);
       alert("Export failed. See console for details.");

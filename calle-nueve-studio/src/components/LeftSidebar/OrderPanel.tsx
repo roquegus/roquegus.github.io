@@ -5,7 +5,7 @@ export default function OrderPanel() {
   const { state, dispatch } = useApp();
   const order = state.order;
 
-  const set = (key: string, value: string) =>
+  const set = (key: string, value: string | boolean | number) =>
     dispatch({ type: "SET_ORDER", payload: { [key]: value } });
 
   return (
@@ -61,6 +61,31 @@ export default function OrderPanel() {
             <option>Domino (1.75 × 3.5 in)</option>
           </select>
         </div>
+        <div className="field">
+          <label>Needed By</label>
+          <input
+            type="date"
+            value={order.dueDate ?? ""}
+            onChange={(e) => set("dueDate", e.target.value)}
+          />
+        </div>
+        <div className="field">
+          <label className="toggle-label" style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <input type="checkbox" checked={!!order.rush} onChange={(e) => set("rush", e.target.checked)} />
+            <span>Rush order</span>
+          </label>
+        </div>
+        {order.rush && (
+          <div className="field">
+            <label>Rush Fee ($, added to quotes)</label>
+            <input
+              type="number"
+              min={0}
+              value={order.rushFee ?? 0}
+              onChange={(e) => set("rushFee", Number(e.target.value) || 0)}
+            />
+          </div>
+        )}
         <div className="field">
           <label>Export Date</label>
           <input

@@ -38,6 +38,8 @@ souvenir shops and museum stores). They use back patterns `cuban-tile` and `deco
 
 **Leads (2026-09-22).** Table `public.inquiries` (migration 003) receives the form at callenueve.com/custom via REST with the anon key (insert only). `ProjectsScreen` lists them under the projects with a handled checkbox (`listInquiries`, `setInquiryHandled` in `lib/supabase.ts`).
 
+**Product photos (2026-09-23).** Not in the app. Render the box (1712 x 1873) and a few faces with the harness, crop the box panels at pt x PT (front x 60.9 to 192.7, right 192.7 to 246.6, left 8.5 to 60.9, back 246.6 to 378.4, lid y 37.1 to 104.9), then an HTML scene with CSS `preserve-3d` faces (`--w` 275, `--d` 112, `--h` 535 px, `rotateX(-6deg) rotateY(-30deg)`, perspective 1900) and fanned card divs, shot with Playwright at deviceScaleFactor 2. Outputs live in `callenueve-web/assets/product-*.jpg`.
+
 **MPC trims the outer 36 px.** Anything meant to be seen (borders, corner brackets, hero frame, divider
 end caps, back frame) must start at `FRAME = trimInset + 16 = 52 px` or deeper; text stays inside the
 72 px safe line. Only background/texture may live in the bleed strip. `DividerLine` takes `inset` for this.

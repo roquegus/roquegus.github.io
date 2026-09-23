@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /brand/
+Disallow: /thanks/
+
+Sitemap: https://callenueve.com/sitemap.xml

@@ -46,7 +46,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
-  const [filter, setFilter] = useState<OrderStatus | "all">("all");
+  const [filter, setFilter] = useState<OrderStatus | "all" | "queue">("all");
   const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -142,9 +142,38 @@ export default function ProjectsScreen({ onOpen }: Props) {
     }
   };
 
-  const filtered = filter === "all"
+  const filtered = filter === "all" || filter === "queue"
     ? projects
     : projects.filter((p) => (p.status ?? "draft") === filter);
+
+  // Production queue: everything past Draft and not yet Shipped, rush first, then by the date needed
+  const queue = projects
+    .filter((p) => ["proof_sent", "approved", "printing"].includes(p.status ?? "draft"))
+    .sort((a, b) => {
+      const ra = a.order_info?.rush ? 0 : 1;
+      const rb = b.order_info?.rush ? 0 : 1;
+      if (ra !== rb) return ra - rb;
+      const da = a.order_info?.dueDate || "9999-12-31";
+      const db = b.order_info?.dueDate || "9999-12-31";
+      return da.localeCompare(db);
+    });
+  const today = new Date().toISOString().slice(0, 10);
+  const daysLeft = (iso?: string) => {
+    if (!iso) return null;
+    return Math.round((new Date(`${iso}T12:00:00`).getTime() - new Date(`${today}T12:00:00`).getTime()) / 86400000);
+  };
+  const nextStep = (p: CloudProject): string => {
+    const s = p.status ?? "draft";
+    const exported = !!p.order_info?.exportDate;
+    if (s === "proof_sent") {
+      if (p.proof_response === "approved") return "Customer approved. Move to Approved.";
+      if (p.proof_response === "changes") return "Customer wants changes. Edit, then copy the proof link again.";
+      return "Waiting on the customer. Nudge them if it has been a few days.";
+    }
+    if (s === "approved") return exported ? "Order at MPC with the ZIP and box PNG, then move to Printing." : "Export the production package and the box PNG, then order at MPC.";
+    if (s === "printing") return "Waiting on MPC. When the decks arrive, check one, ship, move to Shipped.";
+    return "";
+  };
 
   const counts = ALL_STATUSES.reduce((acc, s) => {
     acc[s] = projects.filter((p) => (p.status ?? "draft") === s).length;
@@ -180,6 +209,13 @@ export default function ProjectsScreen({ onOpen }: Props) {
           >
             All <span className="status-filter-count">{projects.length}</span>
           </button>
+          <button
+            className={`status-filter-tab ${filter === "queue" ? "active" : ""}`}
+            onClick={() => setFilter("queue")}
+            title="Every order past Draft and not yet Shipped, in the order to work on them"
+          >
+            Queue {queue.length > 0 && <span className="status-filter-count">{queue.length}</span>}
+          </button>
           {ALL_STATUSES.map((s) => (
             <button
               key={s}
@@ -195,7 +231,48 @@ export default function ProjectsScreen({ onOpen }: Props) {
         {loading && <p className="projects-status">Loading…</p>}
         {error && <p className="projects-status projects-error">{error}</p>}
 
-        {!loading && !error && filtered.length === 0 && (
+        {!loading && !error && filter === "queue" && (
+          queue.length === 0 ? (
+            <div className="projects-empty"><p>Nothing in production. Send a proof to start the queue.</p></div>
+          ) : (
+            <table className="leads-table queue-table">
+              <thead>
+                <tr><th>Order</th><th>Project</th><th>Status</th><th>Needed by</th><th>Proof</th><th>Files</th><th>Next step</th></tr>
+              </thead>
+              <tbody>
+                {queue.map((p) => {
+                  const status: OrderStatus = p.status ?? "draft";
+                  const d = daysLeft(p.order_info?.dueDate);
+                  return (
+                    <tr key={p.id} className={d !== null && d < 0 ? "queue-late" : ""}>
+                      <td className="lead-name">{p.order_info?.orderNumber || "-"}{p.order_info?.rush && <span className="rush-badge">RUSH</span>}</td>
+                      <td>
+                        <a href="#" onClick={(e) => { e.preventDefault(); onOpen(p); }}>{p.name}</a>
+                        {p.order_info?.customerName && <div className="project-card-meta">{p.order_info.customerName}</div>}
+                      </td>
+                      <td><span className={`order-status-badge status-${status.replace("_", "-")}`}>{STATUS_LABELS[status]}</span></td>
+                      <td style={{ whiteSpace: "nowrap" }}>
+                        {p.order_info?.dueDate ? (
+                          <>
+                            {formatDate(`${p.order_info.dueDate}T12:00:00`)}
+                            <div className="project-card-meta">{d !== null && (d < 0 ? `${-d} days late` : d === 0 ? "today" : `${d} days`)}</div>
+                          </>
+                        ) : (
+                          <span className="project-card-meta">not set</span>
+                        )}
+                      </td>
+                      <td>{p.proof_response === "approved" ? "Approved" : p.proof_response === "changes" ? "Changes asked" : status === "proof_sent" ? "Waiting" : "-"}</td>
+                      <td>{p.order_info?.exportDate ? `Exported ${formatDate(`${p.order_info.exportDate}T12:00:00`)}` : "Not exported"}</td>
+                      <td className="lead-msg">{nextStep(p)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )
+        )}
+
+        {!loading && !error && filter !== "queue" && filtered.length === 0 && (
           <div className="projects-empty">
             {filter === "all" ? (
               <>
@@ -210,7 +287,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
           </div>
         )}
 
-        {!loading && filtered.length > 0 && (
+        {!loading && filter !== "queue" && filtered.length > 0 && (
           <div className="projects-grid">
             {filtered.map((p) => {
               const status: OrderStatus = p.status ?? "draft";
@@ -238,6 +315,8 @@ export default function ProjectsScreen({ onOpen }: Props) {
                       )}
                       <div className="project-card-date">
                         Updated {formatDate(p.updated_at)}
+                        {p.order_info?.dueDate && <> · Needed {formatDate(`${p.order_info.dueDate}T12:00:00`)}</>}
+                        {p.order_info?.rush && <span className="rush-badge">RUSH</span>}
                       </div>
                       {p.proof_response && (
                         <div className={`proof-response-chip ${p.proof_response === "approved" ? "chip-approved" : "chip-changes"}`}>

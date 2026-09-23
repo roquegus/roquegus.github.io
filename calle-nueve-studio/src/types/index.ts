@@ -196,6 +196,11 @@ export type OrderInfo = {
   projectVersion: string;
   /** Last quote or invoice made for this project (kept so it can be reprinted). */
   quote?: QuoteInfo;
+  /** Date the customer needs the decks in hand (ISO). Drives the production queue. */
+  dueDate?: string;
+  /** Rush order: shows a badge and adds the rush fee to quotes. */
+  rush?: boolean;
+  rushFee?: number;
 };
 
 /** Inputs for the one-page quote or invoice PDF. Money in US dollars. */

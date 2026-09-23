@@ -23,9 +23,10 @@ export function getQuote(order: OrderInfo): QuoteInfo {
 
 export type Totals = { decks: number; subtotal: number; tax: number; total: number; deposit: number; balance: number };
 
-export function computeTotals(q: QuoteInfo): Totals {
+/** `extra` is any flat surcharge outside the quote inputs, such as the rush fee on the order. */
+export function computeTotals(q: QuoteInfo, extra = 0): Totals {
   const decks = round2(q.quantity * q.unitPrice);
-  const subtotal = round2(decks + q.setupFee + q.shipping);
+  const subtotal = round2(decks + q.setupFee + q.shipping + extra);
   const tax = round2(subtotal * (q.taxRate / 100));
   const total = round2(subtotal + tax);
   const deposit = q.kind === "quote" ? round2(total * (q.depositPct / 100)) : 0;
@@ -67,7 +68,8 @@ export function buildQuotePdf(order: OrderInfo, projectName: string, q: QuoteInf
   const W = pdf.internal.pageSize.getWidth();
   const H = pdf.internal.pageSize.getHeight();
   const M = 54;
-  const t = computeTotals(q);
+  const rushFee = order.rush ? order.rushFee ?? 0 : 0;
+  const t = computeTotals(q, rushFee);
   const isQuote = q.kind === "quote";
   const title = isQuote ? "QUOTE" : "INVOICE";
   const number = quoteNumber(order, q);
@@ -144,6 +146,7 @@ export function buildQuotePdf(order: OrderInfo, projectName: string, q: QuoteInf
   ];
   if (q.setupFee > 0) items.push({ desc: "Design and setup", sub: "Card back, box and proof with your logo and colors", qty: "1", unit: money(q.setupFee), amt: q.setupFee });
   if (q.shipping > 0) items.push({ desc: "Shipping", sub: "USPS, insured, tracking by email", qty: "1", unit: money(q.shipping), amt: q.shipping });
+  if (rushFee > 0) items.push({ desc: "Rush production", sub: order.dueDate ? `Front of the queue, in hand by ${longDate(order.dueDate)}` : "Front of the queue", qty: "1", unit: money(rushFee), amt: rushFee });
 
   pdf.setTextColor(...INK);
   for (const it of items) {

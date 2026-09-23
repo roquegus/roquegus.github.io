@@ -2,6 +2,18 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.12.0 - 2026-09-23
+
+### Added
+- Rush orders: "Needed By" date, a Rush checkbox and a rush fee in the Order panel. Rush shows a red badge on the project card and in the queue, and the fee is added as a line on quotes and invoices.
+- Production queue: a "Queue" tab on the projects screen listing every order past Draft and not yet Shipped, rush first then by the date needed, with days left (red when late), proof status, whether the files were exported, and the next step to take.
+- The export date on the order is set automatically when the production ZIP is exported.
+
+### Website
+- Product photos rendered from the real design (3D box and fanned cards) on the homepage hero and as the share image for the homepage and wholesale page. Square version for Instagram.
+- New /policies page: shipping, returns and damaged decks, custom and wholesale order terms, privacy, contact. Linked from every footer.
+- sitemap.xml and robots.txt (brand kit and thank-you page kept out of search), canonical links and share tags on the wholesale page.
+
 ## 0.11.0 - 2026-09-23
 
 ### Added

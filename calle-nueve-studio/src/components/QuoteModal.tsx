@@ -16,7 +16,8 @@ const money = (n: number) => `$${n.toLocaleString("en-US", { minimumFractionDigi
 export default function QuoteModal({ project, onClose, onSaved }: Props) {
   const [q, setQ] = useState<QuoteInfo>(() => getQuote(project.order_info ?? ({} as CloudProject["order_info"])));
   const [busy, setBusy] = useState(false);
-  const t = computeTotals(q);
+  const rushFee = project.order_info?.rush ? project.order_info.rushFee ?? 0 : 0;
+  const t = computeTotals(q, rushFee);
   const set = <K extends keyof QuoteInfo>(k: K, v: QuoteInfo[K]) => setQ((p) => ({ ...p, [k]: v }));
   const num = (k: keyof QuoteInfo) => (e: React.ChangeEvent<HTMLInputElement>) => set(k, (Number(e.target.value) || 0) as never);
 
@@ -65,6 +66,7 @@ export default function QuoteModal({ project, onClose, onSaved }: Props) {
           <span>{q.quantity} decks x {money(q.unitPrice)}</span><span>{money(t.decks)}</span>
           {q.setupFee > 0 && <><span>Design and setup</span><span>{money(q.setupFee)}</span></>}
           {q.shipping > 0 && <><span>Shipping</span><span>{money(q.shipping)}</span></>}
+          {rushFee > 0 && <><span>Rush production (from the order)</span><span>{money(rushFee)}</span></>}
           {q.taxRate > 0 && <><span>Sales tax {q.taxRate}%</span><span>{money(t.tax)}</span></>}
           <span className="strong">Total</span><span className="strong">{money(t.total)}</span>
           {q.kind === "quote" && q.depositPct > 0 && <><span>Deposit to start</span><span>{money(t.deposit)}</span></>}

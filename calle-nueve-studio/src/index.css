@@ -937,3 +937,9 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 .kind-tab.active { border-color: var(--accent); color: var(--accent); }
 .btn-quote { background: none; border: 1px solid var(--border-light); color: var(--text-secondary); border-radius: var(--radius-sm); font-size: 10px; padding: 2px 7px; cursor: pointer; white-space: nowrap; }
 .btn-quote:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Rush badge and production queue ─────────────────────── */
+.rush-badge { display: inline-block; margin-left: 6px; background: var(--red-text); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: .6px; padding: 1px 6px; border-radius: 3px; vertical-align: middle; }
+.queue-table td a { color: var(--text-primary); text-decoration: none; font-weight: 600; }
+.queue-table td a:hover { color: var(--accent); }
+.queue-table tr.queue-late td:nth-child(4) { color: var(--red-text); }
