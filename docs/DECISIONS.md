@@ -184,7 +184,7 @@ Why: he wants the artist's own take, fun colors, the thing a tourist takes home.
 
 ## 2026-09-24 Retail box: DOMINOES is the biggest word
 Who: Gus said "go" on the plan in `docs/RESEARCH_box_shelf.md`; the details are Claude's calls.
-Why: shoppers in a souvenir shop give a box two or three seconds. The category word must be readable from a few feet away, the cards must be visible so it reads as a card game, and the four facts (2-4 players, 13+, 20 minutes, 55 cards) answer what a gift buyer asks. Ages 13+ avoids the small-parts and toy-safety rules that apply under 12 while being true for the game. The back teaches the game in three steps so the box sells itself without staff. New projects start on it; old projects without a saved box stay on Simple so nothing already printed changes.
+Why: shoppers in a souvenir shop give a box two or three seconds. The category word must be readable from a few feet away, the cards must be visible so it reads as a card game, and the four facts (4 players, 13+, 20 minutes, 55 cards; was 2-4 until Gus corrected it) answer what a gift buyer asks. Ages 13+ avoids the small-parts and toy-safety rules that apply under 12 while being true for the game. The back teaches the game in three steps so the box sells itself without staff. New projects start on it; old projects without a saved box stay on Simple so nothing already printed changes.
 Rules out: brand-first fronts (CALLE NUEVE as the biggest word) on retail decks. Client gift decks can still use Simple or the older styles.
 
 ## 2026-09-24 Box QR goes to How to Play, not Buy
@@ -205,4 +205,9 @@ Rules out: bridge or poker size for Calle Nueve decks. Any new printer must quot
 ## 2026-09-24 Wholesale terms add a 60-day swap
 Who: Claude, from the selling-to-shops research; Gus said "go" on the pitch kit.
 Why: it takes the risk out of a first order without going to consignment. Shown on /wholesale and on the wholesale card. Gus can remove it; change both places together.
+
+## 2026-09-24 Always four players
+Who: Gus ("its always 4 players, no more no less").
+Why: Cuban double-nine is four players in two teams, ten cards each, fifteen asleep. The box, counter sign, designer brief and /play say 4; the two-or-three-player note on /play was removed.
+Rules out: 2-4 or 2-player claims anywhere.
 

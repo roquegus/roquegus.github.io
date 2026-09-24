@@ -18,7 +18,7 @@ type TextKey = "title" | "subtitle" | "tagline" | "tagline2" | "edition" | "url"
 
 const RETAIL_DEFAULTS: Record<string, string> = {
   category: "DOMINOES",
-  players: "2-4",
+  players: "4",
   ages: "13+",
   minutes: "20",
   spanishLine: "El dominó cubano, en cartas. Para la playa, el viaje y la ventanita.",

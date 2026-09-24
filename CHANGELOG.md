@@ -2,7 +2,16 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
-## Unreleased
+## 0.15.1 - 2026-09-24
+
+### Fixed
+- Retail box says 4 players (was 2-4). Gus: the game is always four players, no more, no less. The back now reads "4 players · 2 teams".
+- Retail box how-to-play matched to the rules: the 15 cards left over stay face down and out of play (no drawing), and a player who cannot play says "paso".
+
+### Website
+- /play no longer says two or three can play.
+- Counter sign says 4 players.
+
 
 ### Website
 - Homepage and share photos now show the new DOMINOES retail box (`assets/product-*.jpg`).

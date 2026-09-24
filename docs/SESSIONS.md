@@ -107,4 +107,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Gus forwarded Sonya's reply (Mr. Playing Card): no round corners at domino size without a die ($800 to $1,400); he asked her for a bridge-size (2.25 x 3.5) quote.
 - Gus rejected Mr. Playing Card (size). Saved the decline as a Gmail draft reply in Sonya's thread (his earlier bridge-size reply had not been sent).
 - Product photos re-shot with the Retail box (panels cropped from the C9-0009 render, same CSS 3D scene). Retail kit built and rendered: counter sign and wholesale card, QR codes decoded with OpenCV. Swap term added to /wholesale.
+- Gus: always 4 players. Retail box default and back line, panel default, counter sign, designer brief sketches, /play fixed. Also fixed the box steps that said to draw from the leftover cards (the rules say they sit out). Studio 0.15.1.
 

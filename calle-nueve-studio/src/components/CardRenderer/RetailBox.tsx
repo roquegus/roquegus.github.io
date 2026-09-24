@@ -66,7 +66,7 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
   const bg = tokens.colors.backBackground;
   const hi = box.highlight ?? "#FFD24A";
   const category = (box.category ?? "DOMINOES").toUpperCase();
-  const players = box.players ?? "2-4";
+  const players = box.players ?? "4";
   const ages = box.ages ?? "13+";
   const minutes = box.minutes ?? "20";
   const body = fam(tokens.typography.footerFont === "Bebas Neue" ? "Playfair Display" : tokens.typography.footerFont);
@@ -98,8 +98,8 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
   const fh = 140;
 
   const steps: [string, string][] = [
-    ["DEAL 10 CARDS EACH", "Each card is one domino tile. The rest stay face down to draw from."],
-    ["MATCH THE ENDS", "Play a card that matches an open end of the line. Can't play? Draw or pass."],
+    ["DEAL 10 CARDS EACH", "Four players, two teams. Each card is one domino tile. The 15 left over stay face down."],
+    ["MATCH THE ENDS", "Play a card that matches an open end of the line. Can't play? Say \u201Cpaso.\u201D"],
     ["GO OUT FIRST", "Play your last card and call “me pegué.” If the game locks, the lowest hand wins."],
   ];
   const spanish = wrap(box.spanishLine ?? "El dominó cubano, en cartas. Para la playa, el viaje y la ventanita.", 40);
@@ -229,7 +229,7 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
         RULES CARD, 2 TABLE-TALK CARDS
       </text>
       <text x={bcx} y={bk.y + bk.h - 58} textAnchor="middle" fontFamily={BEBAS} fontSize={22} fill={accent} letterSpacing={3}>
-        {`${players} PLAYERS · AGES ${ages} · MADE IN MIAMI`}
+        {`${players} PLAYERS · 2 TEAMS · AGES ${ages} · MADE IN MIAMI`}
       </text>
 
       {/* LEFT SIDE (spine) */}
