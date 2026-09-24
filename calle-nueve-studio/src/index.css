@@ -972,3 +972,8 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 .visits-table th { text-align: left; color: var(--text-muted); font-size: 10px; text-transform: uppercase; padding: 4px 6px; border-bottom: 1px solid var(--border); }
 .visits-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); }
 @media (max-width: 700px) { .shops-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .shops-table { display: block; overflow-x: auto; } }
+
+/* Design-picker leads */
+.lead-design { display: flex; align-items: center; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.lead-swatch { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--border-light); display: inline-block; }
+.lead-logo { width: 34px; height: 34px; object-fit: contain; border-radius: 4px; padding: 2px; }

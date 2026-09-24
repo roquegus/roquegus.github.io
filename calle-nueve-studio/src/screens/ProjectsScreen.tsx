@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInquiryHandled, updateOrderInfo, duplicateProject, type CloudProject, type Inquiry } from "../lib/supabase";
+import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInquiryHandled, updateOrderInfo, duplicateProject, createProjectFromLead, type CloudProject, type Inquiry } from "../lib/supabase";
 import type { OrderStatus, QuoteInfo } from "../types";
 import { APP_VERSION } from "../constants/print";
 import QuoteModal from "../components/QuoteModal";
@@ -92,6 +92,20 @@ export default function ProjectsScreen({ onOpen }: Props) {
     const order_info = { ...project.order_info, quote: q };
     await updateOrderInfo(project.id, order_info);
     setProjects((prev) => prev.map((p) => (p.id === project.id ? { ...p, order_info } : p)));
+  };
+
+  const [creatingFrom, setCreatingFrom] = useState<string | null>(null);
+  const handleCreateFromLead = async (lead: Inquiry) => {
+    const number = nextOrderNumber(projects.map((p) => p.order_info?.orderNumber ?? ""));
+    setCreatingFrom(lead.id);
+    try {
+      const project = await createProjectFromLead(lead, number);
+      setProjects((prev) => [project, ...prev]);
+      onOpen(project);
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "Could not create the project");
+    }
+    setCreatingFrom(null);
   };
 
   const handleReorder = async (project: CloudProject) => {
@@ -445,7 +459,19 @@ export default function ProjectsScreen({ onOpen }: Props) {
                       {l.phone && <div className="project-card-meta">{l.phone}</div>}
                     </td>
                     <td>{l.quantity ?? ""}</td>
-                    <td>{l.deck_type ?? ""}</td>
+                    <td>
+                      {l.deck_type ?? ""}
+                      {l.design && (
+                        <div className="lead-design">
+                          <span className="lead-swatch" style={{ background: l.design.bar }} title={`Bar ${l.design.bar}`} />
+                          <span className="lead-swatch" style={{ background: l.design.back }} title={`Back ${l.design.back}`} />
+                          {l.design.logo && <img src={l.design.logo} alt="Logo" className="lead-logo" style={{ background: l.design.back }} />}
+                          <button className="btn-quote" disabled={creatingFrom === l.id} onClick={() => handleCreateFromLead(l)} title="Make a draft project with these colors, logo and box name, and open it">
+                            {creatingFrom === l.id ? "Creating…" : "Create project"}
+                          </button>
+                        </div>
+                      )}
+                    </td>
                     <td className="lead-msg">{l.message ?? ""}</td>
                     <td>
                       <input

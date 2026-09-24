@@ -111,4 +111,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Gus reviewed the brief sketches: Little Havana tile only, Wynwood colors only, no card on the box picture. Brief republished (version 3). Studio 0.15.2 adds the "9|9 Card on Picture" toggle.
 - Gus hated the South Beach hotel sketch. Replaced with three Art Deco pattern options (fans, chevrons, diamond lattice), no buildings; brief republished (version 4). Waiting on his pick.
 - Gus picked the Deco fans for South Beach. Brief republished (version 5) with only the chosen directions for all three decks. The brief is ready to hand off.
+- Gus: "Build what you can that's unblocked." Built the design picker: /design page, `c9-render.js` bundle of the real renderers, `inquiries.design` column (migration 005, anon insert tested in a rolled-back transaction), lead swatches and "Create project" in the Studio. Checked the page at desktop and phone width with a test logo. Studio 0.16.0. Still blocked: proof and lead emails (Resend account), Stripe orders (restricted key), neighborhood decks (art), line sheet re-export (terms).
 

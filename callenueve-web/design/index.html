@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design Your Deck | Calle Nueve</title>
+  <meta name="description" content="Design a custom Cuban domino card deck: pick your colors, add your logo, see the cards and the box live, and send it to us for a quote." />
+  <meta property="og:title" content="Design your deck | Calle Nueve" />
+  <meta property="og:description" content="Pick your colors, add your logo, and see your custom domino deck live." />
+  <meta property="og:image" content="https://callenueve.com/assets/custom-pristine-pools.jpg" />
+  <link rel="canonical" href="https://callenueve.com/design/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@400;700;900&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --teal: #0D9488; --teal-deep: #0B6F66; --gold: #D97706; --brown: #92400E; --parchment: #FAFAF9; --ink: #2A1610; --cream: #F6EFDF; --muted: #73523C; --line: #E3D6BC; --shadow: 0 24px 80px rgba(42,22,16,.16); }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Lato, system-ui, sans-serif; color: var(--ink); background: linear-gradient(180deg, var(--parchment), #F2E5CC 68%, var(--parchment)); line-height: 1.55; }
+    a { color: var(--teal); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.5rem; max-width: 1180px; margin: 0 auto; }
+    .brand { font-family: "Bebas Neue", sans-serif; font-size: 2rem; letter-spacing: .06em; color: var(--ink); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.4rem; align-items: center; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-weight: 700; font-size: .95rem; }
+    .btn { display: inline-block; padding: .85rem 1.4rem; border-radius: 999px; font-family: "Bebas Neue", sans-serif; letter-spacing: .08em; font-size: 1.05rem; text-decoration: none; border: 0; cursor: pointer; }
+    .btn-primary { background: var(--teal); color: #fff; }
+    .btn-gold { background: var(--gold); color: var(--ink); }
+    .btn:disabled { opacity: .6; cursor: default; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    .kicker { font-family: "Bebas Neue", sans-serif; letter-spacing: .18em; color: var(--brown); font-size: 1rem; }
+    h1 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(2.8rem, 5.5vw, 4.4rem); line-height: .95; margin: .4rem 0 .8rem; text-wrap: balance; }
+    h2 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1; margin: 0 0 .6rem; }
+    h3 { font-family: "Bebas Neue", sans-serif; font-weight: 400; font-size: 1.3rem; letter-spacing: .04em; margin: 0 0 .5rem; }
+    .lead { font-size: 1.1rem; max-width: 40em; margin: 0; }
+    .intro { padding: 2.4rem 0 1.6rem; }
+    .studio { display: grid; grid-template-columns: 340px 1fr; gap: 2rem; align-items: start; }
+    .panel { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.3rem; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 1.2rem; position: sticky; top: 1rem; }
+    .swatches { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; }
+    .sw { width: 34px; height: 34px; border-radius: 50%; border: 2px solid rgba(0,0,0,.12); cursor: pointer; padding: 0; }
+    .sw[aria-pressed="true"] { outline: 3px solid var(--ink); outline-offset: 2px; }
+    .custom-color { width: 34px; height: 34px; border: 0; padding: 0; background: none; cursor: pointer; }
+    .hint { color: var(--muted); font-size: .85rem; margin: .35rem 0 0; }
+    .file { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+    .file label.btn { font-size: .95rem; padding: .6rem 1rem; }
+    input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+    input[type=range] { width: 100%; }
+    input[type=text], input[type=email], input[type=tel], select, textarea { width: 100%; font: inherit; padding: .7rem .8rem; border: 1px solid #CDBBA0; border-radius: 10px; background: var(--parchment); color: var(--ink); }
+    input:focus, select:focus, textarea:focus, .sw:focus-visible, button:focus-visible { outline: 3px solid rgba(13,148,136,.45); }
+    .seg { display: flex; gap: .4rem; flex-wrap: wrap; }
+    .seg button { font: inherit; font-size: .9rem; font-weight: 700; padding: .45rem .8rem; border-radius: 999px; border: 1px solid #CDBBA0; background: var(--parchment); cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .preview { display: flex; flex-direction: column; gap: 1rem; }
+    .stage { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; align-items: end; background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 1.6rem; box-shadow: var(--shadow); }
+    .item { display: flex; flex-direction: column; gap: .5rem; align-items: center; }
+    .item .art { width: 100%; }
+    .item .art > svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 10px 18px rgba(42,22,16,.25)); }
+    .card-art > svg { clip-path: inset(3.2% 6% 3.2% 6% round 7%); }
+    .item span { font-size: .85rem; color: var(--muted); font-weight: 700; }
+    .note { color: var(--muted); font-size: .9rem; margin: 0; }
+    form { background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 1.6rem; box-shadow: var(--shadow); margin: 2.4rem 0 3rem; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+    form label { display: block; font-weight: 700; font-size: .88rem; margin: .8rem 0 .3rem; }
+    textarea { min-height: 100px; resize: vertical; }
+    .form-actions { margin-top: 1.2rem; display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+    .micro { color: var(--muted); font-size: .88rem; margin: 0; }
+    .status { margin-top: 1rem; padding: .9rem 1rem; border-radius: 12px; display: none; }
+    .status.ok { display: block; background: #E6F4F1; color: var(--teal-deep); border: 1px solid #B7DED6; }
+    .status.err { display: block; background: #FDECEC; color: #8A2A2A; border: 1px solid #F0C2C2; }
+    .band { background: var(--ink); color: var(--parchment); padding: 3rem 0; border-top: 5px solid var(--gold); text-align: center; }
+    .band .brand { color: var(--parchment); }
+    .band p { margin: .25rem 0; color: #EBDCC4; }
+    .band a { color: #EBDCC4; }
+    @media (max-width: 920px) {
+      .studio { grid-template-columns: 1fr; }
+      .panel { position: static; order: 2; }
+      .preview { order: 1; }
+      .nav-links a:not(.btn) { display: none; }
+    }
+    @media (max-width: 560px) {
+      .wrap { padding-inline: 1rem; }
+      .stage { padding: 1rem; gap: .7rem; }
+      .row { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: no-preference) { .item .art > svg { transition: opacity .15s; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="/" class="brand">Calle Nueve</a>
+      <div class="nav-links">
+        <a href="/">The deck</a>
+        <a href="/custom/">Custom decks</a>
+        <a href="/play/">Rules</a>
+        <a href="#send" class="btn btn-primary">Send my design</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <div class="kicker">Custom decks</div>
+      <h1>Design your deck</h1>
+      <p class="lead">Pick your colors, add your logo and see your deck come to life. When it looks right, send it to us. We reply within two business days with a price and a print-ready proof.</p>
+    </section>
+
+    <section class="studio">
+      <div class="panel" aria-label="Design controls">
+        <div>
+          <h3>Bar color</h3>
+          <div class="swatches" data-key="bar"></div>
+          <p class="hint">The stripe across the middle of every card.</p>
+        </div>
+        <div>
+          <h3>Dot color</h3>
+          <div class="seg" data-key="pipsMode">
+            <button type="button" data-v="#111111">Black</button>
+            <button type="button" data-v="#223282">Navy</button>
+            <button type="button" data-v="bar">Same as bar</button>
+          </div>
+        </div>
+        <div>
+          <h3>Card back color</h3>
+          <div class="swatches" data-key="back"></div>
+        </div>
+        <div>
+          <h3>Your logo</h3>
+          <div class="file">
+            <label class="btn btn-primary" for="logo">Upload logo</label>
+            <input id="logo" type="file" accept="image/png,image/jpeg,image/svg+xml,image/webp">
+            <button type="button" class="seg-clear" id="logo-clear" hidden style="font:inherit;font-size:.85rem;background:none;border:0;color:var(--brown);cursor:pointer;text-decoration:underline">Remove</button>
+          </div>
+          <p class="hint" id="logo-hint">PNG with a clear background or SVG works best. A white logo reads best on a dark back.</p>
+          <label for="logo-size" style="display:block;font-weight:700;font-size:.85rem;margin:.7rem 0 .2rem">Logo size</label>
+          <input id="logo-size" type="range" min="40" max="100" value="85">
+        </div>
+        <div>
+          <h3>Name on the box</h3>
+          <input id="box-title" type="text" maxlength="28" placeholder="Your company or event">
+        </div>
+        <div>
+          <h3>Card to show</h3>
+          <div class="seg" data-key="card">
+            <button type="button" data-v="9,9">9 | 9</button>
+            <button type="button" data-v="6,3">6 | 3</button>
+            <button type="button" data-v="8,5">8 | 5</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview">
+        <div class="stage" aria-live="polite">
+          <div class="item"><div class="art card-art" id="face"></div><span>Card face</span></div>
+          <div class="item"><div class="art card-art" id="back"></div><span>Card back</span></div>
+          <div class="item"><div class="art" id="box"></div><span>Box</span></div>
+        </div>
+        <p class="note">Every deck has 55 cards from 0-0 to 9-9, a how-to-play card and two cards of Cuban table talk. This preview is the same drawing we print from. Your proof will match it.</p>
+      </div>
+    </section>
+
+    <form id="send" novalidate>
+      <h2>Send my design</h2>
+      <p class="micro">We only use this to reply about your deck. No payment until you approve the proof.</p>
+      <div class="row">
+        <div><label for="name">Your name</label><input id="name" name="name" type="text" required autocomplete="name"></div>
+        <div><label for="company">Company or event</label><input id="company" name="company" type="text" autocomplete="organization"></div>
+      </div>
+      <div class="row">
+        <div><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="phone">Phone (optional)</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="row">
+        <div>
+          <label for="quantity">How many decks</label>
+          <select id="quantity" name="quantity">
+            <option>10 to 24</option>
+            <option selected>25 to 49</option>
+            <option>50 to 99</option>
+            <option>100 to 249</option>
+            <option>250 or more</option>
+          </select>
+        </div>
+        <div>
+          <label for="deck_type">What is it for</label>
+          <select id="deck_type" name="deck_type">
+            <option>Corporate gift</option>
+            <option>Event or conference</option>
+            <option>Wedding or quince</option>
+            <option>Restaurant or bar</option>
+            <option>Something else</option>
+          </select>
+        </div>
+      </div>
+      <label for="message">Anything else</label>
+      <textarea id="message" name="message" placeholder="A deadline, a second logo, what goes on the back of the box."></textarea>
+      <div class="form-actions">
+        <button class="btn btn-gold" type="submit" id="submit-btn">Send my design</button>
+        <p class="micro">Prefer email? <a href="mailto:hola@callenueve.com">hola@callenueve.com</a></p>
+      </div>
+      <div class="status" id="status" role="status"></div>
+    </form>
+  </main>
+
+  <footer class="band">
+    <div class="brand">Calle Nueve</div>
+    <p>Cuban double-nine, reimagined as a card deck.</p>
+    <p>Hecho con amor en Miami, Florida. <a href="mailto:hola@callenueve.com">hola@callenueve.com</a> · <a href="/policies/">Shipping and returns</a></p>
+  </footer>
+
+  <script src="/design/c9-render.js"></script>
+  <script>
+    (function () {
+      var SUPABASE_URL = "https://oniuuwzugacxywrbqgub.supabase.co";
+      var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9uaXV1d3p1Z2FjeHl3cmJxZ3ViIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyMTg4NDcsImV4cCI6MjEwMzc5NDg0N30.ue6fMSqSjcDuBoJzwzYKgQ1YuwgsMNle1pf9sqj1KPM";
+      var BARS = ["#0D9488", "#E5097F", "#F8BE2A", "#0080FF", "#D62828", "#F77F00", "#2A9D8F", "#6A4C93", "#253551", "#111111"];
+      var BACKS = ["#00223B", "#111111", "#0D9488", "#E5097F", "#223282", "#6A4C93", "#8B1E3F", "#2F4F3E", "#F6EFDF", "#FFFFFF"];
+      var state = { bar: "#0D9488", pipsMode: "#111111", back: "#00223B", logo: null, logoOrientation: "portrait", logoScale: 0.85, boxTitle: "", card: "9,9" };
+
+      function design() {
+        return {
+          bar: state.bar,
+          pips: state.pipsMode === "bar" ? state.bar : state.pipsMode,
+          back: state.back,
+          logo: state.logo || undefined,
+          logoOrientation: state.logoOrientation,
+          logoScale: state.logoScale,
+          boxTitle: state.boxTitle || "YOUR NAME HERE"
+        };
+      }
+
+      var pending = false;
+      function render() {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(function () {
+          pending = false;
+          if (!window.C9) return;
+          var d = design();
+          var c = state.card.split(",").map(Number);
+          document.getElementById("face").innerHTML = window.C9.face(d, c[0], c[1]);
+          document.getElementById("back").innerHTML = window.C9.back(d);
+          document.getElementById("box").innerHTML = window.C9.box(d);
+        });
+      }
+
+      function swatches(key, list) {
+        var el = document.querySelector('.swatches[data-key="' + key + '"]');
+        list.forEach(function (hex) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "sw"; b.style.background = hex; b.title = hex; b.setAttribute("aria-label", key + " color " + hex);
+          b.setAttribute("aria-pressed", String(state[key] === hex));
+          b.addEventListener("click", function () { state[key] = hex; mark(); render(); });
+          el.appendChild(b);
+        });
+        var pick = document.createElement("input");
+        pick.type = "color"; pick.className = "custom-color"; pick.value = state[key]; pick.title = "Pick any color"; pick.setAttribute("aria-label", "Custom " + key + " color");
+        pick.addEventListener("input", function () { state[key] = pick.value.toUpperCase(); mark(); render(); });
+        el.appendChild(pick);
+      }
+      function mark() {
+        document.querySelectorAll(".swatches").forEach(function (el) {
+          var key = el.dataset.key;
+          el.querySelectorAll(".sw").forEach(function (b) { b.setAttribute("aria-pressed", String(b.title.toUpperCase() === state[key].toUpperCase())); });
+        });
+        document.querySelectorAll(".seg[data-key]").forEach(function (el) {
+          var key = el.dataset.key;
+          el.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === state[key])); });
+        });
+      }
+      swatches("bar", BARS);
+      swatches("back", BACKS);
+      document.querySelectorAll(".seg[data-key]").forEach(function (el) {
+        el.addEventListener("click", function (e) {
+          var b = e.target.closest("button"); if (!b) return;
+          state[el.dataset.key] = b.dataset.v; mark(); render();
+        });
+      });
+
+      // Logo: SVG kept as is (small), raster resized to 900 px on the long side
+      var logoInput = document.getElementById("logo");
+      var hint = document.getElementById("logo-hint");
+      var clear = document.getElementById("logo-clear");
+      logoInput.addEventListener("change", function () {
+        var f = logoInput.files && logoInput.files[0];
+        if (!f) return;
+        if (f.size > 8 * 1024 * 1024) { hint.textContent = "That file is over 8 MB. Try a smaller PNG or an SVG."; return; }
+        var reader = new FileReader();
+        reader.onload = function () {
+          var url = reader.result;
+          var img = new Image();
+          img.onload = function () {
+            var w = img.naturalWidth || 900, h = img.naturalHeight || 900;
+            state.logoOrientation = w / h > 1.4 ? "landscape" : "portrait";
+            if (f.type === "image/svg+xml" && url.length < 400000) {
+              state.logo = url;
+            } else {
+              var s = Math.min(1, 900 / Math.max(w, h));
+              var cv = document.createElement("canvas");
+              cv.width = Math.round(w * s); cv.height = Math.round(h * s);
+              cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+              state.logo = cv.toDataURL("image/png");
+              if (Math.min(w, h) < 300) hint.textContent = "Logo added. It is small (" + w + " x " + h + " px); send us a larger file or an SVG before print.";
+              else hint.textContent = "Logo added.";
+            }
+            if (f.type === "image/svg+xml") hint.textContent = "Logo added.";
+            clear.hidden = false;
+            render();
+          };
+          img.onerror = function () { hint.textContent = "We could not read that file. Try a PNG or an SVG."; };
+          img.src = url;
+        };
+        reader.readAsDataURL(f);
+      });
+      clear.addEventListener("click", function () { state.logo = null; logoInput.value = ""; clear.hidden = true; hint.textContent = "PNG with a clear background or SVG works best. A white logo reads best on a dark back."; render(); });
+      document.getElementById("logo-size").addEventListener("input", function (e) { state.logoScale = Number(e.target.value) / 100; render(); });
+      var titleInput = document.getElementById("box-title");
+      titleInput.addEventListener("input", function () { state.boxTitle = titleInput.value.trim(); render(); });
+      document.getElementById("company").addEventListener("change", function (e) {
+        if (!titleInput.value.trim() && e.target.value.trim()) { titleInput.value = e.target.value.trim(); state.boxTitle = titleInput.value; render(); }
+      });
+
+      mark();
+      render();
+      document.fonts && document.fonts.ready.then(render);
+
+      // Send
+      var form = document.getElementById("send");
+      var status = document.getElementById("status");
+      var btn = document.getElementById("submit-btn");
+      function show(kind, html) { status.className = "status " + kind; status.innerHTML = html; }
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var d = design();
+        if (!state.boxTitle) d.boxTitle = form.company.value.trim() || form.name.value.trim();
+        var data = {
+          name: form.name.value.trim(),
+          company: form.company.value.trim() || null,
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim() || null,
+          quantity: form.quantity.value,
+          deck_type: form.deck_type.value,
+          message: form.message.value.trim() || null,
+          source: "callenueve.com/design",
+          design: d
+        };
+        if (!data.name || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) {
+          show("err", "Please add your name and a working email so we can reply.");
+          return;
+        }
+        btn.disabled = true; btn.textContent = "Sending";
+        fetch(SUPABASE_URL + "/rest/v1/inquiries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "apikey": ANON_KEY, "Authorization": "Bearer " + ANON_KEY, "Prefer": "return=minimal" },
+          body: JSON.stringify(data)
+        }).then(function (r) {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          show("ok", "<strong>Gracias, " + data.name.split(" ")[0] + ".</strong> Your design is in. Expect a reply from hola@callenueve.com within two business days.");
+          btn.textContent = "Sent";
+        }).catch(function () {
+          show("err", "The design could not send. Please email <a href=\"mailto:hola@callenueve.com\">hola@callenueve.com</a> with your logo and colors (bar " + d.bar + ", back " + d.back + ").");
+          btn.disabled = false; btn.textContent = "Send my design";
+        });
+      });
+    })();
+  </script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

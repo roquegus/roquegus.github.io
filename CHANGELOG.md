@@ -2,6 +2,14 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.16.0 - 2026-09-24
+
+### Added
+- Leads from the design picker show the customer's bar and back colors and logo, with a "Create project" button: it makes a draft project from the Clean preset with those colors, the logo on the back, their name on the box, the next C9 order number and the contact details in the notes, and opens it.
+
+### Website
+- New /design page: customers pick a bar color, dot color and back color, upload a logo (resized in the browser), set the size and the name on the box, and see the real card face, back and box front update live. "Send my design" saves it with their contact details to the Studio leads. Linked from /custom and in the sitemap. The preview is drawn by the Studio's own card components, bundled as `design/c9-render.js` (`npm run build:picker`).
+
 ## 0.15.2 - 2026-09-24
 
 ### Added

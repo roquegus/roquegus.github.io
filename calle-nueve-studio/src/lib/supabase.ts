@@ -1,4 +1,5 @@
 import { DEFAULT_TUCK_BOX } from "../constants/tuckbox";
+import { tokensFromDesign, type PickerDesign } from "../utils/pickerDesign";
 import { createClient } from "@supabase/supabase-js";
 import type { DesignTokens, OrderInfo, OrderStatus } from "../types";
 
@@ -125,6 +126,8 @@ export type Inquiry = {
   message: string | null;
   source: string | null;
   handled: boolean;
+  /** Choices from the design picker at callenueve.com/design. */
+  design: PickerDesign | null;
 };
 
 export async function listInquiries(): Promise<Inquiry[]> {
@@ -174,6 +177,37 @@ export async function duplicateProject(source: CloudProject, orderNumber: string
       order_info,
       active_preset: source.active_preset,
       custom_presets: source.custom_presets ?? {},
+      status: "draft",
+    })
+    .select()
+    .single();
+  if (error) throw error;
+  return data as CloudProject;
+}
+
+/** A new draft project from a design-picker lead: Clean preset with the customer's colors, logo and box name. */
+export async function createProjectFromLead(lead: Inquiry, orderNumber: string): Promise<CloudProject> {
+  if (!lead.design) throw new Error("This request has no design");
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) throw new Error("Not authenticated");
+  const order_info: OrderInfo = {
+    customerName: lead.company || lead.name,
+    orderNumber,
+    notes: `From the design picker on ${lead.created_at.slice(0, 10)}. Contact: ${lead.name}, ${lead.email}${lead.phone ? `, ${lead.phone}` : ""}. Decks: ${lead.quantity ?? "?"}. For: ${lead.deck_type ?? "?"}.${lead.message ? `\n${lead.message}` : ""}`,
+    printVendor: "MakePlayingCards",
+    cardSizePreset: "Domino (1.75 × 3.5 in)",
+    exportDate: new Date().toISOString().slice(0, 10),
+    projectVersion: "0.1.0",
+  };
+  const { data, error } = await supabase
+    .from("projects")
+    .insert({
+      user_id: user.id,
+      name: lead.company || lead.name,
+      design_tokens: tokensFromDesign(lead.design),
+      order_info,
+      active_preset: "Clean",
+      custom_presets: {},
       status: "draft",
     })
     .select()

@@ -1,13 +1,14 @@
 {
   "name": "calle-nueve-studio",
   "private": true,
-  "version": "0.15.2",
+  "version": "0.16.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:picker": "vite build -c vite.picker.config.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",

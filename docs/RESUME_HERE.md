@@ -4,7 +4,7 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.15.2 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.16.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -20,6 +20,7 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 - Rush flag, "Needed By" date and a Queue tab (production queue with next steps) on the projects screen.
 - Quote and invoice PDF from the project card (dialog, one-page Letter PDF, inputs saved on the project). Reorder button (copy as a new draft with the next order number).
 - Shops tab (0.15.0): souvenir shops, visits, decks on shelves, money owed, visits due. Seeded with 11 real Miami shops as "to visit".
+- Design picker at callenueve.com/design (0.16.0): customers design a Clean deck live and send it; the lead has a "Create project" button in the Studio.
 - Leads panel under the projects list: requests from callenueve.com/custom, with a mailto link and a handled checkbox. Table `inquiries` in Supabase.
 - Brand kit at callenueve.com/brand/ (`callenueve-web/brand/`): C9 tile mark, wordmark, palette, fonts, voice, bios, platform images, launch plan. Nine ready Instagram posts with captions were sent to Gus in chat on 2026-09-22 (not in the repo). Instagram account @callenuevemiami created 2026-09-21 with hola@callenueve.com. TikTok and Facebook not yet.
 - Website callenueve.com: landing page with rendered images of the real cards (Clean theme, teal), Buy buttons on the Stripe payment link, /play (rules and glossary), /custom (custom decks with a request form), /wholesale (line sheet page and PDF), /policies (shipping, returns, privacy), /thanks, /brand. Product photos are rendered from the design files (`callenueve-web/assets/product-hero.jpg`, `product-square.jpg`); the scene is an HTML file in the session scratchpad, rebuild it from the Studio CLAUDE.md notes if the box changes.
@@ -53,7 +54,6 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 ## Next (in Gus's priority order, none started)
 
 1. Auto-email the proof link when status moves to Proof Sent, and an email alert for new leads (Supabase Edge Function + Resend). Needs Gus to open a Resend account and paste the key into Vercel.
-2. Customer self-service design picker on callenueve.com.
 3. Stripe orders inside the Studio (needs a restricted Stripe key in Vercel).
 Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue, product photos, policies page, sitemap.
 
