@@ -69,9 +69,8 @@ Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue,
 - Retail kit ready to print: `calle-nueve-studio/art/retail-kit/` (counter sign, wholesale card). Gus to print a few of each and buy a clear acrylic deck display. The line sheet PDF on /wholesale predates the swap term; re-export it when Gus confirms the terms.
 - Selling to shops: playbook in `docs/RESEARCH_selling_to_shops.md` (pitch script, negotiation, restocking, Faire, resale certificates). Before walking in: MPC samples and real cost, counter display, Florida sales tax registration if not done.
 - Instagram @callenuevemiami exists: post the nine images that were sent in chat (captions in the same ZIP).
-- Local printer test: the Pristine Pools print package (ZIP) and a Gmail draft "Quote request: one sample deck..." are ready. Gus emailed Mr. Playing Card on Sep 21; waiting for the quote. Note the package predates the chucho cards; re-export before printing.
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
-- Souvenir line: open the three postcard projects in the Studio, check the Chucho tab and the box, then order one sample of each from MPC and report the per-deck cost. Domino Park still needs art (postcard M or N, or the Fiverr piece).
+- Souvenir line: open the three postcard projects in the Studio, check the Chucho tab and the box, then order one sample of each from MPC and report the per-deck cost.
 - Stripe: finish the review if Stripe emails for a document; set the branding (icon `brand/profile-1024.png`, teal #0D9488, gold #D97706).
 - Gmail "Send mail as" for hola@callenueve.com: Gus requested it on 2026-09-21 (confirmation email arrived); check it shows under Settings > Accounts. SPF record is updated (verified by DNS on 2026-09-22).
 - Whether custom decks should carry a price on the website (the page asks for a quote for now).
