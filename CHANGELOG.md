@@ -2,6 +2,11 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.15.2 - 2026-09-24
+
+### Added
+- Retail box: "9|9 Card on Picture" toggle in the Tuck Box panel (shows for a tall picture). Off leaves the picture window clean, for the neighborhood decks.
+
 ## 0.15.1 - 2026-09-24
 
 ### Fixed

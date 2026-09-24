@@ -201,6 +201,8 @@ export type TuckBoxDesign = {
   spanishLine?: string;
   /** Width over height of customImage, saved on upload. Retail shows a landscape picture whole, with the cards under it. */
   customImageAspect?: number;
+  /** Retail box: draw the 9|9 card on the corner of a tall picture. Defaults to true; the neighborhood decks turn it off. */
+  pictureCard?: boolean;
   /** Retail box: color of the category word and the fact numbers. Defaults to #FFD24A. */
   highlight?: string;
 };

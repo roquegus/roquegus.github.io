@@ -149,7 +149,7 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
         <>
           <image href={box.customImage} x={pic.x} y={pic.y} width={pic.w} height={pic.h} preserveAspectRatio="xMidYMid slice" clipPath="url(#retailPicClip)" />
           <rect x={pic.x} y={pic.y} width={pic.w} height={pic.h} fill="none" stroke={accent} strokeWidth={4} />
-          <ShownCard tokens={tokens} top={9} bottom={9} cx={f.x + f.w - 142} cy={pic.y + pic.h - 120} scale={0.27} rot={8} />
+          {box.pictureCard !== false && <ShownCard tokens={tokens} top={9} bottom={9} cx={f.x + f.w - 142} cy={pic.y + pic.h - 120} scale={0.27} rot={8} />}
         </>
       ) : (
         <>

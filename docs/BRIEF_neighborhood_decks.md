@@ -6,14 +6,14 @@ Full brief with reference photos and direction sketches (share this with the des
 
 ## What the designer delivers, per neighborhood
 - Card back, 597 x 1122 px at 300 DPI (trim 36 px, keep key art 72 px in). Same upside down (mirrored) or no up and down.
-- Box window picture, 938 x 988 px (printed 469 x 494). Lower right stays quiet; the 9|9 card overlaps it.
+- Box window picture, 938 x 988 px (printed 469 x 494). Shown on its own, nothing on top (turn off "9|9 Card on Picture" in the Studio).
 - Two hex colors: box color (whole box, flat) and big word color (DOMINOES and the fact numbers).
 - PNG or TIFF RGB plus layered source. No text except the neighborhood name if drawn in.
 
 ## Directions
-- **Wynwood.** Original mural feel: color blocks, drips, block letters, warehouse doors. Box wall black #1E1E1E, word spray pink #FF3EA5. Best: hire a Wynwood muralist.
+- **Wynwood.** Gus picked: overlapping color blocks (pink, yellow, cyan, orange) with drips and speckle on a black wall, WYNWOOD in block letters, mirrored. Colors only, no white shapes. Box wall black #1E1E1E, word spray pink #FF3EA5. Best: hire a Wynwood muralist.
 - **South Beach.** Deco facade mirrored like a court card (eyebrows, portholes, fins, sunburst), or a lifeguard tower. Box flamingo #F7A8B8 or mint #A8E6CF, word ocean navy #1D3557.
-- **Little Havana.** Cuban cement tile (mosaico) all-over pattern with a domino, or the Domino Park table from above. Box tile cobalt #1F4E9C, word plantain #F2C14E. Replaces the Domino Park deck.
+- **Little Havana.** Gus picked: Cuban cement tile (mosaico) all-over pattern, edge to edge, nothing on top (no medallion, no domino). Box tile cobalt #1F4E9C, word plantain #F2C14E. Replaces the Domino Park deck.
 
 ## Rules for the art
 No copying murals, the Calle Ocho rooster statues or other artists' work. No logos or names (Wynwood Walls, hotels, neon signs, bars, teams). No recognizable people, no photo-realism, no AI art. Buildings seen from the street are fine to draw (US copyright allows pictures of buildings visible from public places).

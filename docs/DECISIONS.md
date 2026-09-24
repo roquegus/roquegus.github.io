@@ -211,3 +211,7 @@ Who: Gus ("its always 4 players, no more no less").
 Why: Cuban double-nine is four players in two teams, ten cards each, fifteen asleep. The box, counter sign, designer brief and /play say 4; the two-or-three-player note on /play was removed.
 Rules out: 2-4 or 2-player claims anywhere.
 
+## 2026-09-24 Neighborhood backs: clean, nothing on top
+Who: Gus, on the brief sketches.
+Why: "I just like the nice tile background" (Little Havana) and "keep it clean and simple ... with the different colors" (Wynwood). Little Havana is the all-over tile with no medallion or domino; Wynwood is the color blocks with no white shapes. The box window shows the art alone, so the Retail box got a toggle to drop the 9|9 card from the picture.
+

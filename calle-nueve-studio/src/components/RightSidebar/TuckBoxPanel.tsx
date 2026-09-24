@@ -113,6 +113,11 @@ export default function TuckBoxPanel() {
           <ControlRow label="Big Word Color">
             <ColorPicker value={box.highlight ?? "#FFD24A"} onChange={(v) => updateTuckBox({ highlight: v })} />
           </ControlRow>
+          {box.customImage && (box.customImageAspect ?? 0) <= 1.1 && (
+            <ControlRow label="9|9 Card on Picture">
+              <Toggle value={box.pictureCard !== false} onChange={(v) => updateTuckBox({ pictureCard: v })} />
+            </ControlRow>
+          )}
           {text("players", "Players")}
           {text("ages", "Ages")}
           {text("minutes", "Minutes")}
