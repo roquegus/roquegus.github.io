@@ -12,7 +12,7 @@ Full brief with reference photos and direction sketches (share this with the des
 
 ## Directions
 - **Wynwood.** Gus picked: overlapping color blocks (pink, yellow, cyan, orange) with drips and speckle on a black wall, WYNWOOD in block letters, mirrored. Colors only, no white shapes. Box wall black #1E1E1E, word spray pink #FF3EA5. Best: hire a Wynwood muralist.
-- **South Beach.** Deco facade mirrored like a court card (eyebrows, portholes, fins, sunburst), or a lifeguard tower. Box flamingo #F7A8B8 or mint #A8E6CF, word ocean navy #1D3557.
+- **South Beach.** Gus rejected the hotel facade. New direction: an Art Deco pattern, edge to edge, no buildings. Three options in the brief, waiting on Gus to pick: A. Fans (mint box, navy word), B. Chevrons (navy box, flamingo pink word), C. Diamond lattice (flamingo box, navy word). Pastels #F7A8B8 #A8E6CF #C9B6E4 #FFE8A3, navy #1D3557, cream #FFF8EC.
 - **Little Havana.** Gus picked: Cuban cement tile (mosaico) all-over pattern, edge to edge, nothing on top (no medallion, no domino). Box tile cobalt #1F4E9C, word plantain #F2C14E. Replaces the Domino Park deck.
 
 ## Rules for the art
