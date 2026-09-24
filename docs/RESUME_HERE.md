@@ -56,9 +56,14 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 3. Stripe orders inside the Studio (needs a restricted Stripe key in Vercel).
 Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue, product photos, policies page, sitemap.
 
+## Parked ideas (bring these up with Gus)
+
+- **Neighborhood series (Gus, 2026-09-24).** One souvenir deck per Miami neighborhood, sold in that neighborhood's own souvenir shop: Wynwood first (Gus works there; visitors to Wynwood Walls and the art district want a keepsake from it), then Little Havana, South Beach, Coconut Grove, Little Haiti and so on. Gus asked to be reminded. Raise it when the first shop placements are done or when the Fiverr art arrives, whichever comes first. Open questions: art per neighborhood (local muralist for Wynwood?), shared box layout with the neighborhood as the deck name, rights to show any mural.
+
 ## Waiting on Gus
 
 - Wholesale numbers: confirm or change the terms on /wholesale, then the PDF gets re-exported.
+- Selling to shops: playbook in `docs/RESEARCH_selling_to_shops.md` (pitch script, negotiation, restocking, Faire, resale certificates). Before walking in: MPC samples and real cost, counter display, Florida sales tax registration if not done.
 - Instagram @callenuevemiami exists: post the nine images that were sent in chat (captions in the same ZIP).
 - Local printer test: the Pristine Pools print package (ZIP) and a Gmail draft "Quote request: one sample deck..." are ready. Gus emailed Mr. Playing Card on Sep 21; waiting for the quote. Note the package predates the chucho cards; re-export before printing.
 - Social media: create @callenueve on Instagram, TikTok and Facebook using the kit at callenueve.com/brand/, with hola@callenueve.com as the account email.
