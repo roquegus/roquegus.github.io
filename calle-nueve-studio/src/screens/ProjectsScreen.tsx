@@ -4,6 +4,7 @@ import { listProjects, deleteProject, updateProjectStatus, listInquiries, setInq
 import type { OrderStatus, QuoteInfo } from "../types";
 import { APP_VERSION } from "../constants/print";
 import QuoteModal from "../components/QuoteModal";
+import ShopsPanel from "../components/ShopsPanel";
 import { nextOrderNumber } from "../utils/quote";
 
 type Props = {
@@ -46,7 +47,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [deleting, setDeleting] = useState<string | null>(null);
-  const [filter, setFilter] = useState<OrderStatus | "all" | "queue">("all");
+  const [filter, setFilter] = useState<OrderStatus | "all" | "queue" | "shops">("all");
   const [updatingStatus, setUpdatingStatus] = useState<string | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
 
@@ -216,6 +217,13 @@ export default function ProjectsScreen({ onOpen }: Props) {
           >
             Queue {queue.length > 0 && <span className="status-filter-count">{queue.length}</span>}
           </button>
+          <button
+            className={`status-filter-tab ${filter === "shops" ? "active" : ""}`}
+            onClick={() => setFilter("shops")}
+            title="Souvenir shops: what is on each shelf, what is owed, when to go back"
+          >
+            Shops
+          </button>
           {ALL_STATUSES.map((s) => (
             <button
               key={s}
@@ -230,6 +238,8 @@ export default function ProjectsScreen({ onOpen }: Props) {
 
         {loading && <p className="projects-status">Loading…</p>}
         {error && <p className="projects-status projects-error">{error}</p>}
+
+        {filter === "shops" && <ShopsPanel />}
 
         {!loading && !error && filter === "queue" && (
           queue.length === 0 ? (
@@ -272,7 +282,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
           )
         )}
 
-        {!loading && !error && filter !== "queue" && filtered.length === 0 && (
+        {!loading && !error && filter !== "queue" && filter !== "shops" && filtered.length === 0 && (
           <div className="projects-empty">
             {filter === "all" ? (
               <>
@@ -287,7 +297,7 @@ export default function ProjectsScreen({ onOpen }: Props) {
           </div>
         )}
 
-        {!loading && filter !== "queue" && filtered.length > 0 && (
+        {!loading && filter !== "queue" && filter !== "shops" && filtered.length > 0 && (
           <div className="projects-grid">
             {filtered.map((p) => {
               const status: OrderStatus = p.status ?? "draft";

@@ -181,3 +181,76 @@ export async function duplicateProject(source: CloudProject, orderNumber: string
   if (error) throw error;
   return data as CloudProject;
 }
+
+// ── Shops (souvenir shops carrying the decks) ────────────────────────────────
+
+export type ShopStatus = "prospect" | "sample_left" | "stocking" | "no";
+export type ShopTerms = "wholesale" | "swap" | "consignment";
+
+export type Shop = {
+  id: string;
+  created_at: string;
+  name: string;
+  area: string | null;
+  address: string | null;
+  contact: string | null;
+  phone: string | null;
+  email: string | null;
+  status: ShopStatus;
+  terms: ShopTerms;
+  resale_cert: boolean;
+  next_visit: string | null;
+  notes: string | null;
+};
+
+export type ShopVisit = {
+  id: string;
+  shop_id: string;
+  visited_on: string;
+  delivered: number;
+  left_on_shelf: number | null;
+  amount: number;
+  paid: boolean;
+  note: string | null;
+};
+
+export async function listShops(): Promise<{ shops: Shop[]; visits: ShopVisit[] }> {
+  const [s, v] = await Promise.all([
+    supabase.from("shops").select("*").order("area").order("name"),
+    supabase.from("shop_visits").select("*").order("visited_on", { ascending: false }),
+  ]);
+  if (s.error) throw s.error;
+  if (v.error) throw v.error;
+  return { shops: s.data as Shop[], visits: (v.data as ShopVisit[]).map((x) => ({ ...x, amount: Number(x.amount) })) };
+}
+
+export async function saveShop(shop: Partial<Shop> & { name: string }): Promise<Shop> {
+  const { id, created_at: _c, ...fields } = shop;
+  const q = id
+    ? supabase.from("shops").update(fields).eq("id", id).select().single()
+    : supabase.from("shops").insert(fields).select().single();
+  const { data, error } = await q;
+  if (error) throw error;
+  return data as Shop;
+}
+
+export async function deleteShop(id: string): Promise<void> {
+  const { error } = await supabase.from("shops").delete().eq("id", id);
+  if (error) throw error;
+}
+
+export async function addShopVisit(visit: Omit<ShopVisit, "id">): Promise<ShopVisit> {
+  const { data, error } = await supabase.from("shop_visits").insert(visit).select().single();
+  if (error) throw error;
+  return { ...(data as ShopVisit), amount: Number((data as ShopVisit).amount) };
+}
+
+export async function setVisitPaid(id: string, paid: boolean): Promise<void> {
+  const { error } = await supabase.from("shop_visits").update({ paid }).eq("id", id);
+  if (error) throw error;
+}
+
+export async function deleteShopVisit(id: string): Promise<void> {
+  const { error } = await supabase.from("shop_visits").delete().eq("id", id);
+  if (error) throw error;
+}

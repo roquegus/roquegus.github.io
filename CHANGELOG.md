@@ -2,6 +2,12 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.15.0 - 2026-09-24
+
+### Added
+- Shops tab on the projects screen: every souvenir shop you sell to or plan to visit. Status (to visit, sample left, stocking, said no), terms (wholesale, wholesale with the 60-day swap, consignment), contact, resale certificate on file, notes, next visit. Open a shop to log a visit: decks counted on the shelf, decks delivered, amount billed (12.50 a deck filled in), paid, next visit (three weeks out by default). The table shows decks on the shelf, decks sold between counts, money owed, and visits due, with due visits at the top. Totals across all shops sit above the table. Tables `shops` and `shop_visits` (migration 004).
+- Eleven real shops added as "to visit": five in Little Havana, two in Wynwood, the Art Deco gift shop on South Beach, and the museum stores at the Museum of Miami, PAMM and Vizcaya, with addresses, phones and notes.
+
 ## 0.14.1 - 2026-09-24
 
 ### Changed

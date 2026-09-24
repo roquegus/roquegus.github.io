@@ -943,3 +943,32 @@ input:focus, select:focus, textarea:focus { border-color: var(--accent-dim); }
 .queue-table td a { color: var(--text-primary); text-decoration: none; font-weight: 600; }
 .queue-table td a:hover { color: var(--accent); }
 .queue-table tr.queue-late td:nth-child(4) { color: var(--red-text); }
+
+/* Shops tab (souvenir shops carrying the decks) */
+.shops-summary { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; margin-bottom: 14px; }
+.shops-summary > div { background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; display: flex; flex-direction: column; gap: 2px; }
+.shops-summary strong { font-size: 20px; color: var(--text-primary); font-variant-numeric: tabular-nums; }
+.shops-summary span { font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .5px; }
+.shops-summary .shops-due strong { color: var(--red-text); }
+.shops-table td { font-variant-numeric: tabular-nums; }
+.shop-row { cursor: pointer; }
+.shop-row:hover td, .shop-row-open td { background: var(--bg-hover); }
+.shop-owed { color: var(--red-text); font-weight: 600; }
+.shop-status { font-size: 10px; font-weight: 700; border-radius: 999px; padding: 2px 8px; border: 1px solid var(--border-light); white-space: nowrap; }
+.shop-status-stocking { border-color: var(--accent); color: var(--accent); }
+.shop-status-sample_left { border-color: #D9A441; color: #D9A441; }
+.shop-status-no { opacity: .6; }
+.shop-detail > td { background: var(--bg-deep); padding: 12px !important; }
+.shop-info { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 10px; font-size: 12px; }
+.shop-info .btn-secondary { margin-left: auto; }
+.shop-notes { max-width: 420px; }
+.shop-form { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px 12px; background: var(--bg-panel); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; margin: 10px 0; }
+.shop-field { display: flex; flex-direction: column; gap: 3px; font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: .4px; }
+.shop-field-wide { grid-column: 1 / -1; }
+.shop-check { flex-direction: row; align-items: center; gap: 6px; text-transform: none; font-size: 12px; color: var(--text-secondary); align-self: end; padding-bottom: 6px; }
+.shop-form-actions { grid-column: 1 / -1; display: flex; gap: 8px; }
+.shop-delete { margin-left: auto; color: var(--red-text); }
+.visits-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-top: 6px; }
+.visits-table th { text-align: left; color: var(--text-muted); font-size: 10px; text-transform: uppercase; padding: 4px 6px; border-bottom: 1px solid var(--border); }
+.visits-table td { padding: 4px 6px; border-bottom: 1px solid var(--border); }
+@media (max-width: 700px) { .shops-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); } .shops-table { display: block; overflow-x: auto; } }
