@@ -4,7 +4,7 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 
 ## Current state
 
-**Studio v0.14.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.14.1 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
@@ -47,7 +47,7 @@ Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do 
 
 **Wholesale line sheet (2026-09-22).** callenueve.com/wholesale and the PDF carry assumed terms ($12.50 wholesale, case of 6, minimum 12, net 30 after the first order, free Miami-Dade delivery at 24, a free counter display that does not exist yet). Gus to confirm or change before sending it to a shop.
 
-**Retail box (2026-09-24, Studio 0.14.0).** Built from `docs/RESEARCH_box_shelf.md` after Gus said "go". Set on the retail deck (title now "FIRST EDITION") and the three postcard decks. Big word color: yellow #FFD24A on teal and green, white on the Greetings blue, navy on the Deco Beach light blue. Greetings from Miami now shows the whole landscape postcard (handwritten "65213 543" removed from the scan, `art/postcards/L-box-wide.jpg`). Renders of all four were sent to Gus. Next: the counter-tray header card ("Play dominoes anywhere. The Cuban game, in a deck of cards."), then a UPC barcode on the box back once Gus buys one (GS1), for shops that scan.
+**Retail box (2026-09-24, Studio 0.14.0).** Built from `docs/RESEARCH_box_shelf.md` after Gus said "go". Set on the retail deck (title now "FIRST EDITION") and the three postcard decks. Big word color: yellow #FFD24A on teal and green, white on the Greetings blue, navy on the Deco Beach light blue. Greetings from Miami now shows the whole landscape postcard (handwritten "65213 543" removed from the scan, `art/postcards/L-box-wide.jpg`). Renders of all four were sent to Gus. The box QR goes to callenueve.com/play?utm_source=box (0.14.1; Gus asked, Claude recommended How to Play over Buy). Box scans can be counted only after Gus switches on Web Analytics for callenueve-web in Vercel; the script is already on every page. Next: the counter-tray header card ("Play dominoes anywhere. The Cuban game, in a deck of cards."), then a UPC barcode on the box back once Gus buys one (GS1), for shops that scan.
 
 ## Next (in Gus's priority order, none started)
 

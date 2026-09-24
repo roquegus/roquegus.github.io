@@ -20,8 +20,8 @@ const fam = (f: string) => (f === "system" ? "system-ui, sans-serif" : `'${f}', 
 
 // Returns one SVG path covering every dark module. High error correction so
 // the code still scans with a fingerprint on it or a slightly soft print.
-export function qrPath(text: string): { d: string; n: number } {
-  const qr = QRCode.create(text, { errorCorrectionLevel: "H" });
+export function qrPath(text: string, level: "M" | "Q" | "H" = "H"): { d: string; n: number } {
+  const qr = QRCode.create(text, { errorCorrectionLevel: level });
   const n = qr.modules.size;
   const data = qr.modules.data;
   let d = "";

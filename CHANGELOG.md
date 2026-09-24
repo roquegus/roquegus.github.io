@@ -2,6 +2,14 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.14.1 - 2026-09-24
+
+### Changed
+- The QR on the Retail box back opens callenueve.com/play?utm_source=box: the same How to Play page as the rules card, tagged so box scans show apart from card scans. Q error correction instead of H so the longer link keeps a module size that scans at 1 in. The rules card QR is unchanged.
+
+### Website
+- Vercel Web Analytics script on every page (counts start once Web Analytics is switched on for the callenueve-web project in Vercel).
+
 ## 0.14.0 - 2026-09-24
 
 ### Added

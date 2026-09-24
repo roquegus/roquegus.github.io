@@ -187,3 +187,8 @@ Who: Gus said "go" on the plan in `docs/RESEARCH_box_shelf.md`; the details are 
 Why: shoppers in a souvenir shop give a box two or three seconds. The category word must be readable from a few feet away, the cards must be visible so it reads as a card game, and the four facts (2-4 players, 13+, 20 minutes, 55 cards) answer what a gift buyer asks. Ages 13+ avoids the small-parts and toy-safety rules that apply under 12 while being true for the game. The back teaches the game in three steps so the box sells itself without staff. New projects start on it; old projects without a saved box stay on Simple so nothing already printed changes.
 Rules out: brand-first fronts (CALLE NUEVE as the biggest word) on retail decks. Client gift decks can still use Simple or the older styles.
 
+## 2026-09-24 Box QR goes to How to Play, not Buy
+Who: Gus asked; Claude recommended, Gus said "go".
+Why: in a shop the question is "how does this play?", and a Buy link on a box would send the shop's customers to buy online, which no shop will stock. /play already carries a Buy button for anyone who wants one. The link is tagged `utm_source=box` so box scans show apart from rules card scans in Vercel Web Analytics.
+Rules out: a Buy or Stripe link in any QR on retail packaging.
+

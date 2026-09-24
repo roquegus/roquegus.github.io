@@ -73,7 +73,10 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
   // The brand already sits above DOMINOES, so a title of CALLE NUEVE shows the edition instead
   const deckName = box.title.trim().toUpperCase() === "CALLE NUEVE" ? box.edition : box.title;
   const rulesUrl = getRulesCard(tokens).url || "https://callenueve.com/play";
-  const qr = qrPath(rulesUrl);
+  // Same page as the rules card, tagged so box scans (people deciding in a shop)
+  // show apart from card scans in the site's analytics. Q correction keeps the
+  // longer link at a module size that scans at 1 in.
+  const qr = qrPath(`${rulesUrl}${rulesUrl.includes("?") ? "&" : "?"}utm_source=box`, "Q");
   const shortUrl = rulesUrl.replace(/^https?:\/\//, "").replace(/\/$/, "").toUpperCase();
 
   const fcx = f.x + f.w / 2;
