@@ -2,6 +2,12 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.16.1 - 2026-09-24
+
+### Changed
+- Retail box front: the two fanned cards are now the deck's own card back and the 9|9, so the box shows both sides of what is inside (Gus). Same for the wide-picture layout. A back the same color as the box gets a light card edge.
+- Product photos, the counter sign and the wholesale card re-rendered with the new box front. Picker bundle rebuilt.
+
 ## 0.16.0 - 2026-09-24
 
 ### Added

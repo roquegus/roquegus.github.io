@@ -1,5 +1,6 @@
 import type { DesignTokens, TuckBoxDesign } from "../../types";
 import DominoCardSVG from "./DominoCardSVG";
+import CardBack from "./CardBack";
 import { qrPath } from "./RulesCardSVG";
 import { DECK } from "../../utils/deck";
 import { PRINT } from "../../constants/print";
@@ -45,8 +46,8 @@ function wrap(text: string, max: number): string[] {
 
 const card = (top: number, bottom: number) => DECK.find((c) => c.top === top && c.bottom === bottom) ?? DECK[0];
 
-/** A card at `scale`, centered on (cx, cy), turned `rot` degrees, clipped to its trim with a soft shadow. */
-function ShownCard({ tokens, top, bottom, cx, cy, scale, rot }: { tokens: DesignTokens; top: number; bottom: number; cx: number; cy: number; scale: number; rot: number }) {
+/** A card at `scale`, centered on (cx, cy). With `back` it shows the deck's own card back, so the box shows both sides of what is inside. */
+function ShownCard({ tokens, top = 9, bottom = 9, back = false, cx, cy, scale, rot }: { tokens: DesignTokens; top?: number; bottom?: number; back?: boolean; cx: number; cy: number; scale: number; rot: number }) {
   const t = PRINT.trimInset;
   const w = PRINT.width - t * 2;
   const h = PRINT.height - t * 2;
@@ -54,8 +55,10 @@ function ShownCard({ tokens, top, bottom, cx, cy, scale, rot }: { tokens: Design
     <g transform={`translate(${cx},${cy}) rotate(${rot}) scale(${scale}) translate(${-PRINT.width / 2},${-PRINT.height / 2})`}>
       <rect x={t + 10} y={t + 16} width={w} height={h} rx={40} fill="#000" opacity={0.28} />
       <g clipPath="url(#retailCardClip)">
-        <DominoCardSVG card={card(top, bottom)} tokens={tokens} />
+        {back ? <CardBack tokens={tokens} /> : <DominoCardSVG card={card(top, bottom)} tokens={tokens} />}
       </g>
+      {/* A back can be the same color as the box, so it gets a light card edge */}
+      {back && <rect x={t + 4} y={t + 4} width={w - 8} height={h - 8} rx={36} fill="none" stroke="#FFFFFF" strokeOpacity={0.6} strokeWidth={8} />}
       <rect x={t} y={t} width={w} height={h} rx={40} fill="none" stroke="#000" strokeOpacity={0.15} strokeWidth={3} />
     </g>
   );
@@ -140,7 +143,7 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
             <>
               <image href={box.customImage} x={pic.x} y={pic.y} width={pic.w} height={ph} preserveAspectRatio="xMidYMid slice" />
               <rect x={pic.x} y={pic.y} width={pic.w} height={ph} fill="none" stroke={accent} strokeWidth={4} />
-              <ShownCard tokens={tokens} top={8} bottom={4} cx={fcx - 128} cy={pic.y + pic.h - 114} scale={0.23} rot={-12} />
+              <ShownCard tokens={tokens} back cx={fcx - 128} cy={pic.y + pic.h - 114} scale={0.23} rot={-12} />
               <ShownCard tokens={tokens} top={9} bottom={9} cx={fcx + 128} cy={pic.y + pic.h - 114} scale={0.23} rot={12} />
             </>
           );
@@ -153,7 +156,7 @@ export default function RetailBox({ tokens, box, front: f, back: bk, left, right
         </>
       ) : (
         <>
-          <ShownCard tokens={tokens} top={8} bottom={4} cx={fcx - 78} cy={pic.y + pic.h / 2 + 6} scale={0.385} rot={-10} />
+          <ShownCard tokens={tokens} back cx={fcx - 78} cy={pic.y + pic.h / 2 + 6} scale={0.385} rot={-10} />
           <ShownCard tokens={tokens} top={9} bottom={9} cx={fcx + 78} cy={pic.y + pic.h / 2 - 6} scale={0.385} rot={9} />
         </>
       )}

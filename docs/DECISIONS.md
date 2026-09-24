@@ -220,3 +220,7 @@ Who: Gus ("i hated the South Beach one", then picked "Fans" from three Deco patt
 Why: a pattern carries the Art Deco feel without drawing a hotel, and it matches the other two decks, which are also patterns (Wynwood color blocks, Little Havana tile). Box mint, big word navy.
 Rules out: facades, hotels and scenes on the South Beach deck.
 
+## 2026-09-24 Box front shows the card back and the 9|9
+Who: Gus ("so people know exactly what they're getting").
+Why: the box should show both sides of the cards inside. The retail layout without a picture and the wide-picture layout now show the deck's own back plus the 9|9 face.
+
