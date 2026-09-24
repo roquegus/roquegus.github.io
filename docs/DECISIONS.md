@@ -192,3 +192,8 @@ Who: Gus asked; Claude recommended, Gus said "go".
 Why: in a shop the question is "how does this play?", and a Buy link on a box would send the shop's customers to buy online, which no shop will stock. /play already carries a Buy button for anyone who wants one. The link is tagged `utm_source=box` so box scans show apart from rules card scans in Vercel Web Analytics.
 Rules out: a Buy or Stripe link in any QR on retail packaging.
 
+## 2026-09-24 Souvenir decks go by neighborhood
+Who: Gus.
+Why: each neighborhood has its own gift shops and its own visitors; a Wynwood deck sold in Wynwood is a keepsake of that walk, a generic Miami deck competes with every magnet. First three: Wynwood, South Beach, Little Havana. Little Havana replaces the Domino Park deck. The Retail box stays; its color, big word color and window come from each card back.
+Rules out: more generic Miami decks for now. Flamingo, Deco Beach and Greetings from Miami stay as they are (Deco Beach may fold into South Beach once the new art exists).
+
