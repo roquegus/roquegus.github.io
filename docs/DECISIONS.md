@@ -197,3 +197,12 @@ Who: Gus.
 Why: each neighborhood has its own gift shops and its own visitors; a Wynwood deck sold in Wynwood is a keepsake of that walk, a generic Miami deck competes with every magnet. First three: Wynwood, South Beach, Little Havana. Little Havana replaces the Domino Park deck. The Retail box stays; its color, big word color and window come from each card back.
 Rules out: more generic Miami decks for now. Flamingo, Deco Beach and Greetings from Miami stay as they are (Deco Beach may fold into South Beach once the new art exists).
 
+## 2026-09-24 Cards stay 1.75 x 3.5 with round corners; Mr. Playing Card declined
+Who: Gus ("i need the size thats actually playable. i dont want larger cards").
+Why: the 1:2 card is what makes it play and look like a domino tile. Mr. Playing Card can only round corners on standard sizes (bridge 2.25 x 3.5) without an $800 to $1,400 die.
+Rules out: bridge or poker size for Calle Nueve decks. Any new printer must quote 1.75 x 3.5 with round corners.
+
+## 2026-09-24 Wholesale terms add a 60-day swap
+Who: Claude, from the selling-to-shops research; Gus said "go" on the pitch kit.
+Why: it takes the risk out of a first order without going to consignment. Shown on /wholesale and on the wholesale card. Gus can remove it; change both places together.
+

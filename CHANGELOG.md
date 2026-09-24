@@ -2,6 +2,15 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## Unreleased
+
+### Website
+- Homepage and share photos now show the new DOMINOES retail box (`assets/product-*.jpg`).
+- /wholesale lists the 60-day swap: any design that has not sold in 60 days is swapped at no cost.
+
+### Retail kit
+- `calle-nueve-studio/art/retail-kit/`: a 4 x 6 counter sign ("Play dominoes anywhere", QR to /play tagged `utm_source=counter`) and a two-sided 6 x 4 wholesale card to leave with shop owners (prices, terms, decks, QR to /wholesale). Print PDFs with bleed, previews, HTML source.
+
 ## 0.15.0 - 2026-09-24
 
 ### Added

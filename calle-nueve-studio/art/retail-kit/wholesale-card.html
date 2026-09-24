@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<!-- Leave-behind for shop owners: a 6 x 4 in postcard, two sides (page 1 front,
+     page 2 back). Page is 6.25 x 4.25 in: 1/8 in bleed on every side.
+     Prices and terms match callenueve.com/wholesale; change both together. -->
+<style>
+@font-face{font-family:'Bebas Neue';src:url(src/bebas.woff2)}
+@font-face{font-family:'Playfair Display';src:url(src/playfair.woff2)}
+@font-face{font-family:'Playfair Display';font-style:italic;src:url(src/playfair-italic.woff2)}
+@page{size:6.25in 4.25in;margin:0}
+html,body{margin:0}
+.page{width:6.25in;height:4.25in;position:relative;overflow:hidden;page-break-after:always;font-family:'Bebas Neue',sans-serif}
+.front{background:#FBF7EC}
+.front img{position:absolute;left:0;bottom:0;width:100%;height:3.55in;object-fit:cover;object-position:50% 70%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 8%)}
+.front .tag{position:absolute;left:0.3in;right:0.3in;top:0.3in;display:flex;align-items:baseline;gap:10pt;color:#0D6B63;z-index:1}
+.front .tag .b{font-size:34pt;line-height:.9;color:#0D9488}
+.front .tag .s{font-family:'Playfair Display',serif;font-style:italic;font-size:12pt;color:#3B3B3B}
+.back{background:#FFFFFF;color:#1B1F1E}
+.back .safe{position:absolute;inset:0.3in;display:grid;grid-template-columns:1.25fr 1fr;gap:16pt}
+h2{margin:0;font-weight:400;font-size:26pt;letter-spacing:1pt;color:#0D9488;line-height:1}
+.terms{display:flex;flex-direction:column;gap:5pt}
+.row{display:flex;justify-content:space-between;border-bottom:1pt solid #D9E3E1;padding-bottom:3pt;font-size:13pt;letter-spacing:.5pt}
+.row b{font-weight:400;color:#0D9488;font-size:15pt}
+.small{font-family:'Playfair Display',serif;font-size:8.5pt;line-height:1.35;color:#3B3B3B}
+.side{display:flex;flex-direction:column;gap:7pt}
+.decks{font-size:11.5pt;letter-spacing:.5pt;line-height:1.25}
+.decks span{color:#0D9488}
+.contact{display:flex;gap:8pt;align-items:center;margin-top:auto}
+.contact img{width:0.9in;height:0.9in;display:block}
+.contact .t{font-size:12pt;line-height:1.2;letter-spacing:.5pt}
+</style></head>
+<body>
+<div class="page front">
+  <img src="src/product-hero.jpg" alt="">
+  <div class="tag">
+    <div class="b">CALLE NUEVE</div>
+    <div class="s">Dominoes in a deck of cards. Made in Miami.</div>
+  </div>
+</div>
+<div class="page back">
+  <div class="safe">
+    <div class="terms">
+      <h2>WHOLESALE</h2>
+      <div class="row">Your cost per deck <b>$12.50</b></div>
+      <div class="row">Suggested retail <b>$24.99</b></div>
+      <div class="row">Case <b>6 decks</b></div>
+      <div class="row">Opening order <b>12 decks</b></div>
+      <div class="row">Counter display <b>Free</b></div>
+      <div class="row">Not selling in 60 days? <b>We swap it</b></div>
+      <div class="small">First order prepaid (card, Zelle or ACH), net 30 after that. Free delivery in Miami-Dade on 24 decks or more. Please keep a Florida resale certificate on file with us.</div>
+    </div>
+    <div class="side">
+      <h2>THE DECKS</h2>
+      <div class="decks">
+        FIRST EDITION<br>FLAMINGO<br>DECO BEACH<br>GREETINGS FROM MIAMI<br>
+        <span>COMING: WYNWOOD, SOUTH BEACH, LITTLE HAVANA</span>
+      </div>
+      <div class="small">55 domino cards, 0-0 to 9-9, a how-to-play card with a QR code, and two cards of Cuban table talk. Plays exactly like dominoes.</div>
+      <div class="contact">
+        <img src="src/qr-wholesale.svg" alt="">
+        <div class="t">GUS ROQUE<br>HOLA@CALLENUEVE.COM<br>CALLENUEVE.COM/WHOLESALE</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>

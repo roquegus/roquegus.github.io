@@ -65,7 +65,8 @@ Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue,
 ## Waiting on Gus
 
 - Wholesale numbers: confirm or change the terms on /wholesale, then the PDF gets re-exported.
-- Mr. Playing Card (Sonya): cannot round corners at 1.75 x 3.5 without an $800 to $1,400 die. Gus asked for a quote at bridge size, 2.25 x 3.5. The Studio is built for 1.75 x 3.5 (a true 1:2 domino shape); bridge would need a new card size and a new box in the Studio. Decide after the quote, against the MPC sample cost.
+- Mr. Playing Card: rejected by Gus on 2026-09-24 (no round corners at 1.75 x 3.5 without an $800 to $1,400 die; bridge size is not playable as dominoes). A polite decline is saved as a Gmail draft reply in Sonya's thread for Gus to send. MPC stays the printer.
+- Retail kit ready to print: `calle-nueve-studio/art/retail-kit/` (counter sign, wholesale card). Gus to print a few of each and buy a clear acrylic deck display. The line sheet PDF on /wholesale predates the swap term; re-export it when Gus confirms the terms.
 - Selling to shops: playbook in `docs/RESEARCH_selling_to_shops.md` (pitch script, negotiation, restocking, Faire, resale certificates). Before walking in: MPC samples and real cost, counter display, Florida sales tax registration if not done.
 - Instagram @callenuevemiami exists: post the nine images that were sent in chat (captions in the same ZIP).
 - Local printer test: the Pristine Pools print package (ZIP) and a Gmail draft "Quote request: one sample deck..." are ready. Gus emailed Mr. Playing Card on Sep 21; waiting for the quote. Note the package predates the chucho cards; re-export before printing.
