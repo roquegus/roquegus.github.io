@@ -2,6 +2,16 @@
 
 All notable changes to the Calle Nueve Studio and website. Format follows Keep a Changelog. Versions are the Studio's; the website has no version.
 
+## 0.14.0 - 2026-09-24
+
+### Added
+- Tuck box style "Retail (DOMINOES)", built so a shopper can tell what it is from across a souvenir shop. Front: CALLE NUEVE small, DOMINOES as the biggest word, the deck name, "The Cuban domino game in a deck of cards", the cards themselves (two fanned cards, or the box picture with the 9|9 on its corner, or a wide postcard shown whole with two cards under it), and a strip of four facts: players, ages, minutes, 55 cards. Back: how to play in three steps, a Spanish line, a QR to the rules card link, what is inside. Lid and spine say DOMINOES. One flat color like Simple, so nothing can bleed wrong. Panel fields: big word, its color, players, ages, minutes, Spanish line.
+- New projects start on the Retail box. Projects without a saved box (UM Domino) still draw Simple.
+- The box picture remembers its shape on upload, so a landscape picture is not cropped.
+
+### Changed
+- Retail deck, Flamingo, Deco Beach and Greetings from Miami moved to the Retail box. Greetings from Miami shows the whole postcard, with the handwritten numbers removed from the scan.
+
 ## 0.13.0 - 2026-09-23
 
 ### Added

@@ -167,8 +167,12 @@ export type RulesCardDesign = {
   body: string;
 };
 
-/** "simple" is one flat color over the whole sheet: nothing can bleed wrong. */
-export type TuckBoxFrontStyle = "simple" | "emblem" | "hero-card" | "cartouche" | "custom";
+/**
+ * "simple" is one flat color over the whole sheet: nothing can bleed wrong.
+ * "retail" is simple plus shelf copy: DOMINOES as the biggest word, the cards
+ * shown, a fact strip on the front and how to play on the back.
+ */
+export type TuckBoxFrontStyle = "simple" | "retail" | "emblem" | "hero-card" | "cartouche" | "custom";
 
 export type TuckBoxDesign = {
   frontStyle: TuckBoxFrontStyle;
@@ -187,6 +191,18 @@ export type TuckBoxDesign = {
   frontColor?: string;
   /** Stamp artwork (data URL, transparent PNG or SVG) drawn on the box back and the label front instead of the medallion. */
   stamp?: string;
+  /** Retail box: the biggest word on the front, lid and spine. Defaults to "DOMINOES". */
+  category?: string;
+  /** Retail box fact strip. */
+  players?: string;
+  ages?: string;
+  minutes?: string;
+  /** Retail box back: one line in Spanish. */
+  spanishLine?: string;
+  /** Width over height of customImage, saved on upload. Retail shows a landscape picture whole, with the cards under it. */
+  customImageAspect?: number;
+  /** Retail box: color of the category word and the fact numbers. Defaults to #FFD24A. */
+  highlight?: string;
 };
 
 export type OrderInfo = {

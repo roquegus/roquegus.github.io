@@ -6,6 +6,7 @@ import PipIcon from "./PipIcon";
 import DominoCardSVG from "./DominoCardSVG";
 import { DECK } from "../../utils/deck";
 import { PRINT } from "../../constants/print";
+import RetailBox from "./RetailBox";
 
 type Props = {
   tokens: DesignTokens;
@@ -176,7 +177,8 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
 
   // One flat color over the whole sheet. No pattern, no separate front panel, so
   // there is no edge where a second color could bleed the wrong way.
-  const simple = box.frontStyle === "simple";
+  const retail = box.frontStyle === "retail";
+  const simple = box.frontStyle === "simple" || retail;
 
   const f = R_FRONT;
   const fcx = f.x + f.w / 2;
@@ -232,6 +234,19 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
           />
         )}
 
+        {retail ? (
+          <RetailBox
+            tokens={tokens}
+            box={box}
+            front={f}
+            back={bk}
+            left={R_LEFT}
+            right={R_RIGHT}
+            lid={{ x: R_LID.x, w: R_LID.w, cy: p(T.lid.y[1] - 27) }}
+            bottom={R_BB}
+          />
+        ) : (
+        <>
         {/* FRONT */}
         {simple ? (
           <g>
@@ -489,6 +504,8 @@ export default function TuckBoxSVG({ tokens, showDieline = false }: Props) {
         <text x={R_BB.x + R_BB.w / 2} y={R_BB.y + R_BB.h / 2} textAnchor="middle" dominantBaseline="central" fontFamily={titleFont} fontSize={28} fill={accent} letterSpacing={5}>
           {box.url}
         </text>
+        </>
+        )}
       </g>
 
       {showDieline && <Dieline />}

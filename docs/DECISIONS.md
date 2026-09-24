@@ -181,3 +181,9 @@ Rules out: patterned sheets and a white front panel by default. MCB (printing) u
 ## 2026-09-22 Illustrator brief asks for "your Miami", not a style
 Who: Gus.
 Why: he wants the artist's own take, fun colors, the thing a tourist takes home. The brief lists what says Miami and what to avoid (photo-real, clip art, AI, text) and fixes only the sizes and the rights. Short public post; the spec sheet goes out after hiring.
+
+## 2026-09-24 Retail box: DOMINOES is the biggest word
+Who: Gus said "go" on the plan in `docs/RESEARCH_box_shelf.md`; the details are Claude's calls.
+Why: shoppers in a souvenir shop give a box two or three seconds. The category word must be readable from a few feet away, the cards must be visible so it reads as a card game, and the four facts (2-4 players, 13+, 20 minutes, 55 cards) answer what a gift buyer asks. Ages 13+ avoids the small-parts and toy-safety rules that apply under 12 while being true for the game. The back teaches the game in three steps so the box sells itself without staff. New projects start on it; old projects without a saved box stay on Simple so nothing already printed changes.
+Rules out: brand-first fronts (CALLE NUEVE as the biggest word) on retail decks. Client gift decks can still use Simple or the older styles.
+

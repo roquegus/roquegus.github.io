@@ -12,3 +12,6 @@ Linen postcards, about 1930 to 1945, from the Tichnor Brothers collection at the
 Sizes: card backs 597 x 1122 (full bleed), box pictures 489 x 680 (the frame in the Simple box style).
 Source scans were fetched at 2400 px through the c9-fetch Vercel build (IIIF `full/!2400,2400/0/default.jpg`).
 The `*-source-*.jpg` files are the trimmed, cleaned scans before cropping, for re-cropping later.
+
+`L-box-wide.jpg` (938 x 599) is the whole Greetings postcard for the Retail box, which shows wide pictures uncropped. The handwritten "65213" and printed "543" in the top right corner were inpainted out of `L-source-greetings-from-miami.jpg` (OpenCV Telea plus a little grain).
+

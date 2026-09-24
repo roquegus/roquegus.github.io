@@ -1,17 +1,17 @@
 # Resume here
 
-Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do not append.
+Last updated: 2026-09-24 (session 8). Keep this file true. Rewrite sections, do not append.
 
 ## Current state
 
-**Studio v0.13.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
+**Studio v0.14.0 is live at studio.callenueve.com.** Everything below is deployed and working unless marked.
 
 - Auth (Supabase email/password), cloud projects, autosave 3 s after a change.
 - 55-card double-nine deck at MPC domino size, 597 x 1122 px, 300 DPI. Every render and export uses this size.
 - 12 presets: Classic Calle Nueve, Vintage Havana, Miami Neon, Wedding Gold, Art Deco Luxe, Souvenir Edition, Minimal Modern, Clean, Domino Park, Deco Beach, Miami Sunset, Flamingo Card. Custom presets save per project.
 - Pip styles: Cuban icons (real vector art), classic dots, rings, numbers, diamonds. Pips are one size regardless of count.
 - Card back patterns (Cuban Mosaico, Cuban Floor Tile, Deco Sunburst, Miami Sunset, Flamingo Card (one-way), Diamonds, Sunburst, Art Deco, Plain, Custom), up to four back colors, frame, three medallion styles, custom image, and a client logo (portrait or landscape, size slider, mirrored and white-back options, sideways preview).
-- Tuck box front styles: Simple (one flat color over the whole sheet, the default since 0.10.0 and set on every draft project), Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
+- Tuck box front styles: Retail (0.14.0, the shelf box: DOMINOES as the biggest word, the cards or the postcard shown, a players/ages/minutes/cards strip, how to play and a QR on the back; new projects start on it, and it is set on C9-0009 to C9-0012), Simple (one flat color over the whole sheet; old projects keep it), Emblem, Hero Card, Label (souvenir cartouche with bilingual taglines), Custom Image. Optional stamp image on the box back and label front.
 - Tuck box designer for MPC's domino-size 19 mm box, with PDF export placed on MPC's template page.
 - Exports: single PNG, production ZIP (55 faces + back + project files), PDF proof, box PNG and PDF. Fonts are embedded.
 - Rules card: optional 56th card with a QR code to callenueve.com/play, included in the production ZIP by default.
@@ -46,6 +46,8 @@ Last updated: 2026-09-22 (session 8). Keep this file true. Rewrite sections, do 
 **Custom decks page and leads (2026-09-22).** callenueve.com/custom is live with a request form. Requests appear in the Studio's leads panel and nowhere else (no email alert yet). Gus should open the Studio a couple of times a week or ask for an email alert (Supabase Edge Function + Resend, same plumbing as item 1 in Next).
 
 **Wholesale line sheet (2026-09-22).** callenueve.com/wholesale and the PDF carry assumed terms ($12.50 wholesale, case of 6, minimum 12, net 30 after the first order, free Miami-Dade delivery at 24, a free counter display that does not exist yet). Gus to confirm or change before sending it to a shop.
+
+**Retail box (2026-09-24, Studio 0.14.0).** Built from `docs/RESEARCH_box_shelf.md` after Gus said "go". Set on the retail deck (title now "FIRST EDITION") and the three postcard decks. Big word color: yellow #FFD24A on teal and green, white on the Greetings blue, navy on the Deco Beach light blue. Greetings from Miami now shows the whole landscape postcard (handwritten "65213 543" removed from the scan, `art/postcards/L-box-wide.jpg`). Renders of all four were sent to Gus. Next: the counter-tray header card ("Play dominoes anywhere. The Cuban game, in a deck of cards."), then a UPC barcode on the box back once Gus buys one (GS1), for shops that scan.
 
 ## Next (in Gus's priority order, none started)
 

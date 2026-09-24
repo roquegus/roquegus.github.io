@@ -1,3 +1,4 @@
+import { DEFAULT_TUCK_BOX } from "../constants/tuckbox";
 import { createClient } from "@supabase/supabase-js";
 import type { DesignTokens, OrderInfo, OrderStatus } from "../types";
 
@@ -64,6 +65,11 @@ export async function saveProject(project: {
     if (error) throw error;
     return data as CloudProject;
   } else {
+    // New projects start on the Retail box. Old projects without a saved box
+    // (UM Domino) keep drawing the Simple default, so nothing printed changes.
+    if (!payload.design_tokens.tuckBox) {
+      payload.design_tokens = { ...payload.design_tokens, tuckBox: { ...DEFAULT_TUCK_BOX, frontStyle: "retail" } };
+    }
     const { data, error } = await supabase
       .from("projects")
       .insert(payload)
