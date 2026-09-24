@@ -59,7 +59,7 @@ Done on 2026-09-23: quote and invoice PDF, reorder, rush flag, production queue,
 
 ## Parked ideas (bring these up with Gus)
 
-- **Neighborhood series: now active (2026-09-24).** Gus moved it up: Wynwood, South Beach, Little Havana first. Designer brief published (`docs/BRIEF_neighborhood_decks.md`, artifact https://claude.ai/artifact/9wTKMB7afh9nATpbwpVxdN). Waiting on Gus to hire a designer (the Fiverr artist or a Wynwood muralist). Original parked note below.
+- **Neighborhood series: now active (2026-09-24).** Gus moved it up: Wynwood, South Beach, Little Havana first. Designer brief published (`docs/BRIEF_neighborhood_decks.md`, artifact https://claude.ai/artifact/9wTKMB7afh9nATpbwpVxdN). All three directions picked (Wynwood color blocks, South Beach Deco fans, Little Havana tile). Waiting on Gus to share the brief and hire a designer (the Fiverr artist or a Wynwood muralist). Original parked note below.
 - **Neighborhood series (Gus, 2026-09-24).** One souvenir deck per Miami neighborhood, sold in that neighborhood's own souvenir shop: Wynwood first (Gus works there; visitors to Wynwood Walls and the art district want a keepsake from it), then Little Havana, South Beach, Coconut Grove, Little Haiti and so on. Gus asked to be reminded. Raise it when the first shop placements are done or when the Fiverr art arrives, whichever comes first. Open questions: art per neighborhood (local muralist for Wynwood?), shared box layout with the neighborhood as the deck name, rights to show any mural.
 
 ## Waiting on Gus

@@ -215,3 +215,8 @@ Rules out: 2-4 or 2-player claims anywhere.
 Who: Gus, on the brief sketches.
 Why: "I just like the nice tile background" (Little Havana) and "keep it clean and simple ... with the different colors" (Wynwood). Little Havana is the all-over tile with no medallion or domino; Wynwood is the color blocks with no white shapes. The box window shows the art alone, so the Retail box got a toggle to drop the 9|9 card from the picture.
 
+## 2026-09-24 South Beach back: Deco fans, no buildings
+Who: Gus ("i hated the South Beach one", then picked "Fans" from three Deco patterns).
+Why: a pattern carries the Art Deco feel without drawing a hotel, and it matches the other two decks, which are also patterns (Wynwood color blocks, Little Havana tile). Box mint, big word navy.
+Rules out: facades, hotels and scenes on the South Beach deck.
+

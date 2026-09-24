@@ -110,4 +110,5 @@ Append only, newest at the bottom. One entry per Claude session that changed som
 - Gus: always 4 players. Retail box default and back line, panel default, counter sign, designer brief sketches, /play fixed. Also fixed the box steps that said to draw from the leftover cards (the rules say they sit out). Studio 0.15.1.
 - Gus reviewed the brief sketches: Little Havana tile only, Wynwood colors only, no card on the box picture. Brief republished (version 3). Studio 0.15.2 adds the "9|9 Card on Picture" toggle.
 - Gus hated the South Beach hotel sketch. Replaced with three Art Deco pattern options (fans, chevrons, diamond lattice), no buildings; brief republished (version 4). Waiting on his pick.
+- Gus picked the Deco fans for South Beach. Brief republished (version 5) with only the chosen directions for all three decks. The brief is ready to hand off.
 
